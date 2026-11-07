@@ -5,12 +5,12 @@
 <link>https://elohyrr.github.io/veille/</link>
 <description>Tech, pannes, failles et fuites — digest quotidien</description>
 <language>fr-fr</language>
-<lastBuildDate>Sat, 07 Nov 2026 06:02:00 &#43;0000</lastBuildDate>
+<lastBuildDate>Sat, 07 Nov 2026 18:46:39 &#43;0000</lastBuildDate>
 <item>
 <title>La veille — samedi 7 novembre 2026</title>
 <link>https://elohyrr.github.io/veille/jours/2026-11-07/</link>
 <guid isPermaLink="true">https://elohyrr.github.io/veille/jours/2026-11-07/</guid>
-<pubDate>Sat, 07 Nov 2026 06:02:00 &#43;0000</pubDate>
+<pubDate>Sat, 07 Nov 2026 18:46:39 &#43;0000</pubDate>
 <description>Journée calme. Seule la sortie de libghostty 1.0 mérite l&#39;attention, avec une ABI C stable. Les incidents Cloudflare du jour sont mineurs et ne sont pas traités.
 
 - libghostty-vt 1.0 : la bibliothèque C d&#39;émulation de terminal de Ghostty passe en ABI stable

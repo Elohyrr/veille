@@ -5,7 +5,19 @@
 <link>https://elohyrr.github.io/veille/</link>
 <description>Tech, pannes, failles et fuites — digest quotidien</description>
 <language>fr-fr</language>
+<lastBuildDate>Sat, 07 Nov 2026 18:46:39 &#43;0000</lastBuildDate>
 <itunes:image href="https://elohyrr.github.io/veille/cover.png"/>
 <itunes:explicit>false</itunes:explicit>
+<item>
+<title>libghostty 1.0, l&#39;ABI stable du terminal</title>
+<link>https://elohyrr.github.io/veille/jours/2026-11-07/</link>
+<guid isPermaLink="false">ep-2026-11-07</guid>
+<pubDate>Sat, 07 Nov 2026 18:46:39 &#43;0000</pubDate>
+<description>- libghostty-vt 1.0 : la bibliothèque C d&#39;émulation de terminal de Ghostty passe en ABI stable
+https://elohyrr.github.io/veille/jours/2026-11-07/</description>
+<enclosure url="https://github.com/Elohyrr/veille/releases/download/ep-2026-11-07/veille-2026-11-07.mp3" length="1393005" type="audio/mpeg"/>
+<itunes:duration>00:02:54</itunes:duration>
+<itunes:explicit>false</itunes:explicit>
+</item>
 </channel>
 </rss>

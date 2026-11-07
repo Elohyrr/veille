@@ -1,6 +1,6 @@
 {
   "date": "2026-11-07",
-  "published_at": "2026-11-07T06:02:00Z",
+  "published_at": "2026-11-07T18:46:39Z",
   "intro": "Journée calme. Seule la sortie de libghostty 1.0 mérite l'attention, avec une ABI C stable. Les incidents Cloudflare du jour sont mineurs et ne sont pas traités.",
   "topics": [
     {
@@ -114,6 +114,14 @@
       "style": "relaxed, cheerful"
     }
   ],
+  "episode": {
+    "title": "libghostty 1.0, l'ABI stable du terminal",
+    "release_tag": "ep-2026-11-07",
+    "mp3_url": "https://github.com/Elohyrr/veille/releases/download/ep-2026-11-07/veille-2026-11-07.mp3",
+    "bytes": 1393005,
+    "duration_s": 174,
+    "tts_provider": "openrouter"
+  },
   "usage": {
     "digest": {
       "model": "sonnet",
