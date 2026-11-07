@@ -1,0 +1,137 @@
+{
+  "date": "2026-11-07",
+  "published_at": "2026-11-07T06:02:00Z",
+  "intro": "Journée calme. Seule la sortie de libghostty 1.0 mérite l'attention, avec une ABI C stable. Les incidents Cloudflare du jour sont mineurs et ne sont pas traités.",
+  "topics": [
+    {
+      "id": "2026-11-07/libghostty-1-0-abi-stable",
+      "slug": "libghostty-1-0-abi-stable",
+      "theme": "new_tech",
+      "title": "libghostty-vt 1.0 : la bibliothèque C d'émulation de terminal de Ghostty passe en ABI stable",
+      "summary": "Le projet Ghostty publie la version 1.0 de libghostty-vt, une bibliothèque C portable d'émulation de terminal extraite du cœur de Ghostty. La bibliothèque et son ABI C sont désormais déclarées stables. Elle suit le versionnage sémantique, et la CI vérifie l'ABI avec libabigail contre une référence versionnée sur Linux, ainsi que contre des manifestes de types sur macOS et WebAssembly. Sur ELF, les symboles exportés sont versionnés. Les objets sont des handles opaques, et une version plus récente des en-têtes liée à une bibliothèque plus ancienne reçoit GHOSTTY_UNSUPPORTED au lieu de planter.\n\nL'auteur cite plusieurs usages : le terminal des IDE JetBrains tournerait désormais sur libghostty (plus de 12,5 millions d'utilisateurs actifs selon un rapport de JetBrains). Une pull request approuvée remplace libvterm par libghostty-vt dans Neovim, et les mainteneurs attendaient une version taguée avant de fusionner. Turborepo, OrbStack et d'autres l'utilisent aussi.\n\nCôté packaging, la bibliothèque a son propre cycle de release, des tarballs signés, un tarball de dépendances pour compiler hors ligne, un SONAME, des fichiers pkg-config et un paquet CMake. Elle est sous licence MIT, ne dépend que de libc à l'exécution et n'embarque aucune dépendance copyleft. Elle est testée sur Linux (glibc, musl), macOS, FreeBSD, Windows, Android et WebAssembly.",
+      "why_it_matters": "Si vous empaquetez des logiciels ou développez des outils en TUI, une dépendance de terminal avec ABI stable, liable dynamiquement et compilable hors ligne devient réaliste. Les distributions peuvent la packager séparément, et Neovim en profitera. À suivre si vous maintenez des paquets ou des outils qui affichent des sorties de terminal.",
+      "sources": [
+        {
+          "article_id": "c003",
+          "feed": "Hacker News (300+ pts)",
+          "title": "Libghostty 1.0",
+          "url": "https://mitchellh.com/writing/libghostty-1-0",
+          "key": "link:https://mitchellh.com/writing/libghostty-1-0"
+        }
+      ]
+    }
+  ],
+  "episode_title": "libghostty 1.0, l'ABI stable du terminal",
+  "script": [
+    {
+      "speaker": "Camille",
+      "text": "Salut et bienvenue dans La veille, on est le samedi 7 novembre deux mille vingt-six. Aujourd'hui c'est calme, un seul gros sujet : la sortie de libghostty 1.0.",
+      "style": "relaxed, warm morning greeting"
+    },
+    {
+      "speaker": "Max",
+      "text": "Salut Camille. Ouais, journée tranquille, les incidents Cloudflare du jour sont mineurs, on les laisse de côté. Donc libghostty, ça vient du projet Ghostty, le terminal.",
+      "style": "relaxed, amused"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Exactement. Plus précisément, c'est libghostty-vt, une bibliothèque C portable d'émulation de terminal, extraite du cœur de Ghostty. Et avec cette 1.0, la bibliothèque et son ABI C sont déclarées stables.",
+      "style": "calm, explaining"
+    },
+    {
+      "speaker": "Max",
+      "text": "Attends, ABI stable, ça veut dire quoi concrètement ? Parce que moi je pense toujours API, et l'ABI, j'y pense quand ça casse.",
+      "style": "curious, naive question"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Ça veut dire que tu peux mettre à jour la bibliothèque sans recompiler tout ce qui est lié dessus. Ils suivent le versionnage sémantique, et la CI vérifie l'ABI avec libabigail contre une référence versionnée sur Linux, et contre des manifestes de types sur macOS et WebAssembly.",
+      "style": "calm, explaining"
+    },
+    {
+      "speaker": "Max",
+      "text": "Ah, donc ils ne se contentent pas de promettre, ils le testent. Et côté ELF ?",
+      "style": "impressed"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Sur ELF, les symboles exportés sont versionnés. Les objets sont des handles opaques. Et petit détail que j'aime bien : si tu as des en-têtes plus récents liés à une bibliothèque plus ancienne, tu reçois GHOSTTY_UNSUPPORTED au lieu d'un plantage.",
+      "style": "relaxed"
+    },
+    {
+      "speaker": "Max",
+      "text": "Une erreur propre plutôt qu'un segfault mystérieux, perso je signe tout de suite. Et ça sert déjà à des gens ?",
+      "style": "amused"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Oui, l'auteur cite plusieurs usages. Le terminal des IDE JetBrains tournerait désormais sur libghostty, avec plus de 12,5 millions d'utilisateurs actifs selon un rapport de JetBrains. Turborepo et OrbStack l'utilisent aussi, entre autres.",
+      "style": "engaged, informative"
+    },
+    {
+      "speaker": "Max",
+      "text": "Sérieux, 12,5 millions ? Ça fait du monde. Et Neovim, j'ai vu passer un truc là-dessus.",
+      "style": "surprised"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Oui, une pull request approuvée remplace libvterm par libghostty-vt dans Neovim. Les mainteneurs attendaient une version taguée avant de fusionner, donc la 1.0 débloque ça.",
+      "style": "calm"
+    },
+    {
+      "speaker": "Max",
+      "text": "Logique, on ne fusionne pas une dépendance sans tag. Et pour ceux qui packagent, c'est comment ?",
+      "style": "pleased"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Plutôt bien équipé. Cycle de release propre, tarballs signés, un tarball de dépendances pour compiler hors ligne, un SONAME, des fichiers pkg-config et un paquet CMake.",
+      "style": "explaining"
+    },
+    {
+      "speaker": "Max",
+      "text": "Le hors ligne, c'est le rêve des mainteneurs de distro. Et la licence ?",
+      "style": "relaxed, appreciative"
+    },
+    {
+      "speaker": "Camille",
+      "text": "MIT, ne dépend que de libc à l'exécution, aucune dépendance copyleft. Et c'est testé sur Linux avec glibc et musl, macOS, FreeBSD, Windows, Android et WebAssembly.",
+      "style": "calm"
+    },
+    {
+      "speaker": "Max",
+      "text": "Donc si tu fais des outils TUI ou que tu maintiens des paquets, une dépendance de terminal stable, liable dynamiquement, ça devient réaliste. Moi je garderais ça à l'œil.",
+      "style": "thoughtful"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Pareil. Voilà pour aujourd'hui. Bon samedi à toutes et à tous, et à demain.",
+      "style": "warm, wrapping up"
+    },
+    {
+      "speaker": "Max",
+      "text": "À demain, et profitez bien du week-end !",
+      "style": "relaxed, cheerful"
+    }
+  ],
+  "usage": {
+    "digest": {
+      "model": "sonnet",
+      "in": 6077,
+      "out": 1123,
+      "cost_usd": 0.035533999999999996
+    },
+    "podcast": {
+      "model": "sonnet",
+      "in": 2797,
+      "out": 1765,
+      "cost_usd": 0.028834
+    },
+    "triage": {
+      "model": "haiku",
+      "in": 2923,
+      "out": 617,
+      "cost_usd": 0.0008929000000000001
+    }
+  }
+}

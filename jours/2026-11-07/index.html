@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>samedi 7 novembre 2026 — La veille</title>
+<meta name="description" content="Tech, pannes, failles et fuites — digest quotidien">
+<link rel="canonical" href="https://elohyrr.github.io/veille/jours/2026-11-07/">
+<link rel="stylesheet" href="../../style.css">
+<link rel="alternate" type="application/rss+xml" title="La veille (audio)" href="../../podcast.xml">
+<link rel="alternate" type="application/rss+xml" title="La veille (texte)" href="../../feed.xml">
+</head>
+<body>
+<header class="site">
+<a class="brand" href="../../">La veille</a>
+<p class="tagline">Tech, pannes, failles et fuites — digest quotidien</p>
+</header>
+<main>
+
+
+<h1>samedi 7 novembre 2026</h1>
+<p class="meta">1 sujet · lecture estimée : 1 min</p>
+
+<p class="intro">Journée calme. Seule la sortie de libghostty 1.0 mérite l&#39;attention, avec une ABI C stable. Les incidents Cloudflare du jour sont mineurs et ne sont pas traités.</p>
+
+<nav class="toc" aria-label="Sommaire">
+<section class="toc-group t-new_tech">
+<h2><span class="pill" aria-hidden="true"></span>Nouvelles technos <span class="count">1</span></h2>
+<ul>
+<li><a href="#libghostty-1-0-abi-stable">libghostty-vt 1.0 : la bibliothèque C d&#39;émulation de terminal de Ghostty passe en ABI stable</a></li>
+</ul>
+</section>
+</nav>
+
+<article id="libghostty-1-0-abi-stable" class="topic t-new_tech">
+<h3><span class="pill" aria-hidden="true"></span>libghostty-vt 1.0 : la bibliothèque C d&#39;émulation de terminal de Ghostty passe en ABI stable</h3>
+
+<p>Le projet Ghostty publie la version 1.0 de libghostty-vt, une bibliothèque C portable d&#39;émulation de terminal extraite du cœur de Ghostty. La bibliothèque et son ABI C sont désormais déclarées stables. Elle suit le versionnage sémantique, et la CI vérifie l&#39;ABI avec libabigail contre une référence versionnée sur Linux, ainsi que contre des manifestes de types sur macOS et WebAssembly. Sur ELF, les symboles exportés sont versionnés. Les objets sont des handles opaques, et une version plus récente des en-têtes liée à une bibliothèque plus ancienne reçoit GHOSTTY_UNSUPPORTED au lieu de planter.
+
+L&#39;auteur cite plusieurs usages : le terminal des IDE JetBrains tournerait désormais sur libghostty (plus de 12,5 millions d&#39;utilisateurs actifs selon un rapport de JetBrains). Une pull request approuvée remplace libvterm par libghostty-vt dans Neovim, et les mainteneurs attendaient une version taguée avant de fusionner. Turborepo, OrbStack et d&#39;autres l&#39;utilisent aussi.
+
+Côté packaging, la bibliothèque a son propre cycle de release, des tarballs signés, un tarball de dépendances pour compiler hors ligne, un SONAME, des fichiers pkg-config et un paquet CMake. Elle est sous licence MIT, ne dépend que de libc à l&#39;exécution et n&#39;embarque aucune dépendance copyleft. Elle est testée sur Linux (glibc, musl), macOS, FreeBSD, Windows, Android et WebAssembly.</p>
+<div class="why"><p class="why-title">Pourquoi c'est important</p><p>Si vous empaquetez des logiciels ou développez des outils en TUI, une dépendance de terminal avec ABI stable, liable dynamiquement et compilable hors ligne devient réaliste. Les distributions peuvent la packager séparément, et Neovim en profitera. À suivre si vous maintenez des paquets ou des outils qui affichent des sorties de terminal.</p></div>
+<details class="sources">
+<summary>Sources (1)</summary>
+<ul>
+<li><a href="https://mitchellh.com/writing/libghostty-1-0" rel="noopener nofollow">Libghostty 1.0</a> <span class="feed">Hacker News (300&#43; pts)</span></li>
+</ul>
+</details>
+
+</article>
+
+
+<details class="transcript">
+<summary>Transcription</summary>
+<p><strong>Camille</strong> <em>(relaxed, warm morning greeting)</em> : Salut et bienvenue dans La veille, on est le samedi 7 novembre deux mille vingt-six. Aujourd&#39;hui c&#39;est calme, un seul gros sujet : la sortie de libghostty 1.0.</p>
+<p><strong>Max</strong> <em>(relaxed, amused)</em> : Salut Camille. Ouais, journée tranquille, les incidents Cloudflare du jour sont mineurs, on les laisse de côté. Donc libghostty, ça vient du projet Ghostty, le terminal.</p>
+<p><strong>Camille</strong> <em>(calm, explaining)</em> : Exactement. Plus précisément, c&#39;est libghostty-vt, une bibliothèque C portable d&#39;émulation de terminal, extraite du cœur de Ghostty. Et avec cette 1.0, la bibliothèque et son ABI C sont déclarées stables.</p>
+<p><strong>Max</strong> <em>(curious, naive question)</em> : Attends, ABI stable, ça veut dire quoi concrètement ? Parce que moi je pense toujours API, et l&#39;ABI, j&#39;y pense quand ça casse.</p>
+<p><strong>Camille</strong> <em>(calm, explaining)</em> : Ça veut dire que tu peux mettre à jour la bibliothèque sans recompiler tout ce qui est lié dessus. Ils suivent le versionnage sémantique, et la CI vérifie l&#39;ABI avec libabigail contre une référence versionnée sur Linux, et contre des manifestes de types sur macOS et WebAssembly.</p>
+<p><strong>Max</strong> <em>(impressed)</em> : Ah, donc ils ne se contentent pas de promettre, ils le testent. Et côté ELF ?</p>
+<p><strong>Camille</strong> <em>(relaxed)</em> : Sur ELF, les symboles exportés sont versionnés. Les objets sont des handles opaques. Et petit détail que j&#39;aime bien : si tu as des en-têtes plus récents liés à une bibliothèque plus ancienne, tu reçois GHOSTTY_UNSUPPORTED au lieu d&#39;un plantage.</p>
+<p><strong>Max</strong> <em>(amused)</em> : Une erreur propre plutôt qu&#39;un segfault mystérieux, perso je signe tout de suite. Et ça sert déjà à des gens ?</p>
+<p><strong>Camille</strong> <em>(engaged, informative)</em> : Oui, l&#39;auteur cite plusieurs usages. Le terminal des IDE JetBrains tournerait désormais sur libghostty, avec plus de 12,5 millions d&#39;utilisateurs actifs selon un rapport de JetBrains. Turborepo et OrbStack l&#39;utilisent aussi, entre autres.</p>
+<p><strong>Max</strong> <em>(surprised)</em> : Sérieux, 12,5 millions ? Ça fait du monde. Et Neovim, j&#39;ai vu passer un truc là-dessus.</p>
+<p><strong>Camille</strong> <em>(calm)</em> : Oui, une pull request approuvée remplace libvterm par libghostty-vt dans Neovim. Les mainteneurs attendaient une version taguée avant de fusionner, donc la 1.0 débloque ça.</p>
+<p><strong>Max</strong> <em>(pleased)</em> : Logique, on ne fusionne pas une dépendance sans tag. Et pour ceux qui packagent, c&#39;est comment ?</p>
+<p><strong>Camille</strong> <em>(explaining)</em> : Plutôt bien équipé. Cycle de release propre, tarballs signés, un tarball de dépendances pour compiler hors ligne, un SONAME, des fichiers pkg-config et un paquet CMake.</p>
+<p><strong>Max</strong> <em>(relaxed, appreciative)</em> : Le hors ligne, c&#39;est le rêve des mainteneurs de distro. Et la licence ?</p>
+<p><strong>Camille</strong> <em>(calm)</em> : MIT, ne dépend que de libc à l&#39;exécution, aucune dépendance copyleft. Et c&#39;est testé sur Linux avec glibc et musl, macOS, FreeBSD, Windows, Android et WebAssembly.</p>
+<p><strong>Max</strong> <em>(thoughtful)</em> : Donc si tu fais des outils TUI ou que tu maintiens des paquets, une dépendance de terminal stable, liable dynamiquement, ça devient réaliste. Moi je garderais ça à l&#39;œil.</p>
+<p><strong>Camille</strong> <em>(warm, wrapping up)</em> : Pareil. Voilà pour aujourd&#39;hui. Bon samedi à toutes et à tous, et à demain.</p>
+<p><strong>Max</strong> <em>(relaxed, cheerful)</em> : À demain, et profitez bien du week-end !</p>
+</details>
+
+<nav class="nav" aria-label="Navigation entre les jours">
+<a class="prev" href="../2026-11-06/">← 6 novembre</a>
+<a href="../../archives/">Archives</a>
+
+</nav>
+
+
+</main>
+<footer class="site">
+<p><a href="../../archives/">Archives</a> · <a href="../../podcast.xml">Podcast (RSS)</a> · <a href="../../feed.xml">Flux texte (RSS)</a></p>
+</footer>
+</body>
+</html>

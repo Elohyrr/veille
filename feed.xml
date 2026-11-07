@@ -5,7 +5,22 @@
 <link>https://elohyrr.github.io/veille/</link>
 <description>Tech, pannes, failles et fuites — digest quotidien</description>
 <language>fr-fr</language>
-<lastBuildDate>Fri, 06 Nov 2026 22:30:50 &#43;0000</lastBuildDate>
+<lastBuildDate>Sat, 07 Nov 2026 06:02:00 &#43;0000</lastBuildDate>
+<item>
+<title>La veille — samedi 7 novembre 2026</title>
+<link>https://elohyrr.github.io/veille/jours/2026-11-07/</link>
+<guid isPermaLink="true">https://elohyrr.github.io/veille/jours/2026-11-07/</guid>
+<pubDate>Sat, 07 Nov 2026 06:02:00 &#43;0000</pubDate>
+<description>Journée calme. Seule la sortie de libghostty 1.0 mérite l&#39;attention, avec une ABI C stable. Les incidents Cloudflare du jour sont mineurs et ne sont pas traités.
+
+- libghostty-vt 1.0 : la bibliothèque C d&#39;émulation de terminal de Ghostty passe en ABI stable
+  Le projet Ghostty publie la version 1.0 de libghostty-vt, une bibliothèque C portable d&#39;émulation de terminal extraite du cœur de Ghostty. La bibliothèque et son ABI C sont désormais déclarées stables. Elle suit le versionnage sémantique, et la CI vérifie l&#39;ABI avec libabigail contre une référence versionnée sur Linux, ainsi que contre des manifestes de types sur macOS et WebAssembly. Sur ELF, les symboles exportés sont versionnés. Les objets sont des handles opaques, et une version plus récente des en-têtes liée à une bibliothèque plus ancienne reçoit GHOSTTY_UNSUPPORTED au lieu de planter.
+
+L&#39;auteur cite plusieurs usages : le terminal des IDE JetBrains tournerait désormais sur libghostty (plus de 12,5 millions d&#39;utilisateurs actifs selon un rapport de JetBrains). Une pull request approuvée remplace libvterm par libghostty-vt dans Neovim, et les mainteneurs attendaient une version taguée avant de fusionner. Turborepo, OrbStack et d&#39;autres l&#39;utilisent aussi.
+
+Côté packaging, la bibliothèque a son propre cycle de release, des tarballs signés, un tarball de dépendances pour compiler hors ligne, un SONAME, des fichiers pkg-config et un paquet CMake. Elle est sous licence MIT, ne dépend que de libc à l&#39;exécution et n&#39;embarque aucune dépendance copyleft. Elle est testée sur Linux (glibc, musl), macOS, FreeBSD, Windows, Android et WebAssembly.
+  Pourquoi : Si vous empaquetez des logiciels ou développez des outils en TUI, une dépendance de terminal avec ABI stable, liable dynamiquement et compilable hors ligne devient réaliste. Les distributions peuvent la packager séparément, et Neovim en profitera. À suivre si vous maintenez des paquets ou des outils qui affichent des sorties de terminal.</description>
+</item>
 <item>
 <title>La veille — vendredi 6 novembre 2026</title>
 <link>https://elohyrr.github.io/veille/jours/2026-11-06/</link>
