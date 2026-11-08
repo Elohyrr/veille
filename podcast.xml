@@ -5,9 +5,28 @@
 <link>https://elohyrr.github.io/veille/</link>
 <description>Tech, pannes, failles et fuites — digest quotidien</description>
 <language>fr-fr</language>
-<lastBuildDate>Sat, 07 Nov 2026 18:46:39 &#43;0000</lastBuildDate>
+<lastBuildDate>Sun, 08 Nov 2026 06:09:24 &#43;0000</lastBuildDate>
 <itunes:image href="https://elohyrr.github.io/veille/cover.png"/>
 <itunes:explicit>false</itunes:explicit>
+<item>
+<title>SSHole, SonicWall et des secrets qui fuitent</title>
+<link>https://elohyrr.github.io/veille/jours/2026-11-08/</link>
+<guid isPermaLink="false">ep-2026-11-08</guid>
+<pubDate>Sun, 08 Nov 2026 06:09:24 &#43;0000</pubDate>
+<description>- OpenSSH SSHole (CVE-2026-123158) : contournement d&#39;authentification sur musl sans PAM, déjà exploité
+- SonicWall corrige sept failles SonicOS dont un contournement SAML/MFA du SSL-VPN exploité
+- Claude Code : des secrets saisis dans des commandes approuvées exposés dans 1 122 fichiers GitHub
+- DigiCert : un système interne exposé par erreur donne accès à des données clients et pièces d&#39;identité
+- Google donne gVisor, Agent Substrate et OpenRL à la CNCF
+- Kmorph : reprise après crash du noyau Linux sans redémarrage, basée sur Multikernel
+- OpenAI présente GPT-6 Cyber : 81 failles Firefox et 948 exploits d&#39;élévation de privilèges Linux
+- Mise à jour : des centaines d&#39;instances de l&#39;outil ARTEX exposées sur Internet
+- Scaleway : indisponibilité du réseau RPNv1 Dedibox en DC3, puis latences Block Storage fr-par-1
+https://elohyrr.github.io/veille/jours/2026-11-08/</description>
+<enclosure url="https://github.com/Elohyrr/veille/releases/download/ep-2026-11-08/veille-2026-11-08.mp3" length="5980077" type="audio/mpeg"/>
+<itunes:duration>00:12:27</itunes:duration>
+<itunes:explicit>false</itunes:explicit>
+</item>
 <item>
 <title>libghostty 1.0, l&#39;ABI stable du terminal</title>
 <link>https://elohyrr.github.io/veille/jours/2026-11-07/</link>

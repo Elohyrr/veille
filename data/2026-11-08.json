@@ -1,0 +1,545 @@
+{
+  "date": "2026-11-08",
+  "published_at": "2026-11-08T06:09:24Z",
+  "intro": "Journée dominée par SSHole, une faille OpenSSH exploitée en quelques heures sur Alpine, et par un VPN SonicWall activement attaqué. Côté fuites, secrets d'agents IA sur GitHub et brèche chez DigiCert.",
+  "topics": [
+    {
+      "id": "2026-11-08/openssh-sshole-alpine",
+      "slug": "openssh-sshole-alpine",
+      "theme": "breach",
+      "title": "OpenSSH SSHole (CVE-2026-123158) : contournement d'authentification sur musl sans PAM, déjà exploité",
+      "summary": "OpenSSH a publié en urgence la version 10.6p2 pour corriger CVE-2026-123158 (CVSS 8.1), surnommée SSHole. La faille touche sshd sur les Linux utilisant la bibliothèque musl avec PAM désactivé, dont la configuration par défaut d'Alpine Linux. Un attaquant non authentifié envoie un mot de passe de 257 à 1 024 octets : le hachage échoue et renvoie « * », la même valeur que celle stockée pour un compte sans mot de passe. La connexion est alors acceptée. Il faut un compte dont le champ mot de passe est « * » (root, utilisateurs par clé) et au moins un autre compte avec un hachage $5$ ou $6$. Selon Next, les images cloud Alpine 3.18.11 à 3.24.3 sont exposées via un compte pouvant devenir root. OpenWrt, Buildroot et Yocto sont cités comme potentiellement concernés. Debian, Ubuntu, Red Hat, Fedora, BSD, Dropbear et les systèmes passant par PAM ne le sont pas. Previdian dit avoir observé une première tentative moins de neuf heures après la publication de la CVE et un accès root confirmé sur un honeypot Alpine. Alpine a livré des paquets corrigés pour toutes ses branches.",
+      "why_it_matters": "Si vous avez des hôtes Alpine, OpenWrt ou Yocto avec sshd exposé, mettez à jour OpenSSH (10.6p2 ou paquet de la distribution) puis redémarrez sshd : la mise à jour seule ne remplace pas le démon en cours. À défaut, mettez PasswordAuthentication no. Cherchez dans /var/log/messages des « Accepted password for » sur des comptes sans mot de passe ; en cas de doute, considérez la machine compromise.",
+      "sources": [
+        {
+          "article_id": "c126",
+          "feed": "The Hacker News",
+          "title": "Hackers Target OpenSSH SSHole Flaw Within Hours of Disclosure, Gain Root on Honeypot",
+          "url": "https://thehackernews.com/2026/11/hackers-exploited-openssh-sshole-flaw.html",
+          "key": "link:https://thehackernews.com/2026/11/hackers-exploited-openssh-sshole-flaw.html"
+        },
+        {
+          "article_id": "c150",
+          "feed": "SecurityWeek",
+          "title": "OpenSSH Rushes Patches for ‘SSHole’ Authentication Bypass",
+          "url": "https://www.securityweek.com/openssh-rushes-patches-for-sshole-authentication-bypass/",
+          "key": "link:https://securityweek.com/openssh-rushes-patches-for-sshole-authentication-bypass"
+        },
+        {
+          "article_id": "c057",
+          "feed": "Lobsters",
+          "title": "Alpine Linux : openssh-server password authentication bypass",
+          "url": "https://www.alpinelinux.org/posts/2026-11-05-openssh-password-authentication-bypass/",
+          "key": "link:https://alpinelinux.org/posts/2026-11-05-openssh-password-authentication-bypass"
+        },
+        {
+          "article_id": "c157",
+          "feed": "Next",
+          "title": "Une faille dans Alpine Linux permet de se connecter avec un mot de passe trop long",
+          "url": "https://next.ink/266066/une-faille-dans-alpine-linux-permet-de-se-connecter-avec-un-mot-de-passe-trop-long/",
+          "key": "link:https://next.ink/266066/une-faille-dans-alpine-linux-permet-de-se-connecter-avec-un-mot-de-passe-trop-long"
+        },
+        {
+          "article_id": "c142",
+          "feed": "DataBreaches.net",
+          "title": "Any long password will do: SSH flaw lets hackers into Alpine systems, routers and more",
+          "url": "https://databreaches.net/2026/11/06/any-long-password-will-do-ssh-flaw-lets-hackers-into-alpine-systems-routers-and-more/",
+          "key": "link:https://databreaches.net/2026/11/06/any-long-password-will-do-ssh-flaw-lets-hackers-into-alpine-systems-routers-and-more"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-08/sonicwall-sonicos-saml-contournement",
+      "slug": "sonicwall-sonicos-saml-contournement",
+      "theme": "breach",
+      "title": "SonicWall corrige sept failles SonicOS dont un contournement SAML/MFA du SSL-VPN exploité",
+      "summary": "SonicWall a publié le 6 novembre un avis corrigeant sept vulnérabilités de SonicOS. La principale, CVE-2026-19868 (CVSS 7.1), permet à un utilisateur disposant d'identifiants valides pour une autre méthode d'authentification de contourner les contrôles SAML du SSL-VPN, y compris une MFA imposée par SAML. Seuls les SSL-VPN configurés avec SAML sont concernés. SonicWall indique avoir enquêté sur un signalement d'exploitation potentielle, et la CISA a ajouté la faille à son catalogue KEV, avec échéance au 20 novembre pour les agences fédérales. Les détails des attaques ne sont pas publics, et on ignore si la faille a été exploitée en zero-day. Les six autres failles incluent deux problèmes de l'interface d'administration notés 8.8, des débordements de tampon pré-authentification (SSL-VPN, client TACACS+) menant à du déni de service, et un hachage de mot de passe faible sur les appliances virtuelles. Sont touchés SonicOS Gen7 jusqu'à 7.3.3-7015 et Gen8 jusqu'à 8.2.2-8015. Les correctifs sont 7.3.4-7013 et 8.2.3-8015, sans contournement possible.",
+      "why_it_matters": "Si vous exploitez des pare-feu SonicWall Gen7 ou Gen8 avec SSL-VPN et SAML, mettez à jour vers 7.3.4-7013 ou 8.2.3-8015 sans attendre : aucun contournement n'existe et l'exploitation est confirmée par la CISA. Vérifiez aussi les journaux de connexion VPN récents, la MFA pouvant avoir été contournée.",
+      "sources": [
+        {
+          "article_id": "c099",
+          "feed": "BleepingComputer",
+          "title": "SonicWall warns of new SSL-VPN MFA bypass flaw exploited in attacks",
+          "url": "https://www.bleepingcomputer.com/news/security/sonicwall-warns-of-new-ssl-vpn-mfa-bypass-flaw-exploited-in-attacks/",
+          "key": "link:https://bleepingcomputer.com/news/security/sonicwall-warns-of-new-ssl-vpn-mfa-bypass-flaw-exploited-in-attacks"
+        },
+        {
+          "article_id": "c080",
+          "feed": "SecurityWeek",
+          "title": "SonicWall Patches Exploited SonicOS Vulnerability That Weakens VPN Logins",
+          "url": "https://www.securityweek.com/sonicwall-patches-exploited-sonicos-bug-that-weakens-vpn-logins/",
+          "key": "link:https://securityweek.com/sonicwall-patches-exploited-sonicos-bug-that-weakens-vpn-logins"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-08/claude-code-secrets-github-apiiro",
+      "slug": "claude-code-secrets-github-apiiro",
+      "theme": "leak",
+      "title": "Claude Code : des secrets saisis dans des commandes approuvées exposés dans 1 122 fichiers GitHub",
+      "summary": "Selon Apiiro, l'option « Yes, and don't ask again » de Claude Code peut enregistrer en clair la commande exacte approuvée, mots de passe ou jetons compris, dans .claude/settings.local.json. Claude Code ajoute ce fichier aux exclusions git globales de l'utilisateur, mais pas au .gitignore du projet : la protection ne suit pas le dépôt. Apiiro a trouvé 104 185 copies du fichier dans 103 617 dépôts publics ; 1 122 contiennent au moins un secret, soit 1 379 secrets distincts. On y trouve 379 mots de passe de bases de données, 43 accès SSH, 42 jetons GitHub, GitLab et npm, et 23 clés AWS. 63 organisations sont concernées. Avec les anciennes versions, les fichiers partagés et les journaux d'agents, le total atteint 2 539 secrets dans 1 994 dépôts. Apiiro n'a pas testé si les secrets sont valides ; une entreprise prévenue a confirmé qu'une clé était active. Selon les chercheurs, Claude Code est le seul de 16 agents comparés à enregistrer par défaut la commande complète dans un fichier projet.",
+      "why_it_matters": "Si vous utilisez Claude Code, cherchez ces fichiers dans vos dépôts et leur historique git, même supprimés. Révoquez et renouvelez d'abord tout secret qu'ils ont contenu, puis exécutez git rm --cached sur le fichier et ajoutez-le au .gitignore du dépôt. Évitez de taper des secrets dans des commandes que l'agent peut mémoriser.",
+      "sources": [
+        {
+          "article_id": "c092",
+          "feed": "The Hacker News",
+          "title": "Claude Code's “Don't Ask Again” File Exposes Passwords and Keys in 1,122 Public Copies on GitHub",
+          "url": "https://thehackernews.com/2026/11/claude-codes-dont-ask-again-file.html",
+          "key": "link:https://thehackernews.com/2026/11/claude-codes-dont-ask-again-file.html"
+        },
+        {
+          "article_id": "c055",
+          "feed": "DataBreaches.net",
+          "title": "Coding Agents Copy Your Secrets to a Hidden File. Thousands Are on GitHub",
+          "url": "https://databreaches.net/2026/11/07/coding-agents-copy-your-secrets-to-a-hidden-file-thousands-are-on-github/",
+          "key": "link:https://databreaches.net/2026/11/07/coding-agents-copy-your-secrets-to-a-hidden-file-thousands-are-on-github"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-08/digicert-breche-systeme-metier",
+      "slug": "digicert-breche-systeme-metier",
+      "theme": "leak",
+      "title": "DigiCert : un système interne exposé par erreur donne accès à des données clients et pièces d'identité",
+      "summary": "DigiCert a détaillé sur Bugzilla de Mozilla une brèche touchant un système interne d'archivage de données clients. Migré hors d'un réseau restreint par VPN en février 2025, il est devenu accessible depuis Internet. Un attaquant a utilisé une fonction d'auto-inscription sans MFA pour créer un compte en lecture seule, qui a accédé aux données entre le 27 juin et le 2 juillet. Le compte a été bloqué le 2 juillet, mais l'accès aux données n'a été confirmé qu'en octobre. Sont concernés noms, e-mails professionnels, téléphones, adresses, et parfois permis de conduire, passeports ou factures. Le nombre de clients touchés n'est pas communiqué. DigiCert affirme que les autorités de certification n'ont pas été touchées, qu'aucun certificat n'a pu être émis et que les identifiants de connexion n'ont pas été dérobés. L'entreprise dit n'avoir aucune preuve d'usage abusif et a prévenu les forces de l'ordre. Elle explique que la migration avait été traitée comme un changement d'infrastructure, sans revue de sécurité, avec une alerte insuffisante sur la création de comptes.",
+      "why_it_matters": "Si vous êtes client DigiCert, attendez-vous à un e-mail de notification et soyez vigilant face au hameçonnage ciblé, puisque des pièces d'identité ont pu être exposées. Pour votre propre infrastructure, l'incident rappelle de traiter les déplacements réseau comme des changements de sécurité et d'alerter sur les créations de comptes.",
+      "sources": [
+        {
+          "article_id": "c109",
+          "feed": "The Record",
+          "title": "Certificate authority DigiCert reports data breach involving business customer info",
+          "url": "https://therecord.media/digicert-certificate-authority-reports-data-breach",
+          "key": "link:https://therecord.media/digicert-certificate-authority-reports-data-breach"
+        },
+        {
+          "article_id": "c136",
+          "feed": "SecurityWeek",
+          "title": "DigiCert Data Breach Impacts Business Customer Information",
+          "url": "https://www.securityweek.com/digicert-data-breach-impacts-business-customer-information/",
+          "key": "link:https://securityweek.com/digicert-data-breach-impacts-business-customer-information"
+        },
+        {
+          "article_id": "c141",
+          "feed": "DataBreaches.net",
+          "title": "DigiCert data breach exposes customer information, identity documents",
+          "url": "https://databreaches.net/2026/11/06/digicert-data-breach-exposes-customer-information-identity-documents/",
+          "key": "link:https://databreaches.net/2026/11/06/digicert-data-breach-exposes-customer-information-identity-documents"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-08/gvisor-cncf-agent-substrate",
+      "slug": "gvisor-cncf-agent-substrate",
+      "theme": "new_tech",
+      "title": "Google donne gVisor, Agent Substrate et OpenRL à la CNCF",
+      "summary": "Google a annoncé jeudi le don de gVisor, Agent Substrate et OpenRL à la Cloud Native Computing Foundation, en espérant reproduire le succès de Kubernetes. gVisor, ouvert en 2018, utilise un noyau léger en espace utilisateur pour intercepter les appels système et isoler les conteneurs ; selon The New Stack, Anthropic et OpenAI s'en servent pour exécuter du code généré. La CNCF avait accepté la candidature de gVisor fin septembre. Agent Substrate ajoute une couche d'exécution sur Kubernetes pour suspendre et reprendre des agents inactifs sans recréer de Pods, en séparant l'état persistant du calcul. Google a publié Agent Substrate 1.0, disponible en général sur GKE. OpenRL vise le réglage fin de modèles par apprentissage par renforcement sur sa propre infrastructure Kubernetes.",
+      "why_it_matters": "Si vous faites tourner du code non fiable ou des agents IA sur Kubernetes, gVisor devient un projet à gouvernance neutre, donc plus sûr à adopter à long terme. Agent Substrate pourrait réduire le coût des agents inactifs. À suivre, sans urgence.",
+      "sources": [
+        {
+          "article_id": "c154",
+          "feed": "The New Stack",
+          "title": "Kubernetes, mark II? Why Google’s giving away gVisor, a code sandbox used by Anthropic and OpenAI",
+          "url": "https://thenewstack.io/gvisor-cncf-kubernetes-open-source/",
+          "key": "link:https://thenewstack.io/gvisor-cncf-kubernetes-open-source"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-08/kmorph-reprise-apres-crash-noyau",
+      "slug": "kmorph-reprise-apres-crash-noyau",
+      "theme": "new_tech",
+      "title": "Kmorph : reprise après crash du noyau Linux sans redémarrage, basée sur Multikernel",
+      "summary": "Le projet open source Kmorph, annoncé vendredi, vise à survivre à un crash du noyau Linux sans reboot. Il s'appuie sur Multikernel, un travail hors arbre qui fait coexister plusieurs noyaux sur une machine, chacun avec ses CPU, sa mémoire et ses périphériques, communiquant par vsock. Un noyau successeur est démarré à l'avance sur un ou deux CPU et surveille le noyau actif. Si celui-ci panique ou se bloque, le successeur isole ses CPU, reprend les périphériques, restaure l'identité réseau, peut sauvegarder un vmcore compatible kdump, puis récupère CPU et mémoire. La détection à la reprise prend environ une seconde. Des services systemd peuvent attendre en veille, et Nginx peut revenir en environ deux secondes. « kmorph upgrade » permet aussi une mise à jour live du noyau. Il fonctionne sur x86_64 et ARM64, RISC-V est en cours. Il ne fonctionne pas sur le noyau mainline.",
+      "why_it_matters": "Pour l'instant, c'est une piste à suivre : il faut un noyau Multikernel hors arbre, donc rien pour la production. L'intérêt, à terme, est de réduire l'indisponibilité liée aux crashs noyau et aux mises à jour, si Multikernel arrive dans le noyau principal.",
+      "sources": [
+        {
+          "article_id": "c068",
+          "feed": "Phoronix",
+          "title": "Kmorph Aims To Provide Rebootless Linux Kernel Crash Recovery",
+          "url": "https://www.phoronix.com/news/Kmorph-Linux-Crash-Recovery",
+          "key": "link:https://phoronix.com/news/Kmorph-Linux-Crash-Recovery"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-08/openai-gpt-6-cyber",
+      "slug": "openai-gpt-6-cyber",
+      "theme": "new_tech",
+      "title": "OpenAI présente GPT-6 Cyber : 81 failles Firefox et 948 exploits d'élévation de privilèges Linux",
+      "summary": "OpenAI a dévoilé jeudi GPT-6 Cyber, modèle qu'elle classe « Critical » en cybersécurité dans son Preparedness Framework. Il réussit 48,5 % sur le benchmark ExploitGym contre 32,1 % pour GPT-5.6 Cyber. Sur le noyau Linux, il a reproduit 1 724 vulnérabilités et produit des exploits d'élévation de privilèges locale pour 948 d'entre elles ; OpenAI dit avoir signalé 304 problèmes critiques aux mainteneurs avec des correctifs proposés. Il a aussi documenté 81 failles Firefox jugées sévères par Mozilla, dont plusieurs sont déjà corrigées, et une faille critique Brotli (CVE-2026-111497, CVSS 9,2). OpenAI affirme qu'il évite d'exploiter des services hors périmètre dans 99,93 % des cas sans consignes de sécurité. L'accès est restreint à certains clients Daybreak Red via l'API et Codex, avec ouverture progressive prévue. OpenAI avertit que les défenseurs ont une fenêtre limitée avant que ces capacités ne se diffusent aux attaquants.",
+      "why_it_matters": "La découverte et l'exploitation de failles s'accélèrent, ce qui réduit le délai entre divulgation et attaque, comme le montre SSHole. Pour vous : patcher vite, surveiller les correctifs noyau et Firefox à venir, et ne pas compter sur de longues périodes d'embargo.",
+      "sources": [
+        {
+          "article_id": "c105",
+          "feed": "BleepingComputer",
+          "title": "OpenAI's new GPT-6 Cyber AI finds 81 Firefox flaws, 948 Linux bugs",
+          "url": "https://www.bleepingcomputer.com/news/security/openais-new-gpt-6-cyber-ai-finds-81-firefox-flaws-948-linux-bugs/",
+          "key": "link:https://bleepingcomputer.com/news/security/openais-new-gpt-6-cyber-ai-finds-81-firefox-flaws-948-linux-bugs"
+        },
+        {
+          "article_id": "c129",
+          "feed": "The Hacker News",
+          "title": "OpenAI Launches GPT-6 Cyber After AI Helps Find 81 Firefox Flaws, 948 Linux Exploits",
+          "url": "https://thehackernews.com/2026/11/openai-launches-gpt-6-cyber-after-ai.html",
+          "key": "link:https://thehackernews.com/2026/11/openai-launches-gpt-6-cyber-after-ai.html"
+        },
+        {
+          "article_id": "c143",
+          "feed": "SecurityWeek",
+          "title": "OpenAI Says New GPT-6 Cyber Model Hunts Flaws Without Crossing the Line",
+          "url": "https://www.securityweek.com/openai-says-new-gpt-6-cyber-model-hunts-flaws-without-crossing-the-line/",
+          "key": "link:https://securityweek.com/openai-says-new-gpt-6-cyber-model-hunts-flaws-without-crossing-the-line"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-08/artex-instances-exposees",
+      "slug": "artex-instances-exposees",
+      "theme": "breach",
+      "title": "Mise à jour : des centaines d'instances de l'outil ARTEX exposées sur Internet",
+      "summary": "Des chercheurs ont découvert des centaines de copies d'Artex, un outil open source chinois de test d'intrusion autonome, accessibles publiquement sur Internet. Selon l'extrait relayé par DataBreaches.net, citant Zack Whittaker, n'importe qui pourrait s'en servir pour lancer des cyberattaques contre des cibles. L'article n'est disponible qu'en extrait : on ignore le nombre exact d'instances, ce qu'elles exposent et si des abus ont été constatés.",
+      "why_it_matters": "Cela montre que les outils offensifs pilotés par IA, déjà liés à l'intrusion chez WorkOS, peuvent eux-mêmes être mal sécurisés et réutilisables par des tiers. Si vous déployez des outils de pentest automatisés, ne les exposez pas sans authentification.",
+      "update_of": "2026-11-06/workos-agent-ia-artex-intrusion",
+      "what_is_new": "Des chercheurs ont trouvé des centaines d'instances d'Artex exposées publiquement sur Internet, utilisables par des tiers.",
+      "sources": [
+        {
+          "article_id": "c053",
+          "feed": "DataBreaches.net",
+          "title": "No need to hack when it’s leaking: Artex edition",
+          "url": "https://databreaches.net/2026/11/07/no-need-to-hack-when-its-leaking-artex-edition/",
+          "key": "link:https://databreaches.net/2026/11/07/no-need-to-hack-when-its-leaking-artex-edition"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-08/scaleway-dedibox-rpnv1-dc3",
+      "slug": "scaleway-dedibox-rpnv1-dc3",
+      "theme": "outage",
+      "title": "Scaleway : indisponibilité du réseau RPNv1 Dedibox en DC3, puis latences Block Storage fr-par-1",
+      "summary": "Le 6 novembre à 16h20 CET, Scaleway a signalé une indisponibilité du réseau RPNv1 de Dedibox touchant des racks de la salle 4-4, couloirs C et D, dans DC3. À 17h07, le premier routeur de la paire était revenu et le service se rétablissait progressivement. À 18h27, un correctif était en place et l'équipe surveillait le résultat. Le 7 novembre, un incident distinct a touché un cluster Block Storage de fr-par-1 : depuis 22h UTC, les latences d'écriture ont augmenté à cause d'opérations de fond accumulées pendant la nuit jusqu'à 05h19 UTC. Le cluster a traité l'arriéré et les latences sont redevenues normales à 12h28 CET. Les causes de la panne RPNv1 ne sont pas précisées.",
+      "why_it_matters": "Si vous avez des Dedibox en DC3 salle 4-4 ou des volumes Block Storage fr-par-1, vérifiez que vos services se sont rétablis et relisez vos alertes de latence. La panne RPNv1 touchait un routeur d'une paire : vérifiez votre redondance réseau.",
+      "sources": [
+        {
+          "article_id": "c119",
+          "feed": "Scaleway Status",
+          "title": "[DEDIBOX] - RPNv1 network unavailability in DC3 room 4-4 corridors C and D",
+          "url": "https://status.scaleway.com/incidents/rql2d9kz60hd",
+          "key": "link:https://status.scaleway.com/incidents/rql2d9kz60hd"
+        },
+        {
+          "article_id": "c071",
+          "feed": "Scaleway Status",
+          "title": "[Block Storage] - fr-par-1 - Write latency increase due to background operations",
+          "url": "https://status.scaleway.com/incidents/gxw928l3p4yp",
+          "key": "link:https://status.scaleway.com/incidents/gxw928l3p4yp"
+        }
+      ]
+    }
+  ],
+  "episode_title": "SSHole, SonicWall et des secrets qui fuitent",
+  "script": [
+    {
+      "speaker": "Camille",
+      "text": "Salut et bienvenue dans La veille, on est le dimanche 8 novembre 2026. Au programme aujourd'hui : SSHole, une faille OpenSSH, un VPN SonicWall attaqué, des fuites de secrets, et quelques nouveautés plus cool.",
+      "style": "relaxed, warm morning greeting"
+    },
+    {
+      "speaker": "Max",
+      "text": "Salut Camille ! Un dimanche matin avec une faille SSH, ça démarre fort. Allez, raconte.",
+      "style": "relaxed, friendly"
+    },
+    {
+      "speaker": "Camille",
+      "text": "OpenSSH a sorti en urgence la version 10.6p2 pour corriger la CVE 2026 tiret 123158, surnommée SSHole, avec un score CVSS de 8,1. Ça touche sshd sur les Linux qui utilisent la bibliothèque musl avec PAM désactivé. Et c'est exactement la configuration par défaut d'Alpine Linux.",
+      "style": "calm, explaining"
+    },
+    {
+      "speaker": "Max",
+      "text": "Et ça marche comment ? Parce qu'un contournement d'authentification, ça sonne toujours un peu magique.",
+      "style": "curious"
+    },
+    {
+      "speaker": "Camille",
+      "text": "C'est tout bête. Un attaquant non authentifié envoie un mot de passe de 257 à 1 024 octets. Le hachage échoue et renvoie une étoile. Or une étoile, c'est justement la valeur stockée pour un compte sans mot de passe. Donc la connexion est acceptée.",
+      "style": "explaining, slightly amused"
+    },
+    {
+      "speaker": "Max",
+      "text": "Attends, sérieux ? Le message d'erreur est identique à la valeur d'un compte verrouillé, et ça passe ?",
+      "style": "surprised"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Oui. Il faut un compte dont le champ mot de passe est une étoile, comme root ou des utilisateurs par clé, et au moins un autre compte avec un hachage de type $5$ ou $6$. Selon Next, les images cloud Alpine 3.18.11 à 3.24.3 sont exposées via un compte pouvant devenir root. OpenWrt, Buildroot et Yocto sont cités comme potentiellement concernés. Debian, Ubuntu, Red Hat, Fedora, les BSD, Dropbear et tout ce qui passe par PAM ne sont pas touchés.",
+      "style": "calm"
+    },
+    {
+      "speaker": "Max",
+      "text": "Et c'est déjà exploité, j'imagine ?",
+      "style": "concerned"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Previdian dit avoir vu une première tentative moins de neuf heures après la publication de la CVE, et un accès root confirmé sur un honeypot Alpine. Alpine a livré des paquets corrigés pour toutes ses branches. Piège classique : après la mise à jour, il faut redémarrer sshd, parce que la mise à jour seule ne remplace pas le démon en cours.",
+      "style": "serious"
+    },
+    {
+      "speaker": "Max",
+      "text": "Et sinon, mettre PasswordAuthentication no en attendant. Perso je ferais ça tout de suite, puis je regarderais dans /var/log/messages s'il y a des Accepted password sur des comptes sans mot de passe. Au moindre doute, machine compromise.",
+      "style": "relaxed, opinionated"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Exactement. Et on enchaîne avec une autre histoire de patch urgent : SonicWall.",
+      "style": "calm"
+    },
+    {
+      "speaker": "Max",
+      "text": "Oui, un avis du 6 novembre qui corrige sept vulnérabilités de SonicOS. La principale, la CVE 2026 tiret 19868, score 7,1, permet à quelqu'un qui a des identifiants valides pour une autre méthode d'authentification de contourner les contrôles SAML du SSL-VPN. Y compris une MFA imposée par SAML.",
+      "style": "explaining"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Donc la MFA saute. C'est exploité ?",
+      "style": "curious"
+    },
+    {
+      "speaker": "Max",
+      "text": "SonicWall dit avoir enquêté sur un signalement d'exploitation potentielle, et la CISA a ajouté la faille à son catalogue KEV, échéance au 20 novembre pour les agences fédérales. Les détails des attaques ne sont pas publics, on ne sait pas si c'était du zero-day. Seuls les SSL-VPN configurés avec SAML sont concernés.",
+      "style": "serious"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Et les six autres ?",
+      "style": "calm"
+    },
+    {
+      "speaker": "Max",
+      "text": "Deux problèmes dans l'interface d'administration notés 8,8, des débordements de tampon pré-authentification menant à du déni de service, sur le SSL-VPN et le client TACACS+, et un hachage de mot de passe faible sur les appliances virtuelles. Sont touchés SonicOS Gen7 jusqu'à 7.3.3-7015 et Gen8 jusqu'à 8.2.2-8015. Les correctifs sont 7.3.4-7013 et 8.2.3-8015, et il n'y a aucun contournement possible.",
+      "style": "explaining"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Donc on patche, et on relit les journaux de connexion VPN récents, vu que la MFA a pu être contournée. Passons aux fuites, avec un sujet qui concerne pas mal de monde dans notre métier.",
+      "style": "relaxed"
+    },
+    {
+      "speaker": "Max",
+      "text": "Claude Code, c'est ça ? Les secrets sur GitHub.",
+      "style": "curious"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Oui. Selon Apiiro, l'option « Yes, and don't ask again » peut enregistrer en clair la commande exacte approuvée, mots de passe ou jetons compris, dans le fichier .claude/settings.local.json. Claude Code l'ajoute aux exclusions git globales de l'utilisateur, mais pas au .gitignore du projet. Donc la protection ne suit pas le dépôt.",
+      "style": "explaining"
+    },
+    {
+      "speaker": "Max",
+      "text": "Ah oui, donc ça marche chez toi, et dès que quelqu'un d'autre clone ou que le fichier est poussé depuis une autre config, c'est fini. Ils en ont trouvé combien ?",
+      "style": "surprised"
+    },
+    {
+      "speaker": "Camille",
+      "text": "104 185 copies du fichier dans 103 617 dépôts publics. 1 122 contiennent au moins un secret, soit 1 379 secrets distincts. Dedans, 379 mots de passe de bases de données, 43 accès SSH, 42 jetons GitHub, GitLab et npm, et 23 clés AWS. 63 organisations sont concernées. Avec les anciennes versions, les fichiers partagés et les journaux d'agents, on monte à 2 539 secrets dans 1 994 dépôts.",
+      "style": "calm, explaining"
+    },
+    {
+      "speaker": "Max",
+      "text": "Et ils sont valides ?",
+      "style": "concerned"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Apiiro n'a pas testé. Une entreprise prévenue a quand même confirmé qu'une clé était active. Et selon les chercheurs, Claude Code est le seul sur 16 agents comparés à enregistrer par défaut la commande complète dans un fichier projet.",
+      "style": "calm"
+    },
+    {
+      "speaker": "Max",
+      "text": "Bon réflexe : chercher ces fichiers dans vos dépôts et dans l'historique git, même supprimés. D'abord on révoque et on renouvelle les secrets, ensuite git rm --cached et on l'ajoute au .gitignore. Et on évite de taper un mot de passe directement dans une commande.",
+      "style": "relaxed, opinionated"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Autre fuite, côté DigiCert. Ils ont détaillé sur le Bugzilla de Mozilla une brèche sur un système interne d'archivage de données clients.",
+      "style": "relaxed"
+    },
+    {
+      "speaker": "Max",
+      "text": "Une brèche chez une autorité de certification, ça fait peur. Ils disent quoi ?",
+      "style": "curious"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Que ce système avait été migré en février 2025 hors d'un réseau restreint par VPN, et qu'il est devenu accessible depuis Internet. Un attaquant a utilisé une fonction d'auto-inscription sans MFA pour créer un compte en lecture seule, qui a accédé aux données entre le 27 juin et le 2 juillet.",
+      "style": "explaining"
+    },
+    {
+      "speaker": "Max",
+      "text": "Une auto-inscription sur un système interne d'archivage ? Aïe.",
+      "style": "surprised"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Le compte a été bloqué le 2 juillet, mais l'accès aux données n'a été confirmé qu'en octobre. Sont concernés noms, e-mails pro, téléphones, adresses, et parfois permis de conduire, passeports ou factures. Le nombre de clients touchés n'est pas communiqué. DigiCert affirme que les autorités de certification n'ont pas été touchées, qu'aucun certificat n'a pu être émis et que les identifiants de connexion n'ont pas été dérobés.",
+      "style": "calm"
+    },
+    {
+      "speaker": "Max",
+      "text": "Et la cause, c'est la migration traitée comme un simple changement d'infrastructure, sans revue de sécurité, avec une alerte insuffisante sur la création de comptes. Moi ça me rappelle qu'un déplacement réseau, c'est un changement de sécurité. Et si vous êtes client, attendez-vous à un e-mail et méfiez-vous du hameçonnage ciblé.",
+      "style": "thoughtful"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Petite suite maintenant. Tu te souviens de l'intrusion chez WorkOS, avec l'agent de pentest ARTEX, qui était à l'origine de l'histoire, publiée vendredi ?",
+      "style": "relaxed"
+    },
+    {
+      "speaker": "Max",
+      "text": "Oui, l'outil open source chinois de test d'intrusion autonome. Il y a du nouveau ?",
+      "style": "curious"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Des chercheurs ont trouvé des centaines de copies d'Artex accessibles publiquement sur Internet. Selon l'extrait relayé par DataBreaches.net, citant Zack Whittaker, n'importe qui pourrait s'en servir pour lancer des attaques. Par contre l'article n'est dispo qu'en extrait : on ne sait pas le nombre exact, ce qu'elles exposent, ni si des abus ont été constatés.",
+      "style": "explaining"
+    },
+    {
+      "speaker": "Max",
+      "text": "Un outil offensif qui n'est même pas protégé, c'est un peu l'arroseur arrosé. Morale : si vous déployez du pentest automatisé, pas d'exposition sans authentification.",
+      "style": "amused, ironic"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Allez, un peu de nouveautés. Google a annoncé jeudi le don de gVisor, Agent Substrate et OpenRL à la Cloud Native Computing Foundation, en espérant reproduire le succès de Kubernetes.",
+      "style": "relaxed"
+    },
+    {
+      "speaker": "Max",
+      "text": "gVisor, c'est le truc d'isolation de conteneurs, non ?",
+      "style": "curious"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Oui, ouvert en 2018, avec un noyau léger en espace utilisateur qui intercepte les appels système. Selon The New Stack, Anthropic et OpenAI s'en servent pour exécuter du code généré. Agent Substrate ajoute une couche sur Kubernetes pour suspendre et reprendre des agents inactifs sans recréer de Pods, en séparant l'état persistant du calcul. La version 1.0 est disponible en général sur GKE.",
+      "style": "explaining"
+    },
+    {
+      "speaker": "Max",
+      "text": "Et OpenRL, c'est du réglage fin de modèles par apprentissage par renforcement sur sa propre infra Kubernetes. À suivre, sans urgence, mais la gouvernance neutre pour gVisor, c'est rassurant pour l'adopter.",
+      "style": "relaxed"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Autre truc qui m'a fait sourire : Kmorph, annoncé vendredi. Le but, c'est de survivre à un crash du noyau Linux sans reboot.",
+      "style": "enthusiastic"
+    },
+    {
+      "speaker": "Max",
+      "text": "Sans reboot ? Comment ils font ?",
+      "style": "surprised"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Ça s'appuie sur Multikernel, un travail hors arbre qui fait coexister plusieurs noyaux sur une machine, chacun avec ses CPU, sa mémoire et ses périphériques, en communiquant par vsock. Un noyau successeur est démarré à l'avance sur un ou deux CPU et surveille le noyau actif. Si celui-ci panique ou se bloque, le successeur isole ses CPU, reprend les périphériques, restaure l'identité réseau, peut sauvegarder un vmcore compatible kdump, puis récupère CPU et mémoire.",
+      "style": "explaining"
+    },
+    {
+      "speaker": "Max",
+      "text": "Ça ressemble à un copilote qui prend les commandes. C'est rapide ?",
+      "style": "impressed"
+    },
+    {
+      "speaker": "Camille",
+      "text": "La détection prend environ une seconde, et Nginx peut revenir en environ deux secondes. Il y a aussi kmorph upgrade pour une mise à jour live du noyau. Ça tourne sur x86_64 et ARM64, RISC-V est en cours. Mais ça ne fonctionne pas sur le noyau mainline, donc rien pour la production.",
+      "style": "calm"
+    },
+    {
+      "speaker": "Max",
+      "text": "Une piste à suivre, si Multikernel arrive un jour dans le noyau principal. Et justement, parlons de vitesse : OpenAI a dévoilé jeudi GPT-6 Cyber.",
+      "style": "relaxed"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Le modèle classé « Critical » en cybersécurité dans leur Preparedness Framework, c'est ça ?",
+      "style": "curious"
+    },
+    {
+      "speaker": "Max",
+      "text": "Oui. 48,5 % sur le benchmark ExploitGym, contre 32,1 % pour GPT-5.6 Cyber. Sur le noyau Linux, il a reproduit 1 724 vulnérabilités et produit des exploits d'élévation de privilèges locale pour 948 d'entre elles. OpenAI dit avoir signalé 304 problèmes critiques aux mainteneurs avec des correctifs proposés.",
+      "style": "explaining"
+    },
+    {
+      "speaker": "Camille",
+      "text": "948 exploits, quand même. Et côté Firefox ?",
+      "style": "surprised"
+    },
+    {
+      "speaker": "Max",
+      "text": "81 failles jugées sévères par Mozilla, dont plusieurs déjà corrigées, et une faille critique Brotli, la CVE 2026 tiret 111497, à 9,2. OpenAI affirme qu'il évite d'exploiter des services hors périmètre dans 99,93 % des cas sans consignes de sécurité. L'accès est restreint à certains clients Daybreak Red via l'API et Codex, avec ouverture progressive. Et ils avertissent que les défenseurs ont une fenêtre limitée avant que ces capacités ne se diffusent aux attaquants.",
+      "style": "explaining"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Et SSHole exploité en moins de neuf heures, ça colle avec ça. Mon avis : on ne peut plus compter sur de longs délais entre divulgation et attaque. Patcher vite, surveiller les correctifs noyau et Firefox à venir.",
+      "style": "thoughtful"
+    },
+    {
+      "speaker": "Max",
+      "text": "Dernier sujet, côté pannes : Scaleway. Le 6 novembre à 16h20 CET, une indisponibilité du réseau RPNv1 de Dedibox, sur des racks de la salle 4-4, couloirs C et D, dans DC3.",
+      "style": "relaxed"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Et ça s'est rétabli vite ?",
+      "style": "curious"
+    },
+    {
+      "speaker": "Max",
+      "text": "À 17h07, le premier routeur de la paire était revenu et le service se rétablissait progressivement. À 18h27, un correctif était en place et l'équipe surveillait. Les causes ne sont pas précisées. Puis le 7 novembre, un incident distinct sur un cluster Block Storage de fr-par-1 : depuis 22h UTC, les latences d'écriture ont augmenté à cause d'opérations de fond accumulées pendant la nuit jusqu'à 05h19 UTC.",
+      "style": "calm"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Le cluster a traité l'arriéré et les latences sont revenues à la normale à 12h28 CET. Donc si vous avez des Dedibox en DC3 ou du Block Storage fr-par-1, vérifiez que tout est rétabli et relisez vos alertes. Et la panne touchait un routeur d'une paire, donc regardez votre redondance réseau.",
+      "style": "relaxed"
+    },
+    {
+      "speaker": "Max",
+      "text": "Voilà pour aujourd'hui. Retenez surtout SSHole et SonicWall : on patche, et on redémarre sshd.",
+      "style": "warm"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Bon dimanche à tous, prenez un bon café, et à demain !",
+      "style": "warm, relaxed"
+    }
+  ],
+  "episode": {
+    "title": "SSHole, SonicWall et des secrets qui fuitent",
+    "release_tag": "ep-2026-11-08",
+    "mp3_url": "https://github.com/Elohyrr/veille/releases/download/ep-2026-11-08/veille-2026-11-08.mp3",
+    "bytes": 5980077,
+    "duration_s": 747,
+    "tts_provider": "openrouter"
+  },
+  "usage": {
+    "digest": {
+      "model": "sonnet",
+      "in": 62133,
+      "out": 11635,
+      "cost_usd": 0.2587472
+    },
+    "podcast": {
+      "model": "sonnet",
+      "in": 7427,
+      "out": 6373,
+      "cost_usd": 0.09343400000000002
+    },
+    "triage": {
+      "model": "haiku",
+      "in": 29171,
+      "out": 5605,
+      "cost_usd": 0.0086365
+    }
+  }
+}
