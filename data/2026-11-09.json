@@ -1,0 +1,402 @@
+{
+  "date": "2026-11-09",
+  "published_at": "2026-11-09T06:06:25Z",
+  "intro": "Journée dominée par les fuites de données revendiquées en France, avec une faille critique Kyverno à corriger côté Kubernetes, un correctif noyau sur BHI et quelques outils à surveiller.",
+  "topics": [
+    {
+      "id": "2026-11-09/kyverno-apicall-contournement-cve-2026-124440",
+      "slug": "kyverno-apicall-contournement-cve-2026-124440",
+      "theme": "breach",
+      "title": "Kyverno : CVE-2026-124440 (CVSS 9.9), élévation de privilège via apiCall vers cluster admin",
+      "summary": "Une vulnérabilité critique, CVE-2026-124440 (CVSS 9.9), a été publiée dans la NVD pour Kyverno. Elle touche les versions de la 1.19.1 jusqu'à la 1.19.2 exclue. Le défaut se situe dans la restriction de namespace (« namespace clamp ») de apiCall. En ajoutant des séquences de pourcentage mal formées à urlPath, un locataire d'un namespace peut émettre des requêtes d'API vers d'autres namespaces ou à l'échelle du cluster. Un attaquant peut créer des Policies namespacées dont l'apiCall s'exécute avec le ServiceAccount de l'admission-controller. Il peut alors lire les ressources d'autres namespaces et créer des mutating webhooks, ce qui mène, selon la description, à un accès cluster admin. La description publiée est tronquée. Le correctif est la version 1.19.2.",
+      "why_it_matters": "Si vous exploitez Kyverno 1.19.1 dans un cluster multi-tenant où des équipes peuvent créer des Policies namespacées, le risque est direct. Mettez à jour vers 1.19.2. En attendant, vérifiez qui a le droit de créer des Policies et auditez les mutating webhooks récents.",
+      "sources": [
+        {
+          "article_id": "c067",
+          "feed": "NVD critiques",
+          "title": "CVE-2026-124440 (CVSS 9.9) — Kyverno from 1.19.1 before 1.19.2 contains an authorization bypass vulnerability in the apiCall namespace clam…",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-124440",
+          "key": "link:https://nvd.nist.gov/vuln/detail/CVE-2026-124440"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-09/linux-bhi-mitigation-x86-correctif",
+      "slug": "linux-bhi-mitigation-x86-correctif",
+      "theme": "breach",
+      "title": "Linux : la mitigation BHI n'était pas appliquée sur certains noyaux compilés sans KVM",
+      "summary": "Le correctif x86 de la semaine, envoyé avant Linux 7.4-rc2, corrige la sélection de la mitigation Branch History Injection (BHI). Le développeur Debian Breno Leitao a constaté que bhi_select_mitigation() n'activait la protection que si CPU_MITIGATE_GUEST_HOST était défini. Sans KVM, ce paramètre est désactivé par défaut. La mitigation était donc coupée, alors que le vecteur user vers kernel l'exige encore. Sur les CPU Intel concernés, ces noyaux perdaient BHI_DIS_S ou la boucle de nettoyage du BHB. Démarrer avec mitigations=auto,no_guest_host produisait le même effet. Le correctif est marqué pour rétroportage vers les noyaux stables pris en charge depuis 2022, date d'introduction de BHI. Le lot corrige aussi la gestion d'AMD RMPOPT.",
+      "why_it_matters": "Si vous compilez vos propres noyaux sans KVM, ou utilisez no_guest_host, vous avez pu rouler sans protection BHI. Surveillez les publications de noyaux stables contenant ce correctif et vérifiez l'état dans /sys/devices/system/cpu/vulnerabilities/spectre_v2.",
+      "sources": [
+        {
+          "article_id": "c083",
+          "feed": "Phoronix",
+          "title": "Linux Fixes Faulty Mitigation Selection For BHI Vulnerability",
+          "url": "https://www.phoronix.com/news/Linux-Fix-BHI-Mitigation-Build",
+          "key": "link:https://phoronix.com/news/Linux-Fix-BHI-Mitigation-Build"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-09/sgs-controle-technique-fuite-revendiquee",
+      "slug": "sgs-controle-technique-fuite-revendiquee",
+      "theme": "leak",
+      "title": "SGS : un pirate revendique 22,7 millions de personnes issues des contrôles techniques français",
+      "summary": "Selon ZATAZ, le pirate Chimeraz propose à la vente sur un forum une base présentée comme issue des activités françaises du groupe suisse SGS. Il cite Auto Sécurité, Sécuritest et Vérif'Autos. Il annonce environ 259 millions de lignes et 22 688 152 personnes, 3 988 centres, 74,7 millions de contrôles, plus de 9,5 millions de numéros de téléphone distincts et plus de 4 millions d'adresses électroniques distinctes. Les exemples associent identité, coordonnées, véhicule, kilométrage et montant facturé, avec des dates de 2016 à 2025. ZATAZ souligne que cette présentation est celle du vendeur : l'extrait ne démontre ni les systèmes compromis ni les enseignes réellement touchées. Il rappelle aussi que des lignes ne sont pas des individus. Des titres de presse relayés par Cyberattaque.org évoquent aussi Sécuritest (mots de passe et IBAN) et Vérif'Autos (un prestataire), sans détail disponible ici.",
+      "why_it_matters": "Si vous avez fait contrôler un véhicule en France, attendez-vous à du phishing très ciblé mentionnant votre contrôle ou une facture. Méfiez-vous des messages citant votre plaque ou votre prestation. Rien n'est confirmé par SGS dans les sources fournies.",
+      "sources": [
+        {
+          "article_id": "c020",
+          "feed": "ZATAZ",
+          "title": "Un pirate revendique le vol de millions de données d’automobilistes français",
+          "url": "https://www.zataz.com/sgs-un-pirate-revendique-259-millions-de-lignes-volees/",
+          "key": "link:https://zataz.com/sgs-un-pirate-revendique-259-millions-de-lignes-volees"
+        },
+        {
+          "article_id": "c004",
+          "feed": "Google Actualités : fuites FR",
+          "title": "SGS : plus de 22,7 millions de personnes revendiquées dans une fuite de données - Cyberattaque.org",
+          "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxQUkdIb1U0MFR2LTlDcm5TaTNwWmZlV1VKSDRtTGhnV0pqemo5VnhFbFlrdlJldU1Damhpd2V4bldkSy16UnJMbHJVdHdFOENOeXRBQTJKR3d6QVB0Y3FRU1B1T2FJYnVvVXlkdmJFNUpBYnZNWGJjSVA4UjdLbHFtekl5eXhBZw?oc=5",
+          "key": "link:https://news.google.com/rss/articles/CBMihgFBVV95cUxQUkdIb1U0MFR2LTlDcm5TaTNwWmZlV1VKSDRtTGhnV0pqemo5VnhFbFlrdlJldU1Damhpd2V4bldkSy16UnJMbHJVdHdFOENOeXRBQTJKR3d6QVB0Y3FRU1B1T2FJYnVvVXlkdmJFNUpBYnZNWGJjSVA4UjdLbHFtekl5eXhBZw?oc=5"
+        },
+        {
+          "article_id": "c026",
+          "feed": "Google Actualités : fuites FR",
+          "title": "Sécuritest : des mots de passe et des IBAN dans exposés après une cyberattaque - Cyberattaque.org",
+          "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxNd3hnUlNLeGRhaFhoM25lYUxnYlJ5YWgwcmNMUkJvWUI3S2NUZEdiZC1ZUUNvdVU5UkNZTDlEeU5kT2tRRG8yeTZUUTN0T3NPQmdLLVRwdW9wd09QakFGTVRoUzd0cFBNN0c3b3FPNWtoV0wtN1NPdnQxd2ZpeFAtanVGNA?oc=5",
+          "key": "link:https://news.google.com/rss/articles/CBMigwFBVV95cUxNd3hnUlNLeGRhaFhoM25lYUxnYlJ5YWgwcmNMUkJvWUI3S2NUZEdiZC1ZUUNvdVU5UkNZTDlEeU5kT2tRRG8yeTZUUTN0T3NPQmdLLVRwdW9wd09QakFGTVRoUzd0cFBNN0c3b3FPNWtoV0wtN1NPdnQxd2ZpeFAtanVGNA?oc=5"
+        },
+        {
+          "article_id": "c027",
+          "feed": "Google Actualités : fuites FR",
+          "title": "Vérif’Autos : des données de clients et de véhicules compromises par un prestataire - Cyberattaque.org",
+          "url": "https://news.google.com/rss/articles/CBMijAFBVV95cUxPQnpSX081cnQ1WHhYOXltRkpLUlp0TW1FY2ROcDN0T2tPVU05dlVtOUd5VkVTckhCVnJseVhjT3FCcTlLT1V1V1FjY1JVcVoxdnY4Y0ZIUURlWjhydnpjMmFxWFNMSEhVbzV4TS1ndGZNOVNEbUp2ZVY5N21CV01FS3FHd05FeVVEQUViag?oc=5",
+          "key": "link:https://news.google.com/rss/articles/CBMijAFBVV95cUxPQnpSX081cnQ1WHhYOXltRkpLUlp0TW1FY2ROcDN0T2tPVU05dlVtOUd5VkVTckhCVnJseVhjT3FCcTlLT1V1V1FjY1JVcVoxdnY4Y0ZIUURlWjhydnpjMmFxWFNMSEhVbzV4TS1ndGZNOVNEbUp2ZVY5N21CV01FS3FHd05FeVVEQUViag?oc=5"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-09/iris-ohyama-fuite-cloud-tiers",
+      "slug": "iris-ohyama-fuite-cloud-tiers",
+      "theme": "leak",
+      "title": "Iris Ohyama : accès non autorisé à un cloud tiers, 7,7 millions de personnes potentiellement touchées",
+      "summary": "Le fabricant japonais Iris Ohyama, exploitant de la boutique Iris Plaza, indique que les données d'environ 7,7 millions de personnes ont pu être exposées après un accès non autorisé à un service cloud externe. Le chiffre englobe jusqu'à 5,8 millions de membres actuels et anciens et 1,9 million de non-membres. Les données possibles : noms, adresses, téléphones, courriels, sexe, dates de naissance et mots de passe, selon les personnes. Les mots de passe des membres actifs sont stockés chiffrés, sans précision sur le procédé. L'entreprise affirme que les cartes bancaires n'étaient pas dans ce service. Les boutiques ont été suspendues le 28 octobre. L'autorité japonaise de protection des données et la police ont été informées le 29 octobre. Au 5 novembre, aucun usage frauduleux n'était signalé. L'entreprise dit ne pas avoir été contactée par l'attaquant.",
+      "why_it_matters": "Cas typique de risque lié à un prestataire cloud : l'incident vient d'un service externe, pas du système principal. Auditez les accès et les secrets de vos services SaaS ou cloud tiers contenant des données clients, et appliquez la même rigueur de MFA et de journalisation.",
+      "sources": [
+        {
+          "article_id": "c060",
+          "feed": "BleepingComputer",
+          "title": "Iris Ohyama data cloud breach exposes info of 7.7 million customers",
+          "url": "https://www.bleepingcomputer.com/news/security/iris-ohyama-data-cloud-breach-exposes-info-of-77-million-customers/",
+          "key": "link:https://bleepingcomputer.com/news/security/iris-ohyama-data-cloud-breach-exposes-info-of-77-million-customers"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-09/github-timeouts-utilisateurs-anonymes",
+      "slug": "github-timeouts-utilisateurs-anonymes",
+      "theme": "outage",
+      "title": "GitHub : timeouts liés à un afflux d'utilisateurs anonymes, nouvel incident le 9 novembre",
+      "summary": "GitHub Status a ouvert le 9 novembre à 05h59 UTC un incident intitulé « Increased timeouts due to surge in anonymous users » : l'équipe enquête sur des performances dégradées de certains services. La veille, le 8 novembre, un incident proche (augmentation des timeouts pour certains utilisateurs non authentifiés) avait touché les requêtes d'API. Il a été atténué vers 11h50 à 12h29 UTC, puis déclaré résolu à 12h32 UTC. GitHub annonce qu'une analyse détaillée des causes sera publiée dès qu'elle sera disponible. Les extraits fournis ne donnent pas la cause du nouvel incident ni son périmètre précis.",
+      "why_it_matters": "Si vos pipelines clonent, téléchargent des artefacts ou appellent l'API GitHub sans authentification, ils sont les premiers exposés. Authentifiez ces appels avec un jeton, prévoyez des retries avec backoff et un miroir ou un cache pour les dépendances critiques.",
+      "sources": [
+        {
+          "article_id": "c001",
+          "feed": "GitHub Status",
+          "title": "Increased timeouts due to surge in anonymous users",
+          "url": "https://www.githubstatus.com/incidents/c9px7cw2ghrs",
+          "key": "link:https://githubstatus.com/incidents/c9px7cw2ghrs"
+        },
+        {
+          "article_id": "c074",
+          "feed": "GitHub Status",
+          "title": "Increase in timeouts for some unauthenticated users",
+          "url": "https://www.githubstatus.com/incidents/pyynvrm1vskw",
+          "key": "link:https://githubstatus.com/incidents/pyynvrm1vskw"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-09/nspawn-3-api-docker-compatible",
+      "slug": "nspawn-3-api-docker-compatible",
+      "theme": "new_tech",
+      "title": "Nspawn 3.0 : une API Docker Engine pour les conteneurs systemd-nspawn",
+      "summary": "Nspawn 3.0.0 expose sur l'hôte une API compatible Docker Engine (version 1.51, et jusqu'à 1.24 pour les clients). Le socket est /run/nspawn/api.sock, ouvert par nspawn-api.socket, livré désactivé dans les paquets. Avec DOCKER_HOST pointant dessus, les commandes docker run, exec, cp et rm pilotent des machines nspawn. L'API couvre conteneurs, attach, exec, archive, images, volumes et réseaux. Le GitLab Runner avec l'executor docker peut y exécuter ses jobs via le paramètre host. Les droits passent par polkit : root peut tout faire, les autres utilisateurs ont besoin d'une règle, et un utilisateur avec org.nspawn.manage est root sur l'hôte. Les versions intermédiaires ont ajouté IPv6, la vérification des digests de couches et des paquets apt et rpm pour Debian 13+, Ubuntu 24.04+ et Fedora 44+.",
+      "why_it_matters": "Piste intéressante pour l'auto-hébergement sans démon Docker, notamment pour des runners GitLab. Le modèle de sécurité équivaut à celui du groupe docker : n'accordez org.nspawn.manage qu'à des comptes de confiance. Projet jeune, à tester hors production.",
+      "sources": [
+        {
+          "article_id": "c088",
+          "feed": "Lobsters",
+          "title": "Nspawn 3.0: A Docker-compatible Engine API for systemd-nspawn containers",
+          "url": "https://blog.nspawn.org/posts/nspawn-3-0-a-docker-compatible-engine-api-for-systemd-nspawn-containers/",
+          "key": "link:https://blog.nspawn.org/posts/nspawn-3-0-a-docker-compatible-engine-api-for-systemd-nspawn-containers"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-09/lima-2-3-windows-hcs-reseau-linux",
+      "slug": "lima-2-3-windows-hcs-reseau-linux",
+      "theme": "new_tech",
+      "title": "Lima v2.3 : pilote HCS natif sur Windows, réseau lima-privileged-net sur Linux, TUI",
+      "summary": "Lima, projet CNCF en incubation, a publié le 6 novembre la version 2.3. Sous Windows, le nouveau pilote expérimental hcs utilise l'API Host Compute System, base de WSL2, sans QEMU. Limites actuelles : mode plain uniquement, ni montages de fichiers ni redirection de ports dynamique, une seule instance HCS à la fois, et DNS à préciser avec --dns. Sur Linux, lima-privileged-net, un assistant privilégié, crée un pont par réseau, lance dnsmasq pour DHCP et DNS, gère NAT et un périphérique tap par instance. Cela rend disponibles les réseaux lima: shared, host et bridged, jusque-là réservés à macOS. Une configuration sudoers unique est requise via limactl sudoers. Sur macOS, un périphérique bloc peut être attaché aux invités VZ. Une interface terminal est ajoutée.",
+      "why_it_matters": "Utile si vous utilisez Lima pour des VM de dev ou de test : les VM Linux peuvent enfin avoir une IP joignable depuis l'hôte. L'installation demande des règles sudoers et un binaire appartenant à root, à relire avant déploiement.",
+      "sources": [
+        {
+          "article_id": "c075",
+          "feed": "CNCF",
+          "title": "Lima v2.3: Native on Windows, VMnet on Linux, and menu TUI",
+          "url": "https://www.cncf.io/blog/2026/11/08/lima-v2-3-native-on-windows-vmnet-on-linux-and-menu-tui/",
+          "key": "link:https://cncf.io/blog/2026/11/08/lima-v2-3-native-on-windows-vmnet-on-linux-and-menu-tui"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-09/nvidia-nvke-kubernetes-gpu",
+      "slug": "nvidia-nvke-kubernetes-gpu",
+      "theme": "new_tech",
+      "title": "NVIDIA Kubernetes Engine (NVKE) : un plan de gestion Kubernetes pour GPU bare metal",
+      "summary": "Un dépôt apparu dans les tendances GitHub présente NVIDIA Kubernetes Engine (NVKE), décrit comme un plan de gestion pour Kubernetes GPU sur bare metal. Il permet d'exploiter un service Kubernetes managé sur sa propre infrastructure GPU NVIDIA. Les équipes plateforme installent ce plan de gestion pour créer et exploiter des clusters destinés à leurs clients. Chaque cluster de charge de travail a son propre plan de contrôle Kubernetes, son etcd et ses pools de nœuds. Seul un extrait est disponible, donc maturité, licence et prérequis restent à vérifier dans la documentation.",
+      "why_it_matters": "Pour les équipes qui louent ou partagent des GPU en interne, le modèle un plan de contrôle et un etcd par cluster va dans le sens de l'isolation forte entre locataires. À suivre, sans conclusion avant d'avoir lu la documentation.",
+      "sources": [
+        {
+          "article_id": "c103",
+          "feed": "GitHub Trending (jour)",
+          "title": "dsx-ai-factory/nvke",
+          "url": "https://github.com/dsx-ai-factory/nvke",
+          "key": "link:https://github.com/dsx-ai-factory/nvke"
+        }
+      ]
+    }
+  ],
+  "episode_title": "Kyverno à patcher, fuites en série et Nspawn qui parle Docker",
+  "script": [
+    {
+      "speaker": "Camille",
+      "text": "Salut et bienvenue dans La veille, on est le lundi 9 novembre 2026. Au programme : une faille critique dans Kyverno, un correctif noyau sur BHI, deux fuites de données, GitHub qui tousse encore, et quelques outils à garder à l'œil.",
+      "style": "relaxed, warm morning greeting"
+    },
+    {
+      "speaker": "Max",
+      "text": "Salut Camille. Un lundi, donc on attaque direct avec du Kubernetes. Kyverno, une CVE 2026 tiret 124440, CVSS 9,9. Autant dire qu'on ne la range pas dans la pile du jeudi.",
+      "style": "relaxed, amused"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Ça touche Kyverno de la 1.19.1 jusqu'à la 1.19.2 exclue. Le problème est dans la restriction de namespace de apiCall, le fameux namespace clamp. En glissant des séquences de pourcentage mal formées dans urlPath, un locataire d'un namespace peut émettre des requêtes vers d'autres namespaces, voire à l'échelle du cluster.",
+      "style": "calm, explaining"
+    },
+    {
+      "speaker": "Max",
+      "text": "Et concrètement, il peut faire quoi avec ça ?",
+      "style": "curious"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Il crée des Policies namespacées dont l'apiCall s'exécute avec le ServiceAccount de l'admission-controller. Il lit alors les ressources des autres namespaces et peut créer des mutating webhooks, ce qui mène, selon la description, à un accès cluster admin. Précision : la description publiée est tronquée.",
+      "style": "serious"
+    },
+    {
+      "speaker": "Max",
+      "text": "Donc en multi-tenant, où des équipes créent leurs Policies, c'est direct. Le correctif, c'est la 1.19.2. Perso je patcherais vite, et en attendant je regarderais qui a le droit de créer des Policies et quels mutating webhooks sont apparus récemment.",
+      "style": "concerned"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Exactement. Restons dans les correctifs, mais côté noyau Linux. Le correctif x86 de la semaine, envoyé avant Linux 7.4-rc2, règle un souci sur la mitigation Branch History Injection, BHI.",
+      "style": "relaxed"
+    },
+    {
+      "speaker": "Max",
+      "text": "Attends, la mitigation n'était pas activée ? Dans quel cas ?",
+      "style": "curious"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Breno Leitao, développeur Debian, a vu que la fonction bhi_select_mitigation n'activait la protection que si CPU_MITIGATE_GUEST_HOST était défini. Or sans KVM, ce paramètre est désactivé par défaut. Résultat, la protection était coupée alors que le vecteur user vers kernel en a encore besoin.",
+      "style": "calm, explaining"
+    },
+    {
+      "speaker": "Max",
+      "text": "Et démarrer avec mitigations égale auto virgule no_guest_host donnait le même effet, c'est ça ? Sur les CPU Intel concernés, on perdait BHI_DIS_S ou la boucle de nettoyage du BHB.",
+      "style": "thoughtful"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Oui. Le correctif est marqué pour rétroportage vers les noyaux stables depuis 2022, date d'introduction de BHI. Si tu compiles tes noyaux sans KVM, surveille les publications stables et regarde l'état dans le fichier spectre_v2, sous sys devices system cpu vulnerabilities. Le lot corrige aussi la gestion d'AMD RMPOPT.",
+      "style": "calm"
+    },
+    {
+      "speaker": "Max",
+      "text": "Parfait. Passons aux fuites. En France d'abord : un pirate nommé Chimeraz propose à la vente une base présentée comme issue des activités françaises du groupe suisse SGS, donc le contrôle technique. D'après ZATAZ.",
+      "style": "relaxed"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Les chiffres annoncés sont énormes : environ 259 millions de lignes, 22 688 152 personnes, 3 988 centres, 74,7 millions de contrôles. Il cite Auto Sécurité, Sécuritest et Vérif'Autos.",
+      "style": "surprised"
+    },
+    {
+      "speaker": "Max",
+      "text": "Mais attention, ZATAZ le rappelle : c'est la présentation du vendeur. L'extrait ne démontre ni les systèmes compromis ni les enseignes vraiment touchées. Et des lignes, ce ne sont pas des individus.",
+      "style": "skeptical, calm"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Les exemples associent identité, coordonnées, véhicule, kilométrage et montant facturé, avec des dates de 2016 à 2025. Des titres de presse relayés par Cyberattaque.org parlent aussi de mots de passe et d'IBAN chez Sécuritest, mais sans détail. Et rien n'est confirmé par SGS.",
+      "style": "thoughtful"
+    },
+    {
+      "speaker": "Max",
+      "text": "Donc si tu as passé un contrôle technique en France, méfiance sur les messages de phishing qui citent ta plaque, ton contrôle ou une facture. Ça pourrait être très ciblé.",
+      "style": "serious"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Deuxième fuite, au Japon : Iris Ohyama, le fabricant derrière la boutique Iris Plaza. Environ 7,7 millions de personnes potentiellement exposées après un accès non autorisé à un service cloud externe.",
+      "style": "relaxed"
+    },
+    {
+      "speaker": "Max",
+      "text": "Ça se décompose comment ?",
+      "style": "curious"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Jusqu'à 5,8 millions de membres actuels et anciens, et 1,9 million de non-membres. Selon les personnes : noms, adresses, téléphones, courriels, sexe, dates de naissance et mots de passe. Ceux des membres actifs sont stockés chiffrés, sans précision sur le procédé. Les cartes bancaires n'étaient pas dans ce service, d'après l'entreprise.",
+      "style": "calm, explaining"
+    },
+    {
+      "speaker": "Max",
+      "text": "Les boutiques ont été suspendues le 28 octobre, l'autorité de protection des données et la police prévenues le 29. Au 5 novembre, aucun usage frauduleux signalé, et l'entreprise dit ne pas avoir été contactée par l'attaquant.",
+      "style": "thoughtful"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Cas d'école du risque prestataire : l'incident vient d'un service externe, pas du système principal. Ça vaut le coup d'auditer les accès et les secrets de ses services SaaS ou cloud tiers, avec la même rigueur de MFA et de journalisation.",
+      "style": "relaxed"
+    },
+    {
+      "speaker": "Max",
+      "text": "Côté pannes, GitHub. Un incident ouvert ce matin, le 9 novembre à 5 h 59 UTC, intitulé augmentation des timeouts due à un afflux d'utilisateurs anonymes. Performances dégradées sur certains services.",
+      "style": "relaxed, slightly weary"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Et c'est une suite : la veille, le 8 novembre, un incident proche avait touché les requêtes d'API pour des utilisateurs non authentifiés. Atténué vers 11 h 50 à 12 h 29 UTC, résolu à 12 h 32.",
+      "style": "curious"
+    },
+    {
+      "speaker": "Max",
+      "text": "GitHub promet une analyse détaillée des causes. Pour l'instant, on ne sait ni la cause du nouvel incident ni son périmètre précis. Mais le conseil est simple : authentifie tes appels avec un jeton, mets des retries avec backoff, et un cache ou un miroir pour les dépendances critiques.",
+      "style": "calm"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Bon, côté outils. Nspawn 3.0 expose sur l'hôte une API compatible Docker Engine, en version 1.51, et jusqu'à 1.24 pour les clients.",
+      "style": "upbeat"
+    },
+    {
+      "speaker": "Max",
+      "text": "Donc je pointe DOCKER_HOST vers le socket et mes commandes docker run, exec, cp, rm pilotent des machines systemd-nspawn ? Sans démon Docker ?",
+      "style": "intrigued"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Voilà. Le socket est run nspawn api.sock, ouvert par nspawn-api.socket, livré désactivé dans les paquets. L'API couvre conteneurs, attach, exec, archive, images, volumes et réseaux. Et le GitLab Runner avec l'executor docker peut y faire tourner ses jobs via le paramètre host.",
+      "style": "calm, explaining"
+    },
+    {
+      "speaker": "Max",
+      "text": "Point sécurité : les droits passent par polkit. Root peut tout, les autres ont besoin d'une règle, et un utilisateur avec org.nspawn.manage est root sur l'hôte. C'est l'équivalent du groupe docker. Projet jeune, donc à tester hors production.",
+      "style": "serious"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Ils ont aussi ajouté IPv6, la vérification des digests de couches, et des paquets apt et rpm pour Debian 13 et plus, Ubuntu 24.04 et plus, Fedora 44 et plus.",
+      "style": "relaxed"
+    },
+    {
+      "speaker": "Max",
+      "text": "Dans la même veine, Lima 2.3, projet CNCF en incubation, sorti le 6 novembre. Sous Windows, un pilote expérimental hcs utilise l'API Host Compute System, la base de WSL2, sans QEMU.",
+      "style": "upbeat"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Avec des limites : mode plain uniquement, pas de montages de fichiers ni de redirection de ports dynamique, une seule instance HCS à la fois, et le DNS à préciser avec --dns.",
+      "style": "calm, explaining"
+    },
+    {
+      "speaker": "Max",
+      "text": "Et sur Linux ?",
+      "style": "curious"
+    },
+    {
+      "speaker": "Camille",
+      "text": "lima-privileged-net, un assistant privilégié qui crée un pont par réseau, lance dnsmasq pour le DHCP et le DNS, gère le NAT et un périphérique tap par instance. Du coup les réseaux lima shared, host et bridged, réservés jusque-là à macOS, arrivent sur Linux. Tes VM ont enfin une IP joignable depuis l'hôte.",
+      "style": "enthusiastic"
+    },
+    {
+      "speaker": "Max",
+      "text": "Il faut une configuration sudoers via limactl sudoers, et un binaire appartenant à root : à relire avant de déployer. Sur macOS, on peut attacher un périphérique bloc aux invités VZ, et il y a maintenant une interface terminal.",
+      "style": "thoughtful"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Dernier sujet : NVIDIA Kubernetes Engine, NVKE, un dépôt repéré dans les tendances GitHub. C'est un plan de gestion pour Kubernetes GPU sur bare metal.",
+      "style": "relaxed"
+    },
+    {
+      "speaker": "Max",
+      "text": "En clair, un Kubernetes managé, mais sur ta propre infra GPU NVIDIA ?",
+      "style": "curious"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Oui. Les équipes plateforme l'installent pour créer et exploiter des clusters pour leurs clients. Chaque cluster a son propre plan de contrôle, son etcd et ses pools de nœuds, ce qui va dans le sens d'une forte isolation entre locataires.",
+      "style": "calm"
+    },
+    {
+      "speaker": "Max",
+      "text": "Mais on n'a qu'un extrait, donc maturité, licence et prérequis sont à vérifier dans la documentation. On suit ça sans conclure.",
+      "style": "cautious, relaxed"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Voilà pour aujourd'hui. Patchez Kyverno, surveillez vos phishings de contrôle technique, et bonne semaine.",
+      "style": "warm"
+    },
+    {
+      "speaker": "Max",
+      "text": "À demain pour une nouvelle veille, prenez soin de vous.",
+      "style": "warm, relaxed"
+    }
+  ],
+  "episode": {
+    "title": "Kyverno à patcher, fuites en série et Nspawn qui parle Docker",
+    "release_tag": "ep-2026-11-09",
+    "mp3_url": "https://github.com/Elohyrr/veille/releases/download/ep-2026-11-09/veille-2026-11-09.mp3",
+    "bytes": 4116525,
+    "duration_s": 515,
+    "tts_provider": "openrouter"
+  },
+  "usage": {
+    "digest": {
+      "model": "sonnet",
+      "in": 20391,
+      "out": 4458,
+      "cost_usd": 0.12614
+    },
+    "podcast": {
+      "model": "sonnet",
+      "in": 6087,
+      "out": 4559,
+      "cost_usd": 0.069934
+    },
+    "triage": {
+      "model": "haiku",
+      "in": 18038,
+      "out": 3669,
+      "cost_usd": 0.0054418999999999995
+    }
+  }
+}

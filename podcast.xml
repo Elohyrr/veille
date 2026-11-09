@@ -5,9 +5,27 @@
 <link>https://elohyrr.github.io/veille/</link>
 <description>Tech, pannes, failles et fuites — digest quotidien</description>
 <language>fr-fr</language>
-<lastBuildDate>Sun, 08 Nov 2026 06:09:24 &#43;0000</lastBuildDate>
+<lastBuildDate>Mon, 09 Nov 2026 06:06:25 &#43;0000</lastBuildDate>
 <itunes:image href="https://elohyrr.github.io/veille/cover.png"/>
 <itunes:explicit>false</itunes:explicit>
+<item>
+<title>Kyverno à patcher, fuites en série et Nspawn qui parle Docker</title>
+<link>https://elohyrr.github.io/veille/jours/2026-11-09/</link>
+<guid isPermaLink="false">ep-2026-11-09</guid>
+<pubDate>Mon, 09 Nov 2026 06:06:25 &#43;0000</pubDate>
+<description>- Kyverno : CVE-2026-124440 (CVSS 9.9), élévation de privilège via apiCall vers cluster admin
+- Linux : la mitigation BHI n&#39;était pas appliquée sur certains noyaux compilés sans KVM
+- SGS : un pirate revendique 22,7 millions de personnes issues des contrôles techniques français
+- Iris Ohyama : accès non autorisé à un cloud tiers, 7,7 millions de personnes potentiellement touchées
+- GitHub : timeouts liés à un afflux d&#39;utilisateurs anonymes, nouvel incident le 9 novembre
+- Nspawn 3.0 : une API Docker Engine pour les conteneurs systemd-nspawn
+- Lima v2.3 : pilote HCS natif sur Windows, réseau lima-privileged-net sur Linux, TUI
+- NVIDIA Kubernetes Engine (NVKE) : un plan de gestion Kubernetes pour GPU bare metal
+https://elohyrr.github.io/veille/jours/2026-11-09/</description>
+<enclosure url="https://github.com/Elohyrr/veille/releases/download/ep-2026-11-09/veille-2026-11-09.mp3" length="4116525" type="audio/mpeg"/>
+<itunes:duration>00:08:35</itunes:duration>
+<itunes:explicit>false</itunes:explicit>
+</item>
 <item>
 <title>SSHole, SonicWall et des secrets qui fuitent</title>
 <link>https://elohyrr.github.io/veille/jours/2026-11-08/</link>

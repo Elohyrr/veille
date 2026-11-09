@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>lundi 9 novembre 2026 — La veille</title>
+<meta name="description" content="Tech, pannes, failles et fuites — digest quotidien">
+<link rel="canonical" href="https://elohyrr.github.io/veille/jours/2026-11-09/">
+<link rel="stylesheet" href="../../style.css">
+<link rel="alternate" type="application/rss+xml" title="La veille (audio)" href="../../podcast.xml">
+<link rel="alternate" type="application/rss+xml" title="La veille (texte)" href="../../feed.xml">
+</head>
+<body>
+<header class="site">
+<a class="brand" href="../../">La veille</a>
+<p class="tagline">Tech, pannes, failles et fuites — digest quotidien</p>
+</header>
+<main>
+
+
+<h1>lundi 9 novembre 2026</h1>
+<p class="meta">8 sujets · lecture estimée : 6 min</p>
+
+<section class="player" aria-label="Podcast du jour">
+<p><strong>Écouter</strong> · 9 min · Kyverno à patcher, fuites en série et Nspawn qui parle Docker</p>
+<audio controls preload="none" src="https://github.com/Elohyrr/veille/releases/download/ep-2026-11-09/veille-2026-11-09.mp3"></audio>
+<p><a class="dl" href="https://github.com/Elohyrr/veille/releases/download/ep-2026-11-09/veille-2026-11-09.mp3" download>Télécharger le MP3</a> <span class="muted">(4,1 Mo)</span></p>
+</section>
+
+<p class="intro">Journée dominée par les fuites de données revendiquées en France, avec une faille critique Kyverno à corriger côté Kubernetes, un correctif noyau sur BHI et quelques outils à surveiller.</p>
+
+<nav class="toc" aria-label="Sommaire">
+<section class="toc-group t-new_tech">
+<h2><span class="pill" aria-hidden="true"></span>Nouvelles technos <span class="count">3</span></h2>
+<ul>
+<li><a href="#nspawn-3-api-docker-compatible">Nspawn 3.0 : une API Docker Engine pour les conteneurs systemd-nspawn</a></li>
+<li><a href="#lima-2-3-windows-hcs-reseau-linux">Lima v2.3 : pilote HCS natif sur Windows, réseau lima-privileged-net sur Linux, TUI</a></li>
+<li><a href="#nvidia-nvke-kubernetes-gpu">NVIDIA Kubernetes Engine (NVKE) : un plan de gestion Kubernetes pour GPU bare metal</a></li>
+</ul>
+</section>
+<section class="toc-group t-outage">
+<h2><span class="pill" aria-hidden="true"></span>Pannes <span class="count">1</span></h2>
+<ul>
+<li><a href="#github-timeouts-utilisateurs-anonymes">GitHub : timeouts liés à un afflux d&#39;utilisateurs anonymes, nouvel incident le 9 novembre</a></li>
+</ul>
+</section>
+<section class="toc-group t-breach">
+<h2><span class="pill" aria-hidden="true"></span>Failles et compromissions <span class="count">2</span></h2>
+<ul>
+<li><a href="#kyverno-apicall-contournement-cve-2026-124440">Kyverno : CVE-2026-124440 (CVSS 9.9), élévation de privilège via apiCall vers cluster admin</a></li>
+<li><a href="#linux-bhi-mitigation-x86-correctif">Linux : la mitigation BHI n&#39;était pas appliquée sur certains noyaux compilés sans KVM</a></li>
+</ul>
+</section>
+<section class="toc-group t-leak">
+<h2><span class="pill" aria-hidden="true"></span>Fuites de données <span class="count">2</span></h2>
+<ul>
+<li><a href="#sgs-controle-technique-fuite-revendiquee">SGS : un pirate revendique 22,7 millions de personnes issues des contrôles techniques français</a></li>
+<li><a href="#iris-ohyama-fuite-cloud-tiers">Iris Ohyama : accès non autorisé à un cloud tiers, 7,7 millions de personnes potentiellement touchées</a></li>
+</ul>
+</section>
+</nav>
+
+<article id="nspawn-3-api-docker-compatible" class="topic t-new_tech">
+<h3><span class="pill" aria-hidden="true"></span>Nspawn 3.0 : une API Docker Engine pour les conteneurs systemd-nspawn</h3>
+
+<p>Nspawn 3.0.0 expose sur l&#39;hôte une API compatible Docker Engine (version 1.51, et jusqu&#39;à 1.24 pour les clients). Le socket est /run/nspawn/api.sock, ouvert par nspawn-api.socket, livré désactivé dans les paquets. Avec DOCKER_HOST pointant dessus, les commandes docker run, exec, cp et rm pilotent des machines nspawn. L&#39;API couvre conteneurs, attach, exec, archive, images, volumes et réseaux. Le GitLab Runner avec l&#39;executor docker peut y exécuter ses jobs via le paramètre host. Les droits passent par polkit : root peut tout faire, les autres utilisateurs ont besoin d&#39;une règle, et un utilisateur avec org.nspawn.manage est root sur l&#39;hôte. Les versions intermédiaires ont ajouté IPv6, la vérification des digests de couches et des paquets apt et rpm pour Debian 13&#43;, Ubuntu 24.04&#43; et Fedora 44&#43;.</p>
+<div class="why"><p class="why-title">Pourquoi c'est important</p><p>Piste intéressante pour l&#39;auto-hébergement sans démon Docker, notamment pour des runners GitLab. Le modèle de sécurité équivaut à celui du groupe docker : n&#39;accordez org.nspawn.manage qu&#39;à des comptes de confiance. Projet jeune, à tester hors production.</p></div>
+<details class="sources">
+<summary>Sources (1)</summary>
+<ul>
+<li><a href="https://blog.nspawn.org/posts/nspawn-3-0-a-docker-compatible-engine-api-for-systemd-nspawn-containers/" rel="noopener nofollow">Nspawn 3.0: A Docker-compatible Engine API for systemd-nspawn containers</a> <span class="feed">Lobsters</span></li>
+</ul>
+</details>
+
+</article>
+
+<article id="lima-2-3-windows-hcs-reseau-linux" class="topic t-new_tech">
+<h3><span class="pill" aria-hidden="true"></span>Lima v2.3 : pilote HCS natif sur Windows, réseau lima-privileged-net sur Linux, TUI</h3>
+
+<p>Lima, projet CNCF en incubation, a publié le 6 novembre la version 2.3. Sous Windows, le nouveau pilote expérimental hcs utilise l&#39;API Host Compute System, base de WSL2, sans QEMU. Limites actuelles : mode plain uniquement, ni montages de fichiers ni redirection de ports dynamique, une seule instance HCS à la fois, et DNS à préciser avec --dns. Sur Linux, lima-privileged-net, un assistant privilégié, crée un pont par réseau, lance dnsmasq pour DHCP et DNS, gère NAT et un périphérique tap par instance. Cela rend disponibles les réseaux lima: shared, host et bridged, jusque-là réservés à macOS. Une configuration sudoers unique est requise via limactl sudoers. Sur macOS, un périphérique bloc peut être attaché aux invités VZ. Une interface terminal est ajoutée.</p>
+<div class="why"><p class="why-title">Pourquoi c'est important</p><p>Utile si vous utilisez Lima pour des VM de dev ou de test : les VM Linux peuvent enfin avoir une IP joignable depuis l&#39;hôte. L&#39;installation demande des règles sudoers et un binaire appartenant à root, à relire avant déploiement.</p></div>
+<details class="sources">
+<summary>Sources (1)</summary>
+<ul>
+<li><a href="https://www.cncf.io/blog/2026/11/08/lima-v2-3-native-on-windows-vmnet-on-linux-and-menu-tui/" rel="noopener nofollow">Lima v2.3: Native on Windows, VMnet on Linux, and menu TUI</a> <span class="feed">CNCF</span></li>
+</ul>
+</details>
+
+</article>
+
+<article id="nvidia-nvke-kubernetes-gpu" class="topic t-new_tech">
+<h3><span class="pill" aria-hidden="true"></span>NVIDIA Kubernetes Engine (NVKE) : un plan de gestion Kubernetes pour GPU bare metal</h3>
+
+<p>Un dépôt apparu dans les tendances GitHub présente NVIDIA Kubernetes Engine (NVKE), décrit comme un plan de gestion pour Kubernetes GPU sur bare metal. Il permet d&#39;exploiter un service Kubernetes managé sur sa propre infrastructure GPU NVIDIA. Les équipes plateforme installent ce plan de gestion pour créer et exploiter des clusters destinés à leurs clients. Chaque cluster de charge de travail a son propre plan de contrôle Kubernetes, son etcd et ses pools de nœuds. Seul un extrait est disponible, donc maturité, licence et prérequis restent à vérifier dans la documentation.</p>
+<div class="why"><p class="why-title">Pourquoi c'est important</p><p>Pour les équipes qui louent ou partagent des GPU en interne, le modèle un plan de contrôle et un etcd par cluster va dans le sens de l&#39;isolation forte entre locataires. À suivre, sans conclusion avant d&#39;avoir lu la documentation.</p></div>
+<details class="sources">
+<summary>Sources (1)</summary>
+<ul>
+<li><a href="https://github.com/dsx-ai-factory/nvke" rel="noopener nofollow">dsx-ai-factory/nvke</a> <span class="feed">GitHub Trending (jour)</span></li>
+</ul>
+</details>
+
+</article>
+
+<article id="github-timeouts-utilisateurs-anonymes" class="topic t-outage">
+<h3><span class="pill" aria-hidden="true"></span>GitHub : timeouts liés à un afflux d&#39;utilisateurs anonymes, nouvel incident le 9 novembre</h3>
+
+<p>GitHub Status a ouvert le 9 novembre à 05h59 UTC un incident intitulé « Increased timeouts due to surge in anonymous users » : l&#39;équipe enquête sur des performances dégradées de certains services. La veille, le 8 novembre, un incident proche (augmentation des timeouts pour certains utilisateurs non authentifiés) avait touché les requêtes d&#39;API. Il a été atténué vers 11h50 à 12h29 UTC, puis déclaré résolu à 12h32 UTC. GitHub annonce qu&#39;une analyse détaillée des causes sera publiée dès qu&#39;elle sera disponible. Les extraits fournis ne donnent pas la cause du nouvel incident ni son périmètre précis.</p>
+<div class="why"><p class="why-title">Pourquoi c'est important</p><p>Si vos pipelines clonent, téléchargent des artefacts ou appellent l&#39;API GitHub sans authentification, ils sont les premiers exposés. Authentifiez ces appels avec un jeton, prévoyez des retries avec backoff et un miroir ou un cache pour les dépendances critiques.</p></div>
+<details class="sources">
+<summary>Sources (2)</summary>
+<ul>
+<li><a href="https://www.githubstatus.com/incidents/c9px7cw2ghrs" rel="noopener nofollow">Increased timeouts due to surge in anonymous users</a> <span class="feed">GitHub Status</span></li>
+<li><a href="https://www.githubstatus.com/incidents/pyynvrm1vskw" rel="noopener nofollow">Increase in timeouts for some unauthenticated users</a> <span class="feed">GitHub Status</span></li>
+</ul>
+</details>
+
+</article>
+
+<article id="kyverno-apicall-contournement-cve-2026-124440" class="topic t-breach">
+<h3><span class="pill" aria-hidden="true"></span>Kyverno : CVE-2026-124440 (CVSS 9.9), élévation de privilège via apiCall vers cluster admin</h3>
+
+<p>Une vulnérabilité critique, CVE-2026-124440 (CVSS 9.9), a été publiée dans la NVD pour Kyverno. Elle touche les versions de la 1.19.1 jusqu&#39;à la 1.19.2 exclue. Le défaut se situe dans la restriction de namespace (« namespace clamp ») de apiCall. En ajoutant des séquences de pourcentage mal formées à urlPath, un locataire d&#39;un namespace peut émettre des requêtes d&#39;API vers d&#39;autres namespaces ou à l&#39;échelle du cluster. Un attaquant peut créer des Policies namespacées dont l&#39;apiCall s&#39;exécute avec le ServiceAccount de l&#39;admission-controller. Il peut alors lire les ressources d&#39;autres namespaces et créer des mutating webhooks, ce qui mène, selon la description, à un accès cluster admin. La description publiée est tronquée. Le correctif est la version 1.19.2.</p>
+<div class="why"><p class="why-title">Pourquoi c'est important</p><p>Si vous exploitez Kyverno 1.19.1 dans un cluster multi-tenant où des équipes peuvent créer des Policies namespacées, le risque est direct. Mettez à jour vers 1.19.2. En attendant, vérifiez qui a le droit de créer des Policies et auditez les mutating webhooks récents.</p></div>
+<details class="sources">
+<summary>Sources (1)</summary>
+<ul>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-124440" rel="noopener nofollow">CVE-2026-124440 (CVSS 9.9) — Kyverno from 1.19.1 before 1.19.2 contains an authorization bypass vulnerability in the apiCall namespace clam…</a> <span class="feed">NVD critiques</span></li>
+</ul>
+</details>
+
+</article>
+
+<article id="linux-bhi-mitigation-x86-correctif" class="topic t-breach">
+<h3><span class="pill" aria-hidden="true"></span>Linux : la mitigation BHI n&#39;était pas appliquée sur certains noyaux compilés sans KVM</h3>
+
+<p>Le correctif x86 de la semaine, envoyé avant Linux 7.4-rc2, corrige la sélection de la mitigation Branch History Injection (BHI). Le développeur Debian Breno Leitao a constaté que bhi_select_mitigation() n&#39;activait la protection que si CPU_MITIGATE_GUEST_HOST était défini. Sans KVM, ce paramètre est désactivé par défaut. La mitigation était donc coupée, alors que le vecteur user vers kernel l&#39;exige encore. Sur les CPU Intel concernés, ces noyaux perdaient BHI_DIS_S ou la boucle de nettoyage du BHB. Démarrer avec mitigations=auto,no_guest_host produisait le même effet. Le correctif est marqué pour rétroportage vers les noyaux stables pris en charge depuis 2022, date d&#39;introduction de BHI. Le lot corrige aussi la gestion d&#39;AMD RMPOPT.</p>
+<div class="why"><p class="why-title">Pourquoi c'est important</p><p>Si vous compilez vos propres noyaux sans KVM, ou utilisez no_guest_host, vous avez pu rouler sans protection BHI. Surveillez les publications de noyaux stables contenant ce correctif et vérifiez l&#39;état dans /sys/devices/system/cpu/vulnerabilities/spectre_v2.</p></div>
+<details class="sources">
+<summary>Sources (1)</summary>
+<ul>
+<li><a href="https://www.phoronix.com/news/Linux-Fix-BHI-Mitigation-Build" rel="noopener nofollow">Linux Fixes Faulty Mitigation Selection For BHI Vulnerability</a> <span class="feed">Phoronix</span></li>
+</ul>
+</details>
+
+</article>
+
+<article id="sgs-controle-technique-fuite-revendiquee" class="topic t-leak">
+<h3><span class="pill" aria-hidden="true"></span>SGS : un pirate revendique 22,7 millions de personnes issues des contrôles techniques français</h3>
+
+<p>Selon ZATAZ, le pirate Chimeraz propose à la vente sur un forum une base présentée comme issue des activités françaises du groupe suisse SGS. Il cite Auto Sécurité, Sécuritest et Vérif&#39;Autos. Il annonce environ 259 millions de lignes et 22 688 152 personnes, 3 988 centres, 74,7 millions de contrôles, plus de 9,5 millions de numéros de téléphone distincts et plus de 4 millions d&#39;adresses électroniques distinctes. Les exemples associent identité, coordonnées, véhicule, kilométrage et montant facturé, avec des dates de 2016 à 2025. ZATAZ souligne que cette présentation est celle du vendeur : l&#39;extrait ne démontre ni les systèmes compromis ni les enseignes réellement touchées. Il rappelle aussi que des lignes ne sont pas des individus. Des titres de presse relayés par Cyberattaque.org évoquent aussi Sécuritest (mots de passe et IBAN) et Vérif&#39;Autos (un prestataire), sans détail disponible ici.</p>
+<div class="why"><p class="why-title">Pourquoi c'est important</p><p>Si vous avez fait contrôler un véhicule en France, attendez-vous à du phishing très ciblé mentionnant votre contrôle ou une facture. Méfiez-vous des messages citant votre plaque ou votre prestation. Rien n&#39;est confirmé par SGS dans les sources fournies.</p></div>
+<details class="sources">
+<summary>Sources (4)</summary>
+<ul>
+<li><a href="https://www.zataz.com/sgs-un-pirate-revendique-259-millions-de-lignes-volees/" rel="noopener nofollow">Un pirate revendique le vol de millions de données d’automobilistes français</a> <span class="feed">ZATAZ</span></li>
+<li><a href="https://news.google.com/rss/articles/CBMihgFBVV95cUxQUkdIb1U0MFR2LTlDcm5TaTNwWmZlV1VKSDRtTGhnV0pqemo5VnhFbFlrdlJldU1Damhpd2V4bldkSy16UnJMbHJVdHdFOENOeXRBQTJKR3d6QVB0Y3FRU1B1T2FJYnVvVXlkdmJFNUpBYnZNWGJjSVA4UjdLbHFtekl5eXhBZw?oc=5" rel="noopener nofollow">SGS : plus de 22,7 millions de personnes revendiquées dans une fuite de données - Cyberattaque.org</a> <span class="feed">Google Actualités : fuites FR</span></li>
+<li><a href="https://news.google.com/rss/articles/CBMigwFBVV95cUxNd3hnUlNLeGRhaFhoM25lYUxnYlJ5YWgwcmNMUkJvWUI3S2NUZEdiZC1ZUUNvdVU5UkNZTDlEeU5kT2tRRG8yeTZUUTN0T3NPQmdLLVRwdW9wd09QakFGTVRoUzd0cFBNN0c3b3FPNWtoV0wtN1NPdnQxd2ZpeFAtanVGNA?oc=5" rel="noopener nofollow">Sécuritest : des mots de passe et des IBAN dans exposés après une cyberattaque - Cyberattaque.org</a> <span class="feed">Google Actualités : fuites FR</span></li>
+<li><a href="https://news.google.com/rss/articles/CBMijAFBVV95cUxPQnpSX081cnQ1WHhYOXltRkpLUlp0TW1FY2ROcDN0T2tPVU05dlVtOUd5VkVTckhCVnJseVhjT3FCcTlLT1V1V1FjY1JVcVoxdnY4Y0ZIUURlWjhydnpjMmFxWFNMSEhVbzV4TS1ndGZNOVNEbUp2ZVY5N21CV01FS3FHd05FeVVEQUViag?oc=5" rel="noopener nofollow">Vérif’Autos : des données de clients et de véhicules compromises par un prestataire - Cyberattaque.org</a> <span class="feed">Google Actualités : fuites FR</span></li>
+</ul>
+</details>
+
+</article>
+
+<article id="iris-ohyama-fuite-cloud-tiers" class="topic t-leak">
+<h3><span class="pill" aria-hidden="true"></span>Iris Ohyama : accès non autorisé à un cloud tiers, 7,7 millions de personnes potentiellement touchées</h3>
+
+<p>Le fabricant japonais Iris Ohyama, exploitant de la boutique Iris Plaza, indique que les données d&#39;environ 7,7 millions de personnes ont pu être exposées après un accès non autorisé à un service cloud externe. Le chiffre englobe jusqu&#39;à 5,8 millions de membres actuels et anciens et 1,9 million de non-membres. Les données possibles : noms, adresses, téléphones, courriels, sexe, dates de naissance et mots de passe, selon les personnes. Les mots de passe des membres actifs sont stockés chiffrés, sans précision sur le procédé. L&#39;entreprise affirme que les cartes bancaires n&#39;étaient pas dans ce service. Les boutiques ont été suspendues le 28 octobre. L&#39;autorité japonaise de protection des données et la police ont été informées le 29 octobre. Au 5 novembre, aucun usage frauduleux n&#39;était signalé. L&#39;entreprise dit ne pas avoir été contactée par l&#39;attaquant.</p>
+<div class="why"><p class="why-title">Pourquoi c'est important</p><p>Cas typique de risque lié à un prestataire cloud : l&#39;incident vient d&#39;un service externe, pas du système principal. Auditez les accès et les secrets de vos services SaaS ou cloud tiers contenant des données clients, et appliquez la même rigueur de MFA et de journalisation.</p></div>
+<details class="sources">
+<summary>Sources (1)</summary>
+<ul>
+<li><a href="https://www.bleepingcomputer.com/news/security/iris-ohyama-data-cloud-breach-exposes-info-of-77-million-customers/" rel="noopener nofollow">Iris Ohyama data cloud breach exposes info of 7.7 million customers</a> <span class="feed">BleepingComputer</span></li>
+</ul>
+</details>
+
+</article>
+
+
+<details class="transcript">
+<summary>Transcription</summary>
+<p><strong>Camille</strong> <em>(relaxed, warm morning greeting)</em> : Salut et bienvenue dans La veille, on est le lundi 9 novembre 2026. Au programme : une faille critique dans Kyverno, un correctif noyau sur BHI, deux fuites de données, GitHub qui tousse encore, et quelques outils à garder à l&#39;œil.</p>
+<p><strong>Max</strong> <em>(relaxed, amused)</em> : Salut Camille. Un lundi, donc on attaque direct avec du Kubernetes. Kyverno, une CVE 2026 tiret 124440, CVSS 9,9. Autant dire qu&#39;on ne la range pas dans la pile du jeudi.</p>
+<p><strong>Camille</strong> <em>(calm, explaining)</em> : Ça touche Kyverno de la 1.19.1 jusqu&#39;à la 1.19.2 exclue. Le problème est dans la restriction de namespace de apiCall, le fameux namespace clamp. En glissant des séquences de pourcentage mal formées dans urlPath, un locataire d&#39;un namespace peut émettre des requêtes vers d&#39;autres namespaces, voire à l&#39;échelle du cluster.</p>
+<p><strong>Max</strong> <em>(curious)</em> : Et concrètement, il peut faire quoi avec ça ?</p>
+<p><strong>Camille</strong> <em>(serious)</em> : Il crée des Policies namespacées dont l&#39;apiCall s&#39;exécute avec le ServiceAccount de l&#39;admission-controller. Il lit alors les ressources des autres namespaces et peut créer des mutating webhooks, ce qui mène, selon la description, à un accès cluster admin. Précision : la description publiée est tronquée.</p>
+<p><strong>Max</strong> <em>(concerned)</em> : Donc en multi-tenant, où des équipes créent leurs Policies, c&#39;est direct. Le correctif, c&#39;est la 1.19.2. Perso je patcherais vite, et en attendant je regarderais qui a le droit de créer des Policies et quels mutating webhooks sont apparus récemment.</p>
+<p><strong>Camille</strong> <em>(relaxed)</em> : Exactement. Restons dans les correctifs, mais côté noyau Linux. Le correctif x86 de la semaine, envoyé avant Linux 7.4-rc2, règle un souci sur la mitigation Branch History Injection, BHI.</p>
+<p><strong>Max</strong> <em>(curious)</em> : Attends, la mitigation n&#39;était pas activée ? Dans quel cas ?</p>
+<p><strong>Camille</strong> <em>(calm, explaining)</em> : Breno Leitao, développeur Debian, a vu que la fonction bhi_select_mitigation n&#39;activait la protection que si CPU_MITIGATE_GUEST_HOST était défini. Or sans KVM, ce paramètre est désactivé par défaut. Résultat, la protection était coupée alors que le vecteur user vers kernel en a encore besoin.</p>
+<p><strong>Max</strong> <em>(thoughtful)</em> : Et démarrer avec mitigations égale auto virgule no_guest_host donnait le même effet, c&#39;est ça ? Sur les CPU Intel concernés, on perdait BHI_DIS_S ou la boucle de nettoyage du BHB.</p>
+<p><strong>Camille</strong> <em>(calm)</em> : Oui. Le correctif est marqué pour rétroportage vers les noyaux stables depuis 2022, date d&#39;introduction de BHI. Si tu compiles tes noyaux sans KVM, surveille les publications stables et regarde l&#39;état dans le fichier spectre_v2, sous sys devices system cpu vulnerabilities. Le lot corrige aussi la gestion d&#39;AMD RMPOPT.</p>
+<p><strong>Max</strong> <em>(relaxed)</em> : Parfait. Passons aux fuites. En France d&#39;abord : un pirate nommé Chimeraz propose à la vente une base présentée comme issue des activités françaises du groupe suisse SGS, donc le contrôle technique. D&#39;après ZATAZ.</p>
+<p><strong>Camille</strong> <em>(surprised)</em> : Les chiffres annoncés sont énormes : environ 259 millions de lignes, 22 688 152 personnes, 3 988 centres, 74,7 millions de contrôles. Il cite Auto Sécurité, Sécuritest et Vérif&#39;Autos.</p>
+<p><strong>Max</strong> <em>(skeptical, calm)</em> : Mais attention, ZATAZ le rappelle : c&#39;est la présentation du vendeur. L&#39;extrait ne démontre ni les systèmes compromis ni les enseignes vraiment touchées. Et des lignes, ce ne sont pas des individus.</p>
+<p><strong>Camille</strong> <em>(thoughtful)</em> : Les exemples associent identité, coordonnées, véhicule, kilométrage et montant facturé, avec des dates de 2016 à 2025. Des titres de presse relayés par Cyberattaque.org parlent aussi de mots de passe et d&#39;IBAN chez Sécuritest, mais sans détail. Et rien n&#39;est confirmé par SGS.</p>
+<p><strong>Max</strong> <em>(serious)</em> : Donc si tu as passé un contrôle technique en France, méfiance sur les messages de phishing qui citent ta plaque, ton contrôle ou une facture. Ça pourrait être très ciblé.</p>
+<p><strong>Camille</strong> <em>(relaxed)</em> : Deuxième fuite, au Japon : Iris Ohyama, le fabricant derrière la boutique Iris Plaza. Environ 7,7 millions de personnes potentiellement exposées après un accès non autorisé à un service cloud externe.</p>
+<p><strong>Max</strong> <em>(curious)</em> : Ça se décompose comment ?</p>
+<p><strong>Camille</strong> <em>(calm, explaining)</em> : Jusqu&#39;à 5,8 millions de membres actuels et anciens, et 1,9 million de non-membres. Selon les personnes : noms, adresses, téléphones, courriels, sexe, dates de naissance et mots de passe. Ceux des membres actifs sont stockés chiffrés, sans précision sur le procédé. Les cartes bancaires n&#39;étaient pas dans ce service, d&#39;après l&#39;entreprise.</p>
+<p><strong>Max</strong> <em>(thoughtful)</em> : Les boutiques ont été suspendues le 28 octobre, l&#39;autorité de protection des données et la police prévenues le 29. Au 5 novembre, aucun usage frauduleux signalé, et l&#39;entreprise dit ne pas avoir été contactée par l&#39;attaquant.</p>
+<p><strong>Camille</strong> <em>(relaxed)</em> : Cas d&#39;école du risque prestataire : l&#39;incident vient d&#39;un service externe, pas du système principal. Ça vaut le coup d&#39;auditer les accès et les secrets de ses services SaaS ou cloud tiers, avec la même rigueur de MFA et de journalisation.</p>
+<p><strong>Max</strong> <em>(relaxed, slightly weary)</em> : Côté pannes, GitHub. Un incident ouvert ce matin, le 9 novembre à 5 h 59 UTC, intitulé augmentation des timeouts due à un afflux d&#39;utilisateurs anonymes. Performances dégradées sur certains services.</p>
+<p><strong>Camille</strong> <em>(curious)</em> : Et c&#39;est une suite : la veille, le 8 novembre, un incident proche avait touché les requêtes d&#39;API pour des utilisateurs non authentifiés. Atténué vers 11 h 50 à 12 h 29 UTC, résolu à 12 h 32.</p>
+<p><strong>Max</strong> <em>(calm)</em> : GitHub promet une analyse détaillée des causes. Pour l&#39;instant, on ne sait ni la cause du nouvel incident ni son périmètre précis. Mais le conseil est simple : authentifie tes appels avec un jeton, mets des retries avec backoff, et un cache ou un miroir pour les dépendances critiques.</p>
+<p><strong>Camille</strong> <em>(upbeat)</em> : Bon, côté outils. Nspawn 3.0 expose sur l&#39;hôte une API compatible Docker Engine, en version 1.51, et jusqu&#39;à 1.24 pour les clients.</p>
+<p><strong>Max</strong> <em>(intrigued)</em> : Donc je pointe DOCKER_HOST vers le socket et mes commandes docker run, exec, cp, rm pilotent des machines systemd-nspawn ? Sans démon Docker ?</p>
+<p><strong>Camille</strong> <em>(calm, explaining)</em> : Voilà. Le socket est run nspawn api.sock, ouvert par nspawn-api.socket, livré désactivé dans les paquets. L&#39;API couvre conteneurs, attach, exec, archive, images, volumes et réseaux. Et le GitLab Runner avec l&#39;executor docker peut y faire tourner ses jobs via le paramètre host.</p>
+<p><strong>Max</strong> <em>(serious)</em> : Point sécurité : les droits passent par polkit. Root peut tout, les autres ont besoin d&#39;une règle, et un utilisateur avec org.nspawn.manage est root sur l&#39;hôte. C&#39;est l&#39;équivalent du groupe docker. Projet jeune, donc à tester hors production.</p>
+<p><strong>Camille</strong> <em>(relaxed)</em> : Ils ont aussi ajouté IPv6, la vérification des digests de couches, et des paquets apt et rpm pour Debian 13 et plus, Ubuntu 24.04 et plus, Fedora 44 et plus.</p>
+<p><strong>Max</strong> <em>(upbeat)</em> : Dans la même veine, Lima 2.3, projet CNCF en incubation, sorti le 6 novembre. Sous Windows, un pilote expérimental hcs utilise l&#39;API Host Compute System, la base de WSL2, sans QEMU.</p>
+<p><strong>Camille</strong> <em>(calm, explaining)</em> : Avec des limites : mode plain uniquement, pas de montages de fichiers ni de redirection de ports dynamique, une seule instance HCS à la fois, et le DNS à préciser avec --dns.</p>
+<p><strong>Max</strong> <em>(curious)</em> : Et sur Linux ?</p>
+<p><strong>Camille</strong> <em>(enthusiastic)</em> : lima-privileged-net, un assistant privilégié qui crée un pont par réseau, lance dnsmasq pour le DHCP et le DNS, gère le NAT et un périphérique tap par instance. Du coup les réseaux lima shared, host et bridged, réservés jusque-là à macOS, arrivent sur Linux. Tes VM ont enfin une IP joignable depuis l&#39;hôte.</p>
+<p><strong>Max</strong> <em>(thoughtful)</em> : Il faut une configuration sudoers via limactl sudoers, et un binaire appartenant à root : à relire avant de déployer. Sur macOS, on peut attacher un périphérique bloc aux invités VZ, et il y a maintenant une interface terminal.</p>
+<p><strong>Camille</strong> <em>(relaxed)</em> : Dernier sujet : NVIDIA Kubernetes Engine, NVKE, un dépôt repéré dans les tendances GitHub. C&#39;est un plan de gestion pour Kubernetes GPU sur bare metal.</p>
+<p><strong>Max</strong> <em>(curious)</em> : En clair, un Kubernetes managé, mais sur ta propre infra GPU NVIDIA ?</p>
+<p><strong>Camille</strong> <em>(calm)</em> : Oui. Les équipes plateforme l&#39;installent pour créer et exploiter des clusters pour leurs clients. Chaque cluster a son propre plan de contrôle, son etcd et ses pools de nœuds, ce qui va dans le sens d&#39;une forte isolation entre locataires.</p>
+<p><strong>Max</strong> <em>(cautious, relaxed)</em> : Mais on n&#39;a qu&#39;un extrait, donc maturité, licence et prérequis sont à vérifier dans la documentation. On suit ça sans conclure.</p>
+<p><strong>Camille</strong> <em>(warm)</em> : Voilà pour aujourd&#39;hui. Patchez Kyverno, surveillez vos phishings de contrôle technique, et bonne semaine.</p>
+<p><strong>Max</strong> <em>(warm, relaxed)</em> : À demain pour une nouvelle veille, prenez soin de vous.</p>
+</details>
+
+<nav class="nav" aria-label="Navigation entre les jours">
+<a class="prev" href="../2026-11-08/">← 8 novembre</a>
+<a href="../../archives/">Archives</a>
+
+</nav>
+
+
+</main>
+<footer class="site">
+<p><a href="../../archives/">Archives</a> · <a href="../../podcast.xml">Podcast (RSS)</a> · <a href="../../feed.xml">Flux texte (RSS)</a></p>
+</footer>
+</body>
+</html>
