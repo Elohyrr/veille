@@ -5,9 +5,29 @@
 <link>https://elohyrr.github.io/veille/</link>
 <description>Tech, pannes, failles et fuites — digest quotidien</description>
 <language>fr-fr</language>
-<lastBuildDate>Mon, 09 Nov 2026 06:06:25 &#43;0000</lastBuildDate>
+<lastBuildDate>Tue, 10 Nov 2026 06:06:35 &#43;0000</lastBuildDate>
 <itunes:image href="https://elohyrr.github.io/veille/cover.png"/>
 <itunes:explicit>false</itunes:explicit>
+<item>
+<title>Frigos sabotés, npm piégé et SSHole exploitée</title>
+<link>https://elohyrr.github.io/veille/jours/2026-11-10/</link>
+<guid isPermaLink="false">ep-2026-11-10</guid>
+<pubDate>Tue, 10 Nov 2026 06:06:35 &#43;0000</pubDate>
+<description>- Sabotage de frigos : la France attribue les attaques d&#39;octobre aux Gardiens de la révolution
+- Ethersphere : bee-js 13.3.0 et Swarm Desktop 0.56.2 piégés via des identifiants CI volés
+- Mise à jour : la CISA ajoute le contournement SAML/MFA de SonicOS au catalogue KEV
+- Mise à jour : SSHole (CVE-2026-123158) inscrite au catalogue KEV de la CISA
+- Plex2Shell exploité contre Plex Media Server sur NAS QNAP
+- Kubero 3.0.0 à 3.1.1 : CVE-2026-125370 (CVSS 9.8), JWT administrateur forgeable
+- GPUStack : CVE-2026-102895, authentification défaillante exploitée, exécution de code possible
+- SEGA : 2,2 millions d&#39;adresses e-mail exposées via le prestataire ARARA
+- Frontline Education : plus de 3 millions de personnes touchées par la brèche d&#39;août
+- CNIL : dix sanctions contre des collectivités pour des failles de cybersécurité
+https://elohyrr.github.io/veille/jours/2026-11-10/</description>
+<enclosure url="https://github.com/Elohyrr/veille/releases/download/ep-2026-11-10/veille-2026-11-10.mp3" length="4378413" type="audio/mpeg"/>
+<itunes:duration>00:09:07</itunes:duration>
+<itunes:explicit>false</itunes:explicit>
+</item>
 <item>
 <title>Kyverno à patcher, fuites en série et Nspawn qui parle Docker</title>
 <link>https://elohyrr.github.io/veille/jours/2026-11-09/</link>
