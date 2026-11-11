@@ -5,9 +5,27 @@
 <link>https://elohyrr.github.io/veille/</link>
 <description>Tech, pannes, failles et fuites — digest quotidien</description>
 <language>fr-fr</language>
-<lastBuildDate>Tue, 10 Nov 2026 06:06:35 &#43;0000</lastBuildDate>
+<lastBuildDate>Wed, 11 Nov 2026 06:08:37 &#43;0000</lastBuildDate>
 <itunes:image href="https://elohyrr.github.io/veille/cover.png"/>
 <itunes:explicit>false</itunes:explicit>
+<item>
+<title>Xen Orchestra, Git, Barracuda et 37 millions de fiches</title>
+<link>https://elohyrr.github.io/veille/jours/2026-11-11/</link>
+<guid isPermaLink="false">ep-2026-11-11</guid>
+<pubDate>Wed, 11 Nov 2026 06:08:37 &#43;0000</pubDate>
+<description>- Xen Orchestra : contournement d&#39;authentification VSA-2026-062 exploité, prise de contrôle XCP-ng
+- Git 2.56.1 et GitLab 19.5.4 : exécution de code au clonage récursif et débordement de tampon
+- Barracuda ESG : CVE-2026-116606 et CVE-2026-111560 exploitées pour obtenir root
+- Patch Tuesday de novembre : 1 094 failles, dont un zero-day Outlook exploité (CVE-2026-124194)
+- Nitori : jusqu&#39;à 37,62 millions d&#39;enregistrements clients potentiellement volés
+- GitHub : incident sur les opérations Git et les pull requests le 10 novembre
+- CNCF : Open Cluster Management passe en incubation, KubeRay est donné à la fondation
+- Ubuntu 26.10 : upki, vérification de révocation des certificats, activé pour curl
+https://elohyrr.github.io/veille/jours/2026-11-11/</description>
+<enclosure url="https://github.com/Elohyrr/veille/releases/download/ep-2026-11-11/veille-2026-11-11.mp3" length="5060205" type="audio/mpeg"/>
+<itunes:duration>00:10:32</itunes:duration>
+<itunes:explicit>false</itunes:explicit>
+</item>
 <item>
 <title>Frigos sabotés, npm piégé et SSHole exploitée</title>
 <link>https://elohyrr.github.io/veille/jours/2026-11-10/</link>

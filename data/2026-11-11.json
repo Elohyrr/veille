@@ -1,0 +1,474 @@
+{
+  "date": "2026-11-11",
+  "published_at": "2026-11-11T06:08:37Z",
+  "intro": "Journée chargée côté correctifs : Xen Orchestra est exploité, Git et GitLab publient des correctifs, Barracuda ESG est attaqué. Côté fuites, Nitori annonce 37,6 millions d'enregistrements.",
+  "topics": [
+    {
+      "id": "2026-11-11/xen-orchestra-contournement-auth-vsa-2026-062",
+      "slug": "xen-orchestra-contournement-auth-vsa-2026-062",
+      "theme": "breach",
+      "title": "Xen Orchestra : contournement d'authentification VSA-2026-062 exploité, prise de contrôle XCP-ng",
+      "summary": "Vates a alerté d'une vulnérabilité critique de Xen Orchestra, suivie sous VSA-2026-062 et sans CVE ni score CVSS à ce jour, activement exploitée. Elle vient du traitement des cookies d'authentification de l'API REST : un cookie authenticationToken=j:%7B%7D, contenant un objet JSON vide, amène la plateforme à récupérer le premier jeton existant et à authentifier l'attaquant comme son propriétaire. Celui-ci peut ensuite lister des identifiants de jetons réutilisables via /rest/v0/users/me/authentication_tokens, agir avec les droits Admin, exécuter du code sur les pools gérés et prendre le contrôle d'un nœud XCP-ng en root. Vates indique des attaques depuis 91.211.251.112:8001 et un domaine .onion. La date de début et l'éventuel usage en zero-day ne sont pas connus. Indicateurs : une VM nommée pivot2, des VM avec hvm_serial: file, les fichiers /etc/cron.d/zz-ustar, /etc/cron.d/zz-ustar2, /.ustar5 et /.ustar6. Vates précise que l'exploitation ne laisse pas de trace spécifique dans les journaux et doit se détecter par la supervision HTTP. Correctifs : Xen Orchestra 6.9.1 (stable) et 6.10.0 (latest), xo-server 5.211.2 et 5.213.1.",
+      "why_it_matters": "Si vous administrez XCP-ng via Xen Orchestra ou XOA, mettez à jour tout de suite. Sinon, retirez l'interface d'Internet, bloquez le jeton vide sur le WAF ou le reverse proxy et filtrez l'IP et le domaine cités. Cherchez les indicateurs sur les hôtes ; en cas de compromission, changez tous les mots de passe et secrets.",
+      "sources": [
+        {
+          "article_id": "c067",
+          "feed": "The Hacker News",
+          "title": "Hackers Exploit Critical Xen Orchestra Auth Bypass Flaw to Gain Admin Access",
+          "url": "https://thehackernews.com/2026/11/hackers-exploit-critical-xen-orchestra.html",
+          "key": "link:https://thehackernews.com/2026/11/hackers-exploit-critical-xen-orchestra.html"
+        },
+        {
+          "article_id": "c090",
+          "feed": "BleepingComputer",
+          "title": "Critical Xen Orchestra auth bypass flaw exploited to hijack VM servers",
+          "url": "https://www.bleepingcomputer.com/news/security/critical-xen-orchestra-auth-bypass-flaw-exploited-to-hijack-vm-servers/",
+          "key": "link:https://bleepingcomputer.com/news/security/critical-xen-orchestra-auth-bypass-flaw-exploited-to-hijack-vm-servers"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-11/git-2-56-1-clone-recursif-gitlab-19-5-4",
+      "slug": "git-2-56-1-clone-recursif-gitlab-19-5-4",
+      "theme": "breach",
+      "title": "Git 2.56.1 et GitLab 19.5.4 : exécution de code au clonage récursif et débordement de tampon",
+      "summary": "Le projet Git a corrigé CVE-2026-111760, une troncature d'entier dans la gestion de l'index. Un chemin extrêmement long passe le contrôle de sécurité puis est écrit sous un nom plus court pouvant valoir .git. Un dépôt malveillant peut ainsi remplacer le fichier .git d'un sous-module par un lien symbolique vers des hooks piégés, et exécuter du code lors d'un clone récursif. Correctifs : Git 2.56.1 et 2.50.2, 2.51.3, 2.52.1, 2.53.1, 2.54.1, 2.55.1. Cinq autres failles sont corrigées, dont CVE-2026-105437, un débordement de tampon dans les grosses fusions avec conflict-marker-size. GitLab, qui l'a attribué, indique que les serveurs sont exposés via git merge-tree et a publié un correctif critique : 19.5.4, 19.4.6 et 19.3.8, pour les versions de 16.2 à avant ces numéros. Le bug peut permettre d'exécuter des commandes dans l'environnement Gitaly. GitLab.com et Dedicated sont déjà corrigés. GitHub Enterprise Server est corrigé en 3.19.15, 3.20.11, 3.21.9 et 3.22.4. Au moment de l'article, Git for Windows n'avait pas de version basée sur 2.56.1.",
+      "why_it_matters": "Mettez à jour les GitLab auto-hébergés vers 19.5.4, 19.4.6 ou 19.3.8. Les installations compilées doivent reconstruire Git (Gitaly et git.bin_path) ou installer Git 2.56.1. Contournement : conflict-marker-size=7 dans info/attributes. Sur les postes et runners CI, mettez Git à jour et ne clonez pas récursivement de dépôts non fiables.",
+      "sources": [
+        {
+          "article_id": "c051",
+          "feed": "The Hacker News",
+          "title": "Git Patches Flaw That Lets Malicious Repositories Execute Code During Recursive Clones",
+          "url": "https://thehackernews.com/2026/11/git-patches-flaw-that-lets-malicious.html",
+          "key": "link:https://thehackernews.com/2026/11/git-patches-flaw-that-lets-malicious.html"
+        },
+        {
+          "article_id": "c182",
+          "feed": "GitLab releases",
+          "title": "GitLab Critical Patch Release: 19.5.4, 19.4.6, 19.3.8",
+          "url": "https://docs.gitlab.com/releases/patches/patch-release-gitlab-19-5-4-released/",
+          "key": "link:https://docs.gitlab.com/releases/patches/patch-release-gitlab-19-5-4-released"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-11/barracuda-esg-exploitation-cve-2026-116606",
+      "slug": "barracuda-esg-exploitation-cve-2026-116606",
+      "theme": "breach",
+      "title": "Barracuda ESG : CVE-2026-116606 et CVE-2026-111560 exploitées pour obtenir root",
+      "summary": "Barracuda a prévenu que deux failles de l'Email Security Gateway, corrigées il y a une semaine, sont exploitées contre un petit nombre d'organisations. CVE-2026-116606 est un contournement d'authentification permettant de modifier la configuration globale de l'appliance, via l'import d'une archive de sauvegarde forgée. CVE-2026-111560 permet une injection de commandes système exécutées en root. Chaînées, elles donnent un accès root. L'attaque exige l'accès à l'interface d'administration. CVE-2026-111560 touche aussi Load Balancer ADC, Message Archiver, WAF Control Center, WAF et Web Security Gateway. Les correctifs sont BNSF-40425 (9.4.017 et plus) et BNSF-40430 (avant 9.4.017) pour l'ESG, et d'autres références pour les autres produits. La CISA a inscrit CVE-2026-116606 à son catalogue KEV. Barracuda recommande de restreindre l'accès aux réseaux internes de confiance et d'activer les correctifs automatiques.",
+      "why_it_matters": "Si vous exploitez des appliances Barracuda, vérifiez que le correctif est bien appliqué, notamment si les mises à jour automatiques sont désactivées, et que l'interface d'administration n'est pas joignable depuis Internet. Une exploitation confirmée d'une appliance de messagerie justifie une investigation.",
+      "sources": [
+        {
+          "article_id": "c160",
+          "feed": "BleepingComputer",
+          "title": "Hackers now exploit critical Barracuda ESG flaws to gain root access",
+          "url": "https://www.bleepingcomputer.com/news/security/hackers-exploit-barracuda-email-security-gateway-flaws-to-get-root-access/",
+          "key": "link:https://bleepingcomputer.com/news/security/hackers-exploit-barracuda-email-security-gateway-flaws-to-get-root-access"
+        },
+        {
+          "article_id": "c190",
+          "feed": "CISA KEV",
+          "title": "CVE-2026-116606 — Barracuda Networks Email Security Gateway (ESG) Authentication Bypass Using an Alternate Path or Channel Vulnerability",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-116606",
+          "key": "link:https://nvd.nist.gov/vuln/detail/CVE-2026-116606"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-11/patch-tuesday-novembre-outlook-zero-day",
+      "slug": "patch-tuesday-novembre-outlook-zero-day",
+      "theme": "breach",
+      "title": "Patch Tuesday de novembre : 1 094 failles, dont un zero-day Outlook exploité (CVE-2026-124194)",
+      "summary": "Microsoft a corrigé 1 094 vulnérabilités en novembre 2026. Le zero-day CVE-2026-124194, noté 6,5 (gravité modérée), est une usurpation dans Outlook : l'ouverture d'un fichier de message forgé peut faire se connecter Outlook à un emplacement réseau de l'attaquant sans l'avertissement habituel, ce qui divulgue le hash NTLMv2 de l'utilisateur. Le volet de prévisualisation ne déclenche pas la faille. Sont touchés Microsoft 365 Apps for Enterprise, Office LTSC 2021 et 2024. La CISA l'a inscrite au catalogue KEV. Windows concentre 726 failles, Office 174, SQL Server 59 et Exchange Server neuf. Des mises à jour critiques concernent Windows, Office, Exchange Server Subscription Edition, Edge et d'autres produits. Ce sont les dernières mises à jour pour les éditions Enterprise et Education de Windows 11 23H2.",
+      "why_it_matters": "Déployez les mises à jour Office, surtout sur les postes exposés à des fichiers de message externes. Limiter le trafic SMB/NTLM sortant réduit le risque de fuite de hash. Planifiez la migration des postes Windows 11 23H2 Enterprise et Education, qui ne recevront plus de correctifs.",
+      "sources": [
+        {
+          "article_id": "c055",
+          "feed": "SecurityWeek",
+          "title": "Exploited Outlook Zero-Day Among 1,094 Flaws Patched by Microsoft",
+          "url": "https://www.securityweek.com/exploited-outlook-zero-day-among-1094-flaws-patched-by-microsoft/",
+          "key": "link:https://securityweek.com/exploited-outlook-zero-day-among-1094-flaws-patched-by-microsoft"
+        },
+        {
+          "article_id": "c181",
+          "feed": "CISA KEV",
+          "title": "CVE-2026-124194 — Microsoft Office Outlook Missing User Interaction for Potentially Unsafe Action Vulnerability",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-124194",
+          "key": "link:https://nvd.nist.gov/vuln/detail/CVE-2026-124194"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-11/nitori-37-6-millions-enregistrements",
+      "slug": "nitori-37-6-millions-enregistrements",
+      "theme": "leak",
+      "title": "Nitori : jusqu'à 37,62 millions d'enregistrements clients potentiellement volés",
+      "summary": "Le distributeur japonais de meubles Nitori a détecté le 6 novembre un accès non autorisé à un système de son réseau. Selon l'enquête, l'attaquant y aurait eu accès depuis la mi-octobre. Jusqu'à 37,62 millions d'enregistrements pourraient avoir fuité : numéros de membre, noms, e-mails, adresses, téléphones, dates de naissance et sexe, données de contact d'entreprises, et commandes passées sur Nitori Net et les boutiques sur places de marché. L'entreprise affirme que les mots de passe et les cartes bancaires ne sont pas concernés. Elle a bloqué l'accès, corrigé des vulnérabilités et renforcé la surveillance, informé l'autorité japonaise de protection des données et la police, et prévenu du risque d'hameçonnage. Selon une mise à jour du 11 novembre, Nitori enquête sur la cause, y compris un éventuel rançongiciel, et n'a pas encore déterminé le nombre de clients touchés.",
+      "why_it_matters": "Pas d'action directe pour la plupart des lecteurs, sauf clients de Nitori au Japon : méfiance envers les messages d'hameçonnage. L'intrusion est restée quelque trois semaines sans détection, ce qui rappelle l'intérêt de la supervision des accès aux bases clients.",
+      "sources": [
+        {
+          "article_id": "c035",
+          "feed": "BleepingComputer",
+          "title": "Japanese furniture giant Nitori says hackers stole 37.6M customer records",
+          "url": "https://www.bleepingcomputer.com/news/security/japanese-furniture-giant-nitori-says-hackers-stole-376m-customer-records/",
+          "key": "link:https://bleepingcomputer.com/news/security/japanese-furniture-giant-nitori-says-hackers-stole-376m-customer-records"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-11/github-incident-operations-git-10-novembre",
+      "slug": "github-incident-operations-git-10-novembre",
+      "theme": "outage",
+      "title": "GitHub : incident sur les opérations Git et les pull requests le 10 novembre",
+      "summary": "GitHub Status a signalé le 10 novembre un incident sur les opérations Git et les pull requests. À 17h46 UTC, l'équipe enquêtait encore sur des temps de réponse élevés : les workflows Actions se rétablissaient, le traitement des pull requests s'améliorait, mais des délais et des échecs persistaient. L'incident a été déclaré résolu à 17h55 UTC. GitHub indique qu'une analyse détaillée de la cause sera publiée dès qu'elle sera disponible.",
+      "why_it_matters": "Si vos pipelines ou déploiements dépendent de GitHub, des jobs ont pu échouer ou être retardés dans cette fenêtre : relancez ceux qui ont échoué. Cette récurrence d'incidents peut justifier des miroirs ou des reprises automatiques dans vos CI.",
+      "sources": [
+        {
+          "article_id": "c071",
+          "feed": "GitHub Status",
+          "title": "Incident with Git Operations and Pull Requests",
+          "url": "https://www.githubstatus.com/incidents/hnf21m9jkl3c",
+          "key": "link:https://githubstatus.com/incidents/hnf21m9jkl3c"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-11/ocm-et-kuberay-cncf",
+      "slug": "ocm-et-kuberay-cncf",
+      "theme": "new_tech",
+      "title": "CNCF : Open Cluster Management passe en incubation, KubeRay est donné à la fondation",
+      "summary": "Le TOC de la CNCF a accepté Open Cluster Management (OCM) comme projet en incubation. OCM gère des clusters Kubernetes multi-cloud, sur site et edge avec une architecture hub-and-spoke et un modèle pull asynchrone. Issu d'IBM et Red Hat, il est en sandbox depuis novembre 2021, en 1.0 depuis juin 2025 et en 1.4 depuis octobre 2026. Il s'intègre à Argo CD, Cluster API et Kueue. Selon le billet, eBay l'utilise sur plus de 190 clusters. Le même jour, les mainteneurs ont annoncé le don de KubeRay à la CNCF. Cet opérateur Kubernetes exécute des charges Ray via trois CRD : RayCluster, RayJob et RayService. Les auteurs présentent ce don comme la pièce manquante pour placer sous gouvernance Linux Foundation toute la pile PyTorch, modèles, Ray et Kubernetes.",
+      "why_it_matters": "Deux projets utilisés pour la gestion de flottes de clusters et pour l'IA sur Kubernetes gagnent une gouvernance neutre, ce qui réduit le risque de dépendance à un éditeur. À suivre si vous gérez plusieurs clusters ou des charges GPU et Ray.",
+      "sources": [
+        {
+          "article_id": "c096",
+          "feed": "CNCF",
+          "title": "Open Cluster Management (OCM) becomes a CNCF Incubating Project",
+          "url": "https://www.cncf.io/blog/2026/11/10/open-cluster-management-ocm-becomes-a-cncf-incubating-project/",
+          "key": "link:https://cncf.io/blog/2026/11/10/open-cluster-management-ocm-becomes-a-cncf-incubating-project"
+        },
+        {
+          "article_id": "c100",
+          "feed": "CNCF",
+          "title": "Donating KubeRay to CNCF",
+          "url": "https://www.cncf.io/blog/2026/11/10/donating-kuberay-to-cncf/",
+          "key": "link:https://cncf.io/blog/2026/11/10/donating-kuberay-to-cncf"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-11/ubuntu-26-10-upki-revocation-certificats",
+      "slug": "ubuntu-26-10-upki-revocation-certificats",
+      "theme": "new_tech",
+      "title": "Ubuntu 26.10 : upki, vérification de révocation des certificats, activé pour curl",
+      "summary": "Ubuntu 26.10, sortie en octobre, commence à déployer upki pour la révocation des certificats. Ce projet de Rustls, écrit en Rust, vérifie le statut de révocation des certificats d'autorités publiques et s'intègre à OpenSSL et Rustls, avec une interface C-FFI. Le choix ayant été tardif, il n'est activé que dans le paquet curl. Canonical prévoit de l'utiliser dans le paquet OpenSSL avec Ubuntu 27.04. Canonical met en avant l'exposition d'eMudhra en octobre, où un chercheur a trouvé des clés privées faibles pour des certificats d'AC intermédiaires, pour justifier une révocation plus rapide sur toute la pile.",
+      "why_it_matters": "Jusqu'ici, la révocation côté client était peu fiable sur Linux. Si vous maintenez des images ou des flottes Ubuntu, surveillez le comportement de curl en 26.10 (accès réseau pour les données de révocation) et l'arrivée d'upki dans OpenSSL en 27.04.",
+      "sources": [
+        {
+          "article_id": "c007",
+          "feed": "Phoronix",
+          "title": "Ubuntu 26.10 Begins Rolling Out upki Support For Certificate Revocation",
+          "url": "https://www.phoronix.com/news/Ubuntu-26.10-Does-upki",
+          "key": "link:https://phoronix.com/news/Ubuntu-26.10-Does-upki"
+        }
+      ]
+    }
+  ],
+  "episode_title": "Xen Orchestra, Git, Barracuda et 37 millions de fiches",
+  "script": [
+    {
+      "speaker": "Camille",
+      "text": "Salut et bienvenue dans La veille, on est le mercredi 11 novembre 2026. Au programme : pas mal de correctifs à passer en urgence, une grosse fuite au Japon, un incident GitHub, et deux nouveautés côté CNCF et Ubuntu.",
+      "style": "relaxed, warm morning tone"
+    },
+    {
+      "speaker": "Max",
+      "text": "Salut Camille. Oui, ça pique un peu pour un mercredi matin. Prends ton café, on commence par le plus urgent : Xen Orchestra.",
+      "style": "relaxed, amused"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Ouais. Vates a alerté d'une vulnérabilité critique, suivie sous le nom VSA-2026-062, et elle est activement exploitée. Pas de CVE ni de score CVSS pour l'instant.",
+      "style": "serious but calm"
+    },
+    {
+      "speaker": "Max",
+      "text": "Et ça vient d'où ? Parce que j'imagine que c'est un truc bête.",
+      "style": "curious"
+    },
+    {
+      "speaker": "Camille",
+      "text": "C'est dans le traitement des cookies d'authentification de l'API REST. Si tu envoies un cookie authenticationToken avec un objet JSON vide dedans, la plateforme va chercher le premier jeton existant et t'authentifie comme son propriétaire.",
+      "style": "calm, explaining"
+    },
+    {
+      "speaker": "Max",
+      "text": "Attends, sérieux ? Un objet vide et tu deviens quelqu'un d'autre ?",
+      "style": "surprised"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Voilà. Ensuite l'attaquant peut lister des identifiants de jetons réutilisables, agir avec les droits Admin, exécuter du code sur les pools gérés, et même prendre le contrôle d'un nœud XCP-ng en root. Vates parle d'attaques depuis une adresse IP et un domaine onion. On ne sait pas quand ça a commencé, ni si c'était du zero-day.",
+      "style": "calm"
+    },
+    {
+      "speaker": "Max",
+      "text": "Et côté détection ? Les logs, ça donne quoi ?",
+      "style": "concerned"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Justement, l'exploitation ne laisse pas de trace spécifique dans les journaux, donc il faut regarder la supervision HTTP. Sinon il y a des indicateurs : une VM nommée pivot2, des VM avec hvm_serial valant file, et des fichiers cron zz-ustar et zz-ustar2 dans etc cron.d, plus deux fichiers cachés ustar5 et ustar6 à la racine.",
+      "style": "calm, explaining"
+    },
+    {
+      "speaker": "Max",
+      "text": "Donc : tu mets à jour tout de suite, Xen Orchestra 6.9.1 en stable ou 6.10.0 en latest. Et si tu ne peux pas, tu sors l'interface d'Internet et tu bloques le jeton vide sur ton WAF ou ton reverse proxy. Perso, je chercherais aussi les indicateurs sur les hôtes, et si c'est compromis, on change tous les secrets.",
+      "style": "relaxed, practical"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Exactement. Les versions de xo-server sont 5.211.2 et 5.213.1 si tu patches à ce niveau-là. Bon, deuxième sujet, et c'est du lourd côté dev : Git.",
+      "style": "agreeing"
+    },
+    {
+      "speaker": "Max",
+      "text": "Oui, la CVE 2026 tiret 111760. Une troncature d'entier dans la gestion de l'index. Un chemin extrêmement long passe le contrôle de sécurité, puis il est écrit sous un nom plus court, qui peut valoir point git.",
+      "style": "energetic"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Et concrètement, ça donne quoi ? Parce que écrire un fichier qui s'appelle .git, ça n'a pas l'air méchant.",
+      "style": "curious"
+    },
+    {
+      "speaker": "Max",
+      "text": "Un dépôt malveillant peut remplacer le fichier .git d'un sous-module par un lien symbolique vers des hooks piégés. Résultat, exécution de code pendant un clone récursif.",
+      "style": "calm, explaining"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Aïe. Donc le clone récursif d'un dépôt pas fiable, c'est à éviter.",
+      "style": "concerned"
+    },
+    {
+      "speaker": "Max",
+      "text": "Oui. Le correctif, c'est Git 2.56.1, avec aussi des versions de maintenance de 2.50.2 jusqu'à 2.55.1. Cinq autres failles sont corrigées, dont la CVE 2026 tiret 105437, un débordement de tampon dans les grosses fusions avec conflict-marker-size.",
+      "style": "calm"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Et côté GitLab, c'est eux qui l'ont attribuée, et leurs serveurs sont exposés via git merge-tree. Correctif critique : 19.5.4, 19.4.6 et 19.3.8, pour les versions de 16.2 jusqu'à avant ces numéros. Ça peut permettre d'exécuter des commandes dans l'environnement Gitaly.",
+      "style": "serious"
+    },
+    {
+      "speaker": "Max",
+      "text": "GitLab.com et Dedicated sont déjà corrigés. GitHub Enterprise Server aussi a ses versions : 3.19.15, 3.20.11, 3.21.9 et 3.22.4. Et attention, au moment de l'article, Git for Windows n'avait pas encore de version basée sur 2.56.1.",
+      "style": "relaxed"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Et si tu as compilé ton GitLab ?",
+      "style": "curious"
+    },
+    {
+      "speaker": "Max",
+      "text": "Tu reconstruis Git, côté Gitaly et git.bin_path, ou tu installes Git 2.56.1. Il y a aussi un contournement : mettre conflict-marker-size égal à 7 dans info/attributes. Et sur les postes et les runners CI, tu mets à jour.",
+      "style": "calm, explaining"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Allez, troisième de la série des correctifs : Barracuda.",
+      "style": "transitioning"
+    },
+    {
+      "speaker": "Max",
+      "text": "Barracuda prévient que deux failles de l'Email Security Gateway, corrigées il y a une semaine, sont exploitées contre un petit nombre d'organisations. La CVE 2026 tiret 116606 est un contournement d'authentification qui permet de modifier la configuration globale, via l'import d'une archive de sauvegarde forgée.",
+      "style": "serious"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Et la CVE 2026 tiret 111560 permet une injection de commandes système exécutées en root. Chaînées, ça donne un accès root sur l'appliance. Mais il faut avoir accès à l'interface d'administration.",
+      "style": "explaining"
+    },
+    {
+      "speaker": "Max",
+      "text": "Ce qui me fait dire, perso, que l'interface d'admin n'a rien à faire sur Internet. La deuxième faille touche aussi Load Balancer ADC, Message Archiver, WAF Control Center, WAF et Web Security Gateway. La CISA a mis la première au catalogue KEV.",
+      "style": "relaxed"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Les correctifs pour l'ESG : BNSF-40425 à partir de la 9.4.017, et BNSF-40430 avant. Barracuda recommande de restreindre l'accès aux réseaux internes de confiance et d'activer les correctifs automatiques. Et si tu as une exploitation confirmée sur une appliance de messagerie, ça mérite une vraie investigation.",
+      "style": "calm"
+    },
+    {
+      "speaker": "Max",
+      "text": "Et comme on est mercredi après le Patch Tuesday, on enchaîne : Microsoft a corrigé 1 094 vulnérabilités en novembre.",
+      "style": "light, joking"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Mille quatre-vingt-quatorze ! Bon, Windows en concentre 726, Office 174, SQL Server 59 et Exchange Server neuf.",
+      "style": "amazed"
+    },
+    {
+      "speaker": "Max",
+      "text": "Le point chaud, c'est le zero-day CVE 2026 tiret 124194 dans Outlook, noté 6,5, donc gravité modérée. C'est de l'usurpation : tu ouvres un fichier de message forgé, et Outlook se connecte à un emplacement réseau de l'attaquant sans l'avertissement habituel.",
+      "style": "explaining"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Et là, il récupère quoi ?",
+      "style": "curious"
+    },
+    {
+      "speaker": "Max",
+      "text": "Le hash NTLMv2 de l'utilisateur. Le volet de prévisualisation ne déclenche pas la faille, il faut vraiment ouvrir le fichier. Sont touchés Microsoft 365 Apps for Enterprise, Office LTSC 2021 et 2024, et la CISA l'a mise au KEV.",
+      "style": "calm"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Donc on déploie les mises à jour Office, et limiter le trafic SMB et NTLM sortant aide à réduire le risque. Autre détail : ce sont les dernières mises à jour pour Windows 11 23H2 Enterprise et Education, donc il faut planifier la migration.",
+      "style": "relaxed"
+    },
+    {
+      "speaker": "Max",
+      "text": "On passe aux fuites. Le distributeur japonais de meubles Nitori a détecté le 6 novembre un accès non autorisé à un système de son réseau.",
+      "style": "somber"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Et l'enquête dit que l'attaquant y serait depuis la mi-octobre. Donc environ trois semaines sans que personne ne voie rien.",
+      "style": "concerned"
+    },
+    {
+      "speaker": "Max",
+      "text": "Jusqu'à 37,62 millions d'enregistrements pourraient avoir fuité : numéros de membre, noms, e-mails, adresses, téléphones, dates de naissance, sexe, données de contact d'entreprises, et commandes passées sur Nitori Net et sur les boutiques de places de marché.",
+      "style": "serious"
+    },
+    {
+      "speaker": "Camille",
+      "text": "L'entreprise affirme que mots de passe et cartes bancaires ne sont pas concernés. Elle a bloqué l'accès, corrigé des vulnérabilités, renforcé la surveillance, et prévenu l'autorité de protection des données et la police, avec une alerte sur l'hameçonnage.",
+      "style": "calm"
+    },
+    {
+      "speaker": "Max",
+      "text": "Mise à jour d'aujourd'hui : ils enquêtent encore sur la cause, y compris un éventuel rançongiciel, et ils n'ont pas déterminé le nombre de clients touchés. Pour nous, la leçon c'est surtout la supervision des accès aux bases clients.",
+      "style": "thoughtful"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Côté pannes, GitHub a signalé hier, le 10 novembre, un incident sur les opérations Git et les pull requests.",
+      "style": "relaxed"
+    },
+    {
+      "speaker": "Max",
+      "text": "Encore ? À 17h46 UTC, ils enquêtaient encore sur des temps de réponse élevés. Les workflows Actions se rétablissaient, les pull requests s'amélioraient, mais il restait des délais et des échecs.",
+      "style": "amused, resigned"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Résolu à 17h55 UTC, et une analyse détaillée de la cause doit suivre. Si tes pipelines dépendent de GitHub, relance les jobs qui ont échoué.",
+      "style": "calm"
+    },
+    {
+      "speaker": "Max",
+      "text": "Et moi je dirais que ces incidents à répétition justifient des miroirs ou des reprises automatiques dans ta CI. Bon, un peu de nouveautés pour finir ?",
+      "style": "relaxed"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Oui ! Le TOC de la CNCF a accepté Open Cluster Management, OCM, en incubation. Ça gère des clusters Kubernetes multi-cloud, sur site et edge, avec une architecture hub-and-spoke et un modèle pull asynchrone.",
+      "style": "upbeat"
+    },
+    {
+      "speaker": "Max",
+      "text": "Donc pull, pas push : ce sont les clusters qui viennent chercher leur config.",
+      "style": "curious"
+    },
+    {
+      "speaker": "Camille",
+      "text": "C'est ça. Le projet vient d'IBM et Red Hat, en sandbox depuis novembre 2021, en 1.0 depuis juin 2025, et en 1.4 depuis octobre 2026. Il s'intègre à Argo CD, Cluster API et Kueue, et selon le billet, eBay l'utilise sur plus de 190 clusters.",
+      "style": "explaining"
+    },
+    {
+      "speaker": "Max",
+      "text": "Le même jour, les mainteneurs ont annoncé le don de KubeRay à la CNCF. C'est un opérateur Kubernetes qui exécute des charges Ray avec trois CRD : RayCluster, RayJob et RayService.",
+      "style": "upbeat"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Les auteurs présentent ça comme la pièce manquante pour mettre sous gouvernance Linux Foundation toute la pile PyTorch, modèles, Ray et Kubernetes. Gouvernance neutre, donc moins de risque de dépendance à un éditeur.",
+      "style": "amused"
+    },
+    {
+      "speaker": "Max",
+      "text": "Dernier sujet : Ubuntu 26.10, sortie en octobre, commence à déployer upki pour la révocation des certificats.",
+      "style": "relaxed"
+    },
+    {
+      "speaker": "Camille",
+      "text": "C'est quoi, upki ?",
+      "style": "curious"
+    },
+    {
+      "speaker": "Max",
+      "text": "Un projet de Rustls, écrit en Rust, qui vérifie le statut de révocation des certificats d'autorités publiques. Il s'intègre à OpenSSL et Rustls, avec une interface C-FFI. Le choix a été tardif, donc il n'est activé que dans le paquet curl pour l'instant.",
+      "style": "calm, explaining"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Et la suite ?",
+      "style": "interested"
+    },
+    {
+      "speaker": "Max",
+      "text": "Canonical prévoit de l'utiliser dans le paquet OpenSSL avec Ubuntu 27.04. Ils mettent en avant l'exposition d'eMudhra en octobre, où un chercheur a trouvé des clés privées faibles pour des certificats d'AC intermédiaires, pour justifier une révocation plus rapide.",
+      "style": "calm"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Si tu gères des flottes Ubuntu, surveille le comportement de curl en 26.10, vu qu'il faut un accès réseau pour les données de révocation.",
+      "style": "relaxed"
+    },
+    {
+      "speaker": "Max",
+      "text": "Voilà pour aujourd'hui. Priorité : Xen Orchestra, Git et GitLab, Barracuda.",
+      "style": "warm"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Bon patch à tous, et à demain !",
+      "style": "warm, cheerful"
+    }
+  ],
+  "episode": {
+    "title": "Xen Orchestra, Git, Barracuda et 37 millions de fiches",
+    "release_tag": "ep-2026-11-11",
+    "mp3_url": "https://github.com/Elohyrr/veille/releases/download/ep-2026-11-11/veille-2026-11-11.mp3",
+    "bytes": 5060205,
+    "duration_s": 632,
+    "tts_provider": "openrouter"
+  },
+  "usage": {
+    "digest": {
+      "model": "sonnet",
+      "in": 24803,
+      "out": 4929,
+      "cost_usd": 0.148498
+    },
+    "podcast": {
+      "model": "sonnet",
+      "in": 6556,
+      "out": 5548,
+      "cost_usd": 0.0817
+    },
+    "triage": {
+      "model": "haiku",
+      "in": 36298,
+      "out": 6649,
+      "cost_usd": 0.0105839
+    }
+  }
+}
