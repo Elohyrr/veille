@@ -5,9 +5,29 @@
 <link>https://elohyrr.github.io/veille/</link>
 <description>Tech, pannes, failles et fuites — digest quotidien</description>
 <language>fr-fr</language>
-<lastBuildDate>Wed, 11 Nov 2026 06:08:37 &#43;0000</lastBuildDate>
+<lastBuildDate>Thu, 12 Nov 2026 06:08:45 &#43;0000</lastBuildDate>
 <itunes:image href="https://elohyrr.github.io/veille/cover.png"/>
 <itunes:explicit>false</itunes:explicit>
+<item>
+<title>Apache, RMM sous le feu, et un émulateur AWS fait par des agents</title>
+<link>https://elohyrr.github.io/veille/jours/2026-11-12/</link>
+<guid isPermaLink="false">ep-2026-11-12</guid>
+<pubDate>Thu, 12 Nov 2026 06:08:45 &#43;0000</pubDate>
+<description>- Apache HTTP Server : CVE-2026-119618 dans mod_http2, exécution de code à distance, corrigée en 2.4.71
+- N-able coupe N-central après la divulgation publique de 33 failles (Able2Shell)
+- ScreenConnect : au moins 288 postes de 48 organisations infectés par des clients malveillants
+- Pologne : la plateforme de services publics ePUAP coupée après une cyberattaque
+- Cisco BroadWorks CVE-2026-20320 exploitée par un agent IA, ajoutée au catalogue KEV
+- Notion : la brèche chez Fireworks AI expose des transcriptions de chats Notion AI
+- eMudhra révoque huit autres certificats CA après une mauvaise gestion de clés privées
+- Maersk confirme une brèche sur un système hérité ; WhiteArmor réclame 5 millions de dollars
+- AWS Emulator : un émulateur AWS local en Rust, construit et maintenu par des agents
+- Nvidia donne OpenShell, runtime de sécurisation d&#39;agents IA, à la CNCF
+https://elohyrr.github.io/veille/jours/2026-11-12/</description>
+<enclosure url="https://github.com/Elohyrr/veille/releases/download/ep-2026-11-12/veille-2026-11-12.mp3" length="5961837" type="audio/mpeg"/>
+<itunes:duration>00:12:25</itunes:duration>
+<itunes:explicit>false</itunes:explicit>
+</item>
 <item>
 <title>Xen Orchestra, Git, Barracuda et 37 millions de fiches</title>
 <link>https://elohyrr.github.io/veille/jours/2026-11-11/</link>

@@ -1,0 +1,555 @@
+{
+  "date": "2026-11-12",
+  "published_at": "2026-11-12T06:08:45Z",
+  "intro": "Journée chargée côté sécurité : une faille critique dans Apache mod_http2, des plateformes d'administration à distance (N-central, ScreenConnect) attaquées, et une plateforme d'État polonaise coupée par précaution.",
+  "topics": [
+    {
+      "id": "2026-11-12/apache-mod-http2-cve-2026-119618",
+      "slug": "apache-mod-http2-cve-2026-119618",
+      "theme": "breach",
+      "title": "Apache HTTP Server : CVE-2026-119618 dans mod_http2, exécution de code à distance, corrigée en 2.4.71",
+      "summary": "Une faille critique du module mod_http2 d'Apache HTTP Server, CVE-2026-119618, permet à un attaquant distant non authentifié d'exécuter du code et de prendre le contrôle du processus serveur. Elle touche les versions 2.4.55 à 2.4.70 et est corrigée dans la 2.4.71, publiée le 11 novembre. Seuls les serveurs avec HTTP/2 activé sont concernés. Red Hat la note 9.8 sur 10 en CVSS mais seulement « Important » sur RHEL 9 et 10, où chaque flux HTTP/2 dispose de son propre allocateur mémoire, ce qui rend l'attaque bien plus difficile. Red Hat affirme qu'une recherche publique a démontré un exploit fiable sur une configuration par défaut ; Wiz indique au contraire qu'aucun exploit n'est disponible et qu'aucune exploitation n'a été signalée. Les builds autonomes mod_h2 (2.0.8 à 2.0.42) sont touchés, sans correctif : le dépôt est archivé. Debian bookworm, trixie et forky sont listées comme vulnérables, Amazon Linux en attente de correctif, RHEL 8 et antérieures non concernées. Sans mise à jour possible, Wiz conseille de retirer h2 et h2c de la directive Protocols.",
+      "why_it_matters": "Si vous exposez Apache avec HTTP/2, vérifiez la directive Protocols au niveau serveur et de chaque virtual host. Passez à 2.4.71 ou au paquet de votre distribution. Sur Debian ou avec mod_h2 autonome, aucun correctif n'est listé : appliquez le contournement Protocols http/1.1.",
+      "sources": [
+        {
+          "article_id": "c002",
+          "feed": "The Hacker News",
+          "title": "Critical Apache HTTP/2 Flaw Could Let Unauthenticated Attackers Execute Code Remotely",
+          "url": "https://thehackernews.com/2026/11/critical-apache-http2-flaw-could-let.html",
+          "key": "link:https://thehackernews.com/2026/11/critical-apache-http2-flaw-could-let.html"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-12/n-able-n-central-able2shell",
+      "slug": "n-able-n-central-able2shell",
+      "theme": "breach",
+      "title": "N-able coupe N-central après la divulgation publique de 33 failles (Able2Shell)",
+      "summary": "N-able a mis hors ligne ses environnements N-central hébergés (Amériques, Europe, Asie-Pacifique) après que le chercheur Sean Bales a divulgué dimanche 33 failles baptisées Able2Shell, avec des exploits publiés sur GitHub. L'éditeur recommande aux clients sur site d'arrêter leurs serveurs jusqu'à nouvel ordre. Les exploits permettent d'exécuter des commandes, de créer des comptes administrateurs et d'obtenir root. Selon Tenable, certaines failles sont des étapes de quatre chaînes d'exploitation ; la chaîne XXE, décrite comme sans identifiants, via CVE-2026-125883, pourrait transformer une requête réseau non authentifiée en compromission complète. N-able a publié mardi N-central 2026.4 Hotfix 2 (build 2026.4.1.26), qui corrige sept CVE, et promet d'autres mises à jour. Des attaquants scannent déjà selon N-able, mais aucune exploitation n'a été observée à ce jour.",
+      "why_it_matters": "Si vous ou votre prestataire MSP utilisez N-central, appliquez le Hotfix 2 et suivez les consignes de N-able, y compris l'arrêt des serveurs sur site. Un RMM détient des privilèges étendus sur tout le parc : sa compromission ouvre l'accès aux clients gérés.",
+      "sources": [
+        {
+          "article_id": "c053",
+          "feed": "Dark Reading",
+          "title": "N-able Takes N-central Platform Offline After Discovery of 33 Flaws",
+          "url": "https://www.darkreading.com/endpoint-security/n-able-n-central-offline-33-flaws",
+          "key": "link:https://darkreading.com/endpoint-security/n-able-n-central-offline-33-flaws"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-12/screenconnect-clients-rogues-sckit",
+      "slug": "screenconnect-clients-rogues-sckit",
+      "theme": "breach",
+      "title": "ScreenConnect : au moins 288 postes de 48 organisations infectés par des clients malveillants",
+      "summary": "ConnectWise a désactivé par précaution cinq extensions tierces (Labtech Plus, RMM Plus, RMM+ et leurs variantes Password Link) chez ses partenaires, après des signalements d'accès non autorisés. Elle dit n'avoir aucune preuve de compromission de son infrastructure ni de vulnérabilité de ScreenConnect ; le vecteur initial reste à l'étude. Environ 400 environnements partenaires ont au moins une de ces extensions. Huntress, qui suit l'activité détectée le 11 novembre vers 17h47 UTC, observe des attaquants utilisant des panneaux ScreenConnect hébergés dans le cloud pour pousser des commandes Run et installer des clients malveillants sur au moins 288 postes de 48 organisations. Les identifiants compromis ou des sessions d'opérateurs détournées sont la piste actuelle. Le malware SCKit fonctionne comme un ver : il peut remonter vers le poste du technicien, voler sessions de navigateur et jetons, puis rebondir vers d'autres panneaux. ConnectWise publie des indicateurs de compromission.",
+      "why_it_matters": "Si vous utilisez ScreenConnect, vérifiez la présence de ces extensions, désactivez-les sur site et cherchez nouveaux comptes administrateurs, commandes distantes inattendues et clients non approuvés. Comparez vos journaux aux IoC publiés et faites tourner les sessions des techniciens.",
+      "sources": [
+        {
+          "article_id": "c006",
+          "feed": "The Hacker News",
+          "title": "ScreenConnect Attacks Target at Least 288 Endpoints Across 48 Organizations With Rogue Clients",
+          "url": "https://thehackernews.com/2026/11/screenconnect-attacks-target-at-least.html",
+          "key": "link:https://thehackernews.com/2026/11/screenconnect-attacks-target-at-least.html"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-12/poland-epuap-cyberattaque",
+      "slug": "poland-epuap-cyberattaque",
+      "theme": "outage",
+      "title": "Pologne : la plateforme de services publics ePUAP coupée après une cyberattaque",
+      "summary": "La Pologne a temporairement fermé ePUAP, plateforme nationale permettant aux citoyens et entreprises de déposer des documents officiels et d'accomplir des démarches en ligne, après avoir détecté et stoppé une cyberattaque, ont indiqué les autorités mardi. Le ministre du Numérique Krzysztof Gawkowski affirme que l'attaque a été détectée et stoppée et que l'infrastructure du Centre central des technologies de l'information reste sûre. Selon le porte-parole du ministère, le système n'a pas été compromis ni perturbé : il a été désactivé par précaution. Le mode opératoire et les responsables n'ont pas été divulgués, et rien ne confirme un accès aux systèmes ou un vol de données. Aucune date de rétablissement n'est annoncée. Les boîtes électroniques ePUAP restent indisponibles, et le système d'identité numérique Profil de confiance pourrait être touché.",
+      "why_it_matters": "Cas d'école de coupure préventive d'un service public après une attaque : la disponibilité est sacrifiée à la prudence. Si vous échangez avec des administrations polonaises, prévoyez des canaux alternatifs en attendant le retour du service.",
+      "sources": [
+        {
+          "article_id": "c118",
+          "feed": "The Record",
+          "title": "Poland shuts down government services platform ePUAP following cyberattack",
+          "url": "https://therecord.media/poland-shuts-down-government-services-platform-cyberattack",
+          "key": "link:https://therecord.media/poland-shuts-down-government-services-platform-cyberattack"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-12/cisco-broadworks-kev-operation-snowball",
+      "slug": "cisco-broadworks-kev-operation-snowball",
+      "theme": "breach",
+      "title": "Cisco BroadWorks CVE-2026-20320 exploitée par un agent IA, ajoutée au catalogue KEV",
+      "summary": "La CISA a ajouté mardi au catalogue KEV deux failles : CVE-2026-20320 (CVSS 7.5), une XXE non authentifiée dans l'analyseur XML OCI de Cisco BroadWorks, corrigée en août 2026, et CVE-2026-111793 (CVSS 4.3) dans Openwave Messaging Webtop Media Transcoder, corrigée en octobre 2026. Selon Malbear Labs, CVE-2026-20320 a servi dans « Operation Snowball » : un acteur sinophone aurait délégué l'intrusion à un framework autonome bâti sur une version jailbreakée du modèle DeepSeek Flash, visant un opérateur télécom européen et 13 entreprises hébergées. L'agent a énuméré des centaines d'actifs, extrait des dizaines de jeux d'identifiants et exfiltré des milliers de lignes de facturation et d'appareils. La cible principale était BroadWorks XSP 23.0.1.1075, port 2208, avec récupération de clés privées.",
+      "why_it_matters": "Si vous exploitez BroadWorks, vérifiez que le correctif d'août est appliqué et que le port OCI n'est pas exposé. L'exploitation de failles déjà corrigées par des agents autonomes rend le retard de patch plus coûteux.",
+      "sources": [
+        {
+          "article_id": "c160",
+          "feed": "The Hacker News",
+          "title": "Cisco BroadWorks and Openwave Flaws Actively Exploited Despite Available Patches",
+          "url": "https://thehackernews.com/2026/11/cisco-broadworks-and-openwave-flaws.html",
+          "key": "link:https://thehackernews.com/2026/11/cisco-broadworks-and-openwave-flaws.html"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-12/notion-fireworks-ai-transcriptions",
+      "slug": "notion-fireworks-ai-transcriptions",
+      "theme": "leak",
+      "title": "Notion : la brèche chez Fireworks AI expose des transcriptions de chats Notion AI",
+      "summary": "Notion indique qu'une brèche chez son fournisseur d'infrastructure IA, Fireworks AI, a exposé des transcriptions de chats Notion AI dans un petit nombre d'espaces de travail. Fireworks a confirmé qu'un attaquant avait accédé le 23 octobre à son environnement de développement via un fournisseur cloud tiers, compromettant métadonnées, informations de facturation, poids de modèles et jeux de données de certains clients. Notion, alertée le 2 novembre au sujet d'un jeu de données censé ne contenir que des données de test, a coupé le trafic vers Fireworks et supprimé ses données le 3 novembre. Fireworks a confirmé le 8 novembre que des données clients avaient été consultées. Les transcriptions viennent de la fonction Insights, désormais désactivée ; pour la plupart, elles sont non attribuables. Moins de 1 % des utilisateurs sont touchés. Notion conseille de renouveler les mots de passe, clés API et identifiants saisis dans ces chats.",
+      "why_it_matters": "Les données confiées à des prestataires IA tiers sont un maillon faible. Si vous recevez un avis de Notion, consultez la revue d'incident et faites tourner tout secret collé dans un chat IA. Vérifiez la rétention contractuelle de vos fournisseurs.",
+      "sources": [
+        {
+          "article_id": "c043",
+          "feed": "BleepingComputer",
+          "title": "Notion says Fireworks breach exposed customer AI chat transcripts",
+          "url": "https://www.bleepingcomputer.com/news/security/notion-says-fireworks-breach-exposed-customer-ai-chat-transcripts/",
+          "key": "link:https://bleepingcomputer.com/news/security/notion-says-fireworks-breach-exposed-customer-ai-chat-transcripts"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-12/emudhra-huit-certificats-ca-revoques",
+      "slug": "emudhra-huit-certificats-ca-revoques",
+      "theme": "breach",
+      "title": "eMudhra révoque huit autres certificats CA après une mauvaise gestion de clés privées",
+      "summary": "L'autorité de certification eMudhra a révoqué huit certificats intermédiaires supplémentaires, portant le total à 16. Son nouveau rapport d'incident attribue le problème à un script Python utilisé en avril 2025 pour transférer des clés entre HSM : un bogue a réduit huit clés ECDSA à un seul octet, donc triviales à retrouver. Le même script a traité huit clés RSA en mémoire hôte, sans preuve de conformité à la politique de certification ; ces certificats ont été révoqués le 7 novembre. Certains émettaient depuis mai 2026, le dernier certificat datant du 3 novembre. Un signal d'alerte de juin 2025, des CRL signées avec de mauvaises clés, n'avait pas été investigué. eMudhra quitte le marché des certificats TLS publics, cessera d'émettre sous G1 d'ici le 16 novembre et attend un audit KPMG pour le 4 décembre. Elle dit n'avoir détecté aucun usage malveillant.",
+      "why_it_matters": "Mozilla, Google, Apple et Microsoft ont déjà bloqué les certificats compromis. Vérifiez que vos postes et serveurs reçoivent les mises à jour de confiance, et que vous n'avez pas de certificats eMudhra à migrer vers une autre autorité.",
+      "sources": [
+        {
+          "article_id": "c034",
+          "feed": "BleepingComputer",
+          "title": "eMudhra revokes 8 more CA certificates after private key mishap",
+          "url": "https://www.bleepingcomputer.com/news/security/emudhra-revokes-8-more-ca-certificates-after-private-key-mishap/",
+          "key": "link:https://bleepingcomputer.com/news/security/emudhra-revokes-8-more-ca-certificates-after-private-key-mishap"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-12/maersk-whitearmor-donnees",
+      "slug": "maersk-whitearmor-donnees",
+      "theme": "leak",
+      "title": "Maersk confirme une brèche sur un système hérité ; WhiteArmor réclame 5 millions de dollars",
+      "summary": "Maersk a confirmé qu'un attaquant a pénétré des systèmes d'une société qu'il avait rachetée et volé des données. Le groupe WhiteArmor a revendiqué l'attaque ce week-end, menaçant de publier environ 100 Go issus de la plateforme OCF/LF Logistics, héritée de LF Logistics (rachetée en 2022), et exigeant 5 millions de dollars en bitcoin sous 30 jours. Le groupe affirme détenir près de 30 000 fiches de chauffeurs, des mots de passe en clair, 33 comptes SUPER_ADMIN et des journaux de 27 842 appareils mobiles. Maersk déclare que l'incident est isolé à un système local, sans impact sur ses autres systèmes ni sur les systèmes clients via API et EDI, et que, selon les éléments actuels, aucune donnée sensible n'a été divulguée. L'enquête continue ; ni la nature des données ni la date de l'intrusion ne sont précisées.",
+      "why_it_matters": "Les systèmes rachetés et mal intégrés restent une porte d'entrée classique. Les revendications de WhiteArmor ne sont pas vérifiées. Si vous êtes client Maersk, traitez avec prudence les communications inattendues et vérifiez-les via votre contact habituel.",
+      "sources": [
+        {
+          "article_id": "c086",
+          "feed": "BleepingComputer",
+          "title": "Maersk confirms data breach as WhiteArmor ransomware demands $5 million",
+          "url": "https://www.bleepingcomputer.com/news/security/maersk-confirms-data-breach-as-whitearmor-ransomware-demands-5-million/",
+          "key": "link:https://bleepingcomputer.com/news/security/maersk-confirms-data-breach-as-whitearmor-ransomware-demands-5-million"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-12/aws-emulator-open-source",
+      "slug": "aws-emulator-open-source",
+      "theme": "new_tech",
+      "title": "AWS Emulator : un émulateur AWS local en Rust, construit et maintenu par des agents",
+      "summary": "AWS a lancé mercredi AWS Emulator, un émulateur local des API AWS pour tester son code sans compte ni appel à AWS, sur poste, serveur de dev ou en CI. Écrit en Rust, il tourne sur Linux, macOS et Windows et gère 438 modèles d'API publics couvrant plus de 200 services. Il a été construit entièrement par des agents, qui le maintiendront ; trois équipes d'agents génèrent les scénarios de test à partir des modèles Smithy, comparent le comportement de l'émulateur à AWS et corrigent le code. AWS n'étant pas sûre de pouvoir revendiquer le droit d'auteur sur ce travail, il est publié sous licence CC0. Il existe en paquets RPM et Debian, en conteneur, et en mode embarqué compilé dans les tests. AWS précise de ne pas l'utiliser en production ni pour tester la sécurité. Une compilation depuis les sources demande au moins 100 Go de disque.",
+      "why_it_matters": "Alternative à LocalStack pour vos pipelines CI qui testent du code AWS sans exposer d'identifiants. Consultez les scores de fidélité par service avant d'en dépendre, et prévoyez le coût de compilation si vous utilisez le mode embarqué.",
+      "sources": [
+        {
+          "article_id": "c073",
+          "feed": "The New Stack",
+          "title": "AWS had its agents build a free and open emulator for AWS. They now maintain it, too.",
+          "url": "https://thenewstack.io/aws-emulator-ai-agents/",
+          "key": "link:https://thenewstack.io/aws-emulator-ai-agents"
+        },
+        {
+          "article_id": "c068",
+          "feed": "Hacker News (150+ pts)",
+          "title": "AWS emulator",
+          "url": "https://github.com/aws/aws-emulator",
+          "key": "link:https://github.com/aws/aws-emulator"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-12/nvidia-openshell-cncf-sandbox",
+      "slug": "nvidia-openshell-cncf-sandbox",
+      "theme": "new_tech",
+      "title": "Nvidia donne OpenShell, runtime de sécurisation d'agents IA, à la CNCF",
+      "summary": "Nvidia a annoncé mardi à KubeCon North America, à Salt Lake City, le don d'OpenShell à la CNCF, où il entre au niveau Sandbox ; la CNCF l'avait formellement accepté fin septembre. Lancé en mars à la GTC, OpenShell exécute un agent dans un bac à sable et applique des politiques sur les fichiers, réseaux, identifiants et points d'accès de modèles accessibles. L'application se fait dans l'infrastructure autour de l'agent, et le projet adopte Cedar, autre projet CNCF, comme langage de politique. Selon Ali Golshan de Nvidia, les opérateurs visés sont les équipes DevSecOps qui gèrent déjà Kubernetes et Linux. Jonathan Bryce, de la CNCF, indique que l'adoption initiale venait surtout de neoclouds GPU. La CNCF héberge 262 projets, dont 155 en Sandbox.",
+      "why_it_matters": "Si vous prévoyez de faire tourner des agents IA sur Kubernetes, OpenShell est un candidat de confinement s'appuyant sur des briques CNCF. Le niveau Sandbox signale un projet jeune : à évaluer, pas encore à généraliser.",
+      "sources": [
+        {
+          "article_id": "c063",
+          "feed": "The New Stack",
+          "title": "Why Nvidia gave OpenShell to the CNCF",
+          "url": "https://thenewstack.io/nvidia-donates-openshell-cncf/",
+          "key": "link:https://thenewstack.io/nvidia-donates-openshell-cncf"
+        }
+      ]
+    }
+  ],
+  "episode_title": "Apache, RMM sous le feu, et un émulateur AWS fait par des agents",
+  "script": [
+    {
+      "speaker": "Camille",
+      "text": "Salut et bienvenue dans La veille, on est le jeudi 12 novembre 2026. Au menu aujourd'hui : une grosse faille Apache, des outils d'administration à distance dans la tourmente, une plateforme d'État polonaise coupée, et un émulateur AWS fait par des agents.",
+      "style": "relaxed, warm"
+    },
+    {
+      "speaker": "Max",
+      "text": "Salut Camille ! Journée chargée côté sécurité, ça sent le café double. On commence par Apache ?",
+      "style": "cheerful, sleepy"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Oui. Une faille critique dans mod_http2, la CVE 2026 tiret 119618. Un attaquant distant, sans authentification, peut exécuter du code et prendre le contrôle du processus serveur. Ça touche les versions 2.4.55 à 2.4.70, et c'est corrigé dans la 2.4.71, sortie le 11 novembre.",
+      "style": "calm, explaining"
+    },
+    {
+      "speaker": "Max",
+      "text": "Et ça concerne tout le monde ? Ou seulement ceux qui ont HTTP/2 activé ?",
+      "style": "curious"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Seulement ceux qui ont HTTP/2 activé. Et il y a un débat sur la gravité. Red Hat met 9,8 sur 10 en CVSS, mais seulement Important sur RHEL 9 et 10, parce que chaque flux HTTP/2 a son propre allocateur mémoire, donc l'attaque est bien plus dure.",
+      "style": "calm, explaining"
+    },
+    {
+      "speaker": "Max",
+      "text": "Attends, et côté exploit, on sait quoi ? Parce que ça change tout pour l'urgence.",
+      "style": "surprised"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Justement, les sources se contredisent. Red Hat dit qu'une recherche publique a démontré un exploit fiable sur une config par défaut. Wiz dit l'inverse : pas d'exploit dispo, pas d'exploitation signalée.",
+      "style": "amused"
+    },
+    {
+      "speaker": "Max",
+      "text": "Dans le doute, perso je patcherais vite. Et pour ceux qui ne peuvent pas ?",
+      "style": "relaxed"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Wiz conseille de retirer h2 et h2c de la directive Protocols. À vérifier au niveau serveur et dans chaque virtual host. Attention : Debian bookworm, trixie et forky sont listées vulnérables, Amazon Linux attend son correctif, et les builds autonomes mod_h2, de 2.0.8 à 2.0.42, n'ont pas de correctif parce que le dépôt est archivé. RHEL 8 et avant ne sont pas concernées.",
+      "style": "calm"
+    },
+    {
+      "speaker": "Max",
+      "text": "Bon, on enchaîne avec les outils d'admin à distance, parce que là c'est une semaine rude. D'abord N-able et N-central.",
+      "style": "thoughtful"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Le chercheur Sean Bales a divulgué dimanche 33 failles, baptisées Able2Shell, avec des exploits publiés sur GitHub. N-able a mis hors ligne ses environnements N-central hébergés, Amériques, Europe et Asie-Pacifique, et recommande aux clients sur site d'arrêter leurs serveurs jusqu'à nouvel ordre.",
+      "style": "serious, explaining"
+    },
+    {
+      "speaker": "Max",
+      "text": "Ils demandent d'éteindre ? Sérieux ? C'est quoi la gravité, concrètement ?",
+      "style": "surprised"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Les exploits permettent d'exécuter des commandes, de créer des comptes administrateurs et d'obtenir root. Selon Tenable, certaines failles sont des étapes de quatre chaînes d'exploitation. La chaîne XXE, sans identifiants, via la CVE 2026 tiret 125883, pourrait transformer une simple requête réseau non authentifiée en compromission complète.",
+      "style": "calm, explaining"
+    },
+    {
+      "speaker": "Max",
+      "text": "Et un patch ?",
+      "style": "concerned"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Le Hotfix 2 de N-central 2026.4 est sorti mardi, il corrige sept CVE, et d'autres mises à jour sont promises. N-able dit que des attaquants scannent déjà, mais aucune exploitation observée pour l'instant.",
+      "style": "calm"
+    },
+    {
+      "speaker": "Max",
+      "text": "Moi ça me rappelle pourquoi un RMM est une cible en or : il a des privilèges sur tout le parc. Si ton prestataire MSP l'utilise, pose-lui la question aujourd'hui.",
+      "style": "thoughtful"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Et ça tombe bien, parce qu'on a le même genre de sujet avec ScreenConnect. ConnectWise a désactivé par précaution cinq extensions tierces chez ses partenaires : Labtech Plus, RMM Plus, RMM+ et les variantes Password Link, après des signalements d'accès non autorisés.",
+      "style": "serious"
+    },
+    {
+      "speaker": "Max",
+      "text": "Donc c'est une faille dans ScreenConnect ?",
+      "style": "curious"
+    },
+    {
+      "speaker": "Camille",
+      "text": "ConnectWise dit n'avoir aucune preuve de compromission de son infrastructure ni de vulnérabilité de ScreenConnect. Le vecteur initial reste à l'étude. Environ 400 environnements partenaires ont au moins une de ces extensions.",
+      "style": "calm, explaining"
+    },
+    {
+      "speaker": "Max",
+      "text": "Et côté victimes ?",
+      "style": "concerned"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Huntress, qui suit l'activité détectée le 11 novembre vers 17h47 UTC, voit des attaquants utiliser des panneaux ScreenConnect hébergés dans le cloud pour pousser des commandes Run et installer des clients malveillants. Au moins 288 postes dans 48 organisations. La piste actuelle, ce sont des identifiants compromis ou des sessions d'opérateurs détournées.",
+      "style": "serious"
+    },
+    {
+      "speaker": "Max",
+      "text": "Et le malware SCKit, il a l'air vilain.",
+      "style": "alarmed"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Il se comporte comme un ver : il peut remonter vers le poste du technicien, voler sessions de navigateur et jetons, puis rebondir vers d'autres panneaux. ConnectWise publie des indicateurs de compromission. À faire : désactiver les extensions, chercher les nouveaux comptes admin, les commandes distantes inattendues, les clients non approuvés, et faire tourner les sessions des techniciens.",
+      "style": "serious"
+    },
+    {
+      "speaker": "Max",
+      "text": "Bon, on change d'air, enfin pas tant que ça. En Pologne, ePUAP est coupée.",
+      "style": "relaxed"
+    },
+    {
+      "speaker": "Camille",
+      "text": "ePUAP, c'est la plateforme nationale où citoyens et entreprises déposent des documents officiels et font leurs démarches en ligne. Les autorités ont dit mardi l'avoir fermée temporairement après avoir détecté et stoppé une cyberattaque.",
+      "style": "calm, explaining"
+    },
+    {
+      "speaker": "Max",
+      "text": "Donc elle a été piratée ?",
+      "style": "curious"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Pas selon le porte-parole du ministère : le système n'a pas été compromis ni perturbé, il a été désactivé par précaution. Le ministre Krzysztof Gawkowski dit que l'infrastructure du Centre central des technologies de l'information reste sûre. Le mode opératoire et les responsables ne sont pas divulgués, et rien ne confirme un vol de données.",
+      "style": "calm"
+    },
+    {
+      "speaker": "Max",
+      "text": "Pas de date de retour ?",
+      "style": "thoughtful"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Aucune. Les boîtes électroniques ePUAP restent indisponibles, et Profil de confiance, le système d'identité numérique, pourrait être touché. Si tu échanges avec des administrations polonaises, prévois un canal alternatif.",
+      "style": "calm"
+    },
+    {
+      "speaker": "Max",
+      "text": "La disponibilité sacrifiée à la prudence, c'est un cas d'école. Et puisqu'on parle de vieilles failles : Cisco BroadWorks, avec une histoire d'agent IA.",
+      "style": "amused"
+    },
+    {
+      "speaker": "Camille",
+      "text": "La CISA a ajouté mardi deux failles au catalogue KEV. La CVE 2026 tiret 20320, CVSS 7,5, une XXE non authentifiée dans l'analyseur XML OCI de Cisco BroadWorks, corrigée en août. Et la CVE 2026 tiret 111793, CVSS 4,3, dans Openwave Messaging Webtop Media Transcoder, corrigée en octobre.",
+      "style": "explaining"
+    },
+    {
+      "speaker": "Max",
+      "text": "Et l'agent IA, c'est où ?",
+      "style": "intrigued"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Selon Malbear Labs, la première a servi dans Operation Snowball : un acteur sinophone aurait délégué l'intrusion à un framework autonome bâti sur une version jailbreakée du modèle DeepSeek Flash. La cible : un opérateur télécom européen et 13 entreprises hébergées.",
+      "style": "explaining"
+    },
+    {
+      "speaker": "Max",
+      "text": "Et il a fait quoi, l'agent ?",
+      "style": "surprised"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Il a énuméré des centaines d'actifs, extrait des dizaines de jeux d'identifiants, exfiltré des milliers de lignes de facturation et d'appareils. La cible principale était BroadWorks XSP 23.0.1.1075, port 2208, avec récupération de clés privées.",
+      "style": "calm"
+    },
+    {
+      "speaker": "Max",
+      "text": "Ma lecture perso : des failles déjà corrigées exploitées par des agents autonomes, ça rend le retard de patch plus coûteux. Vérifie que le correctif d'août est là et que le port OCI n'est pas exposé.",
+      "style": "thoughtful"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Passons aux fuites. Notion d'abord : une brèche chez son fournisseur d'infrastructure IA, Fireworks AI, a exposé des transcriptions de chats Notion AI dans un petit nombre d'espaces de travail.",
+      "style": "relaxed"
+    },
+    {
+      "speaker": "Max",
+      "text": "Ça s'est passé comment ?",
+      "style": "curious"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Fireworks a confirmé qu'un attaquant avait accédé le 23 octobre à son environnement de développement via un fournisseur cloud tiers. Métadonnées, facturation, poids de modèles et jeux de données de certains clients compromis. Notion a été alertée le 2 novembre à propos d'un jeu de données censé ne contenir que des données de test, a coupé le trafic vers Fireworks et supprimé ses données le 3.",
+      "style": "calm, explaining"
+    },
+    {
+      "speaker": "Max",
+      "text": "Et l'ampleur ?",
+      "style": "relaxed"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Fireworks a confirmé le 8 novembre que des données clients avaient été consultées. Les transcriptions viennent de la fonction Insights, désormais désactivée, et sont pour la plupart non attribuables. Moins de 1 % des utilisateurs touchés. Conseil de Notion : renouveler mots de passe, clés API et identifiants saisis dans ces chats.",
+      "style": "calm"
+    },
+    {
+      "speaker": "Max",
+      "text": "Et oui, qui n'a jamais collé une clé API dans un chat IA... Faites-les tourner, et regardez la rétention chez vos fournisseurs.",
+      "style": "amused"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Autre histoire de confiance : eMudhra, l'autorité de certification, a révoqué huit certificats intermédiaires de plus, ce qui fait 16 au total.",
+      "style": "explaining"
+    },
+    {
+      "speaker": "Max",
+      "text": "Révoqués pour quelle raison ?",
+      "style": "curious"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Le rapport d'incident parle d'un script Python utilisé en avril 2025 pour transférer des clés entre HSM. Un bogue a réduit huit clés ECDSA à un seul octet, donc triviales à retrouver. Le même script a traité huit clés RSA en mémoire hôte, sans preuve de conformité à la politique de certification ; ces certificats ont été révoqués le 7 novembre.",
+      "style": "explaining"
+    },
+    {
+      "speaker": "Max",
+      "text": "Un seul octet ? Aïe. Et personne n'a rien vu ?",
+      "style": "surprised"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Un signal d'alerte de juin 2025, des CRL signées avec de mauvaises clés, n'avait pas été investigué. eMudhra quitte le marché des certificats TLS publics, cessera d'émettre sous G1 d'ici le 16 novembre et attend un audit KPMG pour le 4 décembre. Elle dit n'avoir détecté aucun usage malveillant.",
+      "style": "calm"
+    },
+    {
+      "speaker": "Max",
+      "text": "Mozilla, Google, Apple et Microsoft ont déjà bloqué les certificats compromis. Vérifie juste que tes machines reçoivent les mises à jour de confiance, et que tu n'as pas de certificats eMudhra à migrer.",
+      "style": "relaxed"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Dernière brèche : Maersk. Le groupe a confirmé qu'un attaquant a pénétré des systèmes d'une société qu'il avait rachetée, et volé des données.",
+      "style": "serious"
+    },
+    {
+      "speaker": "Max",
+      "text": "Et WhiteArmor revendique, c'est ça ?",
+      "style": "curious"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Oui, ce week-end. Ils menacent de publier environ 100 Go issus de la plateforme OCF/LF Logistics, héritée de LF Logistics, rachetée en 2022, et exigent 5 millions de dollars en bitcoin sous 30 jours. Ils disent détenir près de 30 000 fiches de chauffeurs, des mots de passe en clair, 33 comptes SUPER_ADMIN et des journaux de 27 842 appareils mobiles.",
+      "style": "calm, explaining"
+    },
+    {
+      "speaker": "Max",
+      "text": "Ça, c'est leur version. Maersk dit quoi ?",
+      "style": "skeptical"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Incident isolé à un système local, sans impact sur les autres systèmes ni sur les systèmes clients via API et EDI, et selon les éléments actuels, aucune donnée sensible divulguée. L'enquête continue, la nature des données et la date de l'intrusion ne sont pas précisées. Les revendications ne sont pas vérifiées.",
+      "style": "calm"
+    },
+    {
+      "speaker": "Max",
+      "text": "Les systèmes rachetés et mal intégrés, porte d'entrée classique. Si tu es client, méfie-toi des messages inattendus et vérifie via ton contact habituel.",
+      "style": "thoughtful"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Bon, un peu de nouveauté pour finir. AWS a lancé mercredi AWS Emulator, un émulateur local des API AWS pour tester son code sans compte ni appel à AWS.",
+      "style": "upbeat"
+    },
+    {
+      "speaker": "Max",
+      "text": "Ah, genre LocalStack ?",
+      "style": "interested"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Oui, une alternative pour tes pipelines CI. Écrit en Rust, il tourne sur Linux, macOS et Windows, et gère 438 modèles d'API publics sur plus de 200 services. Et le détail amusant : il a été construit entièrement par des agents, qui le maintiendront.",
+      "style": "amused"
+    },
+    {
+      "speaker": "Max",
+      "text": "Entièrement par des agents ? Et ils vérifient comment que ça marche ?",
+      "style": "surprised"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Trois équipes d'agents génèrent les scénarios de test à partir des modèles Smithy, comparent le comportement de l'émulateur à AWS et corrigent le code. Et comme AWS n'est pas sûre de pouvoir revendiquer le droit d'auteur sur ce travail, c'est publié sous licence CC0.",
+      "style": "explaining"
+    },
+    {
+      "speaker": "Max",
+      "text": "Ha, c'est malin. Des paquets ?",
+      "style": "amused"
+    },
+    {
+      "speaker": "Camille",
+      "text": "RPM et Debian, conteneur, et mode embarqué compilé dans les tests. AWS précise de ne pas l'utiliser en production ni pour tester la sécurité. Et compiler depuis les sources demande au moins 100 Go de disque. Regarde les scores de fidélité par service avant de t'y fier.",
+      "style": "calm"
+    },
+    {
+      "speaker": "Max",
+      "text": "100 Go, ouch pour la CI. Dernier sujet : Nvidia donne OpenShell à la CNCF.",
+      "style": "relaxed"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Annoncé mardi à KubeCon North America, à Salt Lake City. Le projet entre au niveau Sandbox, la CNCF l'avait formellement accepté fin septembre. Lancé en mars à la GTC, OpenShell exécute un agent dans un bac à sable et applique des politiques sur les fichiers, les réseaux, les identifiants et les points d'accès de modèles.",
+      "style": "explaining"
+    },
+    {
+      "speaker": "Max",
+      "text": "Et l'application des règles, c'est dans l'agent ?",
+      "style": "curious"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Non, dans l'infrastructure autour de l'agent. Le projet adopte Cedar, autre projet CNCF, comme langage de politique. Selon Ali Golshan de Nvidia, les opérateurs visés sont les équipes DevSecOps qui gèrent déjà Kubernetes et Linux. Jonathan Bryce, de la CNCF, dit que l'adoption initiale venait surtout de neoclouds GPU.",
+      "style": "calm, explaining"
+    },
+    {
+      "speaker": "Max",
+      "text": "La CNCF héberge 262 projets, dont 155 en Sandbox. Donc niveau jeune : à évaluer, pas à généraliser. Mais vu le sujet Snowball, le confinement d'agents, on va en reparler.",
+      "style": "relaxed"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Voilà pour aujourd'hui. Patchez Apache, regardez vos RMM de près, et faites tourner vos secrets. Merci de nous avoir écoutés.",
+      "style": "warm"
+    },
+    {
+      "speaker": "Max",
+      "text": "À demain, et bon jeudi à tous !",
+      "style": "cheerful"
+    }
+  ],
+  "episode": {
+    "title": "Apache, RMM sous le feu, et un émulateur AWS fait par des agents",
+    "release_tag": "ep-2026-11-12",
+    "mp3_url": "https://github.com/Elohyrr/veille/releases/download/ep-2026-11-12/veille-2026-11-12.mp3",
+    "bytes": 5961837,
+    "duration_s": 745,
+    "tts_provider": "openrouter"
+  },
+  "usage": {
+    "digest": {
+      "model": "sonnet",
+      "in": 29826,
+      "out": 5941,
+      "cost_usd": 0.17871
+    },
+    "podcast": {
+      "model": "sonnet",
+      "in": 7517,
+      "out": 6871,
+      "cost_usd": 0.09877400000000001
+    },
+    "triage": {
+      "model": "haiku",
+      "in": 32540,
+      "out": 7186,
+      "cost_usd": 0.0101008
+    }
+  }
+}
