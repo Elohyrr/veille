@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>jeudi 12 novembre 2026 — La veille</title>
+<title>vendredi 13 novembre 2026 — La veille</title>
 <meta name="description" content="Tech, pannes, failles et fuites — digest quotidien">
 <link rel="canonical" href="https://elohyrr.github.io/veille/">
 <link rel="stylesheet" href="style.css">
@@ -18,186 +18,164 @@
 <main>
 
 
-<h1>jeudi 12 novembre 2026</h1>
-<p class="meta">10 sujets · lecture estimée : 9 min</p>
+<h1>vendredi 13 novembre 2026</h1>
+<p class="meta">8 sujets · lecture estimée : 7 min</p>
 
 <section class="player" aria-label="Podcast du jour">
-<p><strong>Écouter</strong> · 12 min · Apache, RMM sous le feu, et un émulateur AWS fait par des agents</p>
-<audio controls preload="none" src="https://github.com/Elohyrr/veille/releases/download/ep-2026-11-12/veille-2026-11-12.mp3"></audio>
-<p><a class="dl" href="https://github.com/Elohyrr/veille/releases/download/ep-2026-11-12/veille-2026-11-12.mp3" download>Télécharger le MP3</a> <span class="muted">(6,0 Mo)</span></p>
+<p><strong>Écouter</strong> · 9 min · Microsoft 365 à genoux, N-central et ScreenConnect en pleine tourmente</p>
+<audio controls preload="none" src="https://github.com/Elohyrr/veille/releases/download/ep-2026-11-13/veille-2026-11-13.mp3"></audio>
+<p><a class="dl" href="https://github.com/Elohyrr/veille/releases/download/ep-2026-11-13/veille-2026-11-13.mp3" download>Télécharger le MP3</a> <span class="muted">(4,4 Mo)</span></p>
 </section>
 
-<p class="intro">Journée chargée côté sécurité : une faille critique dans Apache mod_http2, des plateformes d&#39;administration à distance (N-central, ScreenConnect) attaquées, et une plateforme d&#39;État polonaise coupée par précaution.</p>
+<p class="intro">Journée dominée par la panne mondiale de Microsoft 365 et par l&#39;exploitation de N-central, deux jours après la première divulgation. Côté supply chain, une campagne GitHub vole des secrets CI, et Red Hat Quay et Citrix publient des correctifs critiques.</p>
 
 <nav class="toc" aria-label="Sommaire">
 <section class="toc-group t-new_tech">
-<h2><span class="pill" aria-hidden="true"></span>Nouvelles technos <span class="count">2</span></h2>
+<h2><span class="pill" aria-hidden="true"></span>Nouvelles technos <span class="count">1</span></h2>
 <ul>
-<li><a href="#aws-emulator-open-source">AWS Emulator : un émulateur AWS local en Rust, construit et maintenu par des agents</a></li>
-<li><a href="#nvidia-openshell-cncf-sandbox">Nvidia donne OpenShell, runtime de sécurisation d&#39;agents IA, à la CNCF</a></li>
+<li><a href="#rust-1-100-0">Rust 1.100.0 : type never stabilisé, début de l&#39;API Allocator, dépendances inutilisées dans Cargo</a></li>
 </ul>
 </section>
 <section class="toc-group t-outage">
 <h2><span class="pill" aria-hidden="true"></span>Pannes <span class="count">1</span></h2>
 <ul>
-<li><a href="#poland-epuap-cyberattaque">Pologne : la plateforme de services publics ePUAP coupée après une cyberattaque</a></li>
+<li><a href="#microsoft-365-panne-mondiale">Microsoft 365 : panne mondiale d&#39;Exchange Online, Outlook et Teams le 12 novembre</a></li>
 </ul>
 </section>
 <section class="toc-group t-breach">
 <h2><span class="pill" aria-hidden="true"></span>Failles et compromissions <span class="count">5</span></h2>
 <ul>
-<li><a href="#apache-mod-http2-cve-2026-119618">Apache HTTP Server : CVE-2026-119618 dans mod_http2, exécution de code à distance, corrigée en 2.4.71</a></li>
-<li><a href="#n-able-n-central-able2shell">N-able coupe N-central après la divulgation publique de 33 failles (Able2Shell)</a></li>
-<li><a href="#screenconnect-clients-rogues-sckit">ScreenConnect : au moins 288 postes de 48 organisations infectés par des clients malveillants</a></li>
-<li><a href="#cisco-broadworks-kev-operation-snowball">Cisco BroadWorks CVE-2026-20320 exploitée par un agent IA, ajoutée au catalogue KEV</a></li>
-<li><a href="#emudhra-huit-certificats-ca-revoques">eMudhra révoque huit autres certificats CA après une mauvaise gestion de clés privées</a></li>
+<li><a href="#n-able-n-central-4everable2shell">Mise à jour : N-central, 4EverAble2Shell exploité pour installer des mineurs, y compris sur HF2</a></li>
+<li><a href="#github-wfx-voleur-secrets-ci">GitHub : 4 837 comptes détournés servent à planter un voleur de secrets CI</a></li>
+<li><a href="#red-hat-quay-cve-2026-123710">Red Hat Quay : CVE-2026-123710 (CVSS 9.8) permet de lire et écraser toutes les images privées</a></li>
+<li><a href="#citrix-netscaler-correctifs-novembre">Citrix corrige 12 failles NetScaler, Console et Secure Access Client, dont un contournement d&#39;authentification</a></li>
+<li><a href="#screenconnect-sckit-rmm-plus">Mise à jour : ScreenConnect, le malware SCKit et l&#39;extension RMM&#43; à l&#39;origine des intrusions</a></li>
 </ul>
 </section>
 <section class="toc-group t-leak">
-<h2><span class="pill" aria-hidden="true"></span>Fuites de données <span class="count">2</span></h2>
+<h2><span class="pill" aria-hidden="true"></span>Fuites de données <span class="count">1</span></h2>
 <ul>
-<li><a href="#notion-fireworks-ai-transcriptions">Notion : la brèche chez Fireworks AI expose des transcriptions de chats Notion AI</a></li>
-<li><a href="#maersk-whitearmor-donnees">Maersk confirme une brèche sur un système hérité ; WhiteArmor réclame 5 millions de dollars</a></li>
+<li><a href="#tsmc-fuite-employes-revendiquee">TSMC : 46 000 dossiers d&#39;employés proposés à la vente, entre revendication et confirmation</a></li>
 </ul>
 </section>
 </nav>
 
-<article id="aws-emulator-open-source" class="topic t-new_tech">
-<h3><span class="pill" aria-hidden="true"></span>AWS Emulator : un émulateur AWS local en Rust, construit et maintenu par des agents</h3>
+<article id="rust-1-100-0" class="topic t-new_tech">
+<h3><span class="pill" aria-hidden="true"></span>Rust 1.100.0 : type never stabilisé, début de l&#39;API Allocator, dépendances inutilisées dans Cargo</h3>
 
-<p>AWS a lancé mercredi AWS Emulator, un émulateur local des API AWS pour tester son code sans compte ni appel à AWS, sur poste, serveur de dev ou en CI. Écrit en Rust, il tourne sur Linux, macOS et Windows et gère 438 modèles d&#39;API publics couvrant plus de 200 services. Il a été construit entièrement par des agents, qui le maintiendront ; trois équipes d&#39;agents génèrent les scénarios de test à partir des modèles Smithy, comparent le comportement de l&#39;émulateur à AWS et corrigent le code. AWS n&#39;étant pas sûre de pouvoir revendiquer le droit d&#39;auteur sur ce travail, il est publié sous licence CC0. Il existe en paquets RPM et Debian, en conteneur, et en mode embarqué compilé dans les tests. AWS précise de ne pas l&#39;utiliser en production ni pour tester la sécurité. Une compilation depuis les sources demande au moins 100 Go de disque.</p>
-<div class="why"><p class="why-title">Pourquoi c'est important</p><p>Alternative à LocalStack pour vos pipelines CI qui testent du code AWS sans exposer d&#39;identifiants. Consultez les scores de fidélité par service avant d&#39;en dépendre, et prévoyez le coût de compilation si vous utilisez le mode embarqué.</p></div>
+<p>Rust 1.100.0 est sorti. Selon LWN, les changements notables incluent la stabilisation du type never, de parties essentielles de l&#39;API Allocator et le signalement par Cargo des dépendances inutilisées. Nous n&#39;avons que le résumé de l&#39;annonce, sans détail sur la portée de ces changements ni sur les éventuelles incompatibilités.</p>
+<div class="why"><p class="why-title">Pourquoi c'est important</p><p>Le signalement des dépendances inutilisées par Cargo peut alléger les builds et réduire la surface de la chaîne d&#39;approvisionnement dans vos pipelines CI. Lisez les notes de version complètes avant de monter la version de vos toolchains.</p></div>
+<details class="sources">
+<summary>Sources (1)</summary>
+<ul>
+<li><a href="https://lwn.net/Articles/1107187/" rel="noopener nofollow">Rust 1.100.0 released</a> <span class="feed">LWN</span></li>
+</ul>
+</details>
+
+</article>
+
+<article id="microsoft-365-panne-mondiale" class="topic t-outage">
+<h3><span class="pill" aria-hidden="true"></span>Microsoft 365 : panne mondiale d&#39;Exchange Online, Outlook et Teams le 12 novembre</h3>
+
+<p>Depuis jeudi 12 novembre, vers 19 h (heure de Paris), des utilisateurs du monde entier ne parviennent plus à se connecter à Microsoft 365. Microsoft a d&#39;abord signalé des difficultés d&#39;accès aux boîtes Exchange Online dans les Amériques (incident EX1550543), puis reconnu que toutes les régions pouvaient être touchées (incident MO1550821). Teams, SharePoint Online, Copilot et Defender XDR sont aussi concernés. Selon Microsoft, la charge élevée ne vient pas d&#39;une hausse de trafic mais de serveurs devenus indisponibles, ce qui sature les autres. Un processus d&#39;établissement des connexions sécurisées était submergé, et les serveurs échouaient aux contrôles de santé automatiques. Microsoft a suspendu ses déploiements, redirigé le trafic, redémarré des serveurs et commencé à annuler un changement de configuration réseau récent. Ses premières mesures n&#39;ont pas apporté le soulagement attendu. Dans la nuit, l&#39;éditeur indiquait que les serveurs remis en service restaient stables et que la récupération était lente. Aucune date de retour à la normale n&#39;était donnée. Microsoft n&#39;a divulgué ni cause racine confirmée ni preuve de cyberattaque. Un incident Teams distinct avait eu lieu plus tôt dans la journée.</p>
+<div class="why"><p class="why-title">Pourquoi c'est important</p><p>Si vous dépendez d&#39;Exchange Online ou de Teams, attendez-vous à une reprise progressive et à des écarts selon les applications. Vérifiez les incidents dans le centre d&#39;administration, qui peut lui-même être inaccessible. Un plan de communication hors Microsoft reste utile. La cause racine, annoncée plus tard, mérite d&#39;être lue.</p></div>
+<details class="sources">
+<summary>Sources (5)</summary>
+<ul>
+<li><a href="https://www.numerama.com/tech/2373485-une-panne-geante-frappe-microsoft-outlook-teams-et-microsoft-365-inaccessibles-voici-ce-que-lon-sait.html" rel="noopener nofollow">Une panne géante frappe Microsoft : Outlook et Microsoft 365 impactés, voici ce que l’on sait</a> <span class="feed">Numerama (pannes)</span></li>
+<li><a href="https://www.lemonde.fr/pixels/article/2026/11/13/une-panne-mondiale-d-outlook-empeche-des-dizaines-de-milliers-d-utilisateurs-d-acceder-a-leurs-e-mails_6809171_4408996.html" rel="noopener nofollow">Une panne mondiale d’Outlook perturbe l’accès aux e-mails</a> <span class="feed">Le Monde Pixels (pannes)</span></li>
+<li><a href="https://www.securityweek.com/microsoft-365-outage-disrupts-outlook-exchange-online-and-teams/" rel="noopener nofollow">Microsoft 365 Outage Disrupts Outlook, Exchange Online and Teams</a> <span class="feed">SecurityWeek</span></li>
+<li><a href="https://www.bleepingcomputer.com/news/microsoft/massive-microsoft-365-outage-disrupts-outlook-teams-copilot-worldwide/" rel="noopener nofollow">Massive Microsoft 365 outage disrupts Outlook, Teams, Copilot worldwide</a> <span class="feed">BleepingComputer</span></li>
+<li><a href="https://www.frandroid.com/marques/microsoft/3321267_outlook-en-panne-des-milliers-dutilisateurs-prives-de-leurs-mails-ce-jeudi-soir" rel="noopener nofollow">Outlook en panne : des milliers d’utilisateurs privés de leurs mails ce jeudi soir</a> <span class="feed">Frandroid (pannes)</span></li>
+</ul>
+</details>
+
+</article>
+
+<article id="n-able-n-central-4everable2shell" class="topic t-breach">
+<h3><span class="pill" aria-hidden="true"></span>Mise à jour : N-central, 4EverAble2Shell exploité pour installer des mineurs, y compris sur HF2</h3>
+<p class="update"><a href="jours/2026-11-12/#n-able-n-central-able2shell">Mise à jour du 12 novembre</a> : De nouvelles failles, 4EverAble2Shell et Agent2Shell, contournent le Hotfix 2 et sont exploitées pour déployer des mineurs sur au moins 21 serveurs.</p>
+<p>Sean Bales a publié le 12 novembre deux nouvelles familles de failles, 4EverAble2Shell et Agent2Shell, avec des preuves de concept testées contre N-central 2026.4 HF2 (build 2026.4.1.26). 4EverAble2Shell permet une exécution de commandes root sans authentification, en enchaînant l&#39;Apache Axis CVE-2026-90436 (CVSS 9.8) et une élévation de privilèges propre à N-central. N-able précise que l&#39;attaque dépend de l&#39;activation de la Legacy API, exposée sur Internet, désactivée par défaut. Agent2Shell vise les agents Windows et donne un accès SYSTEM. Previdian a observé des sondages dès environ 08 h 30 UTC. Huntback a compté 21 serveurs infectés par un mineur XMRig, dont 19 sous Hotfix 2, depuis une même IP. N-able a désactivé la Legacy API et l&#39;intégration Intune sur les environnements hébergés, et demande aux clients sur site de couper la Legacy API et de mettre à jour agents et sondes.</p>
+<div class="why"><p class="why-title">Pourquoi c'est important</p><p>Si vous exploitez N-central sur site, désactivez immédiatement la Legacy API et mettez à jour agents et sondes. Le Hotfix 2 ne suffit pas. Un serveur touché doit être considéré comme entièrement compromis, car il gère les postes de vos clients.</p></div>
+<details class="sources">
+<summary>Sources (3)</summary>
+<ul>
+<li><a href="https://thehackernews.com/2026/11/hackers-exploit-n-central-flaws-to.html" rel="noopener nofollow">Hackers Exploit N-central Flaws to Infect 21 Servers, Including 19 Running Hotfix 2</a> <span class="feed">The Hacker News</span></li>
+<li><a href="https://thehackernews.com/2026/11/new-n-central-exploits-work-against.html" rel="noopener nofollow">New N-central Exploits Work Against Patched Servers, Enable Root RCE and Windows SYSTEM Access</a> <span class="feed">The Hacker News</span></li>
+<li><a href="https://www.bleepingcomputer.com/news/security/new-n-able-4everable2shell-zero-day-exploited-hours-after-poc-released/" rel="noopener nofollow">New N-able &#34;4EverAble2Shell&#34; zero-day exploited hours after PoC released</a> <span class="feed">BleepingComputer</span></li>
+</ul>
+</details>
+
+</article>
+
+<article id="github-wfx-voleur-secrets-ci" class="topic t-breach">
+<h3><span class="pill" aria-hidden="true"></span>GitHub : 4 837 comptes détournés servent à planter un voleur de secrets CI</h3>
+
+<p>Selon Aikido Security, un attaquant a utilisé depuis mardi les identifiants volés de 4 837 comptes GitHub pour installer un voleur de secrets dans les dépôts accessibles en écriture. Il a tourné dans au moins 1 806 dépôts. Chaque attaque commence par une pull request intitulée « docs: dependency audit notes » depuis une branche wfx-docs, ouverte dans 61 764 dépôts. SafeDep compte 8 093 dépôts ayant reçu des commits malveillants entre mardi 12 h 46 UTC et vendredi 04 h 36 UTC, dont 7 309 par modification d&#39;un workflow existant et 771 par un hook npm postinstall. L&#39;attaquant annule généralement le changement en quelques minutes et supprime les logs. Le voleur cible les secrets Actions, le GITHUB_TOKEN, les jetons OIDC et les identifiants cloud, puis les envoie par HTTP POST ou Telegram. L&#39;analyse n&#39;explique pas comment les identifiants ont été obtenus.</p>
+<div class="why"><p class="why-title">Pourquoi c'est important</p><p>Cherchez dans vos dépôts les branches wfx-docs et les messages de commit listés. En cas de trace, faites tourner tous les secrets et rôles cloud accessibles aux workflows, révoquez jetons, clés SSH et sessions, activez la 2FA. Une machine ayant exécuté npm install sur un commit touché est à considérer compromise.</p></div>
+<details class="sources">
+<summary>Sources (1)</summary>
+<ul>
+<li><a href="https://thehackernews.com/2026/11/4837-hijacked-github-accounts-ran-ci.html" rel="noopener nofollow">Attacker Used 4,837 Hijacked GitHub Accounts to Run a CI Secret Stealer in 1,806&#43; Repositories</a> <span class="feed">The Hacker News</span></li>
+</ul>
+</details>
+
+</article>
+
+<article id="red-hat-quay-cve-2026-123710" class="topic t-breach">
+<h3><span class="pill" aria-hidden="true"></span>Red Hat Quay : CVE-2026-123710 (CVSS 9.8) permet de lire et écraser toutes les images privées</h3>
+
+<p>Une faille critique de Red Hat Quay, CVE-2026-123710 (CVSS 9.8), permet à un attaquant atteignant le registre de lire et d&#39;écraser les images privées de tous les dépôts. Le serveur de clés de Quay ne vérifie pas que le jeton présenté a été émis pour une rotation de clé. Un jeton anonyme issu de /v2/auth suffit, l&#39;accès anonyme étant activé par défaut, et sinon n&#39;importe quel compte valide. L&#39;attaquant ajoute sa clé de signature, sans expiration, qui survit aux redémarrages et aux changements de mots de passe ou de jetons robot. Il peut aussi supprimer les clés légitimes et casser les push et pull. Une seconde faille, CVE-2026-110697 (CVSS 9.9), permet de voler les jetons robot d&#39;autres locataires via un motif SQL LIKE non échappé. Red Hat a publié des builds corrigés pour huit branches de Quay 3. Selon The Hacker News, aucune des huit annonces ne cite CVE-2026-110697.</p>
+<div class="why"><p class="why-title">Pourquoi c'est important</p><p>Si vous utilisez Quay, y compris comme registre OpenShift, installez la version corrigée. D&#39;ici là, bloquez /keys au proxy sauf pour les composants internes, cherchez les événements service_key_rotate et service_key_delete avec expiration_date nulle, et supprimez les clés inconnues. Faites tourner les jetons robot concernés.</p></div>
 <details class="sources">
 <summary>Sources (2)</summary>
 <ul>
-<li><a href="https://thenewstack.io/aws-emulator-ai-agents/" rel="noopener nofollow">AWS had its agents build a free and open emulator for AWS. They now maintain it, too.</a> <span class="feed">The New Stack</span></li>
-<li><a href="https://github.com/aws/aws-emulator" rel="noopener nofollow">AWS emulator</a> <span class="feed">Hacker News (150&#43; pts)</span></li>
+<li><a href="https://thehackernews.com/2026/11/critical-red-hat-quay-flaw-lets.html" rel="noopener nofollow">Critical Red Hat Quay Flaw Lets Attackers Read and Overwrite All Private Container Images in a Registry</a> <span class="feed">The Hacker News</span></li>
+<li><a href="https://www.securityweek.com/critical-red-hat-quay-vulnerability-could-expose-private-container-images/" rel="noopener nofollow">Critical Red Hat Quay Vulnerability Could Expose Private Container Images</a> <span class="feed">SecurityWeek</span></li>
 </ul>
 </details>
 
 </article>
 
-<article id="nvidia-openshell-cncf-sandbox" class="topic t-new_tech">
-<h3><span class="pill" aria-hidden="true"></span>Nvidia donne OpenShell, runtime de sécurisation d&#39;agents IA, à la CNCF</h3>
+<article id="citrix-netscaler-correctifs-novembre" class="topic t-breach">
+<h3><span class="pill" aria-hidden="true"></span>Citrix corrige 12 failles NetScaler, Console et Secure Access Client, dont un contournement d&#39;authentification</h3>
 
-<p>Nvidia a annoncé mardi à KubeCon North America, à Salt Lake City, le don d&#39;OpenShell à la CNCF, où il entre au niveau Sandbox ; la CNCF l&#39;avait formellement accepté fin septembre. Lancé en mars à la GTC, OpenShell exécute un agent dans un bac à sable et applique des politiques sur les fichiers, réseaux, identifiants et points d&#39;accès de modèles accessibles. L&#39;application se fait dans l&#39;infrastructure autour de l&#39;agent, et le projet adopte Cedar, autre projet CNCF, comme langage de politique. Selon Ali Golshan de Nvidia, les opérateurs visés sont les équipes DevSecOps qui gèrent déjà Kubernetes et Linux. Jonathan Bryce, de la CNCF, indique que l&#39;adoption initiale venait surtout de neoclouds GPU. La CNCF héberge 262 projets, dont 155 en Sandbox.</p>
-<div class="why"><p class="why-title">Pourquoi c'est important</p><p>Si vous prévoyez de faire tourner des agents IA sur Kubernetes, OpenShell est un candidat de confinement s&#39;appuyant sur des briques CNCF. Le niveau Sandbox signale un projet jeune : à évaluer, pas encore à généraliser.</p></div>
+<p>Citrix a publié des correctifs pour plusieurs failles critiques de NetScaler ADC, NetScaler Gateway et NetScaler Console. Neuf CVE de corruption ou débordement mémoire (CVSS de 9,3 à 9,5) peuvent provoquer un déni de service, dans le traitement des paquets, SMPP, DNS et DoH, NetScaler Push, l&#39;OTP par e-mail, Endpoint Analysis et le proxy ICA. Beaucoup dépendent de la configuration. CVE-2026-120869 (CVSS 9,4) est un contournement d&#39;authentification dans NetScaler Console, corrigé en 14.1-74.34. Deux élévations de privilèges locales (CVSS 8,5) touchent Secure Access Client pour Windows (corrigé en 26.11.1.6) et Linux (26.10.4). Les correctifs NetScaler sont dans les versions 14.1-73.57, 13.1-64.39 et leurs variantes FIPS. Citrix dit ne connaître aucune exploitation et indique que ces mises à jour suivent une revue de code assistée par IA.</p>
+<div class="why"><p class="why-title">Pourquoi c'est important</p><p>Les NetScaler exposés sont des cibles habituelles. Identifiez vos virtual servers concernés (VPN, AAA, DNS, SMPP) et planifiez la montée vers les versions corrigées, ainsi que celle de NetScaler Console. Aucune exploitation connue, mais la fenêtre se referme vite après publication.</p></div>
 <details class="sources">
 <summary>Sources (1)</summary>
 <ul>
-<li><a href="https://thenewstack.io/nvidia-donates-openshell-cncf/" rel="noopener nofollow">Why Nvidia gave OpenShell to the CNCF</a> <span class="feed">The New Stack</span></li>
+<li><a href="https://thehackernews.com/2026/11/citrix-patches-12-netscaler-and-secure.html" rel="noopener nofollow">Citrix Patches 12 NetScaler and Secure Access Client Flaws, Including Authentication Bypass</a> <span class="feed">The Hacker News</span></li>
 </ul>
 </details>
 
 </article>
 
-<article id="poland-epuap-cyberattaque" class="topic t-outage">
-<h3><span class="pill" aria-hidden="true"></span>Pologne : la plateforme de services publics ePUAP coupée après une cyberattaque</h3>
-
-<p>La Pologne a temporairement fermé ePUAP, plateforme nationale permettant aux citoyens et entreprises de déposer des documents officiels et d&#39;accomplir des démarches en ligne, après avoir détecté et stoppé une cyberattaque, ont indiqué les autorités mardi. Le ministre du Numérique Krzysztof Gawkowski affirme que l&#39;attaque a été détectée et stoppée et que l&#39;infrastructure du Centre central des technologies de l&#39;information reste sûre. Selon le porte-parole du ministère, le système n&#39;a pas été compromis ni perturbé : il a été désactivé par précaution. Le mode opératoire et les responsables n&#39;ont pas été divulgués, et rien ne confirme un accès aux systèmes ou un vol de données. Aucune date de rétablissement n&#39;est annoncée. Les boîtes électroniques ePUAP restent indisponibles, et le système d&#39;identité numérique Profil de confiance pourrait être touché.</p>
-<div class="why"><p class="why-title">Pourquoi c'est important</p><p>Cas d&#39;école de coupure préventive d&#39;un service public après une attaque : la disponibilité est sacrifiée à la prudence. Si vous échangez avec des administrations polonaises, prévoyez des canaux alternatifs en attendant le retour du service.</p></div>
+<article id="screenconnect-sckit-rmm-plus" class="topic t-breach">
+<h3><span class="pill" aria-hidden="true"></span>Mise à jour : ScreenConnect, le malware SCKit et l&#39;extension RMM&#43; à l&#39;origine des intrusions</h3>
+<p class="update"><a href="jours/2026-11-12/#screenconnect-clients-rogues-sckit">Mise à jour du 12 novembre</a> : Huntress identifie RMM&#43; (versions 1.0.31 et 1.0.32, clé d&#39;accès vide acceptée) comme accès initial probable et décrit le toolkit SCKit.</p>
+<p>Selon un rapport mis à jour de Huntress, les attaques ont compromis au moins 288 postes dans 48 organisations, tous en 90 minutes. L&#39;accès initial passerait par RMM&#43;, une extension tierce : ses versions 1.0.31 et 1.0.32 acceptaient une clé d&#39;accès vide si l&#39;administrateur n&#39;en avait jamais défini, ce qui permettait d&#39;exécuter des commandes sans authentification ni MFA. ConnectWise a désactivé cinq extensions tierces dans environ 400 environnements partenaires, en précisant que leur présence ne signifie pas compromission. Huntress et Blackpoint décrivent SCKit, un ensemble de 16 scripts qui installe des clients ScreenConnect persistants et tente de se propager aux techniciens via le composant RelayTrap, en exploitant CVE-2026-84869, déjà corrigée. Aucune exploitation réussie n&#39;a été observée, et l&#39;exploit a échoué contre un client patché.</p>
+<div class="why"><p class="why-title">Pourquoi c'est important</p><p>Si vous administrez ScreenConnect, vérifiez la présence de RMM&#43; ou d&#39;extensions apparentées, et cherchez des clients ScreenConnect inconnus sur vos postes. Gardez le client à jour : le volet worm visant les techniciens repose sur une faille déjà corrigée.</p></div>
 <details class="sources">
 <summary>Sources (1)</summary>
 <ul>
-<li><a href="https://therecord.media/poland-shuts-down-government-services-platform-cyberattack" rel="noopener nofollow">Poland shuts down government services platform ePUAP following cyberattack</a> <span class="feed">The Record</span></li>
+<li><a href="https://www.bleepingcomputer.com/news/security/new-worm-like-sckit-malware-targets-msps-in-screenconnect-attacks/" rel="noopener nofollow">New worm-like &#39;SCKit&#39; malware targets MSPs in ScreenConnect attacks</a> <span class="feed">BleepingComputer</span></li>
 </ul>
 </details>
 
 </article>
 
-<article id="apache-mod-http2-cve-2026-119618" class="topic t-breach">
-<h3><span class="pill" aria-hidden="true"></span>Apache HTTP Server : CVE-2026-119618 dans mod_http2, exécution de code à distance, corrigée en 2.4.71</h3>
+<article id="tsmc-fuite-employes-revendiquee" class="topic t-leak">
+<h3><span class="pill" aria-hidden="true"></span>TSMC : 46 000 dossiers d&#39;employés proposés à la vente, entre revendication et confirmation</h3>
 
-<p>Une faille critique du module mod_http2 d&#39;Apache HTTP Server, CVE-2026-119618, permet à un attaquant distant non authentifié d&#39;exécuter du code et de prendre le contrôle du processus serveur. Elle touche les versions 2.4.55 à 2.4.70 et est corrigée dans la 2.4.71, publiée le 11 novembre. Seuls les serveurs avec HTTP/2 activé sont concernés. Red Hat la note 9.8 sur 10 en CVSS mais seulement « Important » sur RHEL 9 et 10, où chaque flux HTTP/2 dispose de son propre allocateur mémoire, ce qui rend l&#39;attaque bien plus difficile. Red Hat affirme qu&#39;une recherche publique a démontré un exploit fiable sur une configuration par défaut ; Wiz indique au contraire qu&#39;aucun exploit n&#39;est disponible et qu&#39;aucune exploitation n&#39;a été signalée. Les builds autonomes mod_h2 (2.0.8 à 2.0.42) sont touchés, sans correctif : le dépôt est archivé. Debian bookworm, trixie et forky sont listées comme vulnérables, Amazon Linux en attente de correctif, RHEL 8 et antérieures non concernées. Sans mise à jour possible, Wiz conseille de retirer h2 et h2c de la directive Protocols.</p>
-<div class="why"><p class="why-title">Pourquoi c'est important</p><p>Si vous exposez Apache avec HTTP/2, vérifiez la directive Protocols au niveau serveur et de chaque virtual host. Passez à 2.4.71 ou au paquet de votre distribution. Sur Debian ou avec mod_h2 autonome, aucun correctif n&#39;est listé : appliquez le contournement Protocols http/1.1.</p></div>
+<p>Selon DataBreaches.net, qui reprend un article chinois traduit automatiquement, des pirates vendent sur un forum clandestin des données censées appartenir à des employés de TSMC : 46 000 enregistrements, soit 6,9 Go. Le même article indique que TSMC souligne n&#39;avoir trouvé aucune preuve d&#39;intrusion dans son système. Les titres de presse divergent : Moneycontrol évoque une demande de 220 000 dollars, FinanceFeeds parle de 3 bitcoins et d&#39;une confirmation de fuite par TSMC. Nous ne disposons que d&#39;extraits : la nature exacte de la fuite, sa source et les montants sont à confirmer.</p>
+<div class="why"><p class="why-title">Pourquoi c'est important</p><p>Pas d&#39;action technique directe. Le cas montre une divergence fréquente : un vendeur revendique, l&#39;entreprise nie une intrusion, la source de la fuite reste incertaine, peut-être un tiers. Pour les équipes touchées, le risque principal est l&#39;hameçonnage ciblé.</p></div>
 <details class="sources">
-<summary>Sources (1)</summary>
+<summary>Sources (3)</summary>
 <ul>
-<li><a href="https://thehackernews.com/2026/11/critical-apache-http2-flaw-could-let.html" rel="noopener nofollow">Critical Apache HTTP/2 Flaw Could Let Unauthenticated Attackers Execute Code Remotely</a> <span class="feed">The Hacker News</span></li>
-</ul>
-</details>
-
-</article>
-
-<article id="n-able-n-central-able2shell" class="topic t-breach">
-<h3><span class="pill" aria-hidden="true"></span>N-able coupe N-central après la divulgation publique de 33 failles (Able2Shell)</h3>
-
-<p>N-able a mis hors ligne ses environnements N-central hébergés (Amériques, Europe, Asie-Pacifique) après que le chercheur Sean Bales a divulgué dimanche 33 failles baptisées Able2Shell, avec des exploits publiés sur GitHub. L&#39;éditeur recommande aux clients sur site d&#39;arrêter leurs serveurs jusqu&#39;à nouvel ordre. Les exploits permettent d&#39;exécuter des commandes, de créer des comptes administrateurs et d&#39;obtenir root. Selon Tenable, certaines failles sont des étapes de quatre chaînes d&#39;exploitation ; la chaîne XXE, décrite comme sans identifiants, via CVE-2026-125883, pourrait transformer une requête réseau non authentifiée en compromission complète. N-able a publié mardi N-central 2026.4 Hotfix 2 (build 2026.4.1.26), qui corrige sept CVE, et promet d&#39;autres mises à jour. Des attaquants scannent déjà selon N-able, mais aucune exploitation n&#39;a été observée à ce jour.</p>
-<div class="why"><p class="why-title">Pourquoi c'est important</p><p>Si vous ou votre prestataire MSP utilisez N-central, appliquez le Hotfix 2 et suivez les consignes de N-able, y compris l&#39;arrêt des serveurs sur site. Un RMM détient des privilèges étendus sur tout le parc : sa compromission ouvre l&#39;accès aux clients gérés.</p></div>
-<details class="sources">
-<summary>Sources (1)</summary>
-<ul>
-<li><a href="https://www.darkreading.com/endpoint-security/n-able-n-central-offline-33-flaws" rel="noopener nofollow">N-able Takes N-central Platform Offline After Discovery of 33 Flaws</a> <span class="feed">Dark Reading</span></li>
-</ul>
-</details>
-
-</article>
-
-<article id="screenconnect-clients-rogues-sckit" class="topic t-breach">
-<h3><span class="pill" aria-hidden="true"></span>ScreenConnect : au moins 288 postes de 48 organisations infectés par des clients malveillants</h3>
-
-<p>ConnectWise a désactivé par précaution cinq extensions tierces (Labtech Plus, RMM Plus, RMM&#43; et leurs variantes Password Link) chez ses partenaires, après des signalements d&#39;accès non autorisés. Elle dit n&#39;avoir aucune preuve de compromission de son infrastructure ni de vulnérabilité de ScreenConnect ; le vecteur initial reste à l&#39;étude. Environ 400 environnements partenaires ont au moins une de ces extensions. Huntress, qui suit l&#39;activité détectée le 11 novembre vers 17h47 UTC, observe des attaquants utilisant des panneaux ScreenConnect hébergés dans le cloud pour pousser des commandes Run et installer des clients malveillants sur au moins 288 postes de 48 organisations. Les identifiants compromis ou des sessions d&#39;opérateurs détournées sont la piste actuelle. Le malware SCKit fonctionne comme un ver : il peut remonter vers le poste du technicien, voler sessions de navigateur et jetons, puis rebondir vers d&#39;autres panneaux. ConnectWise publie des indicateurs de compromission.</p>
-<div class="why"><p class="why-title">Pourquoi c'est important</p><p>Si vous utilisez ScreenConnect, vérifiez la présence de ces extensions, désactivez-les sur site et cherchez nouveaux comptes administrateurs, commandes distantes inattendues et clients non approuvés. Comparez vos journaux aux IoC publiés et faites tourner les sessions des techniciens.</p></div>
-<details class="sources">
-<summary>Sources (1)</summary>
-<ul>
-<li><a href="https://thehackernews.com/2026/11/screenconnect-attacks-target-at-least.html" rel="noopener nofollow">ScreenConnect Attacks Target at Least 288 Endpoints Across 48 Organizations With Rogue Clients</a> <span class="feed">The Hacker News</span></li>
-</ul>
-</details>
-
-</article>
-
-<article id="cisco-broadworks-kev-operation-snowball" class="topic t-breach">
-<h3><span class="pill" aria-hidden="true"></span>Cisco BroadWorks CVE-2026-20320 exploitée par un agent IA, ajoutée au catalogue KEV</h3>
-
-<p>La CISA a ajouté mardi au catalogue KEV deux failles : CVE-2026-20320 (CVSS 7.5), une XXE non authentifiée dans l&#39;analyseur XML OCI de Cisco BroadWorks, corrigée en août 2026, et CVE-2026-111793 (CVSS 4.3) dans Openwave Messaging Webtop Media Transcoder, corrigée en octobre 2026. Selon Malbear Labs, CVE-2026-20320 a servi dans « Operation Snowball » : un acteur sinophone aurait délégué l&#39;intrusion à un framework autonome bâti sur une version jailbreakée du modèle DeepSeek Flash, visant un opérateur télécom européen et 13 entreprises hébergées. L&#39;agent a énuméré des centaines d&#39;actifs, extrait des dizaines de jeux d&#39;identifiants et exfiltré des milliers de lignes de facturation et d&#39;appareils. La cible principale était BroadWorks XSP 23.0.1.1075, port 2208, avec récupération de clés privées.</p>
-<div class="why"><p class="why-title">Pourquoi c'est important</p><p>Si vous exploitez BroadWorks, vérifiez que le correctif d&#39;août est appliqué et que le port OCI n&#39;est pas exposé. L&#39;exploitation de failles déjà corrigées par des agents autonomes rend le retard de patch plus coûteux.</p></div>
-<details class="sources">
-<summary>Sources (1)</summary>
-<ul>
-<li><a href="https://thehackernews.com/2026/11/cisco-broadworks-and-openwave-flaws.html" rel="noopener nofollow">Cisco BroadWorks and Openwave Flaws Actively Exploited Despite Available Patches</a> <span class="feed">The Hacker News</span></li>
-</ul>
-</details>
-
-</article>
-
-<article id="emudhra-huit-certificats-ca-revoques" class="topic t-breach">
-<h3><span class="pill" aria-hidden="true"></span>eMudhra révoque huit autres certificats CA après une mauvaise gestion de clés privées</h3>
-
-<p>L&#39;autorité de certification eMudhra a révoqué huit certificats intermédiaires supplémentaires, portant le total à 16. Son nouveau rapport d&#39;incident attribue le problème à un script Python utilisé en avril 2025 pour transférer des clés entre HSM : un bogue a réduit huit clés ECDSA à un seul octet, donc triviales à retrouver. Le même script a traité huit clés RSA en mémoire hôte, sans preuve de conformité à la politique de certification ; ces certificats ont été révoqués le 7 novembre. Certains émettaient depuis mai 2026, le dernier certificat datant du 3 novembre. Un signal d&#39;alerte de juin 2025, des CRL signées avec de mauvaises clés, n&#39;avait pas été investigué. eMudhra quitte le marché des certificats TLS publics, cessera d&#39;émettre sous G1 d&#39;ici le 16 novembre et attend un audit KPMG pour le 4 décembre. Elle dit n&#39;avoir détecté aucun usage malveillant.</p>
-<div class="why"><p class="why-title">Pourquoi c'est important</p><p>Mozilla, Google, Apple et Microsoft ont déjà bloqué les certificats compromis. Vérifiez que vos postes et serveurs reçoivent les mises à jour de confiance, et que vous n&#39;avez pas de certificats eMudhra à migrer vers une autre autorité.</p></div>
-<details class="sources">
-<summary>Sources (1)</summary>
-<ul>
-<li><a href="https://www.bleepingcomputer.com/news/security/emudhra-revokes-8-more-ca-certificates-after-private-key-mishap/" rel="noopener nofollow">eMudhra revokes 8 more CA certificates after private key mishap</a> <span class="feed">BleepingComputer</span></li>
-</ul>
-</details>
-
-</article>
-
-<article id="notion-fireworks-ai-transcriptions" class="topic t-leak">
-<h3><span class="pill" aria-hidden="true"></span>Notion : la brèche chez Fireworks AI expose des transcriptions de chats Notion AI</h3>
-
-<p>Notion indique qu&#39;une brèche chez son fournisseur d&#39;infrastructure IA, Fireworks AI, a exposé des transcriptions de chats Notion AI dans un petit nombre d&#39;espaces de travail. Fireworks a confirmé qu&#39;un attaquant avait accédé le 23 octobre à son environnement de développement via un fournisseur cloud tiers, compromettant métadonnées, informations de facturation, poids de modèles et jeux de données de certains clients. Notion, alertée le 2 novembre au sujet d&#39;un jeu de données censé ne contenir que des données de test, a coupé le trafic vers Fireworks et supprimé ses données le 3 novembre. Fireworks a confirmé le 8 novembre que des données clients avaient été consultées. Les transcriptions viennent de la fonction Insights, désormais désactivée ; pour la plupart, elles sont non attribuables. Moins de 1 % des utilisateurs sont touchés. Notion conseille de renouveler les mots de passe, clés API et identifiants saisis dans ces chats.</p>
-<div class="why"><p class="why-title">Pourquoi c'est important</p><p>Les données confiées à des prestataires IA tiers sont un maillon faible. Si vous recevez un avis de Notion, consultez la revue d&#39;incident et faites tourner tout secret collé dans un chat IA. Vérifiez la rétention contractuelle de vos fournisseurs.</p></div>
-<details class="sources">
-<summary>Sources (1)</summary>
-<ul>
-<li><a href="https://www.bleepingcomputer.com/news/security/notion-says-fireworks-breach-exposed-customer-ai-chat-transcripts/" rel="noopener nofollow">Notion says Fireworks breach exposed customer AI chat transcripts</a> <span class="feed">BleepingComputer</span></li>
-</ul>
-</details>
-
-</article>
-
-<article id="maersk-whitearmor-donnees" class="topic t-leak">
-<h3><span class="pill" aria-hidden="true"></span>Maersk confirme une brèche sur un système hérité ; WhiteArmor réclame 5 millions de dollars</h3>
-
-<p>Maersk a confirmé qu&#39;un attaquant a pénétré des systèmes d&#39;une société qu&#39;il avait rachetée et volé des données. Le groupe WhiteArmor a revendiqué l&#39;attaque ce week-end, menaçant de publier environ 100 Go issus de la plateforme OCF/LF Logistics, héritée de LF Logistics (rachetée en 2022), et exigeant 5 millions de dollars en bitcoin sous 30 jours. Le groupe affirme détenir près de 30 000 fiches de chauffeurs, des mots de passe en clair, 33 comptes SUPER_ADMIN et des journaux de 27 842 appareils mobiles. Maersk déclare que l&#39;incident est isolé à un système local, sans impact sur ses autres systèmes ni sur les systèmes clients via API et EDI, et que, selon les éléments actuels, aucune donnée sensible n&#39;a été divulguée. L&#39;enquête continue ; ni la nature des données ni la date de l&#39;intrusion ne sont précisées.</p>
-<div class="why"><p class="why-title">Pourquoi c'est important</p><p>Les systèmes rachetés et mal intégrés restent une porte d&#39;entrée classique. Les revendications de WhiteArmor ne sont pas vérifiées. Si vous êtes client Maersk, traitez avec prudence les communications inattendues et vérifiez-les via votre contact habituel.</p></div>
-<details class="sources">
-<summary>Sources (1)</summary>
-<ul>
-<li><a href="https://www.bleepingcomputer.com/news/security/maersk-confirms-data-breach-as-whitearmor-ransomware-demands-5-million/" rel="noopener nofollow">Maersk confirms data breach as WhiteArmor ransomware demands $5 million</a> <span class="feed">BleepingComputer</span></li>
+<li><a href="https://news.google.com/rss/articles/CBMi5AFBVV95cUxNY3ZBLWF0ZzdxcGYwZzR5blRvWGhmUVdxeE5KbmEwZzhHNU5kQW5FRVhJUmExLUtRXzNQZkNMN3piWVl3RFdjZ2wtWGg0djdfbGlySnlRcWs0S2RGSjRIVFE5Wno0R1QzYWxUVnFsV2FrVlU3Mm5aWldqY1hXUllDcWNlTG9FSmMwRUtEWUhydjB6blFRNHhOUGxwZWFEQUdjVW5Yd2dkR19fOXE4WVZOanhTSUNZT3JrbmxZZ3cyMGptdklmVTVLRHJQcGRwSE1mSGNZUnlVREVpSlJmZ2E4WHRHYjbSAeoBQVVfeXFMTUZRR2YxUV9Kb0h0VF9EcGRfYlVleFZBNkVaa3NIM3ZKNVJxRnFzRFNDOUtTQm5jU2NVNGpyVmYtVHJac0tLZFJmMHFzRk9GeTRBNUxtVnV2MWgwZElEcW9IZDZ4cUJrWTVLLVZ5cjR4NldYQWhaWmhZTVR1X18ybmFZRURfN3FGMzBPUU1lTndkcEdtR3p5NUlZZjhPRDhFRHRKdm9fSDU0dDJhQzd1VzdhaDV0RER1RGxlMmJXSW5CMHdOVUJTMGZFLWJ0bEVNb1lkV0VIN2d3cnhEd0NYdVY0aldPX0M5bTJB?oc=5" rel="noopener nofollow">Chip giant TSMC hit by massive data leak; hackers claim 46,000 employee records, demand $220,000 - Moneycontrol.com</a> <span class="feed">Google Actualités : breaches EN</span></li>
+<li><a href="https://databreaches.net/2026/11/12/tsmc-has-reportedly-leaked-the-personal-data-of-46000-employees-but-emphasized-that-no-evidence-of-intrusion-was-found-in-the-system/" rel="noopener nofollow">TSMC has reportedly leaked the personal data of 46,000 employees, but emphasized that no evidence of intrusion was found in the system.</a> <span class="feed">DataBreaches.net</span></li>
+<li><a href="https://news.google.com/rss/articles/CBMifkFVX3lxTE5aSXk3MnF3VzJydGRDWERkX1kwRnkzb09OXy1YVHg0XzBuWnI5TnJXX3hEbjdRQ2xLVnp2aHRUbjdJc3dzT2hzeUdTZ3RZV3NJVTFrQnRMSkxKTnBkcy00OXhhLWszRHZDSVVwMndzQjU0TTVzVFdrcmhGMHZJQQ?oc=5" rel="noopener nofollow">Action TSM : TSMC confirme une fuite de données d’employés alors qu’un vendeur réclame 3 Bitcoin pour les dossiers - FinanceFeeds</a> <span class="feed">Google Actualités : fuites FR</span></li>
 </ul>
 </details>
 
@@ -206,78 +184,51 @@
 
 <details class="transcript">
 <summary>Transcription</summary>
-<p><strong>Camille</strong> <em>(relaxed, warm)</em> : Salut et bienvenue dans La veille, on est le jeudi 12 novembre 2026. Au menu aujourd&#39;hui : une grosse faille Apache, des outils d&#39;administration à distance dans la tourmente, une plateforme d&#39;État polonaise coupée, et un émulateur AWS fait par des agents.</p>
-<p><strong>Max</strong> <em>(cheerful, sleepy)</em> : Salut Camille ! Journée chargée côté sécurité, ça sent le café double. On commence par Apache ?</p>
-<p><strong>Camille</strong> <em>(calm, explaining)</em> : Oui. Une faille critique dans mod_http2, la CVE 2026 tiret 119618. Un attaquant distant, sans authentification, peut exécuter du code et prendre le contrôle du processus serveur. Ça touche les versions 2.4.55 à 2.4.70, et c&#39;est corrigé dans la 2.4.71, sortie le 11 novembre.</p>
-<p><strong>Max</strong> <em>(curious)</em> : Et ça concerne tout le monde ? Ou seulement ceux qui ont HTTP/2 activé ?</p>
-<p><strong>Camille</strong> <em>(calm, explaining)</em> : Seulement ceux qui ont HTTP/2 activé. Et il y a un débat sur la gravité. Red Hat met 9,8 sur 10 en CVSS, mais seulement Important sur RHEL 9 et 10, parce que chaque flux HTTP/2 a son propre allocateur mémoire, donc l&#39;attaque est bien plus dure.</p>
-<p><strong>Max</strong> <em>(surprised)</em> : Attends, et côté exploit, on sait quoi ? Parce que ça change tout pour l&#39;urgence.</p>
-<p><strong>Camille</strong> <em>(amused)</em> : Justement, les sources se contredisent. Red Hat dit qu&#39;une recherche publique a démontré un exploit fiable sur une config par défaut. Wiz dit l&#39;inverse : pas d&#39;exploit dispo, pas d&#39;exploitation signalée.</p>
-<p><strong>Max</strong> <em>(relaxed)</em> : Dans le doute, perso je patcherais vite. Et pour ceux qui ne peuvent pas ?</p>
-<p><strong>Camille</strong> <em>(calm)</em> : Wiz conseille de retirer h2 et h2c de la directive Protocols. À vérifier au niveau serveur et dans chaque virtual host. Attention : Debian bookworm, trixie et forky sont listées vulnérables, Amazon Linux attend son correctif, et les builds autonomes mod_h2, de 2.0.8 à 2.0.42, n&#39;ont pas de correctif parce que le dépôt est archivé. RHEL 8 et avant ne sont pas concernées.</p>
-<p><strong>Max</strong> <em>(thoughtful)</em> : Bon, on enchaîne avec les outils d&#39;admin à distance, parce que là c&#39;est une semaine rude. D&#39;abord N-able et N-central.</p>
-<p><strong>Camille</strong> <em>(serious, explaining)</em> : Le chercheur Sean Bales a divulgué dimanche 33 failles, baptisées Able2Shell, avec des exploits publiés sur GitHub. N-able a mis hors ligne ses environnements N-central hébergés, Amériques, Europe et Asie-Pacifique, et recommande aux clients sur site d&#39;arrêter leurs serveurs jusqu&#39;à nouvel ordre.</p>
-<p><strong>Max</strong> <em>(surprised)</em> : Ils demandent d&#39;éteindre ? Sérieux ? C&#39;est quoi la gravité, concrètement ?</p>
-<p><strong>Camille</strong> <em>(calm, explaining)</em> : Les exploits permettent d&#39;exécuter des commandes, de créer des comptes administrateurs et d&#39;obtenir root. Selon Tenable, certaines failles sont des étapes de quatre chaînes d&#39;exploitation. La chaîne XXE, sans identifiants, via la CVE 2026 tiret 125883, pourrait transformer une simple requête réseau non authentifiée en compromission complète.</p>
-<p><strong>Max</strong> <em>(concerned)</em> : Et un patch ?</p>
-<p><strong>Camille</strong> <em>(calm)</em> : Le Hotfix 2 de N-central 2026.4 est sorti mardi, il corrige sept CVE, et d&#39;autres mises à jour sont promises. N-able dit que des attaquants scannent déjà, mais aucune exploitation observée pour l&#39;instant.</p>
-<p><strong>Max</strong> <em>(thoughtful)</em> : Moi ça me rappelle pourquoi un RMM est une cible en or : il a des privilèges sur tout le parc. Si ton prestataire MSP l&#39;utilise, pose-lui la question aujourd&#39;hui.</p>
-<p><strong>Camille</strong> <em>(serious)</em> : Et ça tombe bien, parce qu&#39;on a le même genre de sujet avec ScreenConnect. ConnectWise a désactivé par précaution cinq extensions tierces chez ses partenaires : Labtech Plus, RMM Plus, RMM&#43; et les variantes Password Link, après des signalements d&#39;accès non autorisés.</p>
-<p><strong>Max</strong> <em>(curious)</em> : Donc c&#39;est une faille dans ScreenConnect ?</p>
-<p><strong>Camille</strong> <em>(calm, explaining)</em> : ConnectWise dit n&#39;avoir aucune preuve de compromission de son infrastructure ni de vulnérabilité de ScreenConnect. Le vecteur initial reste à l&#39;étude. Environ 400 environnements partenaires ont au moins une de ces extensions.</p>
-<p><strong>Max</strong> <em>(concerned)</em> : Et côté victimes ?</p>
-<p><strong>Camille</strong> <em>(serious)</em> : Huntress, qui suit l&#39;activité détectée le 11 novembre vers 17h47 UTC, voit des attaquants utiliser des panneaux ScreenConnect hébergés dans le cloud pour pousser des commandes Run et installer des clients malveillants. Au moins 288 postes dans 48 organisations. La piste actuelle, ce sont des identifiants compromis ou des sessions d&#39;opérateurs détournées.</p>
-<p><strong>Max</strong> <em>(alarmed)</em> : Et le malware SCKit, il a l&#39;air vilain.</p>
-<p><strong>Camille</strong> <em>(serious)</em> : Il se comporte comme un ver : il peut remonter vers le poste du technicien, voler sessions de navigateur et jetons, puis rebondir vers d&#39;autres panneaux. ConnectWise publie des indicateurs de compromission. À faire : désactiver les extensions, chercher les nouveaux comptes admin, les commandes distantes inattendues, les clients non approuvés, et faire tourner les sessions des techniciens.</p>
-<p><strong>Max</strong> <em>(relaxed)</em> : Bon, on change d&#39;air, enfin pas tant que ça. En Pologne, ePUAP est coupée.</p>
-<p><strong>Camille</strong> <em>(calm, explaining)</em> : ePUAP, c&#39;est la plateforme nationale où citoyens et entreprises déposent des documents officiels et font leurs démarches en ligne. Les autorités ont dit mardi l&#39;avoir fermée temporairement après avoir détecté et stoppé une cyberattaque.</p>
-<p><strong>Max</strong> <em>(curious)</em> : Donc elle a été piratée ?</p>
-<p><strong>Camille</strong> <em>(calm)</em> : Pas selon le porte-parole du ministère : le système n&#39;a pas été compromis ni perturbé, il a été désactivé par précaution. Le ministre Krzysztof Gawkowski dit que l&#39;infrastructure du Centre central des technologies de l&#39;information reste sûre. Le mode opératoire et les responsables ne sont pas divulgués, et rien ne confirme un vol de données.</p>
-<p><strong>Max</strong> <em>(thoughtful)</em> : Pas de date de retour ?</p>
-<p><strong>Camille</strong> <em>(calm)</em> : Aucune. Les boîtes électroniques ePUAP restent indisponibles, et Profil de confiance, le système d&#39;identité numérique, pourrait être touché. Si tu échanges avec des administrations polonaises, prévois un canal alternatif.</p>
-<p><strong>Max</strong> <em>(amused)</em> : La disponibilité sacrifiée à la prudence, c&#39;est un cas d&#39;école. Et puisqu&#39;on parle de vieilles failles : Cisco BroadWorks, avec une histoire d&#39;agent IA.</p>
-<p><strong>Camille</strong> <em>(explaining)</em> : La CISA a ajouté mardi deux failles au catalogue KEV. La CVE 2026 tiret 20320, CVSS 7,5, une XXE non authentifiée dans l&#39;analyseur XML OCI de Cisco BroadWorks, corrigée en août. Et la CVE 2026 tiret 111793, CVSS 4,3, dans Openwave Messaging Webtop Media Transcoder, corrigée en octobre.</p>
-<p><strong>Max</strong> <em>(intrigued)</em> : Et l&#39;agent IA, c&#39;est où ?</p>
-<p><strong>Camille</strong> <em>(explaining)</em> : Selon Malbear Labs, la première a servi dans Operation Snowball : un acteur sinophone aurait délégué l&#39;intrusion à un framework autonome bâti sur une version jailbreakée du modèle DeepSeek Flash. La cible : un opérateur télécom européen et 13 entreprises hébergées.</p>
-<p><strong>Max</strong> <em>(surprised)</em> : Et il a fait quoi, l&#39;agent ?</p>
-<p><strong>Camille</strong> <em>(calm)</em> : Il a énuméré des centaines d&#39;actifs, extrait des dizaines de jeux d&#39;identifiants, exfiltré des milliers de lignes de facturation et d&#39;appareils. La cible principale était BroadWorks XSP 23.0.1.1075, port 2208, avec récupération de clés privées.</p>
-<p><strong>Max</strong> <em>(thoughtful)</em> : Ma lecture perso : des failles déjà corrigées exploitées par des agents autonomes, ça rend le retard de patch plus coûteux. Vérifie que le correctif d&#39;août est là et que le port OCI n&#39;est pas exposé.</p>
-<p><strong>Camille</strong> <em>(relaxed)</em> : Passons aux fuites. Notion d&#39;abord : une brèche chez son fournisseur d&#39;infrastructure IA, Fireworks AI, a exposé des transcriptions de chats Notion AI dans un petit nombre d&#39;espaces de travail.</p>
-<p><strong>Max</strong> <em>(curious)</em> : Ça s&#39;est passé comment ?</p>
-<p><strong>Camille</strong> <em>(calm, explaining)</em> : Fireworks a confirmé qu&#39;un attaquant avait accédé le 23 octobre à son environnement de développement via un fournisseur cloud tiers. Métadonnées, facturation, poids de modèles et jeux de données de certains clients compromis. Notion a été alertée le 2 novembre à propos d&#39;un jeu de données censé ne contenir que des données de test, a coupé le trafic vers Fireworks et supprimé ses données le 3.</p>
-<p><strong>Max</strong> <em>(relaxed)</em> : Et l&#39;ampleur ?</p>
-<p><strong>Camille</strong> <em>(calm)</em> : Fireworks a confirmé le 8 novembre que des données clients avaient été consultées. Les transcriptions viennent de la fonction Insights, désormais désactivée, et sont pour la plupart non attribuables. Moins de 1 % des utilisateurs touchés. Conseil de Notion : renouveler mots de passe, clés API et identifiants saisis dans ces chats.</p>
-<p><strong>Max</strong> <em>(amused)</em> : Et oui, qui n&#39;a jamais collé une clé API dans un chat IA... Faites-les tourner, et regardez la rétention chez vos fournisseurs.</p>
-<p><strong>Camille</strong> <em>(explaining)</em> : Autre histoire de confiance : eMudhra, l&#39;autorité de certification, a révoqué huit certificats intermédiaires de plus, ce qui fait 16 au total.</p>
-<p><strong>Max</strong> <em>(curious)</em> : Révoqués pour quelle raison ?</p>
-<p><strong>Camille</strong> <em>(explaining)</em> : Le rapport d&#39;incident parle d&#39;un script Python utilisé en avril 2025 pour transférer des clés entre HSM. Un bogue a réduit huit clés ECDSA à un seul octet, donc triviales à retrouver. Le même script a traité huit clés RSA en mémoire hôte, sans preuve de conformité à la politique de certification ; ces certificats ont été révoqués le 7 novembre.</p>
-<p><strong>Max</strong> <em>(surprised)</em> : Un seul octet ? Aïe. Et personne n&#39;a rien vu ?</p>
-<p><strong>Camille</strong> <em>(calm)</em> : Un signal d&#39;alerte de juin 2025, des CRL signées avec de mauvaises clés, n&#39;avait pas été investigué. eMudhra quitte le marché des certificats TLS publics, cessera d&#39;émettre sous G1 d&#39;ici le 16 novembre et attend un audit KPMG pour le 4 décembre. Elle dit n&#39;avoir détecté aucun usage malveillant.</p>
-<p><strong>Max</strong> <em>(relaxed)</em> : Mozilla, Google, Apple et Microsoft ont déjà bloqué les certificats compromis. Vérifie juste que tes machines reçoivent les mises à jour de confiance, et que tu n&#39;as pas de certificats eMudhra à migrer.</p>
-<p><strong>Camille</strong> <em>(serious)</em> : Dernière brèche : Maersk. Le groupe a confirmé qu&#39;un attaquant a pénétré des systèmes d&#39;une société qu&#39;il avait rachetée, et volé des données.</p>
-<p><strong>Max</strong> <em>(curious)</em> : Et WhiteArmor revendique, c&#39;est ça ?</p>
-<p><strong>Camille</strong> <em>(calm, explaining)</em> : Oui, ce week-end. Ils menacent de publier environ 100 Go issus de la plateforme OCF/LF Logistics, héritée de LF Logistics, rachetée en 2022, et exigent 5 millions de dollars en bitcoin sous 30 jours. Ils disent détenir près de 30 000 fiches de chauffeurs, des mots de passe en clair, 33 comptes SUPER_ADMIN et des journaux de 27 842 appareils mobiles.</p>
-<p><strong>Max</strong> <em>(skeptical)</em> : Ça, c&#39;est leur version. Maersk dit quoi ?</p>
-<p><strong>Camille</strong> <em>(calm)</em> : Incident isolé à un système local, sans impact sur les autres systèmes ni sur les systèmes clients via API et EDI, et selon les éléments actuels, aucune donnée sensible divulguée. L&#39;enquête continue, la nature des données et la date de l&#39;intrusion ne sont pas précisées. Les revendications ne sont pas vérifiées.</p>
-<p><strong>Max</strong> <em>(thoughtful)</em> : Les systèmes rachetés et mal intégrés, porte d&#39;entrée classique. Si tu es client, méfie-toi des messages inattendus et vérifie via ton contact habituel.</p>
-<p><strong>Camille</strong> <em>(upbeat)</em> : Bon, un peu de nouveauté pour finir. AWS a lancé mercredi AWS Emulator, un émulateur local des API AWS pour tester son code sans compte ni appel à AWS.</p>
-<p><strong>Max</strong> <em>(interested)</em> : Ah, genre LocalStack ?</p>
-<p><strong>Camille</strong> <em>(amused)</em> : Oui, une alternative pour tes pipelines CI. Écrit en Rust, il tourne sur Linux, macOS et Windows, et gère 438 modèles d&#39;API publics sur plus de 200 services. Et le détail amusant : il a été construit entièrement par des agents, qui le maintiendront.</p>
-<p><strong>Max</strong> <em>(surprised)</em> : Entièrement par des agents ? Et ils vérifient comment que ça marche ?</p>
-<p><strong>Camille</strong> <em>(explaining)</em> : Trois équipes d&#39;agents génèrent les scénarios de test à partir des modèles Smithy, comparent le comportement de l&#39;émulateur à AWS et corrigent le code. Et comme AWS n&#39;est pas sûre de pouvoir revendiquer le droit d&#39;auteur sur ce travail, c&#39;est publié sous licence CC0.</p>
-<p><strong>Max</strong> <em>(amused)</em> : Ha, c&#39;est malin. Des paquets ?</p>
-<p><strong>Camille</strong> <em>(calm)</em> : RPM et Debian, conteneur, et mode embarqué compilé dans les tests. AWS précise de ne pas l&#39;utiliser en production ni pour tester la sécurité. Et compiler depuis les sources demande au moins 100 Go de disque. Regarde les scores de fidélité par service avant de t&#39;y fier.</p>
-<p><strong>Max</strong> <em>(relaxed)</em> : 100 Go, ouch pour la CI. Dernier sujet : Nvidia donne OpenShell à la CNCF.</p>
-<p><strong>Camille</strong> <em>(explaining)</em> : Annoncé mardi à KubeCon North America, à Salt Lake City. Le projet entre au niveau Sandbox, la CNCF l&#39;avait formellement accepté fin septembre. Lancé en mars à la GTC, OpenShell exécute un agent dans un bac à sable et applique des politiques sur les fichiers, les réseaux, les identifiants et les points d&#39;accès de modèles.</p>
-<p><strong>Max</strong> <em>(curious)</em> : Et l&#39;application des règles, c&#39;est dans l&#39;agent ?</p>
-<p><strong>Camille</strong> <em>(calm, explaining)</em> : Non, dans l&#39;infrastructure autour de l&#39;agent. Le projet adopte Cedar, autre projet CNCF, comme langage de politique. Selon Ali Golshan de Nvidia, les opérateurs visés sont les équipes DevSecOps qui gèrent déjà Kubernetes et Linux. Jonathan Bryce, de la CNCF, dit que l&#39;adoption initiale venait surtout de neoclouds GPU.</p>
-<p><strong>Max</strong> <em>(relaxed)</em> : La CNCF héberge 262 projets, dont 155 en Sandbox. Donc niveau jeune : à évaluer, pas à généraliser. Mais vu le sujet Snowball, le confinement d&#39;agents, on va en reparler.</p>
-<p><strong>Camille</strong> <em>(warm)</em> : Voilà pour aujourd&#39;hui. Patchez Apache, regardez vos RMM de près, et faites tourner vos secrets. Merci de nous avoir écoutés.</p>
-<p><strong>Max</strong> <em>(cheerful)</em> : À demain, et bon jeudi à tous !</p>
+<p><strong>Camille</strong> <em>(relaxed, warm morning tone)</em> : Salut et bienvenue dans La veille. On est le vendredi 13 novembre 2026. Au programme : la grosse panne Microsoft 365, deux suites de feuilleton côté N-central et ScreenConnect, des secrets CI volés sur GitHub, des correctifs chez Red Hat et Citrix, une fuite chez TSMC, et un peu de Rust pour finir.</p>
+<p><strong>Max</strong> <em>(relaxed, amused)</em> : Salut Camille. Un vendredi 13 avec ce programme, je dis juste que ça tombe bien. Allez, on commence par Microsoft, parce que j&#39;imagine que certains ont eu une soirée sympa hier.</p>
+<p><strong>Camille</strong> <em>(calm, explaining)</em> : Oui. Depuis jeudi vers 19 heures, heure de Paris, des gens dans le monde entier n&#39;arrivent plus à se connecter à Microsoft 365. Au début, Microsoft parlait de boîtes Exchange Online inaccessibles dans les Amériques, puis a reconnu que toutes les régions pouvaient être touchées. Teams, SharePoint Online, Copilot et Defender XDR sont aussi concernés.</p>
+<p><strong>Max</strong> <em>(curious)</em> : Et c&#39;est quoi la cause ? Une attaque ?</p>
+<p><strong>Camille</strong> <em>(measured)</em> : Pas de preuve de cyberattaque, et pas de cause racine confirmée pour l&#39;instant. Microsoft explique que ce n&#39;est pas une hausse de trafic. Des serveurs deviennent indisponibles, du coup les autres saturent. Un processus qui établit les connexions sécurisées était submergé, et les serveurs ratent les contrôles de santé automatiques.</p>
+<p><strong>Max</strong> <em>(thoughtful)</em> : Le classique effet domino. Perso, ça me fait penser à ces pannes où chaque serveur qui tombe reporte sa charge sur les voisins. Et ils ont fait quoi ?</p>
+<p><strong>Camille</strong> <em>(calm)</em> : Ils ont suspendu les déploiements, redirigé le trafic, redémarré des serveurs, et commencé à annuler un changement de configuration réseau récent. Les premières mesures n&#39;ont pas donné le soulagement attendu. Dans la nuit, les serveurs remis en service restaient stables, mais la récupération est lente, sans date de retour à la normale.</p>
+<p><strong>Max</strong> <em>(dry, amused)</em> : Donc conseil pratique : prévois un canal de communication hors Microsoft. Et vérifie les incidents dans le centre d&#39;administration, même si lui aussi peut être inaccessible. Ironique.</p>
+<p><strong>Camille</strong> <em>(relaxed)</em> : Exactement. Et la cause racine, quand elle sortira, elle vaudra la lecture. Bon, on passe aux suites. Tu te souviens de N-central, le truc de N-able, hier ?</p>
+<p><strong>Max</strong> <em>(concerned)</em> : Oui, les failles divulguées par Sean Bales. Et là, ça empire : deux nouvelles familles, 4EverAble2Shell et Agent2Shell, avec des preuves de concept testées contre N-central 2026.4 HF2. Donc le Hotfix 2 ne suffit pas.</p>
+<p><strong>Camille</strong> <em>(surprised)</em> : Attends, c&#39;est exploité pour de vrai ?</p>
+<p><strong>Max</strong> <em>(serious)</em> : Oui. Previdian a vu des sondages dès environ 8 h 30 UTC. Huntback a compté 21 serveurs infectés par un mineur XMRig, dont 19 sous Hotfix 2, depuis une même IP. 4EverAble2Shell donne une exécution de commandes root sans authentification, en enchaînant une faille Apache Axis, la CVE 2026 tiret 90436, CVSS 9,8, et une élévation de privilèges propre à N-central.</p>
+<p><strong>Camille</strong> <em>(curious)</em> : Et ça touche tout le monde ?</p>
+<p><strong>Max</strong> <em>(calm, explaining)</em> : N-able précise que l&#39;attaque dépend de la Legacy API, exposée sur Internet et désactivée par défaut. Agent2Shell, lui, vise les agents Windows et donne un accès SYSTEM. N-able a désactivé la Legacy API et l&#39;intégration Intune sur les environnements hébergés. Sur site, il faut couper la Legacy API et mettre à jour agents et sondes.</p>
+<p><strong>Camille</strong> <em>(serious)</em> : Et un serveur touché, il faut le considérer comme entièrement compromis, vu qu&#39;il gère les postes des clients. Ça rejoint l&#39;autre suite, ScreenConnect.</p>
+<p><strong>Max</strong> <em>(relaxed, engaged)</em> : Oui, même famille d&#39;outils d&#39;administration à distance. Huntress a mis à jour son rapport : au moins 288 postes dans 48 organisations compromis, tous en 90 minutes. L&#39;accès initial passerait par RMM&#43;, une extension tierce.</p>
+<p><strong>Camille</strong> <em>(surprised)</em> : Une extension ? Et c&#39;était quoi le défaut ?</p>
+<p><strong>Max</strong> <em>(explaining)</em> : Les versions 1.0.31 et 1.0.32 acceptaient une clé d&#39;accès vide si l&#39;admin n&#39;en avait jamais défini. Résultat, exécution de commandes sans authentification ni MFA. ConnectWise a désactivé cinq extensions tierces dans environ 400 environnements partenaires, en précisant que leur présence ne veut pas dire compromission.</p>
+<p><strong>Camille</strong> <em>(curious)</em> : Et le malware, SCKit ?</p>
+<p><strong>Max</strong> <em>(calm)</em> : Un ensemble de 16 scripts qui installe des clients ScreenConnect persistants. Il essaie aussi de se propager aux techniciens via un composant appelé RelayTrap, en exploitant la CVE 2026 tiret 84869, déjà corrigée. Aucune exploitation réussie observée, et l&#39;exploit a échoué contre un client à jour. Donc : cherche RMM&#43; et des clients inconnus, et garde le client à jour.</p>
+<p><strong>Camille</strong> <em>(relaxed)</em> : Bien. Côté supply chain maintenant, GitHub. Selon Aikido Security, depuis mardi, un attaquant utilise les identifiants volés de 4 837 comptes pour planter un voleur de secrets dans les dépôts où ces comptes ont l&#39;accès en écriture.</p>
+<p><strong>Max</strong> <em>(amazed)</em> : 4 837 comptes, ça pique. Et ça marche comment ?</p>
+<p><strong>Camille</strong> <em>(explaining)</em> : Une pull request intitulée docs: dependency audit notes, depuis une branche wfx-docs, ouverte dans 61 764 dépôts. SafeDep compte 8 093 dépôts avec des commits malveillants entre mardi et vendredi matin : 7 309 par modification d&#39;un workflow existant, 771 par un hook npm postinstall. L&#39;attaquant annule généralement le changement en quelques minutes et supprime les logs.</p>
+<p><strong>Max</strong> <em>(concerned)</em> : Discret. Et il vole quoi ?</p>
+<p><strong>Camille</strong> <em>(calm)</em> : Les secrets Actions, le GITHUB_TOKEN, les jetons OIDC, les identifiants cloud, envoyés par HTTP POST ou Telegram. On ne sait pas comment les identifiants ont été obtenus. À faire : chercher les branches wfx-docs, et en cas de trace, tout faire tourner, jetons, clés SSH, sessions, rôles cloud, et activer la 2FA. Une machine qui a fait npm install sur un commit touché, on la considère compromise.</p>
+<p><strong>Max</strong> <em>(serious)</em> : Passons à Red Hat Quay. La CVE 2026 tiret 123710, CVSS 9,8. Un attaquant qui atteint le registre peut lire et écraser les images privées de tous les dépôts.</p>
+<p><strong>Camille</strong> <em>(surprised)</em> : Tous les dépôts ? Il faut être authentifié ?</p>
+<p><strong>Max</strong> <em>(explaining)</em> : Même pas vraiment. Le serveur de clés ne vérifie pas que le jeton a été émis pour une rotation de clé. Un jeton anonyme suffit, et l&#39;accès anonyme est activé par défaut. L&#39;attaquant ajoute sa clé de signature, sans expiration, qui survit aux redémarrages et aux changements de mots de passe. Il peut aussi supprimer les clés légitimes et casser les push et pull.</p>
+<p><strong>Camille</strong> <em>(concerned)</em> : Aïe. Et il y a une seconde faille, non ?</p>
+<p><strong>Max</strong> <em>(calm)</em> : Oui, la CVE 2026 tiret 110697, CVSS 9,9, qui permet de voler les jetons robot d&#39;autres locataires via un motif SQL LIKE non échappé. Red Hat a sorti des builds corrigés pour huit branches de Quay 3, mais selon The Hacker News, aucune des huit annonces ne cite cette seconde CVE. En attendant, bloque /keys au proxy sauf pour les composants internes, cherche les événements service_key_rotate et service_key_delete avec une expiration nulle.</p>
+<p><strong>Camille</strong> <em>(relaxed)</em> : Et chez Citrix, grosse fournée aussi. Douze failles sur NetScaler ADC, Gateway et Console. Neuf CVE de corruption ou débordement mémoire, CVSS de 9,3 à 9,5, qui peuvent provoquer un déni de service. Beaucoup dépendent de la configuration.</p>
+<p><strong>Max</strong> <em>(curious)</em> : Le plus gênant, c&#39;est lequel ?</p>
+<p><strong>Camille</strong> <em>(explaining)</em> : Probablement la CVE 2026 tiret 120869, un contournement d&#39;authentification dans NetScaler Console, CVSS 9,4, corrigé en 14.1-74.34. Il y a aussi deux élévations de privilèges locales dans Secure Access Client, Windows et Linux. Citrix ne connaît aucune exploitation et dit que ces mises à jour viennent d&#39;une revue de code assistée par IA.</p>
+<p><strong>Max</strong> <em>(dry)</em> : Perso, les NetScaler exposés sont des cibles habituelles, donc je planifierais vite la montée vers les versions corrigées. La fenêtre se referme vite après publication.</p>
+<p><strong>Camille</strong> <em>(relaxed)</em> : Allez, une fuite plus floue : TSMC. Selon DataBreaches.net, des pirates vendent sur un forum 46 000 enregistrements, 6,9 gigaoctets, censés être des données d&#39;employés.</p>
+<p><strong>Max</strong> <em>(skeptical)</em> : Censés. Et TSMC dit quoi ?</p>
+<p><strong>Camille</strong> <em>(measured)</em> : Que l&#39;entreprise n&#39;a trouvé aucune preuve d&#39;intrusion dans son système. Mais les titres divergent : Moneycontrol parle de 220 000 dollars, FinanceFeeds de 3 bitcoins et d&#39;une confirmation de fuite. On n&#39;a que des extraits, donc tout est à confirmer. Le risque principal pour les employés, ce serait l&#39;hameçonnage ciblé.</p>
+<p><strong>Max</strong> <em>(relaxed)</em> : Et pour finir sur du positif : Rust 1.100.0 est sorti. Selon LWN, le type never est stabilisé, des parties essentielles de l&#39;API Allocator aussi, et Cargo signale les dépendances inutilisées.</p>
+<p><strong>Camille</strong> <em>(upbeat)</em> : Ce dernier point me plaît : moins de dépendances, ça peut alléger les builds et réduire la surface de la chaîne d&#39;approvisionnement. On n&#39;a que le résumé de l&#39;annonce, donc lis les notes complètes avant de monter tes toolchains.</p>
+<p><strong>Max</strong> <em>(warm, relaxed)</em> : Courage à ceux qui sont encore sans Outlook. Bon week-end, patchez bien.</p>
+<p><strong>Camille</strong> <em>(warm)</em> : Merci d&#39;avoir écouté. À demain pour La veille !</p>
 </details>
 
 <nav class="nav" aria-label="Navigation entre les jours">
-<a class="prev" href="jours/2026-11-11/">← 11 novembre</a>
+<a class="prev" href="jours/2026-11-12/">← 12 novembre</a>
 <a href="archives/">Archives</a>
 
 </nav>

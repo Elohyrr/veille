@@ -5,9 +5,27 @@
 <link>https://elohyrr.github.io/veille/</link>
 <description>Tech, pannes, failles et fuites — digest quotidien</description>
 <language>fr-fr</language>
-<lastBuildDate>Thu, 12 Nov 2026 06:08:45 &#43;0000</lastBuildDate>
+<lastBuildDate>Fri, 13 Nov 2026 06:07:06 &#43;0000</lastBuildDate>
 <itunes:image href="https://elohyrr.github.io/veille/cover.png"/>
 <itunes:explicit>false</itunes:explicit>
+<item>
+<title>Microsoft 365 à genoux, N-central et ScreenConnect en pleine tourmente</title>
+<link>https://elohyrr.github.io/veille/jours/2026-11-13/</link>
+<guid isPermaLink="false">ep-2026-11-13</guid>
+<pubDate>Fri, 13 Nov 2026 06:07:06 &#43;0000</pubDate>
+<description>- Microsoft 365 : panne mondiale d&#39;Exchange Online, Outlook et Teams le 12 novembre
+- Mise à jour : N-central, 4EverAble2Shell exploité pour installer des mineurs, y compris sur HF2
+- GitHub : 4 837 comptes détournés servent à planter un voleur de secrets CI
+- Red Hat Quay : CVE-2026-123710 (CVSS 9.8) permet de lire et écraser toutes les images privées
+- Citrix corrige 12 failles NetScaler, Console et Secure Access Client, dont un contournement d&#39;authentification
+- Mise à jour : ScreenConnect, le malware SCKit et l&#39;extension RMM&#43; à l&#39;origine des intrusions
+- TSMC : 46 000 dossiers d&#39;employés proposés à la vente, entre revendication et confirmation
+- Rust 1.100.0 : type never stabilisé, début de l&#39;API Allocator, dépendances inutilisées dans Cargo
+https://elohyrr.github.io/veille/jours/2026-11-13/</description>
+<enclosure url="https://github.com/Elohyrr/veille/releases/download/ep-2026-11-13/veille-2026-11-13.mp3" length="4432941" type="audio/mpeg"/>
+<itunes:duration>00:09:14</itunes:duration>
+<itunes:explicit>false</itunes:explicit>
+</item>
 <item>
 <title>Apache, RMM sous le feu, et un émulateur AWS fait par des agents</title>
 <link>https://elohyrr.github.io/veille/jours/2026-11-12/</link>

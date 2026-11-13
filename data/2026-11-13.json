@@ -1,0 +1,446 @@
+{
+  "date": "2026-11-13",
+  "published_at": "2026-11-13T06:07:06Z",
+  "intro": "Journée dominée par la panne mondiale de Microsoft 365 et par l'exploitation de N-central, deux jours après la première divulgation. Côté supply chain, une campagne GitHub vole des secrets CI, et Red Hat Quay et Citrix publient des correctifs critiques.",
+  "topics": [
+    {
+      "id": "2026-11-13/microsoft-365-panne-mondiale",
+      "slug": "microsoft-365-panne-mondiale",
+      "theme": "outage",
+      "title": "Microsoft 365 : panne mondiale d'Exchange Online, Outlook et Teams le 12 novembre",
+      "summary": "Depuis jeudi 12 novembre, vers 19 h (heure de Paris), des utilisateurs du monde entier ne parviennent plus à se connecter à Microsoft 365. Microsoft a d'abord signalé des difficultés d'accès aux boîtes Exchange Online dans les Amériques (incident EX1550543), puis reconnu que toutes les régions pouvaient être touchées (incident MO1550821). Teams, SharePoint Online, Copilot et Defender XDR sont aussi concernés. Selon Microsoft, la charge élevée ne vient pas d'une hausse de trafic mais de serveurs devenus indisponibles, ce qui sature les autres. Un processus d'établissement des connexions sécurisées était submergé, et les serveurs échouaient aux contrôles de santé automatiques. Microsoft a suspendu ses déploiements, redirigé le trafic, redémarré des serveurs et commencé à annuler un changement de configuration réseau récent. Ses premières mesures n'ont pas apporté le soulagement attendu. Dans la nuit, l'éditeur indiquait que les serveurs remis en service restaient stables et que la récupération était lente. Aucune date de retour à la normale n'était donnée. Microsoft n'a divulgué ni cause racine confirmée ni preuve de cyberattaque. Un incident Teams distinct avait eu lieu plus tôt dans la journée.",
+      "why_it_matters": "Si vous dépendez d'Exchange Online ou de Teams, attendez-vous à une reprise progressive et à des écarts selon les applications. Vérifiez les incidents dans le centre d'administration, qui peut lui-même être inaccessible. Un plan de communication hors Microsoft reste utile. La cause racine, annoncée plus tard, mérite d'être lue.",
+      "sources": [
+        {
+          "article_id": "c002",
+          "feed": "Numerama (pannes)",
+          "title": "Une panne géante frappe Microsoft : Outlook et Microsoft 365 impactés, voici ce que l’on sait",
+          "url": "https://www.numerama.com/tech/2373485-une-panne-geante-frappe-microsoft-outlook-teams-et-microsoft-365-inaccessibles-voici-ce-que-lon-sait.html",
+          "key": "link:https://numerama.com/tech/2373485-une-panne-geante-frappe-microsoft-outlook-teams-et-microsoft-365-inaccessibles-voici-ce-que-lon-sait.html"
+        },
+        {
+          "article_id": "c031",
+          "feed": "Le Monde Pixels (pannes)",
+          "title": "Une panne mondiale d’Outlook perturbe l’accès aux e-mails",
+          "url": "https://www.lemonde.fr/pixels/article/2026/11/13/une-panne-mondiale-d-outlook-empeche-des-dizaines-de-milliers-d-utilisateurs-d-acceder-a-leurs-e-mails_6809171_4408996.html",
+          "key": "link:https://lemonde.fr/pixels/article/2026/11/13/une-panne-mondiale-d-outlook-empeche-des-dizaines-de-milliers-d-utilisateurs-d-acceder-a-leurs-e-mails_6809171_4408996.html"
+        },
+        {
+          "article_id": "c049",
+          "feed": "SecurityWeek",
+          "title": "Microsoft 365 Outage Disrupts Outlook, Exchange Online and Teams",
+          "url": "https://www.securityweek.com/microsoft-365-outage-disrupts-outlook-exchange-online-and-teams/",
+          "key": "link:https://securityweek.com/microsoft-365-outage-disrupts-outlook-exchange-online-and-teams"
+        },
+        {
+          "article_id": "c056",
+          "feed": "BleepingComputer",
+          "title": "Massive Microsoft 365 outage disrupts Outlook, Teams, Copilot worldwide",
+          "url": "https://www.bleepingcomputer.com/news/microsoft/massive-microsoft-365-outage-disrupts-outlook-teams-copilot-worldwide/",
+          "key": "link:https://bleepingcomputer.com/news/microsoft/massive-microsoft-365-outage-disrupts-outlook-teams-copilot-worldwide"
+        },
+        {
+          "article_id": "c080",
+          "feed": "Frandroid (pannes)",
+          "title": "Outlook en panne : des milliers d’utilisateurs privés de leurs mails ce jeudi soir",
+          "url": "https://www.frandroid.com/marques/microsoft/3321267_outlook-en-panne-des-milliers-dutilisateurs-prives-de-leurs-mails-ce-jeudi-soir",
+          "key": "link:https://frandroid.com/marques/microsoft/3321267_outlook-en-panne-des-milliers-dutilisateurs-prives-de-leurs-mails-ce-jeudi-soir"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-13/n-able-n-central-4everable2shell",
+      "slug": "n-able-n-central-4everable2shell",
+      "theme": "breach",
+      "title": "Mise à jour : N-central, 4EverAble2Shell exploité pour installer des mineurs, y compris sur HF2",
+      "summary": "Sean Bales a publié le 12 novembre deux nouvelles familles de failles, 4EverAble2Shell et Agent2Shell, avec des preuves de concept testées contre N-central 2026.4 HF2 (build 2026.4.1.26). 4EverAble2Shell permet une exécution de commandes root sans authentification, en enchaînant l'Apache Axis CVE-2026-90436 (CVSS 9.8) et une élévation de privilèges propre à N-central. N-able précise que l'attaque dépend de l'activation de la Legacy API, exposée sur Internet, désactivée par défaut. Agent2Shell vise les agents Windows et donne un accès SYSTEM. Previdian a observé des sondages dès environ 08 h 30 UTC. Huntback a compté 21 serveurs infectés par un mineur XMRig, dont 19 sous Hotfix 2, depuis une même IP. N-able a désactivé la Legacy API et l'intégration Intune sur les environnements hébergés, et demande aux clients sur site de couper la Legacy API et de mettre à jour agents et sondes.",
+      "why_it_matters": "Si vous exploitez N-central sur site, désactivez immédiatement la Legacy API et mettez à jour agents et sondes. Le Hotfix 2 ne suffit pas. Un serveur touché doit être considéré comme entièrement compromis, car il gère les postes de vos clients.",
+      "update_of": "2026-11-12/n-able-n-central-able2shell",
+      "what_is_new": "De nouvelles failles, 4EverAble2Shell et Agent2Shell, contournent le Hotfix 2 et sont exploitées pour déployer des mineurs sur au moins 21 serveurs.",
+      "sources": [
+        {
+          "article_id": "c004",
+          "feed": "The Hacker News",
+          "title": "Hackers Exploit N-central Flaws to Infect 21 Servers, Including 19 Running Hotfix 2",
+          "url": "https://thehackernews.com/2026/11/hackers-exploit-n-central-flaws-to.html",
+          "key": "link:https://thehackernews.com/2026/11/hackers-exploit-n-central-flaws-to.html"
+        },
+        {
+          "article_id": "c149",
+          "feed": "The Hacker News",
+          "title": "New N-central Exploits Work Against Patched Servers, Enable Root RCE and Windows SYSTEM Access",
+          "url": "https://thehackernews.com/2026/11/new-n-central-exploits-work-against.html",
+          "key": "link:https://thehackernews.com/2026/11/new-n-central-exploits-work-against.html"
+        },
+        {
+          "article_id": "c061",
+          "feed": "BleepingComputer",
+          "title": "New N-able \"4EverAble2Shell\" zero-day exploited hours after PoC released",
+          "url": "https://www.bleepingcomputer.com/news/security/new-n-able-4everable2shell-zero-day-exploited-hours-after-poc-released/",
+          "key": "link:https://bleepingcomputer.com/news/security/new-n-able-4everable2shell-zero-day-exploited-hours-after-poc-released"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-13/github-wfx-voleur-secrets-ci",
+      "slug": "github-wfx-voleur-secrets-ci",
+      "theme": "breach",
+      "title": "GitHub : 4 837 comptes détournés servent à planter un voleur de secrets CI",
+      "summary": "Selon Aikido Security, un attaquant a utilisé depuis mardi les identifiants volés de 4 837 comptes GitHub pour installer un voleur de secrets dans les dépôts accessibles en écriture. Il a tourné dans au moins 1 806 dépôts. Chaque attaque commence par une pull request intitulée « docs: dependency audit notes » depuis une branche wfx-docs, ouverte dans 61 764 dépôts. SafeDep compte 8 093 dépôts ayant reçu des commits malveillants entre mardi 12 h 46 UTC et vendredi 04 h 36 UTC, dont 7 309 par modification d'un workflow existant et 771 par un hook npm postinstall. L'attaquant annule généralement le changement en quelques minutes et supprime les logs. Le voleur cible les secrets Actions, le GITHUB_TOKEN, les jetons OIDC et les identifiants cloud, puis les envoie par HTTP POST ou Telegram. L'analyse n'explique pas comment les identifiants ont été obtenus.",
+      "why_it_matters": "Cherchez dans vos dépôts les branches wfx-docs et les messages de commit listés. En cas de trace, faites tourner tous les secrets et rôles cloud accessibles aux workflows, révoquez jetons, clés SSH et sessions, activez la 2FA. Une machine ayant exécuté npm install sur un commit touché est à considérer compromise.",
+      "sources": [
+        {
+          "article_id": "c173",
+          "feed": "The Hacker News",
+          "title": "Attacker Used 4,837 Hijacked GitHub Accounts to Run a CI Secret Stealer in 1,806+ Repositories",
+          "url": "https://thehackernews.com/2026/11/4837-hijacked-github-accounts-ran-ci.html",
+          "key": "link:https://thehackernews.com/2026/11/4837-hijacked-github-accounts-ran-ci.html"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-13/red-hat-quay-cve-2026-123710",
+      "slug": "red-hat-quay-cve-2026-123710",
+      "theme": "breach",
+      "title": "Red Hat Quay : CVE-2026-123710 (CVSS 9.8) permet de lire et écraser toutes les images privées",
+      "summary": "Une faille critique de Red Hat Quay, CVE-2026-123710 (CVSS 9.8), permet à un attaquant atteignant le registre de lire et d'écraser les images privées de tous les dépôts. Le serveur de clés de Quay ne vérifie pas que le jeton présenté a été émis pour une rotation de clé. Un jeton anonyme issu de /v2/auth suffit, l'accès anonyme étant activé par défaut, et sinon n'importe quel compte valide. L'attaquant ajoute sa clé de signature, sans expiration, qui survit aux redémarrages et aux changements de mots de passe ou de jetons robot. Il peut aussi supprimer les clés légitimes et casser les push et pull. Une seconde faille, CVE-2026-110697 (CVSS 9.9), permet de voler les jetons robot d'autres locataires via un motif SQL LIKE non échappé. Red Hat a publié des builds corrigés pour huit branches de Quay 3. Selon The Hacker News, aucune des huit annonces ne cite CVE-2026-110697.",
+      "why_it_matters": "Si vous utilisez Quay, y compris comme registre OpenShift, installez la version corrigée. D'ici là, bloquez /keys au proxy sauf pour les composants internes, cherchez les événements service_key_rotate et service_key_delete avec expiration_date nulle, et supprimez les clés inconnues. Faites tourner les jetons robot concernés.",
+      "sources": [
+        {
+          "article_id": "c095",
+          "feed": "The Hacker News",
+          "title": "Critical Red Hat Quay Flaw Lets Attackers Read and Overwrite All Private Container Images in a Registry",
+          "url": "https://thehackernews.com/2026/11/critical-red-hat-quay-flaw-lets.html",
+          "key": "link:https://thehackernews.com/2026/11/critical-red-hat-quay-flaw-lets.html"
+        },
+        {
+          "article_id": "c170",
+          "feed": "SecurityWeek",
+          "title": "Critical Red Hat Quay Vulnerability Could Expose Private Container Images",
+          "url": "https://www.securityweek.com/critical-red-hat-quay-vulnerability-could-expose-private-container-images/",
+          "key": "link:https://securityweek.com/critical-red-hat-quay-vulnerability-could-expose-private-container-images"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-13/citrix-netscaler-correctifs-novembre",
+      "slug": "citrix-netscaler-correctifs-novembre",
+      "theme": "breach",
+      "title": "Citrix corrige 12 failles NetScaler, Console et Secure Access Client, dont un contournement d'authentification",
+      "summary": "Citrix a publié des correctifs pour plusieurs failles critiques de NetScaler ADC, NetScaler Gateway et NetScaler Console. Neuf CVE de corruption ou débordement mémoire (CVSS de 9,3 à 9,5) peuvent provoquer un déni de service, dans le traitement des paquets, SMPP, DNS et DoH, NetScaler Push, l'OTP par e-mail, Endpoint Analysis et le proxy ICA. Beaucoup dépendent de la configuration. CVE-2026-120869 (CVSS 9,4) est un contournement d'authentification dans NetScaler Console, corrigé en 14.1-74.34. Deux élévations de privilèges locales (CVSS 8,5) touchent Secure Access Client pour Windows (corrigé en 26.11.1.6) et Linux (26.10.4). Les correctifs NetScaler sont dans les versions 14.1-73.57, 13.1-64.39 et leurs variantes FIPS. Citrix dit ne connaître aucune exploitation et indique que ces mises à jour suivent une revue de code assistée par IA.",
+      "why_it_matters": "Les NetScaler exposés sont des cibles habituelles. Identifiez vos virtual servers concernés (VPN, AAA, DNS, SMPP) et planifiez la montée vers les versions corrigées, ainsi que celle de NetScaler Console. Aucune exploitation connue, mais la fenêtre se referme vite après publication.",
+      "sources": [
+        {
+          "article_id": "c105",
+          "feed": "The Hacker News",
+          "title": "Citrix Patches 12 NetScaler and Secure Access Client Flaws, Including Authentication Bypass",
+          "url": "https://thehackernews.com/2026/11/citrix-patches-12-netscaler-and-secure.html",
+          "key": "link:https://thehackernews.com/2026/11/citrix-patches-12-netscaler-and-secure.html"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-13/screenconnect-sckit-rmm-plus",
+      "slug": "screenconnect-sckit-rmm-plus",
+      "theme": "breach",
+      "title": "Mise à jour : ScreenConnect, le malware SCKit et l'extension RMM+ à l'origine des intrusions",
+      "summary": "Selon un rapport mis à jour de Huntress, les attaques ont compromis au moins 288 postes dans 48 organisations, tous en 90 minutes. L'accès initial passerait par RMM+, une extension tierce : ses versions 1.0.31 et 1.0.32 acceptaient une clé d'accès vide si l'administrateur n'en avait jamais défini, ce qui permettait d'exécuter des commandes sans authentification ni MFA. ConnectWise a désactivé cinq extensions tierces dans environ 400 environnements partenaires, en précisant que leur présence ne signifie pas compromission. Huntress et Blackpoint décrivent SCKit, un ensemble de 16 scripts qui installe des clients ScreenConnect persistants et tente de se propager aux techniciens via le composant RelayTrap, en exploitant CVE-2026-84869, déjà corrigée. Aucune exploitation réussie n'a été observée, et l'exploit a échoué contre un client patché.",
+      "why_it_matters": "Si vous administrez ScreenConnect, vérifiez la présence de RMM+ ou d'extensions apparentées, et cherchez des clients ScreenConnect inconnus sur vos postes. Gardez le client à jour : le volet worm visant les techniciens repose sur une faille déjà corrigée.",
+      "update_of": "2026-11-12/screenconnect-clients-rogues-sckit",
+      "what_is_new": "Huntress identifie RMM+ (versions 1.0.31 et 1.0.32, clé d'accès vide acceptée) comme accès initial probable et décrit le toolkit SCKit.",
+      "sources": [
+        {
+          "article_id": "c034",
+          "feed": "BleepingComputer",
+          "title": "New worm-like 'SCKit' malware targets MSPs in ScreenConnect attacks",
+          "url": "https://www.bleepingcomputer.com/news/security/new-worm-like-sckit-malware-targets-msps-in-screenconnect-attacks/",
+          "key": "link:https://bleepingcomputer.com/news/security/new-worm-like-sckit-malware-targets-msps-in-screenconnect-attacks"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-13/tsmc-fuite-employes-revendiquee",
+      "slug": "tsmc-fuite-employes-revendiquee",
+      "theme": "leak",
+      "title": "TSMC : 46 000 dossiers d'employés proposés à la vente, entre revendication et confirmation",
+      "summary": "Selon DataBreaches.net, qui reprend un article chinois traduit automatiquement, des pirates vendent sur un forum clandestin des données censées appartenir à des employés de TSMC : 46 000 enregistrements, soit 6,9 Go. Le même article indique que TSMC souligne n'avoir trouvé aucune preuve d'intrusion dans son système. Les titres de presse divergent : Moneycontrol évoque une demande de 220 000 dollars, FinanceFeeds parle de 3 bitcoins et d'une confirmation de fuite par TSMC. Nous ne disposons que d'extraits : la nature exacte de la fuite, sa source et les montants sont à confirmer.",
+      "why_it_matters": "Pas d'action technique directe. Le cas montre une divergence fréquente : un vendeur revendique, l'entreprise nie une intrusion, la source de la fuite reste incertaine, peut-être un tiers. Pour les équipes touchées, le risque principal est l'hameçonnage ciblé.",
+      "sources": [
+        {
+          "article_id": "c003",
+          "feed": "Google Actualités : breaches EN",
+          "title": "Chip giant TSMC hit by massive data leak; hackers claim 46,000 employee records, demand $220,000 - Moneycontrol.com",
+          "url": "https://news.google.com/rss/articles/CBMi5AFBVV95cUxNY3ZBLWF0ZzdxcGYwZzR5blRvWGhmUVdxeE5KbmEwZzhHNU5kQW5FRVhJUmExLUtRXzNQZkNMN3piWVl3RFdjZ2wtWGg0djdfbGlySnlRcWs0S2RGSjRIVFE5Wno0R1QzYWxUVnFsV2FrVlU3Mm5aWldqY1hXUllDcWNlTG9FSmMwRUtEWUhydjB6blFRNHhOUGxwZWFEQUdjVW5Yd2dkR19fOXE4WVZOanhTSUNZT3JrbmxZZ3cyMGptdklmVTVLRHJQcGRwSE1mSGNZUnlVREVpSlJmZ2E4WHRHYjbSAeoBQVVfeXFMTUZRR2YxUV9Kb0h0VF9EcGRfYlVleFZBNkVaa3NIM3ZKNVJxRnFzRFNDOUtTQm5jU2NVNGpyVmYtVHJac0tLZFJmMHFzRk9GeTRBNUxtVnV2MWgwZElEcW9IZDZ4cUJrWTVLLVZ5cjR4NldYQWhaWmhZTVR1X18ybmFZRURfN3FGMzBPUU1lTndkcEdtR3p5NUlZZjhPRDhFRHRKdm9fSDU0dDJhQzd1VzdhaDV0RER1RGxlMmJXSW5CMHdOVUJTMGZFLWJ0bEVNb1lkV0VIN2d3cnhEd0NYdVY0aldPX0M5bTJB?oc=5",
+          "key": "link:https://news.google.com/rss/articles/CBMi5AFBVV95cUxNY3ZBLWF0ZzdxcGYwZzR5blRvWGhmUVdxeE5KbmEwZzhHNU5kQW5FRVhJUmExLUtRXzNQZkNMN3piWVl3RFdjZ2wtWGg0djdfbGlySnlRcWs0S2RGSjRIVFE5Wno0R1QzYWxUVnFsV2FrVlU3Mm5aWldqY1hXUllDcWNlTG9FSmMwRUtEWUhydjB6blFRNHhOUGxwZWFEQUdjVW5Yd2dkR19fOXE4WVZOanhTSUNZT3JrbmxZZ3cyMGptdklmVTVLRHJQcGRwSE1mSGNZUnlVREVpSlJmZ2E4WHRHYjbSAeoBQVVfeXFMTUZRR2YxUV9Kb0h0VF9EcGRfYlVleFZBNkVaa3NIM3ZKNVJxRnFzRFNDOUtTQm5jU2NVNGpyVmYtVHJac0tLZFJmMHFzRk9GeTRBNUxtVnV2MWgwZElEcW9IZDZ4cUJrWTVLLVZ5cjR4NldYQWhaWmhZTVR1X18ybmFZRURfN3FGMzBPUU1lTndkcEdtR3p5NUlZZjhPRDhFRHRKdm9fSDU0dDJhQzd1VzdhaDV0RER1RGxlMmJXSW5CMHdOVUJTMGZFLWJ0bEVNb1lkV0VIN2d3cnhEd0NYdVY0aldPX0M5bTJB?oc=5"
+        },
+        {
+          "article_id": "c041",
+          "feed": "DataBreaches.net",
+          "title": "TSMC has reportedly leaked the personal data of 46,000 employees, but emphasized that no evidence of intrusion was found in the system.",
+          "url": "https://databreaches.net/2026/11/12/tsmc-has-reportedly-leaked-the-personal-data-of-46000-employees-but-emphasized-that-no-evidence-of-intrusion-was-found-in-the-system/",
+          "key": "link:https://databreaches.net/2026/11/12/tsmc-has-reportedly-leaked-the-personal-data-of-46000-employees-but-emphasized-that-no-evidence-of-intrusion-was-found-in-the-system"
+        },
+        {
+          "article_id": "c059",
+          "feed": "Google Actualités : fuites FR",
+          "title": "Action TSM : TSMC confirme une fuite de données d’employés alors qu’un vendeur réclame 3 Bitcoin pour les dossiers - FinanceFeeds",
+          "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE5aSXk3MnF3VzJydGRDWERkX1kwRnkzb09OXy1YVHg0XzBuWnI5TnJXX3hEbjdRQ2xLVnp2aHRUbjdJc3dzT2hzeUdTZ3RZV3NJVTFrQnRMSkxKTnBkcy00OXhhLWszRHZDSVVwMndzQjU0TTVzVFdrcmhGMHZJQQ?oc=5",
+          "key": "link:https://news.google.com/rss/articles/CBMifkFVX3lxTE5aSXk3MnF3VzJydGRDWERkX1kwRnkzb09OXy1YVHg0XzBuWnI5TnJXX3hEbjdRQ2xLVnp2aHRUbjdJc3dzT2hzeUdTZ3RZV3NJVTFrQnRMSkxKTnBkcy00OXhhLWszRHZDSVVwMndzQjU0TTVzVFdrcmhGMHZJQQ?oc=5"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-13/rust-1-100-0",
+      "slug": "rust-1-100-0",
+      "theme": "new_tech",
+      "title": "Rust 1.100.0 : type never stabilisé, début de l'API Allocator, dépendances inutilisées dans Cargo",
+      "summary": "Rust 1.100.0 est sorti. Selon LWN, les changements notables incluent la stabilisation du type never, de parties essentielles de l'API Allocator et le signalement par Cargo des dépendances inutilisées. Nous n'avons que le résumé de l'annonce, sans détail sur la portée de ces changements ni sur les éventuelles incompatibilités.",
+      "why_it_matters": "Le signalement des dépendances inutilisées par Cargo peut alléger les builds et réduire la surface de la chaîne d'approvisionnement dans vos pipelines CI. Lisez les notes de version complètes avant de monter la version de vos toolchains.",
+      "sources": [
+        {
+          "article_id": "c070",
+          "feed": "LWN",
+          "title": "Rust 1.100.0 released",
+          "url": "https://lwn.net/Articles/1107187/",
+          "key": "link:https://lwn.net/Articles/1107187"
+        }
+      ]
+    }
+  ],
+  "episode_title": "Microsoft 365 à genoux, N-central et ScreenConnect en pleine tourmente",
+  "script": [
+    {
+      "speaker": "Camille",
+      "text": "Salut et bienvenue dans La veille. On est le vendredi 13 novembre 2026. Au programme : la grosse panne Microsoft 365, deux suites de feuilleton côté N-central et ScreenConnect, des secrets CI volés sur GitHub, des correctifs chez Red Hat et Citrix, une fuite chez TSMC, et un peu de Rust pour finir.",
+      "style": "relaxed, warm morning tone"
+    },
+    {
+      "speaker": "Max",
+      "text": "Salut Camille. Un vendredi 13 avec ce programme, je dis juste que ça tombe bien. Allez, on commence par Microsoft, parce que j'imagine que certains ont eu une soirée sympa hier.",
+      "style": "relaxed, amused"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Oui. Depuis jeudi vers 19 heures, heure de Paris, des gens dans le monde entier n'arrivent plus à se connecter à Microsoft 365. Au début, Microsoft parlait de boîtes Exchange Online inaccessibles dans les Amériques, puis a reconnu que toutes les régions pouvaient être touchées. Teams, SharePoint Online, Copilot et Defender XDR sont aussi concernés.",
+      "style": "calm, explaining"
+    },
+    {
+      "speaker": "Max",
+      "text": "Et c'est quoi la cause ? Une attaque ?",
+      "style": "curious"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Pas de preuve de cyberattaque, et pas de cause racine confirmée pour l'instant. Microsoft explique que ce n'est pas une hausse de trafic. Des serveurs deviennent indisponibles, du coup les autres saturent. Un processus qui établit les connexions sécurisées était submergé, et les serveurs ratent les contrôles de santé automatiques.",
+      "style": "measured"
+    },
+    {
+      "speaker": "Max",
+      "text": "Le classique effet domino. Perso, ça me fait penser à ces pannes où chaque serveur qui tombe reporte sa charge sur les voisins. Et ils ont fait quoi ?",
+      "style": "thoughtful"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Ils ont suspendu les déploiements, redirigé le trafic, redémarré des serveurs, et commencé à annuler un changement de configuration réseau récent. Les premières mesures n'ont pas donné le soulagement attendu. Dans la nuit, les serveurs remis en service restaient stables, mais la récupération est lente, sans date de retour à la normale.",
+      "style": "calm"
+    },
+    {
+      "speaker": "Max",
+      "text": "Donc conseil pratique : prévois un canal de communication hors Microsoft. Et vérifie les incidents dans le centre d'administration, même si lui aussi peut être inaccessible. Ironique.",
+      "style": "dry, amused"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Exactement. Et la cause racine, quand elle sortira, elle vaudra la lecture. Bon, on passe aux suites. Tu te souviens de N-central, le truc de N-able, hier ?",
+      "style": "relaxed"
+    },
+    {
+      "speaker": "Max",
+      "text": "Oui, les failles divulguées par Sean Bales. Et là, ça empire : deux nouvelles familles, 4EverAble2Shell et Agent2Shell, avec des preuves de concept testées contre N-central 2026.4 HF2. Donc le Hotfix 2 ne suffit pas.",
+      "style": "concerned"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Attends, c'est exploité pour de vrai ?",
+      "style": "surprised"
+    },
+    {
+      "speaker": "Max",
+      "text": "Oui. Previdian a vu des sondages dès environ 8 h 30 UTC. Huntback a compté 21 serveurs infectés par un mineur XMRig, dont 19 sous Hotfix 2, depuis une même IP. 4EverAble2Shell donne une exécution de commandes root sans authentification, en enchaînant une faille Apache Axis, la CVE 2026 tiret 90436, CVSS 9,8, et une élévation de privilèges propre à N-central.",
+      "style": "serious"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Et ça touche tout le monde ?",
+      "style": "curious"
+    },
+    {
+      "speaker": "Max",
+      "text": "N-able précise que l'attaque dépend de la Legacy API, exposée sur Internet et désactivée par défaut. Agent2Shell, lui, vise les agents Windows et donne un accès SYSTEM. N-able a désactivé la Legacy API et l'intégration Intune sur les environnements hébergés. Sur site, il faut couper la Legacy API et mettre à jour agents et sondes.",
+      "style": "calm, explaining"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Et un serveur touché, il faut le considérer comme entièrement compromis, vu qu'il gère les postes des clients. Ça rejoint l'autre suite, ScreenConnect.",
+      "style": "serious"
+    },
+    {
+      "speaker": "Max",
+      "text": "Oui, même famille d'outils d'administration à distance. Huntress a mis à jour son rapport : au moins 288 postes dans 48 organisations compromis, tous en 90 minutes. L'accès initial passerait par RMM+, une extension tierce.",
+      "style": "relaxed, engaged"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Une extension ? Et c'était quoi le défaut ?",
+      "style": "surprised"
+    },
+    {
+      "speaker": "Max",
+      "text": "Les versions 1.0.31 et 1.0.32 acceptaient une clé d'accès vide si l'admin n'en avait jamais défini. Résultat, exécution de commandes sans authentification ni MFA. ConnectWise a désactivé cinq extensions tierces dans environ 400 environnements partenaires, en précisant que leur présence ne veut pas dire compromission.",
+      "style": "explaining"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Et le malware, SCKit ?",
+      "style": "curious"
+    },
+    {
+      "speaker": "Max",
+      "text": "Un ensemble de 16 scripts qui installe des clients ScreenConnect persistants. Il essaie aussi de se propager aux techniciens via un composant appelé RelayTrap, en exploitant la CVE 2026 tiret 84869, déjà corrigée. Aucune exploitation réussie observée, et l'exploit a échoué contre un client à jour. Donc : cherche RMM+ et des clients inconnus, et garde le client à jour.",
+      "style": "calm"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Bien. Côté supply chain maintenant, GitHub. Selon Aikido Security, depuis mardi, un attaquant utilise les identifiants volés de 4 837 comptes pour planter un voleur de secrets dans les dépôts où ces comptes ont l'accès en écriture.",
+      "style": "relaxed"
+    },
+    {
+      "speaker": "Max",
+      "text": "4 837 comptes, ça pique. Et ça marche comment ?",
+      "style": "amazed"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Une pull request intitulée docs: dependency audit notes, depuis une branche wfx-docs, ouverte dans 61 764 dépôts. SafeDep compte 8 093 dépôts avec des commits malveillants entre mardi et vendredi matin : 7 309 par modification d'un workflow existant, 771 par un hook npm postinstall. L'attaquant annule généralement le changement en quelques minutes et supprime les logs.",
+      "style": "explaining"
+    },
+    {
+      "speaker": "Max",
+      "text": "Discret. Et il vole quoi ?",
+      "style": "concerned"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Les secrets Actions, le GITHUB_TOKEN, les jetons OIDC, les identifiants cloud, envoyés par HTTP POST ou Telegram. On ne sait pas comment les identifiants ont été obtenus. À faire : chercher les branches wfx-docs, et en cas de trace, tout faire tourner, jetons, clés SSH, sessions, rôles cloud, et activer la 2FA. Une machine qui a fait npm install sur un commit touché, on la considère compromise.",
+      "style": "calm"
+    },
+    {
+      "speaker": "Max",
+      "text": "Passons à Red Hat Quay. La CVE 2026 tiret 123710, CVSS 9,8. Un attaquant qui atteint le registre peut lire et écraser les images privées de tous les dépôts.",
+      "style": "serious"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Tous les dépôts ? Il faut être authentifié ?",
+      "style": "surprised"
+    },
+    {
+      "speaker": "Max",
+      "text": "Même pas vraiment. Le serveur de clés ne vérifie pas que le jeton a été émis pour une rotation de clé. Un jeton anonyme suffit, et l'accès anonyme est activé par défaut. L'attaquant ajoute sa clé de signature, sans expiration, qui survit aux redémarrages et aux changements de mots de passe. Il peut aussi supprimer les clés légitimes et casser les push et pull.",
+      "style": "explaining"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Aïe. Et il y a une seconde faille, non ?",
+      "style": "concerned"
+    },
+    {
+      "speaker": "Max",
+      "text": "Oui, la CVE 2026 tiret 110697, CVSS 9,9, qui permet de voler les jetons robot d'autres locataires via un motif SQL LIKE non échappé. Red Hat a sorti des builds corrigés pour huit branches de Quay 3, mais selon The Hacker News, aucune des huit annonces ne cite cette seconde CVE. En attendant, bloque /keys au proxy sauf pour les composants internes, cherche les événements service_key_rotate et service_key_delete avec une expiration nulle.",
+      "style": "calm"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Et chez Citrix, grosse fournée aussi. Douze failles sur NetScaler ADC, Gateway et Console. Neuf CVE de corruption ou débordement mémoire, CVSS de 9,3 à 9,5, qui peuvent provoquer un déni de service. Beaucoup dépendent de la configuration.",
+      "style": "relaxed"
+    },
+    {
+      "speaker": "Max",
+      "text": "Le plus gênant, c'est lequel ?",
+      "style": "curious"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Probablement la CVE 2026 tiret 120869, un contournement d'authentification dans NetScaler Console, CVSS 9,4, corrigé en 14.1-74.34. Il y a aussi deux élévations de privilèges locales dans Secure Access Client, Windows et Linux. Citrix ne connaît aucune exploitation et dit que ces mises à jour viennent d'une revue de code assistée par IA.",
+      "style": "explaining"
+    },
+    {
+      "speaker": "Max",
+      "text": "Perso, les NetScaler exposés sont des cibles habituelles, donc je planifierais vite la montée vers les versions corrigées. La fenêtre se referme vite après publication.",
+      "style": "dry"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Allez, une fuite plus floue : TSMC. Selon DataBreaches.net, des pirates vendent sur un forum 46 000 enregistrements, 6,9 gigaoctets, censés être des données d'employés.",
+      "style": "relaxed"
+    },
+    {
+      "speaker": "Max",
+      "text": "Censés. Et TSMC dit quoi ?",
+      "style": "skeptical"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Que l'entreprise n'a trouvé aucune preuve d'intrusion dans son système. Mais les titres divergent : Moneycontrol parle de 220 000 dollars, FinanceFeeds de 3 bitcoins et d'une confirmation de fuite. On n'a que des extraits, donc tout est à confirmer. Le risque principal pour les employés, ce serait l'hameçonnage ciblé.",
+      "style": "measured"
+    },
+    {
+      "speaker": "Max",
+      "text": "Et pour finir sur du positif : Rust 1.100.0 est sorti. Selon LWN, le type never est stabilisé, des parties essentielles de l'API Allocator aussi, et Cargo signale les dépendances inutilisées.",
+      "style": "relaxed"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Ce dernier point me plaît : moins de dépendances, ça peut alléger les builds et réduire la surface de la chaîne d'approvisionnement. On n'a que le résumé de l'annonce, donc lis les notes complètes avant de monter tes toolchains.",
+      "style": "upbeat"
+    },
+    {
+      "speaker": "Max",
+      "text": "Courage à ceux qui sont encore sans Outlook. Bon week-end, patchez bien.",
+      "style": "warm, relaxed"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Merci d'avoir écouté. À demain pour La veille !",
+      "style": "warm"
+    }
+  ],
+  "episode": {
+    "title": "Microsoft 365 à genoux, N-central et ScreenConnect en pleine tourmente",
+    "release_tag": "ep-2026-11-13",
+    "mp3_url": "https://github.com/Elohyrr/veille/releases/download/ep-2026-11-13/veille-2026-11-13.mp3",
+    "bytes": 4432941,
+    "duration_s": 554,
+    "tts_provider": "openrouter"
+  },
+  "usage": {
+    "digest": {
+      "model": "sonnet",
+      "in": 30684,
+      "out": 4863,
+      "cost_usd": 0.17136200000000001
+    },
+    "podcast": {
+      "model": "sonnet",
+      "in": 6585,
+      "out": 4634,
+      "cost_usd": 0.07267599999999999
+    },
+    "triage": {
+      "model": "haiku",
+      "in": 37392,
+      "out": 5899,
+      "cost_usd": 0.0104277
+    }
+  }
+}
