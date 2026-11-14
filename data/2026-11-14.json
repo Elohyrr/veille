@@ -1,0 +1,554 @@
+{
+  "date": "2026-11-14",
+  "published_at": "2026-11-14T20:31:59Z",
+  "intro": "Journée marquée par la fin de la panne Microsoft 365, un arrêt des vols aux États-Unis, une attaque contre des passerelles Check Point et des correctifs PostgreSQL en masse. Côté fuites, Maileva et le fournisseur Fireworks AI dominent.",
+  "topics": [
+    {
+      "id": "2026-11-14/microsoft-365-panne-mondiale",
+      "slug": "microsoft-365-panne-mondiale",
+      "theme": "outage",
+      "title": "Mise à jour : Microsoft 365 rétabli après près de 38 heures de panne, cause réseau avancée",
+      "summary": "Microsoft a annoncé samedi vers 7 heures le rétablissement complet de Microsoft 365 pour tous les clients et régions, soit près de 38 heures après l'ouverture de l'incident jeudi à 17 h 17. Selon Microsoft, la cause est un défaut introduit lors d'une augmentation de capacité du réseau, apparu après une modification réseau ultérieure. Les serveurs touchés sont tombés en cascade, sans hausse de trafic. L'entreprise affirme qu'aucune activité malveillante n'a été détectée et que le problème n'a aucun lien avec l'IA ou les agents. Elle s'est excusée sur X et promet un rapport post-incident détaillé. Étaient touchés Exchange Online, la planification Teams, Copilot, SharePoint, Intune, Planner, Outlook.com et OneDrive. Des mails retardés peuvent encore arriver. Selon la presse spécialisée, une campagne d'hameçonnage imite les notifications d'état de service en citant la vraie référence EX1550543.",
+      "why_it_matters": "Si vous administrez un tenant Microsoft 365, surveillez les mails retardés et prévenez vos utilisateurs du phishing citant la référence d'incident : consultez l'état uniquement via le centre d'administration. Les crédits de service prévus au contrat ne sont pas automatiques et doivent être demandés. Attendez le rapport post-incident pour juger de la cause réelle.",
+      "update_of": "2026-11-13/microsoft-365-panne-mondiale",
+      "what_is_new": "Microsoft annonce le rétablissement complet samedi vers 7 heures, attribue la panne à une mise à niveau de capacité réseau défectueuse et écarte cyberattaque et IA.",
+      "sources": [
+        {
+          "article_id": "c032",
+          "feed": "Frandroid (pannes)",
+          "title": "Outlook et Teams rétablis : Microsoft explique sa panne mondiale de près de 38 heures",
+          "url": "https://www.frandroid.com/marques/microsoft/3321615_outlook-et-teams-retablis-microsoft-explique-sa-panne-mondiale-de-pres-de-38-heures",
+          "key": "link:https://frandroid.com/marques/microsoft/3321615_outlook-et-teams-retablis-microsoft-explique-sa-panne-mondiale-de-pres-de-38-heures"
+        },
+        {
+          "article_id": "c055",
+          "feed": "Numerama (pannes)",
+          "title": "Panne géante : Microsoft balaie la théorie d’un agent IA qui aurait dérapé",
+          "url": "https://www.numerama.com/tech/2374527-panne-geante-microsoft-balaie-la-theorie-dun-agent-ia-qui-aurait-derape.html",
+          "key": "link:https://numerama.com/tech/2374527-panne-geante-microsoft-balaie-la-theorie-dun-agent-ia-qui-aurait-derape.html"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-14/check-point-php2shell-wiper-esxi",
+      "slug": "check-point-php2shell-wiper-esxi",
+      "theme": "breach",
+      "title": "Passerelles Check Point : PHP2Shell, élévation root CVE-2026-123039 et wiper sur ESXi",
+      "summary": "Check Point détaille une campagne contre des Security Gateways non corrigées, commencée le 30 octobre contre des organisations israéliennes, puis élargie le 2 novembre à plusieurs pays et secteurs. L'attaquant entre par le portail Mobile Access via PHP2Shell (CVE-2026-109618 et CVE-2026-109619), puis passe root avec CVE-2026-123039 (CVSS 7.8), une faille de DynamicCLI jusque-là inconnue. Il installe des webshells PHP et la porte dérobée TSGA avec son composant TSProxy. Dans la première vague, il a rebondi en SSH vers des hôtes VMware ESXi et déployé le wiper destroy_v6, laissant une note DREAM_ANNEXATION.txt. Check Point dit avoir observé l'exploitation contre environ deux douzaines de clients. L'attribution reste incertaine : des liens avec PhiliKit, associé à UNC5221, sont évoqués avec prudence, et des messages politiques posent la question d'un faux drapeau. Check Point recommande le Jumbo Hotfix de novembre.",
+      "why_it_matters": "Si vous exploitez des passerelles Check Point avec Mobile Access exposé, installez le Jumbo Hotfix de novembre sur les Management Servers et les gateways. Cherchez les fichiers de session contenant upload_progress_pwn, des processus CPconfigdaemon inattendus, des trous dans les logs du pare-feu et tout SSH de la passerelle vers vos ESXi.",
+      "sources": [
+        {
+          "article_id": "c115",
+          "feed": "BleepingComputer",
+          "title": "Check Point gateways hacked via PHP2Shell to deploy VMware ESXi wiper",
+          "url": "https://www.bleepingcomputer.com/news/security/check-point-gateways-hacked-via-php2shell-to-deploy-vmware-esxi-wiper/",
+          "key": "link:https://bleepingcomputer.com/news/security/check-point-gateways-hacked-via-php2shell-to-deploy-vmware-esxi-wiper"
+        },
+        {
+          "article_id": "c173",
+          "feed": "The Hacker News",
+          "title": "Hackers Exploit PHP2Shell Flaws in Check Point Gateways to Deploy TSGA Backdoor and Wipe ESXi Files",
+          "url": "https://thehackernews.com/2026/11/hackers-exploit-php2shell-flaws-in.html",
+          "key": "link:https://thehackernews.com/2026/11/hackers-exploit-php2shell-flaws-in.html"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-14/cursor-fireworks-ai-extension-claude-code",
+      "slug": "cursor-fireworks-ai-extension-claude-code",
+      "theme": "breach",
+      "title": "Cursor confirme une brèche via Fireworks AI et une extension Claude Code piégée",
+      "summary": "Cursor a publié vendredi un rapport d'incident. Des attaquants ont obtenu une clé d'accès stockée chez Fireworks AI, son prestataire d'entraînement et d'inférence, et copié un bucket en lecture seule contenant des traces d'agents de code, surtout de 2025. Certaines contenaient des identifiants API non masqués, utilisés pour accéder à d'autres systèmes SaaS : dépôts non-production archivés, échanges de support, métriques d'usage. Le 29 octobre, un identifiant volé a servi à placer de fausses copies de l'extension Claude Code (versions 2.1.312 et 2.1.313) dans le cache de la place de marché, pendant environ 11 heures. Elles tentaient d'installer des portes dérobées SSH ; des erreurs de code les auraient empêchées de fonctionner sur de nombreux Windows et macOS. Cursor estime à 5 000 le nombre d'utilisateurs ayant pu les recevoir. L'extension officielle d'Anthropic et Open VSX ne sont pas touchés. Cursor a quitté Fireworks et reconstruit sa place de marché.",
+      "why_it_matters": "Si vous avez installé ou mis à jour l'extension Claude Code dans Cursor autour du 29 octobre, suivez la procédure de remédiation de Cursor : vérifiez les clés SSH autorisées et faites tourner les secrets. Plus largement, les traces d'agents peuvent contenir des secrets et les prestataires IA élargissent la surface d'attaque.",
+      "sources": [
+        {
+          "article_id": "c013",
+          "feed": "BleepingComputer",
+          "title": "Cursor confirms security breach led to malicious Claude Code extension",
+          "url": "https://www.bleepingcomputer.com/news/security/cursor-confirms-security-breach-led-to-malicious-claude-code-extension/",
+          "key": "link:https://bleepingcomputer.com/news/security/cursor-confirms-security-breach-led-to-malicious-claude-code-extension"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-14/postgresql-52-failles-cve-2026-6460",
+      "slug": "postgresql-52-failles-cve-2026-6460",
+      "theme": "breach",
+      "title": "PostgreSQL corrige 52 failles, dont CVE-2026-6460 (CVSS 8.8), exécution de code authentifiée",
+      "summary": "Les mises à jour publiées jeudi corrigent 52 failles. CVE-2026-6460 (CVSS 8.8) est une confusion de type sur les types composites : un utilisateur pouvant créer des objets peut exécuter du code avec les droits de l'utilisateur système de PostgreSQL. Sont touchées toutes les versions antérieures à 18.7, 17.12, 16.16, 15.20 et 14.25. Aucune attaque n'est signalée, mais le chercheur Mehmet Ince a publié un write-up avec un exploit partiel, sans l'étape finale d'exécution de commande. Il a prévenu en août les fournisseurs managés, dont AWS, Microsoft, Google et Supabase. Seule une faille, CVE-2026-116322, permet à un client non authentifié de provoquer un redémarrage des serveurs PostgreSQL 18. pg_restore et psql ont aussi des failles d'exécution de code via archives ou serveur source compromis. Aucun contournement n'est proposé.",
+      "why_it_matters": "Mettez à jour vers la version mineure de votre branche et reconstruisez ou mettez à jour toutes les extensions en C en même temps, sinon elles peuvent rester vulnérables. Redémarrez après mise à jour si PostgreSQL tourne hors de son unité de service, par exemple sous Patroni. Mettez aussi à jour les outils clients. Ne désactivez pas les vérifications via composite_type_mismatch.",
+      "sources": [
+        {
+          "article_id": "c111",
+          "feed": "The Hacker News",
+          "title": "PostgreSQL Patches 52 Flaws, Including 22-Year-Old Bug Enabling Authenticated RCE",
+          "url": "https://thehackernews.com/2026/11/postgresql-patches-52-flaws-including.html",
+          "key": "link:https://thehackernews.com/2026/11/postgresql-patches-52-flaws-including.html"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-14/faa-arret-des-vols-etats-unis",
+      "slug": "faa-arret-des-vols-etats-unis",
+      "theme": "outage",
+      "title": "États-Unis : arrêt national des départs par la FAA après une panne de communication",
+      "summary": "La FAA a imposé vendredi 13 novembre un arrêt national des départs après un problème de communication touchant ses centres de contrôle régional. L'ordre a été levé à 20 h 15 (heure de l'Est), plus de quatre heures après, avec des milliers de vols perturbés et des retards attendus plusieurs jours. Les autorités ne voient aucune preuve de piratage, sans l'exclure totalement. Le secrétaire aux Transports met en cause des équipements anciens : commutateurs et routeurs saturés de données produisant des informations incohérentes. Le secrétaire à la Sécurité intérieure évoque des correctifs et du nouveau matériel qui auraient surchargé l'ancien système. Selon CBS, le réseau privé reliant le contrôle aérien, exploité par L3Harris, a redémarré puis planté après une mise à jour ; le FBI examinerait une mise à jour logicielle. Aucune cause officielle n'est annoncée. Les autorités écartent un lien avec la panne Microsoft.",
+      "why_it_matters": "Cas d'école : une mise à jour appliquée à un réseau hérité saturé peut provoquer une défaillance en cascade. Pour vos propres changements réseau, prévoyez des déploiements progressifs et un retour arrière. Les causes restent à confirmer.",
+      "sources": [
+        {
+          "article_id": "c066",
+          "feed": "SecurityWeek",
+          "title": "No Signs of Hacking in FAA Ground Stop as FBI Reportedly Probes Software Update",
+          "url": "https://www.securityweek.com/no-signs-of-hacking-in-faa-ground-stop-as-fbi-reportedly-probes-software-update/",
+          "key": "link:https://securityweek.com/no-signs-of-hacking-in-faa-ground-stop-as-fbi-reportedly-probes-software-update"
+        },
+        {
+          "article_id": "c018",
+          "feed": "Google Actualités : pannes opérateurs",
+          "title": "Aux États-Unis, une panne informatique cloue des milliers d'avions au sol et révèle les failles d’une infrastructure vieillissante - MacGeneration",
+          "url": "https://news.google.com/rss/articles/CBMigAJBVV95cUxOWnlnamJocDBwSXVUN2Q3Uks1WU1jclVfQkd0TWppVi1CYkhHdnkzMlQxeDZxRHUtcXB0akowcmlDV2hGR296eDlIRXZvd3VzOXBkVExnQkJ5UlV2cmhhT0xwQXdzeFVzRVBvT1VlY1BabHpPV1ZKMG5wbjB3LWhzZ3daSGQ0RjZqLW5UNEtXX3NQTGpVLU1ibU5hTWxWdEZybjdwcXM5bFR6cmJkXzdrX1dleFpTZDN2R0RnRE9DWjlRTUh5bnBSZldxdlFMYlJNY09CcUZkN1BwU2VITHAzZjROb1hwd1Mzd1NiVmItQnczUmI5YjR0Sk9wRmItWGFJ?oc=5",
+          "key": "link:https://news.google.com/rss/articles/CBMigAJBVV95cUxOWnlnamJocDBwSXVUN2Q3Uks1WU1jclVfQkd0TWppVi1CYkhHdnkzMlQxeDZxRHUtcXB0akowcmlDV2hGR296eDlIRXZvd3VzOXBkVExnQkJ5UlV2cmhhT0xwQXdzeFVzRVBvT1VlY1BabHpPV1ZKMG5wbjB3LWhzZ3daSGQ0RjZqLW5UNEtXX3NQTGpVLU1ibU5hTWxWdEZybjdwcXM5bFR6cmJkXzdrX1dleFpTZDN2R0RnRE9DWjlRTUh5bnBSZldxdlFMYlJNY09CcUZkN1BwU2VITHAzZjROb1hwd1Mzd1NiVmItQnczUmI5YjR0Sk9wRmItWGFJ?oc=5"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-14/maileva-la-poste-22-millions",
+      "slug": "maileva-la-poste-22-millions",
+      "theme": "leak",
+      "title": "Maileva, filiale de La Poste : vol de données concernant 22 millions de personnes",
+      "summary": "Selon des médias français, Maileva, filiale de La Poste spécialisée dans l'envoi de courriers, a annoncé une cyberattaque avec vol de données concernant 22 millions de personnes. Frandroid précise que des factures d'hôpital figurent parmi les documents concernés. Nous ne disposons que de résumés d'articles : le détail des données volées, la date de l'intrusion et le mode opératoire ne sont pas précisés ici.",
+      "why_it_matters": "Si vos services ou vos clients utilisent Maileva pour l'envoi de courriers, attendez la communication officielle et préparez-vous à une hausse du phishing exploitant ces données. Les personnes concernées devraient se méfier des messages qui citent des factures ou des courriers.",
+      "sources": [
+        {
+          "article_id": "c005",
+          "feed": "Google Actualités : fuites FR",
+          "title": "Cyberattaque : Maileva, filiale de La Poste, annonce un vol de données concernant 22 millions de personnes - Police \u0026 Réalités",
+          "url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxOclFDcmRWNHlLV3FfUWFDa2w3UXAyMmktdUtPZVZ0bFA4Tk9qSVVoVEpvdkZ4ZmEtS0VRQjJMYXNhWEtXaEJISE05TXgtd0pRVk1oaUVKSS1VdGJ6UXFYaU5TTVhnWno5QXA1Y0RlSzU1bjBRNzQ4WVpxVmx0OTBTSkppaThaNFFsUXItQVlHR1E2b3hZenAwWkRObUFaVTM2S28xcFRvOGtUMThqRlA4TG80QXhRTlFENWhvclJ2X1BzLUJITUhJLXRjSC03ODBhUUt4d3ViYkoxTkU?oc=5",
+          "key": "link:https://news.google.com/rss/articles/CBMi2wFBVV95cUxOclFDcmRWNHlLV3FfUWFDa2w3UXAyMmktdUtPZVZ0bFA4Tk9qSVVoVEpvdkZ4ZmEtS0VRQjJMYXNhWEtXaEJISE05TXgtd0pRVk1oaUVKSS1VdGJ6UXFYaU5TTVhnWno5QXA1Y0RlSzU1bjBRNzQ4WVpxVmx0OTBTSkppaThaNFFsUXItQVlHR1E2b3hZenAwWkRObUFaVTM2S28xcFRvOGtUMThqRlA4TG80QXhRTlFENWhvclJ2X1BzLUJITUhJLXRjSC03ODBhUUt4d3ViYkoxTkU?oc=5"
+        },
+        {
+          "article_id": "c002",
+          "feed": "Google Actualités : fuites FR",
+          "title": "Importante fuite de données après une cyberattaque visant le groupe La Poste : 22 millions de personnes touchées - Courrier picard",
+          "url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxOc3lqVi1YU3F1b0tuZWM5SjhQNE5RNkdtWXllckZOT3Fjemx0S1Z1LVd3TEJCV2dWRnZjY1R6WmlMY2ZpRVd1MjZHLXd0RVk2V3dzMERPZE96VjVpN2tkNVl3TEV0M1BVcW52bFQwSUZVa2tmM0I2cWVwNEE2TWZBZGFfcGZOY0lNNER0RFlYdGNuNmNhbHZOcFVpdVJHTUpBVGdkdVhkcnl3dkhUcWs2QzJsSUlnV0hGSmpTbkJtSWVIa0FLOU53MTZEanlIRDZieTYwSw?oc=5",
+          "key": "link:https://news.google.com/rss/articles/CBMi1AFBVV95cUxOc3lqVi1YU3F1b0tuZWM5SjhQNE5RNkdtWXllckZOT3Fjemx0S1Z1LVd3TEJCV2dWRnZjY1R6WmlMY2ZpRVd1MjZHLXd0RVk2V3dzMERPZE96VjVpN2tkNVl3TEV0M1BVcW52bFQwSUZVa2tmM0I2cWVwNEE2TWZBZGFfcGZOY0lNNER0RFlYdGNuNmNhbHZOcFVpdVJHTUpBVGdkdVhkcnl3dkhUcWs2QzJsSUlnV0hGSmpTbkJtSWVIa0FLOU53MTZEanlIRDZieTYwSw?oc=5"
+        },
+        {
+          "article_id": "c033",
+          "feed": "Google Actualités : fuites FR",
+          "title": "Cyberattaque Maileva chez La Poste : 22 millions de personnes touchées, factures d'hôpital comprises - Frandroid",
+          "url": "https://news.google.com/rss/articles/CBMi8wFBVV95cUxNMmxrdVJ3S2pjQkhxaWtRQjVCQkt4cnNFZWtROFpWTTZ4VXFZOU5xekd4cEJlWFRSR1ZlaERlczB1NlJRMTE2a2JBcndXVENxaExRV1ZkLUVlLTFIMFpDSzVaODZWWjNTMWNVS1Nla29rcjlmU1dYN01Ha01lZDRma0Nzc0RiVXVheVpOcTc2SGNRM3Vjakx0SUlvNTdsaFdrQXcwdnFKd1RJT2J1SzJPclVWYTFJZjZFVTBhVS00QVc1c2ZzNjNkazkzSHg1NEV3Wk5aRi1PV29SdUc1YzlQZENnaFBRTGxsbDBRai1EU3IxU0k?oc=5",
+          "key": "link:https://news.google.com/rss/articles/CBMi8wFBVV95cUxNMmxrdVJ3S2pjQkhxaWtRQjVCQkt4cnNFZWtROFpWTTZ4VXFZOU5xekd4cEJlWFRSR1ZlaERlczB1NlJRMTE2a2JBcndXVENxaExRV1ZkLUVlLTFIMFpDSzVaODZWWjNTMWNVS1Nla29rcjlmU1dYN01Ha01lZDRma0Nzc0RiVXVheVpOcTc2SGNRM3Vjakx0SUlvNTdsaFdrQXcwdnFKd1RJT2J1SzJPclVWYTFJZjZFVTBhVS00QVc1c2ZzNjNkazkzSHg1NEV3Wk5aRi1PV29SdUc1YzlQZENnaFBRTGxsbDBRai1EU3IxU0k?oc=5"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-14/uber-fireworks-ai-permis",
+      "slug": "uber-fireworks-ai-permis",
+      "theme": "leak",
+      "title": "Mise à jour : Fireworks AI, des permis de conduire de chauffeurs Uber volés",
+      "summary": "Selon DataBreaches.net, Uber notifie des milliers de chauffeurs américains que leurs informations personnelles et leur permis de conduire ont été volés en octobre 2026, après la compromission de Fireworks AI, prestataire d'IA détenant des données d'Uber. La notification est datée du 10 novembre et a été déposée auprès de plusieurs États. Nous n'avons qu'un extrait, donc le nombre exact de personnes et le détail des données restent à confirmer.",
+      "why_it_matters": "Fireworks AI apparaît désormais dans plusieurs incidents, dont Notion et Cursor. Si vous lui confiez des données ou des clés, vérifiez ce qu'elle stocke, faites tourner les secrets partagés et limitez les données transmises aux prestataires IA.",
+      "update_of": "2026-11-12/notion-fireworks-ai-transcriptions",
+      "what_is_new": "Uber notifie des milliers de chauffeurs américains du vol de données personnelles et de permis de conduire via Fireworks AI.",
+      "sources": [
+        {
+          "article_id": "c025",
+          "feed": "DataBreaches.net",
+          "title": "Uber Data Breach: Driver Licenses Stolen via Fireworks AI",
+          "url": "https://databreaches.net/2026/11/14/uber-data-breach-driver-licenses-stolen-via-fireworks-ai/",
+          "key": "link:https://databreaches.net/2026/11/14/uber-data-breach-driver-licenses-stolen-via-fireworks-ai"
+        },
+        {
+          "article_id": "c016",
+          "feed": "Google Actualités : breaches EN",
+          "title": "Uber Driver Data Breach Exposes Identity Records - LinkedIn",
+          "url": "https://news.google.com/rss/articles/CBMijgFBVV95cUxNLXRhek5jcUVDem9mTXNkN0JGLXlOdGxTZ0VRbW40SlVzeTU1cUZZVmlfaTh4cDdVc1gzQmgybG1IMld3Z2EtR3h4WkZlR3RZdG13Ymk4Z2F2U1VrMnRENDZrS3oxaEdwWEtxa05LU3ZtSV91TzdlZ0dib05EWkwzT2h4aFdLdU53OHFEZHl3?oc=5",
+          "key": "link:https://news.google.com/rss/articles/CBMijgFBVV95cUxNLXRhek5jcUVDem9mTXNkN0JGLXlOdGxTZ0VRbW40SlVzeTU1cUZZVmlfaTh4cDdVc1gzQmgybG1IMld3Z2EtR3h4WkZlR3RZdG13Ymk4Z2F2U1VrMnRENDZrS3oxaEdwWEtxa05LU3ZtSV91TzdlZ0dib05EWkwzT2h4aFdLdU53OHFEZHl3?oc=5"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-14/amd-sev-snp-mior-skyfall",
+      "slug": "amd-sev-snp-mior-skyfall",
+      "theme": "breach",
+      "title": "AMD SEV-SNP : les attaques Mior et Skyfall permettent à un hôte malveillant de lire des VM",
+      "summary": "Deux attaques rendues publiques cette semaine permettent à un hôte malveillant de lire des données de machines virtuelles protégées par AMD SEV-SNP. Mior, issue d'ETH Zurich, redirige les écritures du coprocesseur PSP pendant l'initialisation de la table RMP vers la mémoire d'une carte graphique. Elle permet aussi de modifier la mémoire de la VM et de falsifier le rapport d'attestation. Elle exige le contrôle de l'hyperviseur et du BIOS, et a été testée sur un EPYC 9135 (Zen 5). Skyfall, d'ETH Zurich et Google, s'appuie sur les Transient Scheduler Attacks : après l'échec volontaire du démarrage d'une VM, des états sauvegardés restent en cache et peuvent être lus. Les chercheurs ont récupéré des registres et une clé de chiffrement de disque. AMD indique des firmwares SEV et des microcodes datés du 12 août, avec des firmwares de plateforme prévus en novembre pour Skyfall et en décembre pour Mior.",
+      "why_it_matters": "Concerne surtout ceux qui utilisent le confidential computing sur EPYC en supposant l'hôte non fiable. Récupérez les mises à jour BIOS de votre constructeur dès leur publication. Pour Mior, qui nécessite le contrôle du BIOS, l'attestation seule ne suffit plus comme preuve d'intégrité.",
+      "sources": [
+        {
+          "article_id": "c120",
+          "feed": "The Hacker News",
+          "title": "New Mior and Skyfall Attacks Let Rogue Cloud Hosts Steal Secrets From AMD SEV-SNP VMs",
+          "url": "https://thehackernews.com/2026/11/new-mior-and-skyfall-attacks-let-rogue.html",
+          "key": "link:https://thehackernews.com/2026/11/new-mior-and-skyfall-attacks-let-rogue.html"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-14/dokploy-cve-2026-129433",
+      "slug": "dokploy-cve-2026-129433",
+      "theme": "breach",
+      "title": "Dokploy avant 0.31.1 : CVE-2026-129433 (CVSS 9.9), injection de commandes root",
+      "summary": "Une vulnérabilité critique, CVE-2026-129433 (CVSS 9.9), est publiée dans la NVD pour Dokploy avant la version 0.31.1. La fonction getComposeContainerCommand() permet à un membre authentifié d'une organisation d'exécuter des commandes shell via le paramètre serviceName. Un attaquant peut enregistrer des valeurs contenant des métacaractères shell avec les procédures tRPC backup.create ou backup.update. Elles s'exécutent en root lors des sauvegardes planifiées, et le socket Docker monté permet de prendre le contrôle de l'hôte. Seul un résumé NVD est disponible.",
+      "why_it_matters": "Si vous auto-hébergez Dokploy, passez à 0.31.1 ou plus. Tant que ce n'est pas fait, limitez les comptes membres d'organisation et examinez les sauvegardes planifiées et les valeurs serviceName enregistrées, car le socket Docker donne le contrôle de l'hôte.",
+      "sources": [
+        {
+          "article_id": "c042",
+          "feed": "NVD critiques",
+          "title": "CVE-2026-129433 (CVSS 9.9) — Dokploy before 0.31.1 contains an OS command injection vulnerability in getComposeContainerCommand() that allo…",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-129433",
+          "key": "link:https://nvd.nist.gov/vuln/detail/CVE-2026-129433"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-14/xraid-raid-parite-xfs-zoned",
+      "slug": "xraid-raid-parite-xfs-zoned",
+      "theme": "new_tech",
+      "title": "XRAID : RAID à parité déclustérisée intégré à XFS zoned",
+      "summary": "Christoph Hellwig a annoncé la première version publique de XRAID, un RAID à parité déclustérisée intégré à XFS. Il vise deux objectifs : gérer le RAID à parité sur périphériques zonés comme les disques SMR, et offrir une implémentation rapide sans les problèmes d'intégrité inhérents. XRAID fonctionne aussi sur disques classiques et SSD, sans optimisation SSD, mais les écritures seraient jusqu'à 20 fois plus rapides que mdraid, selon l'annonce. Il gère zéro à deux parités ; trois et plus sont prévus, avec des essais via la bibliothèque SnapRAID. La branche xfsprogs ajoute mkfs et un utilitaire xraid. Le travail dure depuis un an et demi, et le projet est loin d'une soumission upstream : les auteurs cherchent des retours et des tests.",
+      "why_it_matters": "Pas de production à ce stade, mais c'est une piste à suivre pour le stockage auto-hébergé sur gros disques SMR, où mdraid est limité. Vous pouvez tester sur des machines jetables et remonter des retours au projet.",
+      "sources": [
+        {
+          "article_id": "c135",
+          "feed": "LWN",
+          "title": "Announcing XRAID: declustered parity RAID for zoned XFS",
+          "url": "https://lwn.net/Articles/1107473/",
+          "key": "link:https://lwn.net/Articles/1107473"
+        }
+      ]
+    }
+  ],
+  "episode_title": "Microsoft 365 rétabli, Check Point attaqué et PostgreSQL à patcher",
+  "script": [
+    {
+      "speaker": "Camille",
+      "text": "Salut et bienvenue dans La veille ! Nous sommes le samedi 14 novembre 2026. Au programme : la fin de la panne Microsoft 365, un arrêt des vols aux États-Unis, des passerelles Check Point attaquées, plein de correctifs PostgreSQL, et pas mal de fuites de données.",
+      "style": "relaxed, warm morning tone"
+    },
+    {
+      "speaker": "Max",
+      "text": "Salut Camille ! Un samedi bien chargé, pour changer. On commence par la suite de la panne Microsoft 365 de cette semaine, tu sais, celle qui a duré tout le week-end ou presque.",
+      "style": "relaxed, cheerful"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Oui, c'est fini. Microsoft a annoncé ce samedi vers 7 heures le rétablissement complet pour tous les clients et toutes les régions. Ça fait près de 38 heures depuis l'ouverture de l'incident jeudi à 17 h 17.",
+      "style": "calm, explaining"
+    },
+    {
+      "speaker": "Max",
+      "text": "38 heures, quand même. Et la cause, c'est quoi ? On a eu droit à une explication ?",
+      "style": "surprised"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Selon Microsoft, un défaut introduit lors d'une augmentation de capacité du réseau, qui est apparu après une modification réseau ultérieure. Les serveurs touchés sont tombés en cascade, sans hausse de trafic. Ils disent qu'il n'y a aucune activité malveillante détectée, et aucun lien avec l'IA ou les agents.",
+      "style": "calm, explaining"
+    },
+    {
+      "speaker": "Max",
+      "text": "Ils prennent la peine de préciser le côté IA, ça en dit long sur les questions qu'ils reçoivent. Perso, j'attendrais le rapport post-incident détaillé qu'ils promettent avant de juger la cause réelle.",
+      "style": "skeptical, amused"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Carrément. Côté admin, deux choses. Des mails retardés peuvent encore arriver. Et une campagne d'hameçonnage imite les notifications d'état de service en citant la vraie référence EX1550543.",
+      "style": "serious but relaxed"
+    },
+    {
+      "speaker": "Max",
+      "text": "Classique, ils surfent sur l'actualité. Donc on regarde l'état uniquement via le centre d'administration, pas via un lien reçu par mail. Et les crédits de service prévus au contrat ne sont pas automatiques, il faut les demander.",
+      "style": "alert"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Bien vu. Et justement, une autre panne, côté États-Unis cette fois : vendredi 13 novembre, la FAA a imposé un arrêt national des départs.",
+      "style": "relaxed"
+    },
+    {
+      "speaker": "Max",
+      "text": "Attends, sérieux ? Un arrêt national ? Pourquoi ?",
+      "style": "surprised"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Un problème de communication touchant ses centres de contrôle régional. L'ordre a été levé à 20 h 15 heure de l'Est, plus de quatre heures après. Des milliers de vols perturbés, et des retards attendus plusieurs jours.",
+      "style": "calm, explaining"
+    },
+    {
+      "speaker": "Max",
+      "text": "Et on sait ce qui s'est passé ? Piratage ?",
+      "style": "curious"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Les autorités ne voient aucune preuve de piratage, sans l'exclure totalement. Le secrétaire aux Transports parle d'équipements anciens, des commutateurs et routeurs saturés de données qui produisent des informations incohérentes. Selon CBS, le réseau privé exploité par L3Harris a redémarré puis planté après une mise à jour, et le FBI examinerait une mise à jour logicielle. Mais aucune cause officielle pour l'instant. Et pas de lien avec la panne Microsoft.",
+      "style": "calm, careful"
+    },
+    {
+      "speaker": "Max",
+      "text": "Moi ça me fait penser au cas d'école : une mise à jour sur un réseau hérité déjà à la limite, et ça tombe en cascade. Pour nos propres changements réseau, déploiement progressif et retour arrière prévu. Mais bon, causes à confirmer.",
+      "style": "thoughtful"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Passons aux choses qui piquent. Check Point détaille une campagne contre des Security Gateways non corrigées. Ça a commencé le 30 octobre contre des organisations israéliennes, puis le 2 novembre c'est élargi à plusieurs pays et secteurs.",
+      "style": "serious"
+    },
+    {
+      "speaker": "Max",
+      "text": "Ils entrent comment ?",
+      "style": "curious"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Par le portail Mobile Access, avec PHP2Shell, c'est-à-dire la CVE 2026 tiret 109618 et la CVE 2026 tiret 109619. Ensuite ils passent root avec la CVE 2026 tiret 123039, score CVSS de 7,8, une faille de DynamicCLI jusque-là inconnue. Ils posent des webshells PHP et la porte dérobée TSGA avec son composant TSProxy.",
+      "style": "calm, explaining"
+    },
+    {
+      "speaker": "Max",
+      "text": "Et le wiper dans tout ça ?",
+      "style": "alarmed"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Dans la première vague, l'attaquant a rebondi en SSH vers des hôtes VMware ESXi et déployé un wiper nommé destroy_v6, avec une note qui s'appelle DREAM_ANNEXATION.txt. Check Point a observé l'exploitation chez environ deux douzaines de clients.",
+      "style": "serious"
+    },
+    {
+      "speaker": "Max",
+      "text": "Et on sait qui est derrière ?",
+      "style": "thoughtful"
+    },
+    {
+      "speaker": "Camille",
+      "text": "L'attribution reste incertaine. Des liens avec PhiliKit, associé à UNC5221, sont évoqués avec prudence, et les messages politiques posent la question d'un faux drapeau.",
+      "style": "calm, careful"
+    },
+    {
+      "speaker": "Max",
+      "text": "Si tu as du Mobile Access exposé, installe le Jumbo Hotfix de novembre sur les Management Servers et les gateways. Et cherche les fichiers de session contenant upload_progress_pwn, des processus CPconfigdaemon inattendus, des trous dans les logs du pare-feu, et tout SSH de la passerelle vers tes ESXi.",
+      "style": "serious, practical"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Autre sujet de patch : PostgreSQL. Les mises à jour de jeudi corrigent 52 failles.",
+      "style": "relaxed"
+    },
+    {
+      "speaker": "Max",
+      "text": "52, ça fait une belle fournée. La star, c'est laquelle ?",
+      "style": "amused, surprised"
+    },
+    {
+      "speaker": "Camille",
+      "text": "La CVE 2026 tiret 6460, CVSS 8,8. Une confusion de type sur les types composites : un utilisateur qui peut créer des objets peut exécuter du code avec les droits de l'utilisateur système de PostgreSQL. Sont touchées toutes les versions antérieures à 18.7, 17.12, 16.16, 15.20 et 14.25.",
+      "style": "calm, explaining"
+    },
+    {
+      "speaker": "Max",
+      "text": "Des attaques en cours ?",
+      "style": "concerned"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Aucune signalée. Mais le chercheur Mehmet Ince a publié un write-up avec un exploit partiel, sans l'étape finale d'exécution de commande. Il avait prévenu en août les fournisseurs managés, dont AWS, Microsoft, Google et Supabase. Et une seule faille, la CVE 2026 tiret 116322, permet à un client non authentifié de faire redémarrer des serveurs PostgreSQL 18.",
+      "style": "calm"
+    },
+    {
+      "speaker": "Max",
+      "text": "Donc on met à jour vers la dernière mineure de sa branche. Pense aussi aux extensions en C : il faut les reconstruire ou les mettre à jour en même temps, sinon elles peuvent rester vulnérables. Et si Postgres tourne hors de son unité de service, par exemple sous Patroni, redémarre après la mise à jour.",
+      "style": "practical"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Sans oublier les outils clients : pg_restore et psql ont aussi des failles d'exécution de code, via des archives ou un serveur source compromis. Et aucun contournement n'est proposé, donc ne désactive pas les vérifications via composite_type_mismatch.",
+      "style": "relaxed"
+    },
+    {
+      "speaker": "Max",
+      "text": "Maintenant, le dossier Fireworks AI, qui revient partout. D'abord Cursor, qui a publié vendredi un rapport d'incident.",
+      "style": "relaxed"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Des attaquants ont obtenu une clé d'accès stockée chez Fireworks AI, le prestataire d'entraînement et d'inférence de Cursor. Ils ont copié un bucket en lecture seule contenant des traces d'agents de code, surtout de 2025. Certaines contenaient des identifiants API non masqués, utilisés ensuite pour accéder à d'autres systèmes SaaS : dépôts non-production archivés, échanges de support, métriques d'usage.",
+      "style": "calm, explaining"
+    },
+    {
+      "speaker": "Max",
+      "text": "Les traces d'agents avec des secrets en clair, aïe. Et l'histoire de l'extension piégée ?",
+      "style": "alarmed"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Le 29 octobre, un identifiant volé a servi à placer de fausses copies de l'extension Claude Code, versions 2.1.312 et 2.1.313, dans le cache de la place de marché, pendant environ 11 heures. Elles tentaient d'installer des portes dérobées SSH, mais des erreurs de code les auraient empêchées de fonctionner sur de nombreux Windows et macOS. Cursor estime à 5 000 le nombre d'utilisateurs qui ont pu les recevoir.",
+      "style": "serious"
+    },
+    {
+      "speaker": "Max",
+      "text": "L'extension officielle d'Anthropic et Open VSX ne sont pas touchés, c'est déjà ça. Si tu as installé ou mis à jour l'extension vers le 29 octobre, suis la procédure de Cursor : vérifie les clés SSH autorisées et fais tourner tes secrets. Cursor a quitté Fireworks et reconstruit sa place de marché.",
+      "style": "practical"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Et Fireworks, c'est une suite à l'histoire Notion de jeudi. Cette fois, Uber notifie des milliers de chauffeurs américains que leurs informations personnelles et leur permis de conduire ont été volés en octobre, après la compromission de Fireworks AI.",
+      "style": "thoughtful"
+    },
+    {
+      "speaker": "Max",
+      "text": "Un permis de conduire, c'est pas rien. On a combien de personnes ?",
+      "style": "concerned"
+    },
+    {
+      "speaker": "Camille",
+      "text": "On n'a qu'un extrait de DataBreaches.net, donc le nombre exact et le détail restent à confirmer. La notification est datée du 10 novembre et déposée auprès de plusieurs États.",
+      "style": "calm, careful"
+    },
+    {
+      "speaker": "Max",
+      "text": "Perso, si tu confies des données ou des clés à un prestataire IA, vérifie ce qu'il stocke, fais tourner les secrets partagés, et limite ce que tu lui envoies. Les prestataires IA élargissent la surface d'attaque.",
+      "style": "thoughtful"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Autre fuite, côté français : Maileva, filiale de La Poste spécialisée dans l'envoi de courriers. Selon des médias français, elle a annoncé une cyberattaque avec vol de données concernant 22 millions de personnes.",
+      "style": "serious"
+    },
+    {
+      "speaker": "Max",
+      "text": "22 millions, c'est énorme. On sait ce qui a été volé ?",
+      "style": "surprised"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Frandroid précise que des factures d'hôpital figurent parmi les documents. Pour le reste, on n'a que des résumés : détail des données, date de l'intrusion et mode opératoire ne sont pas précisés.",
+      "style": "calm, careful"
+    },
+    {
+      "speaker": "Max",
+      "text": "Donc on attend la communication officielle. Et on s'attend à plus de phishing qui cite des factures ou des courriers, donc méfiance.",
+      "style": "practical"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Un peu de hardware maintenant. Deux attaques publiées cette semaine, Mior et Skyfall, permettent à un hôte malveillant de lire des données de machines virtuelles protégées par AMD SEV-SNP.",
+      "style": "relaxed, curious"
+    },
+    {
+      "speaker": "Max",
+      "text": "Alors, SEV-SNP, c'est le confidential computing, où l'hôte n'est pas censé voir dans la VM. Elles marchent comment ?",
+      "style": "curious"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Mior, d'ETH Zurich, redirige les écritures du coprocesseur PSP pendant l'initialisation de la table RMP vers la mémoire d'une carte graphique. Elle permet aussi de modifier la mémoire de la VM et de falsifier le rapport d'attestation. Mais il faut le contrôle de l'hyperviseur et du BIOS. Testée sur un EPYC 9135, Zen 5.",
+      "style": "calm, explaining"
+    },
+    {
+      "speaker": "Max",
+      "text": "Et Skyfall ?",
+      "style": "thoughtful"
+    },
+    {
+      "speaker": "Camille",
+      "text": "D'ETH Zurich et Google, elle s'appuie sur les Transient Scheduler Attacks. Après l'échec volontaire du démarrage d'une VM, des états sauvegardés restent en cache et peuvent être lus. Les chercheurs ont récupéré des registres et une clé de chiffrement de disque.",
+      "style": "calm, explaining"
+    },
+    {
+      "speaker": "Max",
+      "text": "AMD parle de firmwares SEV et de microcodes datés du 12 août, avec des firmwares de plateforme prévus en novembre pour Skyfall et en décembre pour Mior. Donc BIOS du constructeur dès que ça sort. Et pour Mior, l'attestation seule ne suffit plus comme preuve d'intégrité.",
+      "style": "practical"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Encore une vulnérabilité critique, côté auto-hébergement : Dokploy avant la version 0.31.1, la CVE 2026 tiret 129433, CVSS 9,9.",
+      "style": "serious"
+    },
+    {
+      "speaker": "Max",
+      "text": "9,9, on est presque au maximum. C'est quoi le mécanisme ?",
+      "style": "alarmed"
+    },
+    {
+      "speaker": "Camille",
+      "text": "La fonction getComposeContainerCommand() permet à un membre authentifié d'une organisation d'exécuter des commandes shell via le paramètre serviceName. L'attaquant enregistre des valeurs avec des métacaractères shell via les procédures tRPC backup.create ou backup.update. Elles s'exécutent en root lors des sauvegardes planifiées, et avec le socket Docker monté, il peut prendre le contrôle de l'hôte.",
+      "style": "calm, explaining"
+    },
+    {
+      "speaker": "Max",
+      "text": "Donc passe à la 0.31.1 ou plus. En attendant, limite les comptes membres et examine les sauvegardes planifiées et les valeurs serviceName enregistrées. On n'a qu'un résumé NVD pour ce coup-ci.",
+      "style": "practical"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Pour finir sur du plus léger, une nouveauté : XRAID. Christoph Hellwig a annoncé la première version publique d'un RAID à parité déclustérisée intégré à XFS.",
+      "style": "relaxed, upbeat"
+    },
+    {
+      "speaker": "Max",
+      "text": "Un RAID dans XFS, ça change. Il vise quoi ?",
+      "style": "curious, amused"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Deux objectifs : gérer le RAID à parité sur périphériques zonés comme les disques SMR, et offrir une implémentation rapide sans les problèmes d'intégrité inhérents. Ça marche aussi sur disques classiques et SSD, sans optimisation SSD, mais les écritures seraient jusqu'à 20 fois plus rapides que mdraid, selon l'annonce.",
+      "style": "calm, explaining"
+    },
+    {
+      "speaker": "Max",
+      "text": "Jusqu'à 20 fois, selon l'annonce, donc on prend avec des pincettes. Et côté parité ?",
+      "style": "impressed"
+    },
+    {
+      "speaker": "Camille",
+      "text": "De zéro à deux parités, trois et plus sont prévus avec des essais via la bibliothèque SnapRAID. La branche xfsprogs ajoute mkfs et un utilitaire xraid. Un an et demi de travail, mais on est loin d'une soumission upstream : ils cherchent des retours et des tests.",
+      "style": "calm"
+    },
+    {
+      "speaker": "Max",
+      "text": "Donc pas de production, mais à suivre si tu auto-héberges du stockage sur gros disques SMR. Tu peux tester sur des machines jetables et remonter des retours.",
+      "style": "relaxed"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Voilà pour aujourd'hui. Bon week-end, patchez ce qui doit l'être, et reposez-vous un peu aussi.",
+      "style": "warm, relaxed"
+    },
+    {
+      "speaker": "Max",
+      "text": "À demain pour une nouvelle veille. Salut !",
+      "style": "warm, cheerful"
+    }
+  ],
+  "episode": {
+    "title": "Microsoft 365 rétabli, Check Point attaqué et PostgreSQL à patcher",
+    "release_tag": "ep-2026-11-14",
+    "mp3_url": "https://github.com/Elohyrr/veille/releases/download/ep-2026-11-14/veille-2026-11-14.mp3",
+    "bytes": 5928813,
+    "duration_s": 741,
+    "tts_provider": "openrouter"
+  },
+  "usage": {
+    "digest": {
+      "model": "sonnet",
+      "in": 30889,
+      "out": 5703,
+      "cost_usd": 0.180582
+    },
+    "podcast": {
+      "model": "sonnet",
+      "in": 7388,
+      "out": 6472,
+      "cost_usd": 0.094268
+    },
+    "triage": {
+      "model": "haiku",
+      "in": 39827,
+      "out": 6096,
+      "cost_usd": 0.0110132
+    }
+  }
+}

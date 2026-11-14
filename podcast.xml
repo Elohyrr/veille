@@ -5,9 +5,29 @@
 <link>https://elohyrr.github.io/veille/</link>
 <description>Tech, pannes, failles et fuites — digest quotidien</description>
 <language>fr-fr</language>
-<lastBuildDate>Fri, 13 Nov 2026 06:07:06 &#43;0000</lastBuildDate>
+<lastBuildDate>Sat, 14 Nov 2026 20:31:59 &#43;0000</lastBuildDate>
 <itunes:image href="https://elohyrr.github.io/veille/cover.png"/>
 <itunes:explicit>false</itunes:explicit>
+<item>
+<title>Microsoft 365 rétabli, Check Point attaqué et PostgreSQL à patcher</title>
+<link>https://elohyrr.github.io/veille/jours/2026-11-14/</link>
+<guid isPermaLink="false">ep-2026-11-14</guid>
+<pubDate>Sat, 14 Nov 2026 20:31:59 &#43;0000</pubDate>
+<description>- Mise à jour : Microsoft 365 rétabli après près de 38 heures de panne, cause réseau avancée
+- Passerelles Check Point : PHP2Shell, élévation root CVE-2026-123039 et wiper sur ESXi
+- Cursor confirme une brèche via Fireworks AI et une extension Claude Code piégée
+- PostgreSQL corrige 52 failles, dont CVE-2026-6460 (CVSS 8.8), exécution de code authentifiée
+- États-Unis : arrêt national des départs par la FAA après une panne de communication
+- Maileva, filiale de La Poste : vol de données concernant 22 millions de personnes
+- Mise à jour : Fireworks AI, des permis de conduire de chauffeurs Uber volés
+- AMD SEV-SNP : les attaques Mior et Skyfall permettent à un hôte malveillant de lire des VM
+- Dokploy avant 0.31.1 : CVE-2026-129433 (CVSS 9.9), injection de commandes root
+- XRAID : RAID à parité déclustérisée intégré à XFS zoned
+https://elohyrr.github.io/veille/jours/2026-11-14/</description>
+<enclosure url="https://github.com/Elohyrr/veille/releases/download/ep-2026-11-14/veille-2026-11-14.mp3" length="5928813" type="audio/mpeg"/>
+<itunes:duration>00:12:21</itunes:duration>
+<itunes:explicit>false</itunes:explicit>
+</item>
 <item>
 <title>Microsoft 365 à genoux, N-central et ScreenConnect en pleine tourmente</title>
 <link>https://elohyrr.github.io/veille/jours/2026-11-13/</link>
