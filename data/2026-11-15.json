@@ -1,0 +1,277 @@
+{
+  "date": "2026-11-15",
+  "published_at": "2026-11-15T06:05:29Z",
+  "intro": "Journée calme, un dimanche. PyPI affiche enfin la provenance des paquets dans son interface, un avis Debian touche le noyau, et plusieurs fuites de données restent à confirmer.",
+  "topics": [
+    {
+      "id": "2026-11-15/pypi-pages-projet-securite",
+      "slug": "pypi-pages-projet-securite",
+      "theme": "new_tech",
+      "title": "PyPI : nouvelles pages de projet avec onglet Sécurité et avertissements de provenance",
+      "summary": "PyPI annonce que la refonte de ses pages de projet, prévue en juillet, est terminée et en ligne. Elle a été conçue avec Kabu Creative, d'après les recommandations de l'OpenSSF Attestations Style Guide. Un nouvel onglet Sécurité indique l'état de provenance de chaque release et affiche les attestations fichier par fichier. « Full provenance » signifie que 100 % des fichiers ont une attestation, de type PyPI Publish (publication par un Trusted Publisher) ou SLSA Build Provenance (lien vers le commit source, la plateforme et les instructions de build). « No provenance » veut dire qu'aucun fichier n'en a, ce qui ne prouve pas qu'il soit malveillant. Des avertissements apparaissent aussi : provenance incomplète (certains fichiers seulement), incohérente (origines différentes dans une même release), changée (autre dépôt ou workflow que la version précédente) ou perdue (le projet publiait avec attestations et ne le fait plus). PyPI précise que beaucoup d'avertissements ont une explication légitime, mais qu'il faut les vérifier avant d'installer.",
+      "why_it_matters": "Si vous installez des paquets Python en CI ou en production, ces signaux aident à repérer un compte ou un pipeline de publication détourné. Si vous maintenez un paquet, passez au Trusted Publishing avec attestations pour votre prochaine release.",
+      "sources": [
+        {
+          "article_id": "c035",
+          "feed": "Hacker News (150+ pts)",
+          "title": "PyPI's redesigned project pages with clearer security signals are now live",
+          "url": "https://blog.pypi.org/posts/2026-11-06-ui-updates-complete/",
+          "key": "link:https://blog.pypi.org/posts/2026-11-06-ui-updates-complete"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-15/debian-noyau-trixie-avis-cert-fr",
+      "slug": "debian-noyau-trixie-avis-cert-fr",
+      "theme": "breach",
+      "title": "Noyau Linux de Debian trixie : le CERT-FR relaie un avis de vulnérabilités multiples",
+      "summary": "Le CERT-FR a publié le 13 novembre l'avis CERTFR-2026-AVI-1538, qui reprend le bulletin de sécurité Debian du 8 novembre 2026. Il signale de multiples vulnérabilités dans le noyau Linux de Debian. Sont concernées les versions de Debian trixie antérieures à 6.12.116-1. Selon l'avis, certaines failles permettent une élévation de privilèges, une atteinte à la confidentialité des données et un contournement de la politique de sécurité. Le déni de service figure aussi parmi les risques. Trois CVE sont citées : CVE-2026-100080, CVE-2026-100081 et CVE-2026-100082. L'avis ne détaille pas les failles et renvoie au bulletin de l'éditeur pour les correctifs. Aucune exploitation active n'est mentionnée.",
+      "why_it_matters": "Si vous avez des hôtes, des nœuds Kubernetes ou des VM sous Debian trixie, vérifiez la version du noyau et mettez à jour vers 6.12.116-1 ou plus récent, puis redémarrez. L'élévation de privilèges locale compte surtout sur les machines partagées ou qui exécutent des conteneurs.",
+      "sources": [
+        {
+          "article_id": "c052",
+          "feed": "CERT-FR Avis",
+          "title": "Multiples vulnérabilités dans le noyau Linux de Debian (13 novembre 2026)",
+          "url": "https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1538/",
+          "key": "link:https://cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1538"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-15/ovhcloud-sgp1-block-storage",
+      "slug": "ovhcloud-sgp1-block-storage",
+      "theme": "outage",
+      "title": "OVHcloud : Block Storage dégradé dans la région SGP1 pendant environ une heure",
+      "summary": "OVHcloud a clos le 14 novembre à 22 h 48 UTC un incident touchant son offre Block Storage dans la région de Singapour (SGP1). Selon l'éditeur, l'incident a commencé le 14 novembre à 21 h 45 UTC et pris fin à 22 h 43 UTC, soit environ une heure. Les volumes ont connu des performances dégradées. Les clients ont pu constater des lenteurs d'accès à leurs données. La cause racine est mentionnée dans l'avis, mais seul le début de la phrase (« une interruption de service s'est produite… ») figure dans l'extrait disponible, ce qui ne permet pas de la détailler. L'incident est marqué comme résolu.",
+      "why_it_matters": "Si vous hébergez des charges sur le Public Cloud d'OVHcloud à Singapour, des latences disque ont pu provoquer des timeouts ou des alertes samedi soir. Consultez le détail de l'incident pour vérifier la cause racine publiée et vos journaux sur cette fenêtre.",
+      "sources": [
+        {
+          "article_id": "c025",
+          "feed": "OVHcloud Public Cloud Status",
+          "title": "[SGP1][Storage] - Block Storage incident notification",
+          "url": "https://public-cloud.status-ovhcloud.com/incidents/7dw4yzj0bmt7",
+          "key": "link:https://public-cloud.status-ovhcloud.com/incidents/7dw4yzj0bmt7"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-15/securitest-plaques-immatriculation",
+      "slug": "securitest-plaques-immatriculation",
+      "theme": "leak",
+      "title": "Sécuritest : fuite signalée de 40 millions de plaques d'immatriculation",
+      "summary": "Le site French Breaches rapporte une fuite de données chez Sécuritest, avec 40 millions de plaques d'immatriculation exposées. Nous ne disposons que du titre de l'article : l'extrait ne précise ni la date de l'incident, ni la façon dont les données ont été exposées, ni les autres champs concernés, ni si Sécuritest a confirmé les faits. Ces éléments restent donc à vérifier auprès de l'entreprise ou de sources complémentaires. Le chiffre est présenté comme celui de plaques d'immatriculation, pas nécessairement de personnes distinctes. Le sujet est à suivre dans les prochains jours.",
+      "why_it_matters": "Une plaque d'immatriculation peut être rattachée à une identité. En cas de confirmation, les personnes concernées devront se méfier du phishing ciblé qui s'appuie sur leur véhicule. Côté entreprise, c'est un rappel de ce que les prestataires collectent et conservent.",
+      "sources": [
+        {
+          "article_id": "c016",
+          "feed": "Google Actualités : fuites FR",
+          "title": "Fuite de données chez Sécuritest : 40 millions de plaques d'immatriculation exposées - French Breaches",
+          "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxQd3RVRldMTjFBRk95a1FMR3pfNEJmU283WEVPSTBFcDFoQmQxbHIweHl6bEF3bzVFOGZLX3pwYXF6Q183UkNFVmFKeVhaaWZoU3VfSVd0QS1PUlZpOHlzUndyalF5NGlISEltZnVGNWJ4c1N0alg4XzJnTzVWNWFncWR6M1JaSmZLaXBKNUhXVVJiV09kRmEwdnJoRXdZdm1ZcFB2enZoMXUwdUgzUkdQc1R3NA?oc=5",
+          "key": "link:https://news.google.com/rss/articles/CBMiswFBVV95cUxQd3RVRldMTjFBRk95a1FMR3pfNEJmU283WEVPSTBFcDFoQmQxbHIweHl6bEF3bzVFOGZLX3pwYXF6Q183UkNFVmFKeVhaaWZoU3VfSVd0QS1PUlZpOHlzUndyalF5NGlISEltZnVGNWJ4c1N0alg4XzJnTzVWNWFncWR6M1JaSmZLaXBKNUhXVVJiV09kRmEwdnJoRXdZdm1ZcFB2enZoMXUwdUgzUkdQc1R3NA?oc=5"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-15/essilor-fuite-revendiquee",
+      "slug": "essilor-fuite-revendiquee",
+      "theme": "leak",
+      "title": "Essilor : fuite revendiquée visant 1,9 million de porteurs de lunettes",
+      "summary": "Le site Fuites Infos rapporte une fuite de données revendiquée visant Essilor, qui concernerait 1,9 million de porteurs de lunettes. Nous n'avons que le titre de l'article. Le mot « revendiquée » indique que l'information n'est pas confirmée à ce stade : rien dans l'extrait ne permet de savoir qui revendique, sur quel canal, quelles données seraient concernées ni si Essilor a réagi. Le chiffre est une allégation et doit être traité comme tel jusqu'à une éventuelle confirmation de l'entreprise ou une analyse indépendante des données.",
+      "why_it_matters": "Les données de santé ou de commande de porteurs de lunettes sont sensibles. À ce stade, il n'y a rien à faire côté technique, mais les personnes clientes d'Essilor ou d'opticiens associés doivent rester attentives aux messages suspects.",
+      "sources": [
+        {
+          "article_id": "c017",
+          "feed": "Google Actualités : fuites FR",
+          "title": "Essilor : fuite revendiquée visant 1,9 million de porteurs de lunettes - Fuites Infos",
+          "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE4zVFJpM0RSdGFLU3h1VktwVTJsWTY5M2JZV1pGQ1pRX0lXTURQZUZnLVNEMWMtSXJMbkI3TTJOV2tmYWFJd1A2RENRUjN0LVpZajAxSHo3QzJrOUhTOVE?oc=5",
+          "key": "link:https://news.google.com/rss/articles/CBMiXkFVX3lxTE4zVFJpM0RSdGFLU3h1VktwVTJsWTY5M2JZV1pGQ1pRX0lXTURQZUZnLVNEMWMtSXJMbkI3TTJOV2tmYWFJd1A2RENRUjN0LVpZajAxSHo3QzJrOUhTOVE?oc=5"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-15/world-triathlon-dossiers-medicaux",
+      "slug": "world-triathlon-dossiers-medicaux",
+      "theme": "leak",
+      "title": "World Triathlon : une brèche expose des informations médicales d'athlètes",
+      "summary": "Deux sites sportifs, the5krunner et Slowtwitch News, rapportent une brèche de données chez World Triathlon, la fédération internationale. Selon leurs titres, elle a exposé des dossiers médicaux d'athlètes et d'autres informations. Nous n'avons que ces titres : les extraits ne donnent ni le nombre de personnes touchées, ni la date, ni la cause technique, ni la nature des autres données, ni la position officielle de la fédération. Les informations médicales font partie des catégories de données les plus sensibles. Il faudra attendre une communication officielle ou un article détaillé pour mesurer l'ampleur réelle.",
+      "why_it_matters": "Les données de santé exposées ne se changent pas comme un mot de passe. Les athlètes concernés doivent surveiller les messages de la fédération. Pour les équipes techniques, c'est un rappel de limiter la collecte et l'exposition de données médicales dans les outils d'inscription.",
+      "sources": [
+        {
+          "article_id": "c013",
+          "feed": "Google Actualités : breaches EN",
+          "title": "World Triathlon breach exposes athlete medical records - the5krunner",
+          "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE5hdVFTOHFScjJCT2VvOGhHVWlPb3BlQWlGT1dmeTBQNEYzM2tNVkI2aWV5LWx1RllPems4ek1SaUdYV1R1SEtuVEpzRm1ZRWhESEMzMlRRWHozWFNjSWhWdDNrSkYzd2NNNWNtQWswUGRrVmRLNlRQMw?oc=5",
+          "key": "link:https://news.google.com/rss/articles/CBMieEFVX3lxTE5hdVFTOHFScjJCT2VvOGhHVWlPb3BlQWlGT1dmeTBQNEYzM2tNVkI2aWV5LWx1RllPems4ek1SaUdYV1R1SEtuVEpzRm1ZRWhESEMzMlRRWHozWFNjSWhWdDNrSkYzd2NNNWNtQWswUGRrVmRLNlRQMw?oc=5"
+        },
+        {
+          "article_id": "c019",
+          "feed": "Google Actualités : breaches EN",
+          "title": "World Triathlon Data Breach Exposed Athlete Medical Information and More - Slowtwitch News",
+          "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxOX0prVXlUczg4aU1GMGpVWFpwdk1TYm5yOGJTNERVWUpBNGNlX0wtWm9wWnB0TXNmSHBfdHF6dF9Hbm0tbzg0TXFXM2dNb3A5MW52ckRxUG13WVkzaG9HLUtMaDNOdjNNWjU2VjliRENoclduRjZaWjJyVjd4QjhmNFYxTmxhMFgzUVBVeGN2QW1Tb2M2RVZBYnFNUk51bnNhWHFtQ3ZuNDlPQQ?oc=5",
+          "key": "link:https://news.google.com/rss/articles/CBMiqgFBVV95cUxOX0prVXlUczg4aU1GMGpVWFpwdk1TYm5yOGJTNERVWUpBNGNlX0wtWm9wWnB0TXNmSHBfdHF6dF9Hbm0tbzg0TXFXM2dNb3A5MW52ckRxUG13WVkzaG9HLUtMaDNOdjNNWjU2VjliRENoclduRjZaWjJyVjd4QjhmNFYxTmxhMFgzUVBVeGN2QW1Tb2M2RVZBYnFNUk51bnNhWHFtQ3ZuNDlPQQ?oc=5"
+        }
+      ]
+    }
+  ],
+  "episode_title": "PyPI affiche la provenance, un noyau Debian à patcher et des fuites à confirmer",
+  "script": [
+    {
+      "speaker": "Camille",
+      "text": "Salut et bienvenue dans La veille ! On est dimanche 15 novembre 2026. Au programme : PyPI qui montre enfin la provenance des paquets, un avis sur le noyau Debian, un incident chez OVHcloud, et trois fuites de données à prendre avec des pincettes.",
+      "style": "relaxed, warm morning tone"
+    },
+    {
+      "speaker": "Max",
+      "text": "Salut Camille ! Un dimanche calme, ça fait plaisir. On commence par PyPI ? Ils ont terminé la refonte de leurs pages de projet, prévue en juillet, et elle est en ligne.",
+      "style": "relaxed, amused"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Oui, et la nouveauté qui compte, c'est un onglet Sécurité. Il indique l'état de provenance de chaque release, avec les attestations fichier par fichier. Ils l'ont conçue avec Kabu Creative, en suivant les recommandations de l'OpenSSF Attestations Style Guide.",
+      "style": "calm, explaining"
+    },
+    {
+      "speaker": "Max",
+      "text": "Attends, c'est quoi concrètement, la provenance ? Une attestation, ça prouve quoi ?",
+      "style": "curious"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Il y a deux types. PyPI Publish, c'est une publication faite par un Trusted Publisher. Et SLSA Build Provenance, qui renvoie au commit source, à la plateforme et aux instructions de build. « Full provenance », ça veut dire que 100 % des fichiers ont une attestation.",
+      "style": "calm, explaining"
+    },
+    {
+      "speaker": "Max",
+      "text": "Et « No provenance », c'est louche alors ?",
+      "style": "thoughtful"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Pas forcément. Ça veut juste dire qu'aucun fichier n'en a, ce qui ne prouve pas que le paquet soit malveillant. Par contre, il y a aussi des avertissements : provenance incomplète, incohérente, changée, ou perdue.",
+      "style": "reassuring"
+    },
+    {
+      "speaker": "Max",
+      "text": "Perdue, c'est quand le projet publiait avec attestations et que ça s'arrête, c'est ça ? Perso, ça, ça me ferait lever un sourcil. Et changée, c'est un autre dépôt ou un autre workflow que la version précédente.",
+      "style": "interested"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Exactement. PyPI dit que beaucoup de ces avertissements ont une explication légitime, mais qu'il faut vérifier avant d'installer. Si tu installes en CI ou en prod, c'est utile pour repérer un compte ou un pipeline détourné. Et si tu maintiens un paquet, passe au Trusted Publishing avec attestations pour ta prochaine release.",
+      "style": "calm"
+    },
+    {
+      "speaker": "Max",
+      "text": "Bon réflexe. Passons au noyau. Le CERT-FR a publié le 13 novembre l'avis CERTFR-2026-AVI-1538, qui reprend le bulletin Debian du 8 novembre.",
+      "style": "relaxed"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Ça signale de multiples vulnérabilités dans le noyau Linux de Debian trixie, pour les versions antérieures à 6.12.116-1. Selon l'avis, il y a de l'élévation de privilèges, de l'atteinte à la confidentialité, du contournement de la politique de sécurité, et aussi du déni de service.",
+      "style": "serious but chill"
+    },
+    {
+      "speaker": "Max",
+      "text": "Des CVE précises ?",
+      "style": "curious"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Trois : la CVE 2026 tiret 100080, la CVE 2026 tiret 100081 et la CVE 2026 tiret 100082. L'avis ne détaille pas les failles, il renvoie au bulletin Debian pour les correctifs. Et aucune exploitation active n'est mentionnée.",
+      "style": "calm, explaining"
+    },
+    {
+      "speaker": "Max",
+      "text": "Donc, si t'as des hôtes, des nœuds Kubernetes ou des VM sous trixie, tu vérifies ta version de noyau, tu passes en 6.12.116-1 ou plus récent, et tu redémarres. Le redémarrage, on l'oublie souvent. Perso, je ferais ça vite sur les machines partagées ou celles qui font tourner des conteneurs, vu l'élévation de privilèges locale.",
+      "style": "practical"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Ensuite, OVHcloud. Un incident sur le Block Storage dans la région de Singapour, SGP1. Il a commencé le 14 novembre à 21 h 45 UTC et fini à 22 h 43, donc environ une heure. Clos officiellement à 22 h 48.",
+      "style": "relaxed"
+    },
+    {
+      "speaker": "Max",
+      "text": "Qu'est-ce que les clients ont vu ?",
+      "style": "curious"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Des performances dégradées sur les volumes, donc des lenteurs d'accès aux données. La cause racine est mentionnée dans l'avis, mais on n'a que le début de la phrase, donc je ne vais pas me risquer à la détailler. Si t'es sur le Public Cloud à Singapour, jette un œil à tes journaux sur cette fenêtre : des latences disque ont pu provoquer des timeouts ou des alertes samedi soir.",
+      "style": "calm"
+    },
+    {
+      "speaker": "Max",
+      "text": "Bon, place aux fuites, et là, grosse précaution : on n'a presque que des titres. Première : Sécuritest. French Breaches rapporte 40 millions de plaques d'immatriculation exposées.",
+      "style": "relaxed"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Oui, mais on ne sait ni quand, ni comment, ni quels autres champs, ni si Sécuritest a confirmé. Et 40 millions de plaques, ce n'est pas forcément 40 millions de personnes.",
+      "style": "cautious"
+    },
+    {
+      "speaker": "Max",
+      "text": "Sauf qu'une plaque, ça peut se rattacher à une identité. Si c'est confirmé, il faudra se méfier du phishing ciblé qui s'appuie sur ton véhicule. Et ça rappelle ce que les prestataires collectent et gardent.",
+      "style": "thoughtful"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Deuxième : Essilor. Fuites Infos parle d'une fuite revendiquée, qui concernerait 1,9 million de porteurs de lunettes. Le mot clé, c'est revendiquée.",
+      "style": "cautious"
+    },
+    {
+      "speaker": "Max",
+      "text": "Oui : on ne sait pas qui revendique, sur quel canal, quelles données, ni si Essilor a réagi. Le chiffre est une allégation. Rien à faire côté technique pour l'instant, mais si t'es client Essilor ou d'un opticien associé, méfie-toi des messages suspects.",
+      "style": "calm"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Troisième : World Triathlon, la fédération internationale. Deux sites sportifs, the5krunner et Slowtwitch News, rapportent une brèche qui aurait exposé des dossiers médicaux d'athlètes et d'autres informations.",
+      "style": "serious but chill"
+    },
+    {
+      "speaker": "Max",
+      "text": "Là aussi, juste des titres : pas de nombre de personnes, pas de date, pas de cause, pas de position officielle. Mais les données médicales, ça ne se change pas comme un mot de passe. Pour les équipes techniques, c'est un bon rappel de limiter la collecte de ces données dans les outils d'inscription.",
+      "style": "concerned"
+    },
+    {
+      "speaker": "Camille",
+      "text": "On suivra ça dans les prochains jours. Voilà pour aujourd'hui. Bon dimanche à tous, et à demain !",
+      "style": "warm"
+    },
+    {
+      "speaker": "Max",
+      "text": "À demain ! Et pense à redémarrer tes machines.",
+      "style": "relaxed, friendly"
+    }
+  ],
+  "episode": {
+    "title": "PyPI affiche la provenance, un noyau Debian à patcher et des fuites à confirmer",
+    "release_tag": "ep-2026-11-15",
+    "mp3_url": "https://github.com/Elohyrr/veille/releases/download/ep-2026-11-15/veille-2026-11-15.mp3",
+    "bytes": 2833773,
+    "duration_s": 354,
+    "tts_provider": "openrouter"
+  },
+  "usage": {
+    "digest": {
+      "model": "sonnet",
+      "in": 18947,
+      "out": 3507,
+      "cost_usd": 0.11085400000000001
+    },
+    "podcast": {
+      "model": "sonnet",
+      "in": 4682,
+      "out": 3003,
+      "cost_usd": 0.048754000000000006
+    },
+    "triage": {
+      "model": "haiku",
+      "in": 19212,
+      "out": 3453,
+      "cost_usd": 0.0055687
+    }
+  }
+}

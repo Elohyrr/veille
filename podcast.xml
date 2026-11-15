@@ -5,9 +5,25 @@
 <link>https://elohyrr.github.io/veille/</link>
 <description>Tech, pannes, failles et fuites — digest quotidien</description>
 <language>fr-fr</language>
-<lastBuildDate>Sat, 14 Nov 2026 20:31:59 &#43;0000</lastBuildDate>
+<lastBuildDate>Sun, 15 Nov 2026 06:05:29 &#43;0000</lastBuildDate>
 <itunes:image href="https://elohyrr.github.io/veille/cover.png"/>
 <itunes:explicit>false</itunes:explicit>
+<item>
+<title>PyPI affiche la provenance, un noyau Debian à patcher et des fuites à confirmer</title>
+<link>https://elohyrr.github.io/veille/jours/2026-11-15/</link>
+<guid isPermaLink="false">ep-2026-11-15</guid>
+<pubDate>Sun, 15 Nov 2026 06:05:29 &#43;0000</pubDate>
+<description>- PyPI : nouvelles pages de projet avec onglet Sécurité et avertissements de provenance
+- Noyau Linux de Debian trixie : le CERT-FR relaie un avis de vulnérabilités multiples
+- OVHcloud : Block Storage dégradé dans la région SGP1 pendant environ une heure
+- Sécuritest : fuite signalée de 40 millions de plaques d&#39;immatriculation
+- Essilor : fuite revendiquée visant 1,9 million de porteurs de lunettes
+- World Triathlon : une brèche expose des informations médicales d&#39;athlètes
+https://elohyrr.github.io/veille/jours/2026-11-15/</description>
+<enclosure url="https://github.com/Elohyrr/veille/releases/download/ep-2026-11-15/veille-2026-11-15.mp3" length="2833773" type="audio/mpeg"/>
+<itunes:duration>00:05:54</itunes:duration>
+<itunes:explicit>false</itunes:explicit>
+</item>
 <item>
 <title>Microsoft 365 rétabli, Check Point attaqué et PostgreSQL à patcher</title>
 <link>https://elohyrr.github.io/veille/jours/2026-11-14/</link>
