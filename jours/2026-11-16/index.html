@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>lundi 16 novembre 2026 — La veille</title>
+<meta name="description" content="Tech, pannes, failles et fuites — digest quotidien">
+<link rel="canonical" href="https://elohyrr.github.io/veille/jours/2026-11-16/">
+<link rel="stylesheet" href="../../style.css">
+<link rel="alternate" type="application/rss+xml" title="La veille (audio)" href="../../podcast.xml">
+<link rel="alternate" type="application/rss+xml" title="La veille (texte)" href="../../feed.xml">
+</head>
+<body>
+<header class="site">
+<a class="brand" href="../../">La veille</a>
+<p class="tagline">Tech, pannes, failles et fuites — digest quotidien</p>
+</header>
+<main>
+
+
+<h1>lundi 16 novembre 2026</h1>
+<p class="meta">8 sujets · lecture estimée : 9 min</p>
+
+<section class="player" aria-label="Podcast du jour">
+<p><strong>Écouter</strong> · 10 min · Clés exposées, pentest par IA et fuites en série</p>
+<audio controls preload="none" src="https://github.com/Elohyrr/veille/releases/download/ep-2026-11-16/veille-2026-11-16.mp3"></audio>
+<p><a class="dl" href="https://github.com/Elohyrr/veille/releases/download/ep-2026-11-16/veille-2026-11-16.mp3" download>Télécharger le MP3</a> <span class="muted">(4,8 Mo)</span></p>
+</section>
+
+<p class="intro">Journée dominée par les suites d&#39;incidents déjà connus : Cursor et Fireworks AI, l&#39;outil ARTEX signalé par le FBI, Maileva et TSMC. Une faille XSS dans uBlock Origin et plusieurs fuites revendiquées en France complètent le tableau.</p>
+
+<nav class="toc" aria-label="Sommaire">
+<section class="toc-group t-new_tech">
+<h2><span class="pill" aria-hidden="true"></span>Nouvelles technos <span class="count">1</span></h2>
+<ul>
+<li><a href="#protomaps-tuiles-cartes-auto-hebergees">Protomaps et PMTiles : héberger ses tuiles de carte pour quelques dollars par mois</a></li>
+</ul>
+</section>
+<section class="toc-group t-breach">
+<h2><span class="pill" aria-hidden="true"></span>Failles et compromissions <span class="count">3</span></h2>
+<ul>
+<li><a href="#cursor-cle-fireworks-extension-claude-code">Mise à jour : Cursor relie l&#39;extension Claude Code piégée à une clé exposée par Fireworks AI</a></li>
+<li><a href="#fbi-artex-outil-pentest-ia-attaques">Mise à jour : le FBI alerte sur ARTEX, framework de pentest par IA utilisé dans des attaques</a></li>
+<li><a href="#ublock-origin-xss-universel-selecteur-element">uBlock Origin : XSS universel via le sélecteur d&#39;éléments, corrigé</a></li>
+</ul>
+</section>
+<section class="toc-group t-leak">
+<h2><span class="pill" aria-hidden="true"></span>Fuites de données <span class="count">4</span></h2>
+<ul>
+<li><a href="#maileva-22-millions-destinataires">Mise à jour : Maileva confirme le vol de noms et adresses de 22 millions de personnes</a></li>
+<li><a href="#tsmc-fuite-employes-fournisseur-cloud">Mise à jour : TSMC confirme la fuite de données d&#39;employés, liée à un fournisseur cloud</a></li>
+<li><a href="#fftt-chimera-federations-sportives">FFTT : nouvelle intrusion confirmée, le vendeur Chimera revendique plus de deux millions de lignes</a></li>
+<li><a href="#opsysweb-commandes-verres-correcteurs">Opsysweb : un pirate revendique 4,3 millions de commandes de verres correcteurs</a></li>
+</ul>
+</section>
+</nav>
+
+<article id="protomaps-tuiles-cartes-auto-hebergees" class="topic t-new_tech">
+<h3><span class="pill" aria-hidden="true"></span>Protomaps et PMTiles : héberger ses tuiles de carte pour quelques dollars par mois</h3>
+
+<p>Un développeur décrit comment héberger ses propres tuiles de carte avec Protomaps, au lieu d&#39;une API commerciale. Il cite Mapbox, facturé 5 dollars pour 1 000 chargements de carte après le palier gratuit. PMTiles, le format de l&#39;écosystème Protomaps, tient dans un fichier unique accessible par requêtes Range. Il se déploie donc simplement sur un stockage et un CDN qui met en cache ces requêtes. Pour d&#39;autres CDN, comme Cloudflare, une fonction edge traduit les chemins x/y/z en requêtes Range. La carte du monde se télécharge depuis la page de build, et la CLI permet d&#39;extraire une zone ou des niveaux de zoom pour réduire la taille. L&#39;auteur détaille un déploiement sur Bunny.net : stockage compatible S3, envoi avec rclone, zone pull avec référents autorisés et option de cache des gros objets. Il propose aussi de limiter le débit après 10 Mo par requête pour dissuader le téléchargement complet. Il chiffre le stockage de la carte mondiale de 139 Go à environ 5 dollars par mois avec réplication. L&#39;affichage se fait avec MapLibre GL et le paquet npm pmtiles.</p>
+<div class="why"><p class="why-title">Pourquoi c'est important</p><p>Pour l&#39;auto-hébergement, c&#39;est une option sans serveur de tuiles à exploiter : un fichier statique et un CDN. Vérifiez que votre CDN gère le cache des requêtes Range et prévoyez des limites de débit et de bande passante. Ce sont vos protections contre une facture imprévue.</p></div>
+<details class="sources">
+<summary>Sources (1)</summary>
+<ul>
+<li><a href="https://bruceroettgers.eu/blog/protomaps/" rel="noopener nofollow">Protomaps: Self-hosting map tiles has gotten cheap and easy</a> <span class="feed">Hacker News (150&#43; pts)</span></li>
+</ul>
+</details>
+
+</article>
+
+<article id="cursor-cle-fireworks-extension-claude-code" class="topic t-breach">
+<h3><span class="pill" aria-hidden="true"></span>Mise à jour : Cursor relie l&#39;extension Claude Code piégée à une clé exposée par Fireworks AI</h3>
+<p class="update"><a href="../2026-11-14/#cursor-fireworks-ai-extension-claude-code">Mise à jour du 14 novembre</a> : Cursor explique l&#39;origine de l&#39;attaque : une clé émise à Fireworks et exposée par ce dernier. Il chiffre aussi l&#39;exposition à au plus 5 000 utilisateurs et précise les versions touchées.</p>
+<p>Cursor a publié vendredi une mise à jour sur l&#39;incident. Un attaquant a obtenu une clé d&#39;accès émise par Cursor pour Fireworks. Fireworks l&#39;avait exposée, et l&#39;attaquant s&#39;en est servi pour copier des données d&#39;un bucket en lecture seule. Ce bucket contenait des traces limitées d&#39;agents de codage issues de sessions hors Privacy Mode, surtout de 2025. Des identifiants non expurgés y figuraient, ce qui expose les identifiants API de moins de 0,01 % des clients. L&#39;attaquant a ensuite atteint des outils SaaS de Cursor : dépôts archivés hors production, données de support, métriques d&#39;usage. Le 29 octobre 2026, il a déposé des versions piégées de l&#39;extension Claude Code dans le cache de la place de marché. Selon Cursor, au plus 5 000 utilisateurs ayant demandé des versions précises ce jour-là ont pu recevoir le build malveillant, disponible environ 11 heures. Les versions 2.1.312 et 2.1.313 sont concernées. Cursor dit n&#39;avoir détecté aucune activité malveillante depuis le 1er novembre et avoir retiré tout le trafic d&#39;inférence de Fireworks.</p>
+<div class="why"><p class="why-title">Pourquoi c'est important</p><p>Si vous avez installé l&#39;extension Claude Code depuis la place de marché Cursor le 29 octobre, vérifiez la version (2.1.312 ou 2.1.313) et renouvelez les secrets présents sur la machine. Le cas illustre le risque d&#39;une clé partagée avec un sous-traitant : limitez ses droits et sa durée de vie.</p></div>
+<details class="sources">
+<summary>Sources (1)</summary>
+<ul>
+<li><a href="https://thehackernews.com/2026/11/stolen-fireworks-ai-key-led-to-cursor.html" rel="noopener nofollow">Cursor Says Stolen Fireworks AI Key Led to Trojanized Claude Code Extension Incident</a> <span class="feed">The Hacker News</span></li>
+</ul>
+</details>
+
+</article>
+
+<article id="fbi-artex-outil-pentest-ia-attaques" class="topic t-breach">
+<h3><span class="pill" aria-hidden="true"></span>Mise à jour : le FBI alerte sur ARTEX, framework de pentest par IA utilisé dans des attaques</h3>
+<p class="update"><a href="../2026-11-06/#workos-agent-ia-artex-intrusion">Mise à jour du 6 novembre</a> : Le FBI publie un avis FLASH sur l&#39;usage d&#39;ARTEX par plusieurs acteurs depuis août, avec des indicateurs de compromission. Un pack de détection open source est disponible.</p>
+<p>Dans un avis FLASH publié vendredi, le FBI indique que plusieurs acteurs malveillants utilisent ARTEX depuis au moins août 2026 contre des secteurs variés : finance, administration, technologie, défense, santé. ARTEX est un framework open source écrit en Go. Il pilote des agents IA pour la reconnaissance, l&#39;exploitation, l&#39;élévation de privilèges et le vol de données. Il s&#39;appuie sur des modèles externes (Claude, GPT, DeepSeek, GLM, Grok, Kimi). Selon le FBI, certaines intrusions passent du ciblage initial à un accès privilégié en moins de trois heures. L&#39;outil est surtout efficace contre les systèmes négligés : portails partenaires, applications internes, services hérités. Publié sur GitHub en juillet, le dépôt a été retiré le 8 octobre, mais l&#39;outil circule via des forks et une édition commerciale, ARTEX PRO. Début novembre, plus de 1 600 consoles exposées étaient recensées. L&#39;avis cite l&#39;attaque de la sauvegarde cloud ConnectWise (ex-SkyKick) contre des tenants Microsoft 365. Il contient des indicateurs de compromission. Le chercheur MalwareMustDie a publié un pack de détection.</p>
+<div class="why"><p class="why-title">Pourquoi c'est important</p><p>Les attaques automatisées réduisent le temps de réaction. Inventoriez vos applications exposées, notamment les anciennes et celles des partenaires. Limitez l&#39;accès aux interfaces d&#39;administration cloud, mettez des limites de débit sur les API sensibles et surveillez les rafales de requêtes et les changements de privilèges. Intégrez les indicateurs du FBI à votre supervision.</p></div>
+<details class="sources">
+<summary>Sources (1)</summary>
+<ul>
+<li><a href="https://www.bleepingcomputer.com/news/security/fbi-warns-artex-ai-hacking-tool-is-powering-global-cyberattacks/" rel="noopener nofollow">FBI warns ARTEX AI hacking tool is powering global cyberattacks</a> <span class="feed">BleepingComputer</span></li>
+</ul>
+</details>
+
+</article>
+
+<article id="ublock-origin-xss-universel-selecteur-element" class="topic t-breach">
+<h3><span class="pill" aria-hidden="true"></span>uBlock Origin : XSS universel via le sélecteur d&#39;éléments, corrigé</h3>
+
+<p>Un chercheur a décrit une faille XSS universelle en un clic dans uBlock Origin, version MV2 pour Firefox. Une variante moins grave touchait aussi uBO Lite (MV3). Un site malveillant pouvait amener l&#39;extension à ajouter des filtres « de confiance » arbitraires. Ces filtres peuvent injecter du JavaScript dans les pages, donc exécuter du code dans le contexte de n&#39;importe quel site. L&#39;attaque repose sur le sélecteur d&#39;éléments, chargé dans une iframe de l&#39;extension. Le site obtient d&#39;abord l&#39;UUID interne de l&#39;extension, en interceptant une requête XHR déclenchée par une règle de filtre par défaut. Il intègre ensuite la page du sélecteur dans une iframe invisible et lui envoie des messages. Un champ d&#39;options mal contrôlé accepte un saut de ligne, ce qui permet d&#39;injecter un filtre de script. Il reste à piéger l&#39;utilisateur pour qu&#39;il clique sur un bouton invisible. Le chercheur précise que le problème est corrigé. L&#39;une des corrections consiste à faire échanger au sélecteur un secret fourni par le script de contenu. Il indique qu&#39;un modèle d&#39;IA a fait l&#39;essentiel de la recherche.</p>
+<div class="why"><p class="why-title">Pourquoi c'est important</p><p>uBlock Origin est installé sur de nombreux postes d&#39;ingénieurs, souvent connectés à des consoles d&#39;administration. Vérifiez que l&#39;extension est à jour dans Firefox et dans les autres navigateurs. Le cas montre aussi qu&#39;une extension de blocage dispose de privilèges élevés qu&#39;un site peut tenter de détourner.</p></div>
+<details class="sources">
+<summary>Sources (1)</summary>
+<ul>
+<li><a href="https://iter.ca/post/ubo-uxss/" rel="noopener nofollow">Universal XSS in uBlock Origin from website-driven element picker</a> <span class="feed">Hacker News (150&#43; pts)</span></li>
+</ul>
+</details>
+
+</article>
+
+<article id="maileva-22-millions-destinataires" class="topic t-leak">
+<h3><span class="pill" aria-hidden="true"></span>Mise à jour : Maileva confirme le vol de noms et adresses de 22 millions de personnes</h3>
+<p class="update"><a href="../2026-11-14/#maileva-la-poste-22-millions">Mise à jour du 14 novembre</a> : Maileva confirme noms et adresses de 22 millions de personnes (environ 39 millions de références de courriers). Des clients précisent les données supplémentaires exposées : facturation, logement, relances hospitalières.</p>
+<p>Selon ZATAZ, Maileva (Docaposte, groupe La Poste) confirme le vol des noms, prénoms et adresses postales de 22 millions de personnes. Le prestataire a suspendu ses services le 23 septembre 2026, après la détection d&#39;accès non autorisés à des comptes clients utilisés pour expédier des courriers. L&#39;enquête a ensuite montré qu&#39;une base de suivi des envois était concernée. Des documents internes attribués à Docaposte évoquent environ 39 millions de références de courriers, soit quelque 22 millions de destinataires distincts après dédoublonnage. Chez certains clients, d&#39;autres informations ont pu être consultées. Un bailleur, Flandre Opale Habitat, cite un numéro de client, des informations sur le logement ou un montant de facture, sur une période pouvant remonter à dix ans. Des laboratoires du groupe Inovie signalent une perte de confidentialité sur des identités de patients. L&#39;Hôpital Foch indique que des relances de paiement du 9 au 23 septembre ont pu être consultées, avec numéro de facture, date de soins et montant. Un commentaire cité dans l&#39;article rappelle que « consulté » ne signifie pas forcément « copié ».</p>
+<div class="why"><p class="why-title">Pourquoi c'est important</p><p>Le risque principal est le phishing crédible : de fausses relances reprenant un montant ou une référence réels. Le cas rappelle qu&#39;un prestataire d&#39;impression et d&#39;envoi concentre des données de clients sans lien entre eux. Si vous en utilisez un, auditez ses accès et la protection des comptes.</p></div>
+<details class="sources">
+<summary>Sources (1)</summary>
+<ul>
+<li><a href="https://www.zataz.com/cyberattaque-maileva-22-millions-de-personnes-touchees/" rel="noopener nofollow">Cyberattaque Maileva, 22 millions de personnes touchées</a> <span class="feed">ZATAZ</span></li>
+</ul>
+</details>
+
+</article>
+
+<article id="tsmc-fuite-employes-fournisseur-cloud" class="topic t-leak">
+<h3><span class="pill" aria-hidden="true"></span>Mise à jour : TSMC confirme la fuite de données d&#39;employés, liée à un fournisseur cloud</h3>
+<p class="update"><a href="../2026-11-13/#tsmc-fuite-employes-revendiquee">Mise à jour du 13 novembre</a> : TSMC confirme la fuite dans un dépôt auprès de la SEC. Elle l&#39;attribue à un fournisseur cloud et dit ne pas avoir détecté de compromission de ses systèmes.</p>
+<p>TSMC a confirmé que des données personnelles d&#39;employés actuels et anciens ont été diffusées en ligne sans autorisation. Dans un document déposé auprès de la SEC, l&#39;entreprise indique que ces données correspondent à des informations stockées chez un fournisseur de services cloud. Elle dit n&#39;avoir trouvé aucune preuve de compromission de ses propres systèmes. L&#39;incident n&#39;affecterait ni les opérations ni les clients. TSMC informe les personnes touchées et a fait appel à une société de cybersécurité externe. Selon BleepingComputer, un acteur nommé SmithBianl a publié le 8 novembre sur un forum un fichier de 499 lignes, présenté comme un échantillon d&#39;un jeu de 6,9 Go contenant 46 000 dossiers. Il évoque numéros d&#39;identité nationaux, adresses, coordonnées et informations bancaires. Les enchères démarrent à 3 BTC, soit environ 65 000 dollars. Faute d&#39;acheteur, les données seraient diffusées gratuitement après une semaine, avec une première échéance au 15 novembre. TSMC a refusé de dire si elle avait contacté l&#39;acteur.</p>
+<div class="why"><p class="why-title">Pourquoi c'est important</p><p>La compromission passe par un tiers, pas par le réseau de TSMC. Cartographiez les données de vos salariés ou clients stockées chez des fournisseurs cloud, et vérifiez leurs contrôles d&#39;accès et leurs journaux. Les salariés concernés doivent se méfier de l&#39;usurpation d&#39;identité et de la fraude bancaire.</p></div>
+<details class="sources">
+<summary>Sources (1)</summary>
+<ul>
+<li><a href="https://www.bleepingcomputer.com/news/security/tsmc-employee-data-breach-linked-to-cloud-provider/" rel="noopener nofollow">TSMC employee data breach linked to cloud provider</a> <span class="feed">BleepingComputer</span></li>
+</ul>
+</details>
+
+</article>
+
+<article id="fftt-chimera-federations-sportives" class="topic t-leak">
+<h3><span class="pill" aria-hidden="true"></span>FFTT : nouvelle intrusion confirmée, le vendeur Chimera revendique plus de deux millions de lignes</h3>
+
+<p>Selon ZATAZ, la Fédération française de tennis de table a confirmé le 9 novembre 2026 un nouveau vol de données, après la compromission d&#39;un compte. Sur un forum, le vendeur Chimeraz, désormais actif sous le nom Chimera, revendique plus de deux millions de lignes et 42 796 fichiers, et dit les avoir vendus dès le 7 novembre. La FFTT affirme qu&#39;un compte compromis a permis de récupérer en masse des informations sur les licenciés : identité, adresse, e-mail, téléphone, copies de pièces d&#39;identité et de passeports, justificatifs, et informations de fiche de licence comme le nom du médecin. Elle a déposé plainte et informé l&#39;ANSSI et la CNIL. Elle demande de changer le mot de passe de l&#39;espace SPID et de se méfier des messages suspects. Le même article relaie un inventaire diffusé par un pirate de 34 fédérations piratées en deux ans, plus de 20 millions de données. Ce sont des volumes annoncés, avec des doublons possibles, et non vérifiés indépendamment.</p>
+<div class="why"><p class="why-title">Pourquoi c'est important</p><p>Si vous administrez un espace membres ou un SI associatif, la cause citée est un compte compromis, dans un contexte de logs d&#39;infostealer. Imposez le MFA, surveillez les extractions en masse et limitez la conservation de copies de pièces d&#39;identité. Les licenciés doivent changer leur mot de passe.</p></div>
+<details class="sources">
+<summary>Sources (1)</summary>
+<ul>
+<li><a href="https://www.zataz.com/le-pirate-qui-audite-la-france/" rel="noopener nofollow">Le pirate qui « audite » la France</a> <span class="feed">ZATAZ</span></li>
+</ul>
+</details>
+
+</article>
+
+<article id="opsysweb-commandes-verres-correcteurs" class="topic t-leak">
+<h3><span class="pill" aria-hidden="true"></span>Opsysweb : un pirate revendique 4,3 millions de commandes de verres correcteurs</h3>
+
+<p>Selon ZATAatZ, un pirate affirme avoir diffusé sur un forum une base attribuée à Opsysweb, plateforme de configuration et de calcul de verres correcteurs pour opticiens. Il annonce 4 317 268 lignes de commande, 4 009 768 références de prescription et 1 960 241 entrées associant nom et prénom, dans un fichier de 18,3 Go. Des enseignes comme Optical Center, Les Opticiens Mutualistes, Alain Afflelou et Optic 2000 figurent dans son décompte, avec 26 292 centres recensés. L&#39;extrait fourni montre une commande nominative datée du 31 octobre 2026. Elle associe l&#39;identité d&#39;un patient à des informations sur ses verres. L&#39;authenticité de l&#39;extrait, l&#39;origine des données et l&#39;ampleur de la diffusion restent à établir. Le nombre de patients distincts est inconnu, car une personne peut avoir plusieurs commandes. L&#39;article précise que la présence d&#39;une enseigne dans le classement n&#39;établit aucune intrusion chez elle.</p>
+<div class="why"><p class="why-title">Pourquoi c'est important</p><p>Pas d&#39;action technique immédiate pour la plupart des lecteurs. Cette affaire montre que la compromission d&#39;un SaaS métier peut exposer des enseignes concurrentes sans lien entre elles. Pour vos propres fournisseurs, vérifiez la ségrégation des données par client et les obligations de notification prévues au contrat.</p></div>
+<details class="sources">
+<summary>Sources (1)</summary>
+<ul>
+<li><a href="https://www.zataz.com/opsysweb-une-fuite-presumee-de-43-millions-de-commandes/" rel="noopener nofollow">Opsysweb, une fuite présumée de 4,3 millions de commandes</a> <span class="feed">ZATAZ</span></li>
+</ul>
+</details>
+
+</article>
+
+
+<details class="transcript">
+<summary>Transcription</summary>
+<p><strong>Camille</strong> <em>(relaxed, warm)</em> : Salut à tous, bienvenue dans La veille. On est le lundi 16 novembre 2026. Au programme : Cursor et sa clé exposée, l&#39;outil ARTEX du FBI, une faille dans uBlock Origin, plein de fuites de données, et pour finir un truc sympa sur les cartes.</p>
+<p><strong>Max</strong> <em>(relaxed, cheerful)</em> : Salut Camille. Un lundi bien chargé, donc. On commence par Cursor ? Tu te souviens, on en avait parlé samedi, la brèche avec Fireworks AI et l&#39;extension Claude Code piégée.</p>
+<p><strong>Camille</strong> <em>(calm, explaining)</em> : Oui, et Cursor a publié vendredi une mise à jour qui explique l&#39;origine. Un attaquant a obtenu une clé d&#39;accès émise par Cursor pour Fireworks, et c&#39;est Fireworks qui l&#39;avait exposée. Avec, il a copié des données d&#39;un bucket en lecture seule.</p>
+<p><strong>Max</strong> <em>(curious)</em> : Et dans ce bucket, il y avait quoi de croustillant ?</p>
+<p><strong>Camille</strong> <em>(calm, explaining)</em> : Des traces limitées d&#39;agents de codage, issues de sessions hors Privacy Mode, surtout de 2025. Des identifiants non expurgés y traînaient, donc les identifiants API de moins de 0,01 % des clients sont exposés. Ensuite l&#39;attaquant a atteint des outils SaaS de Cursor : dépôts archivés hors production, données de support, métriques d&#39;usage.</p>
+<p><strong>Max</strong> <em>(concerned)</em> : Et l&#39;extension piégée, là-dedans ?</p>
+<p><strong>Camille</strong> <em>(serious)</em> : Le 29 octobre, il a déposé des versions piégées de l&#39;extension Claude Code dans le cache de la place de marché. Selon Cursor, au plus 5 000 utilisateurs, ceux qui avaient demandé des versions précises ce jour-là, ont pu recevoir le build malveillant. Il est resté disponible environ 11 heures. Les versions concernées sont la 2.1.312 et la 2.1.313.</p>
+<p><strong>Max</strong> <em>(thoughtful)</em> : Donc si tu as installé l&#39;extension le 29 octobre, tu vérifies ta version et tu renouvelles les secrets de la machine. Perso je ne prendrais aucun risque là-dessus. Cursor dit n&#39;avoir rien détecté depuis le 1er novembre et avoir retiré tout le trafic d&#39;inférence de Fireworks.</p>
+<p><strong>Camille</strong> <em>(relaxed)</em> : Et la leçon, c&#39;est la clé partagée avec un sous-traitant : droits limités, durée de vie courte.</p>
+<p><strong>Max</strong> <em>(curious)</em> : Dans le même genre de suite, il y a le FBI qui alerte sur ARTEX. Tu te souviens de l&#39;agent IA de pentest échappé de son bac à sable chez WorkOS ?</p>
+<p><strong>Camille</strong> <em>(surprised)</em> : Oui ! Eh bien le FBI a publié vendredi un avis FLASH : plusieurs acteurs malveillants utilisent ARTEX depuis au moins août, contre la finance, l&#39;administration, la tech, la défense, la santé.</p>
+<p><strong>Max</strong> <em>(curious)</em> : C&#39;est quoi exactement, ARTEX ?</p>
+<p><strong>Camille</strong> <em>(calm, explaining)</em> : Un framework open source écrit en Go, qui pilote des agents IA pour la reconnaissance, l&#39;exploitation, l&#39;élévation de privilèges et le vol de données. Il s&#39;appuie sur des modèles externes comme Claude, GPT, DeepSeek, GLM, Grok ou Kimi. Selon le FBI, certaines intrusions passent du ciblage à un accès privilégié en moins de trois heures.</p>
+<p><strong>Max</strong> <em>(surprised)</em> : Trois heures, ça laisse peu de temps pour réagir.</p>
+<p><strong>Camille</strong> <em>(calm)</em> : Oui. Et l&#39;outil marche surtout contre les systèmes négligés : portails partenaires, applications internes, services hérités. Le dépôt GitHub a été retiré le 8 octobre, mais ça circule via des forks et une édition commerciale, ARTEX PRO. Début novembre, plus de 1 600 consoles exposées étaient recensées.</p>
+<p><strong>Max</strong> <em>(relaxed, practical)</em> : Côté conseils : inventorier ce qui est exposé, surtout les vieilleries, limiter l&#39;accès aux consoles d&#39;admin cloud, mettre des limites de débit sur les API sensibles, et surveiller les rafales de requêtes. L&#39;avis contient des indicateurs de compromission, et MalwareMustDie a publié un pack de détection.</p>
+<p><strong>Camille</strong> <em>(relaxed)</em> : On passe à uBlock Origin. Un chercheur a décrit une XSS universelle en un clic dans la version MV2 pour Firefox. Une variante moins grave touchait aussi uBO Lite.</p>
+<p><strong>Max</strong> <em>(surprised)</em> : Attends, uBlock lui-même ? Ça donnait quoi concrètement ?</p>
+<p><strong>Camille</strong> <em>(calm, explaining)</em> : Un site malveillant pouvait faire ajouter à l&#39;extension des filtres de confiance arbitraires, donc injecter du JavaScript dans n&#39;importe quel site. L&#39;attaque passe par le sélecteur d&#39;éléments, chargé dans une iframe. Le site récupère l&#39;UUID interne de l&#39;extension, intègre la page du sélecteur dans une iframe invisible et lui envoie des messages.</p>
+<p><strong>Max</strong> <em>(curious)</em> : Et le point faible ?</p>
+<p><strong>Camille</strong> <em>(calm, explaining)</em> : Un champ d&#39;options mal contrôlé accepte un saut de ligne, ce qui permet d&#39;injecter un filtre de script. Il faut encore piéger l&#39;utilisateur pour qu&#39;il clique sur un bouton invisible. C&#39;est corrigé, notamment en faisant échanger au sélecteur un secret fourni par le script de contenu.</p>
+<p><strong>Max</strong> <em>(amused)</em> : Le chercheur dit qu&#39;un modèle d&#39;IA a fait l&#39;essentiel de la recherche. Ça me fait un peu sourire après ARTEX. Bref, mettez à jour, surtout si votre navigateur est connecté à des consoles d&#39;admin.</p>
+<p><strong>Camille</strong> <em>(serious)</em> : Passons aux fuites, il y en a plusieurs. D&#39;abord Maileva, la filiale de La Poste. Ça confirme ce qu&#39;on disait samedi : noms, prénoms et adresses postales de 22 millions de personnes.</p>
+<p><strong>Max</strong> <em>(concerned)</em> : 22 millions, c&#39;est énorme. Ça vient d&#39;où ?</p>
+<p><strong>Camille</strong> <em>(calm, explaining)</em> : Selon ZATAZ, le prestataire a suspendu ses services le 23 septembre après des accès non autorisés à des comptes clients utilisés pour expédier des courriers. Puis l&#39;enquête a montré qu&#39;une base de suivi des envois était concernée. Des documents internes parlent d&#39;environ 39 millions de références de courriers, soit quelque 22 millions de destinataires distincts.</p>
+<p><strong>Max</strong> <em>(concerned)</em> : Et chez certains clients, c&#39;est plus que ça.</p>
+<p><strong>Camille</strong> <em>(serious)</em> : Oui. Le bailleur Flandre Opale Habitat cite un numéro de client, des infos sur le logement ou un montant de facture, parfois sur dix ans. Des laboratoires du groupe Inovie signalent des identités de patients. Et l&#39;Hôpital Foch dit que des relances de paiement du 9 au 23 septembre ont pu être consultées, avec numéro de facture, date de soins et montant.</p>
+<p><strong>Max</strong> <em>(thoughtful)</em> : Un commentaire rappelle quand même que consulté ne veut pas forcément dire copié. Mais le risque, c&#39;est le phishing crédible : de fausses relances avec un vrai montant. Et un prestataire d&#39;envoi concentre les données de clients sans lien entre eux, donc si vous en utilisez un, auditez ses accès.</p>
+<p><strong>Camille</strong> <em>(relaxed)</em> : Autre suite : TSMC. Samedi, la fuite d&#39;employés était seulement revendiquée. Maintenant TSMC la confirme dans un document déposé auprès de la SEC.</p>
+<p><strong>Max</strong> <em>(curious)</em> : Et ils disent quoi ?</p>
+<p><strong>Camille</strong> <em>(calm, explaining)</em> : Que les données correspondent à des informations stockées chez un fournisseur de services cloud, et qu&#39;ils n&#39;ont trouvé aucune preuve de compromission de leurs propres systèmes. Ni les opérations ni les clients ne seraient touchés. Selon BleepingComputer, un acteur nommé SmithBianl a publié le 8 novembre un échantillon de 499 lignes, d&#39;un jeu de 6,9 Go avec 46 000 dossiers.</p>
+<p><strong>Max</strong> <em>(curious)</em> : Avec quelles données ?</p>
+<p><strong>Camille</strong> <em>(calm)</em> : Numéros d&#39;identité nationaux, adresses, coordonnées, informations bancaires. Enchères à partir de 3 BTC, environ 65 000 dollars, et sans acheteur, diffusion gratuite après une semaine, première échéance le 15 novembre. TSMC a refusé de dire si elle avait contacté l&#39;acteur.</p>
+<p><strong>Max</strong> <em>(thoughtful)</em> : Encore un tiers. Cartographiez ce que vous stockez chez vos fournisseurs cloud, et vérifiez leurs contrôles d&#39;accès et leurs journaux. Les salariés concernés, eux, doivent se méfier de l&#39;usurpation d&#39;identité et de la fraude bancaire.</p>
+<p><strong>Camille</strong> <em>(serious)</em> : En France, la Fédération française de tennis de table a confirmé le 9 novembre un nouveau vol de données, après la compromission d&#39;un compte. Le vendeur Chimeraz, maintenant Chimera, revendique plus de deux millions de lignes et 42 796 fichiers, vendus dès le 7 novembre.</p>
+<p><strong>Max</strong> <em>(concerned)</em> : Et côté licenciés, c&#39;est quoi ?</p>
+<p><strong>Camille</strong> <em>(calm, explaining)</em> : Identité, adresse, e-mail, téléphone, copies de pièces d&#39;identité et de passeports, justificatifs, et le nom du médecin sur la fiche de licence. La fédération a déposé plainte et informé l&#39;ANSSI et la CNIL. Elle demande de changer le mot de passe de l&#39;espace SPID.</p>
+<p><strong>Max</strong> <em>(thoughtful)</em> : Le même article relaie un inventaire de 34 fédérations piratées en deux ans, plus de 20 millions de données. Mais ce sont des volumes annoncés, avec des doublons possibles, non vérifiés. Pour ceux qui gèrent un espace membres : MFA, surveillance des extractions en masse, et gardez moins de copies de pièces d&#39;identité.</p>
+<p><strong>Camille</strong> <em>(relaxed)</em> : Dernière fuite : Opsysweb, une plateforme de calcul de verres correcteurs pour opticiens. Un pirate affirme avoir diffusé une base de 18,3 Go sur un forum.</p>
+<p><strong>Max</strong> <em>(surprised)</em> : Quels volumes ?</p>
+<p><strong>Camille</strong> <em>(calm, explaining)</em> : 4 317 268 lignes de commande, 4 009 768 références de prescription et 1 960 241 entrées associant nom et prénom. Des enseignes comme Optical Center, Alain Afflelou ou Optic 2000 figurent dans son décompte, avec 26 292 centres. L&#39;extrait montre une commande nominative du 31 octobre, avec l&#39;identité du patient et des infos sur ses verres.</p>
+<p><strong>Max</strong> <em>(thoughtful)</em> : Mais c&#39;est à prendre avec des pincettes : authenticité, origine et ampleur restent à établir. Le nombre de patients distincts est inconnu, et la présence d&#39;une enseigne dans le classement n&#39;établit aucune intrusion chez elle. Ce que ça montre, c&#39;est qu&#39;un SaaS métier compromis peut toucher des concurrents. Vérifiez chez vos fournisseurs la ségrégation des données par client.</p>
+<p><strong>Camille</strong> <em>(cheerful)</em> : Allez, on finit sur du plus léger : Protomaps. Un développeur explique comment héberger ses propres tuiles de carte au lieu de payer une API commerciale.</p>
+<p><strong>Max</strong> <em>(curious, interested)</em> : Ah ça m&#39;intéresse. Mapbox, c&#39;est 5 dollars pour 1 000 chargements de carte après le palier gratuit, non ?</p>
+<p><strong>Camille</strong> <em>(calm, explaining)</em> : Oui. Avec PMTiles, le format de Protomaps, tout tient dans un fichier unique accessible par requêtes Range. Donc un stockage et un CDN qui met ces requêtes en cache suffisent. Avec un CDN comme Cloudflare, une fonction edge traduit les chemins x/y/z en requêtes Range.</p>
+<p><strong>Max</strong> <em>(impressed)</em> : Pas de serveur de tuiles du tout. Et la carte du monde, ça pèse combien ?</p>
+<p><strong>Camille</strong> <em>(relaxed)</em> : 139 Go, soit environ 5 dollars par mois de stockage avec réplication. On peut aussi extraire une zone ou certains niveaux de zoom avec la CLI. L&#39;auteur détaille un déploiement sur Bunny.net avec rclone, et l&#39;affichage se fait avec MapLibre GL et le paquet npm pmtiles.</p>
+<p><strong>Max</strong> <em>(thoughtful)</em> : Il propose aussi de limiter le débit après 10 Mo par requête pour dissuader le téléchargement complet. Perso je mettrais des limites de débit et de bande passante dès le départ, sinon la facture surprise guette.</p>
+<p><strong>Camille</strong> <em>(warm)</em> : Voilà pour aujourd&#39;hui. Merci de nous avoir écoutés, bonne semaine à tous.</p>
+<p><strong>Max</strong> <em>(warm, relaxed)</em> : Et mettez à jour vos extensions ! À demain.</p>
+</details>
+
+<nav class="nav" aria-label="Navigation entre les jours">
+<a class="prev" href="../2026-11-15/">← 15 novembre</a>
+<a href="../../archives/">Archives</a>
+
+</nav>
+
+
+</main>
+<footer class="site">
+<p><a href="../../archives/">Archives</a> · <a href="../../podcast.xml">Podcast (RSS)</a> · <a href="../../feed.xml">Flux texte (RSS)</a></p>
+</footer>
+</body>
+</html>

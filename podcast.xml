@@ -5,9 +5,27 @@
 <link>https://elohyrr.github.io/veille/</link>
 <description>Tech, pannes, failles et fuites — digest quotidien</description>
 <language>fr-fr</language>
-<lastBuildDate>Sun, 15 Nov 2026 06:05:29 &#43;0000</lastBuildDate>
+<lastBuildDate>Mon, 16 Nov 2026 06:07:38 &#43;0000</lastBuildDate>
 <itunes:image href="https://elohyrr.github.io/veille/cover.png"/>
 <itunes:explicit>false</itunes:explicit>
+<item>
+<title>Clés exposées, pentest par IA et fuites en série</title>
+<link>https://elohyrr.github.io/veille/jours/2026-11-16/</link>
+<guid isPermaLink="false">ep-2026-11-16</guid>
+<pubDate>Mon, 16 Nov 2026 06:07:38 &#43;0000</pubDate>
+<description>- Mise à jour : Cursor relie l&#39;extension Claude Code piégée à une clé exposée par Fireworks AI
+- Mise à jour : le FBI alerte sur ARTEX, framework de pentest par IA utilisé dans des attaques
+- uBlock Origin : XSS universel via le sélecteur d&#39;éléments, corrigé
+- Mise à jour : Maileva confirme le vol de noms et adresses de 22 millions de personnes
+- Mise à jour : TSMC confirme la fuite de données d&#39;employés, liée à un fournisseur cloud
+- FFTT : nouvelle intrusion confirmée, le vendeur Chimera revendique plus de deux millions de lignes
+- Opsysweb : un pirate revendique 4,3 millions de commandes de verres correcteurs
+- Protomaps et PMTiles : héberger ses tuiles de carte pour quelques dollars par mois
+https://elohyrr.github.io/veille/jours/2026-11-16/</description>
+<enclosure url="https://github.com/Elohyrr/veille/releases/download/ep-2026-11-16/veille-2026-11-16.mp3" length="4824813" type="audio/mpeg"/>
+<itunes:duration>00:10:03</itunes:duration>
+<itunes:explicit>false</itunes:explicit>
+</item>
 <item>
 <title>PyPI affiche la provenance, un noyau Debian à patcher et des fuites à confirmer</title>
 <link>https://elohyrr.github.io/veille/jours/2026-11-15/</link>
