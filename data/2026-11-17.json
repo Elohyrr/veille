@@ -1,0 +1,480 @@
+{
+  "date": "2026-11-17",
+  "published_at": "2026-11-17T06:07:35Z",
+  "intro": "Journée marquée par la compromission d'Optimizely, qui a servi du JavaScript malveillant sur 178 organisations. Côté correctifs : N-central HF3, noyau Linux (NoisyTCP) et UnrealIRCd exploité. Rapport préliminaire Microsoft sur la panne 365.",
+  "topics": [
+    {
+      "id": "2026-11-17/optimizely-chaine-approvisionnement-javascript",
+      "slug": "optimizely-chaine-approvisionnement-javascript",
+      "theme": "breach",
+      "title": "Optimizely compromis : du JavaScript malveillant servi sur 178 organisations dont Zoom et GitLab",
+      "summary": "Le 16 novembre 2026, du JavaScript malveillant a été diffusé aux visiteurs de 178 organisations via la plateforme d'expérimentation Optimizely. Selon le chercheur Scott Helme, 188 fichiers sur 1 611 analysés étaient infectés. Parmi les sites touchés figurent Zoom, CNN, BBC, Salesforce, GitLab, Fox News et Air France. Optimizely indique qu'un tiers a exploité une faille du parcours de création de compte Experimentation pour ajouter du code dans le champ Project JavaScript de projets clients. Le code chargeait un script, track.js, qui remplace les adresses de portefeuilles crypto, copie les numéros de cartes bancaires, collecte cookies et captures d'écran, et livre sur iPhone et iPad les kits d'exploitation Coruna et DarkSword. Helme a relevé environ 7 000 dollars de transactions vers les portefeuilles de l'attaquant. Le CDN a servi ce qu'on lui avait fourni : il ne s'agit pas d'un empoisonnement de cache. Optimizely dit avoir bloqué le chemin vulnérable, retiré le code, révoqué jetons et sessions, et notifié les clients. Report URI constate que le code n'était plus présent que dans 1 snippet sur 188 à 21 h 52 UTC. Le mode d'accès aux projets reste non expliqué.",
+      "why_it_matters": "Si vos sites chargent Optimizely Web, vérifiez que le Project JavaScript ne contient pas de code inconnu, notamment des références à 1688360.cc, y compris en base64. Une CSP en mode enforcement et la surveillance de l'intégrité des scripts tiers limitent ce type d'attaque. Faites tourner les accès Optimizely.",
+      "sources": [
+        {
+          "article_id": "c014",
+          "feed": "BleepingComputer",
+          "title": "Optimizely hack infected CNN, Fox News, BBC, Salesforce sites with malware",
+          "url": "https://www.bleepingcomputer.com/news/security/optimizely-supply-chain-attack-delivers-malware-to-cnn-fox-news-bbc-salesforce-sites/",
+          "key": "link:https://bleepingcomputer.com/news/security/optimizely-supply-chain-attack-delivers-malware-to-cnn-fox-news-bbc-salesforce-sites"
+        },
+        {
+          "article_id": "c025",
+          "feed": "Hacker News (150+ pts)",
+          "title": "Optimizely compromised, served malware on Zoom, GitLab",
+          "url": "https://blog.report-uri.com/worlds-largest-brands-infected-with-malware-via-optimizely/",
+          "key": "link:https://blog.report-uri.com/worlds-largest-brands-infected-with-malware-via-optimizely"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-17/n-central-hotfix-3-17-failles",
+      "slug": "n-central-hotfix-3-17-failles",
+      "theme": "breach",
+      "title": "Mise à jour : N-able publie N-central 2026.4 HF3 et corrige 17 failles",
+      "summary": "N-able a publié le Hotfix 3 de N-central 2026.4, présenté comme une mise à jour de sécurité critique. Il corrige 17 CVE (CVE-2026-129271 à CVE-2026-129287) : élévation locale de privilèges, contournements d'authentification, injection de commandes en root via l'export d'audit, XXE, SSRF et traversée de chemin menant à une exécution de code. L'option de configuration des API héritées est supprimée définitivement. À ce stade, le contrôle à distance et l'intégration Intune restent bloqués. Les serveurs hébergés sont mis à jour automatiquement. Les clients sur site doivent mettre à niveau leurs serveurs, et tous les clients doivent mettre à jour agents et sondes, faute de quoi ils sont exposés à l'usurpation. Les failles 4EverAble2Shell sont activement exploitées pour déployer des mineurs de cryptomonnaie ; leur exploitation dépend du mode API héritée, désormais supprimé. Sean Bales a publié des détails sur 24 CVE corrigées.",
+      "why_it_matters": "Si vous gérez N-central sur site, appliquez HF3 sans attendre et mettez à jour tous les agents et sondes, hébergé ou non. Attendez-vous à des fonctions bloquées (contrôle à distance, Intune) tant que N-able ne les rétablit pas.",
+      "update_of": "2026-11-13/n-able-n-central-4everable2shell",
+      "what_is_new": "N-able a livré HF3 avec 17 correctifs et supprimé définitivement les API héritées, vecteur de 4EverAble2Shell, exploité pour installer des mineurs.",
+      "sources": [
+        {
+          "article_id": "c003",
+          "feed": "The Hacker News",
+          "title": "N-able Patches 17 N-central Flaws as Attackers Exploit Earlier Bugs to Deploy Crypto Miners",
+          "url": "https://thehackernews.com/2026/11/n-able-patches-17-n-central-flaws-as.html",
+          "key": "link:https://thehackernews.com/2026/11/n-able-patches-17-n-central-flaws-as.html"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-17/noisytcp-noyau-linux-cve-2026-99288",
+      "slug": "noisytcp-noyau-linux-cve-2026-99288",
+      "theme": "breach",
+      "title": "NoisyTCP : CVE-2026-99288, un bug du noyau Linux permet de faire planter des serveurs à distance",
+      "summary": "Le chercheur Hyunwoo Kim a décrit NoisyTCP, une faille vieille de 11 ans dans la pile TCP du noyau Linux, suivie sous CVE-2026-99288. Elle touche presque toutes les distributions. Une situation de concurrence entre la gestion des SYN cookies et le hachage des sockets provoque une déréférence de pointeur NULL et un kernel panic. Un attaquant non authentifié peut l'exploiter par des paquets TCP forgés contre des serveurs Nginx, Apache ou SSH en configuration par défaut. Il s'agit d'un déni de service : pas d'altération de données ni d'exécution de code. La fenêtre de course est étroite, et le déclenchement peut être long sur un serveur bare metal peu sollicité. Il faut au moins deux files RX ou une distribution RPS entre CPU. Le correctif est fusionné dans le noyau principal depuis deux semaines. En contournement, Kim conseille de désactiver les SYN cookies, au prix d'une moindre protection contre les SYN flood, et de n'utiliser qu'une seule file RX.",
+      "why_it_matters": "Les serveurs exposés directement en TCP sont concernés. Planifiez la mise à jour du noyau dès que votre distribution publie le correctif. Le contournement a un coût de sécurité : n'y recourez que si le patch est impossible.",
+      "sources": [
+        {
+          "article_id": "c136",
+          "feed": "BleepingComputer",
+          "title": "New NoisyTCP vulnerability lets attackers crash Linux servers",
+          "url": "https://www.bleepingcomputer.com/news/linux/new-noisytcp-linux-kernel-flaw-lets-attackers-crash-servers/",
+          "key": "link:https://bleepingcomputer.com/news/linux/new-noisytcp-linux-kernel-flaw-lets-attackers-crash-servers"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-17/unrealircd-cve-2026-114713-exploitee",
+      "slug": "unrealircd-cve-2026-114713-exploitee",
+      "theme": "breach",
+      "title": "UnrealIRCd : CVE-2026-114713 (CVSS 8.6) exploitée et inscrite au catalogue KEV",
+      "summary": "La faille CVE-2026-114713 (CVSS 8.6) d'UnrealIRCd est exploitée un jour après sa divulgation. Le module labeled-response n'échappe pas l'étiquette IRCv3 « label », ce qui permet à tout utilisateur d'un réseau avec au moins deux serveurs liés d'injecter des commandes serveur à serveur exécutées avec l'autorité d'un serveur. Le mainteneur Bram Matthys la juge la plus critique en 15 ans : un utilisateur ordinaire peut lancer KILL, GLINE et d'autres commandes. Le correctif est dans la version 6.2.7.1, publiée le 7 novembre avec huit autres corrections, et un hot patch existe. Les versions 5 et antérieures sont en fin de vie sans correctif. Matthys signalait l'exploitation en cours le 8 novembre. La CISA a ajouté la faille au catalogue KEV le 13 novembre, avec trois jours aux agences fédérales américaines pour corriger. La CISA a aussi ajouté CVE-2026-123039, qui touche des produits Check Point.",
+      "why_it_matters": "Si vous auto-hébergez un serveur IRC UnrealIRCd, passez en 6.2.7.1 ou appliquez le hot patch, ou au minimum le contournement par spamfilter. Les branches 5 et antérieures n'auront pas de correctif : migrez.",
+      "sources": [
+        {
+          "article_id": "c124",
+          "feed": "SecurityWeek",
+          "title": "Recent UnrealIRCd Vulnerability Exploited in Attacks",
+          "url": "https://www.securityweek.com/recent-unrealircd-vulnerability-exploited-in-attacks/",
+          "key": "link:https://securityweek.com/recent-unrealircd-vulnerability-exploited-in-attacks"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-17/barracuda-cloud-artex-cle-prestataire",
+      "slug": "barracuda-cloud-artex-cle-prestataire",
+      "theme": "breach",
+      "title": "Mise à jour : Barracuda attribue sa brèche cloud à ARTEX et à une clé d'un prestataire IA",
+      "summary": "Barracuda indique qu'un attaquant a accédé à environ 10 de ses comptes cloud en 44 heures, les 1er et 2 novembre. L'intrusion a été découverte le 4 novembre. Barracuda attribue cette intrusion « à vitesse machine » au framework de pentest par IA ARTEX. L'attaquant s'est servi d'une clé d'accès cloud confiée à un prestataire spécialisé en IA, que Barracuda n'avait pas révoquée à la fin du projet. Selon l'entreprise, la clé a été volée en octobre dans un fichier de configuration d'un dépôt GitHub du prestataire. L'attaquant a ensuite navigué dans l'environnement d'analytique, les dépôts de code et les clusters Kubernetes. Il a cherché des secrets crypto, ce qui laisse penser à un mobile financier, sans exclure une diversion. Il a déployé un conteneur montant le système de fichiers de l'hôte, et une création d'identité administrateur a été bloquée. Barracuda n'a pas de preuve d'accès aux identifiants d'intégration de XDR, mais demande aux clients Managed XDR Cloud ou Monitored Endpoint concernés de les recréer.",
+      "why_it_matters": "La cause est un accès tiers jamais révoqué. Auditez les clés cloud données à des prestataires, supprimez celles qui ne servent plus et cherchez des secrets dans les dépôts. Les clients XDR notifiés doivent régénérer leurs identifiants d'intégration.",
+      "update_of": "2026-11-16/fbi-artex-outil-pentest-ia-attaques",
+      "what_is_new": "Barracuda lie sa brèche cloud des 1er et 2 novembre à ARTEX et à une clé d'un prestataire IA jamais révoquée.",
+      "sources": [
+        {
+          "article_id": "c055",
+          "feed": "BleepingComputer",
+          "title": "Barracuda links cloud breach to ARTEX AI-powered cyberattack",
+          "url": "https://www.bleepingcomputer.com/news/security/barracuda-links-cloud-breach-to-artex-ai-powered-cyberattack/",
+          "key": "link:https://bleepingcomputer.com/news/security/barracuda-links-cloud-breach-to-artex-ai-powered-cyberattack"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-17/microsoft-365-rapport-preliminaire-panne",
+      "slug": "microsoft-365-rapport-preliminaire-panne",
+      "theme": "outage",
+      "title": "Mise à jour : Microsoft 365, un bug de juillet à l'origine de la panne, selon le rapport préliminaire",
+      "summary": "Le rapport préliminaire de Microsoft attribue la panne des 12 et 13 novembre à trois facteurs. D'abord, un défaut latent introduit en juillet par une mise à jour des serveurs de passerelle réseau, non détecté car les tests de charge utilisaient un matériel moins puissant. Ensuite, un basculement de Teams vers l'infrastructure d'Exchange Online environ 15 heures avant. Enfin, près de 14 % de la capacité de la passerelle déjà hors ligne. En moins de deux heures, plus de 80 % des serveurs ne répondaient plus. Le trafic redirigé a surchargé les serveurs sains, et les cloisons entre régions n'ont pas contenu la cascade. Exchange Online n'a pas pu basculer, contrairement à Teams, OneDrive et SharePoint. Les redémarrages échouaient sous le trafic accumulé. Le correctif a rétabli une version antérieure. Les sources divergent sur les horaires et la durée : près de 24 heures dans les rapports, 38 heures selon 01net. Un rapport final est attendu cette semaine. 01net rappelle que les entreprises peuvent demander un avoir SLA avant le 31 décembre.",
+      "why_it_matters": "Le scénario, une panne en cascade avec redémarrages saturés et retour arrière impossible, vaut pour tout service interne. Si vous dépendez de Microsoft 365, vous pouvez réclamer un avoir SLA via le centre d'administration, selon 01net. Relisez aussi vos tests de charge sur matériel représentatif.",
+      "update_of": "2026-11-14/microsoft-365-panne-mondiale",
+      "what_is_new": "Microsoft publie un rapport préliminaire : bug latent de juillet, basculement Teams et capacité réduite ; rapport final attendu cette semaine.",
+      "sources": [
+        {
+          "article_id": "c076",
+          "feed": "BleepingComputer",
+          "title": "Microsoft says months-old bug caused global Microsoft 365 outage",
+          "url": "https://www.bleepingcomputer.com/news/microsoft/microsoft-says-months-old-bug-caused-global-microsoft-365-outage/",
+          "key": "link:https://bleepingcomputer.com/news/microsoft/microsoft-says-months-old-bug-caused-global-microsoft-365-outage"
+        },
+        {
+          "article_id": "c082",
+          "feed": "Next",
+          "title": "Panne Microsoft 365 : tout est parti d’un correctif déployé en août",
+          "url": "https://next.ink/267845/panne-microsoft-365-tout-est-une-partie-dun-correctif-deploye-en-aout/",
+          "key": "link:https://next.ink/267845/panne-microsoft-365-tout-est-une-partie-dun-correctif-deploye-en-aout"
+        },
+        {
+          "article_id": "c099",
+          "feed": "01net (pannes)",
+          "title": "Panne mondiale d’Outlook et Teams : comment réclamer un dédommagement à Microsoft ?",
+          "url": "https://www.01net.com/actualites/panne-mondiale-doutlook-et-teams-comment-reclamer-un-dedommagement-a-microsoft.html",
+          "key": "link:https://01net.com/actualites/panne-mondiale-doutlook-et-teams-comment-reclamer-un-dedommagement-a-microsoft.html"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-17/expedia-n0n-fournisseur-donnees",
+      "slug": "expedia-n0n-fournisseur-donnees",
+      "theme": "leak",
+      "title": "Expedia : le groupe n0n revendique près d'un milliard d'enregistrements via un fournisseur de données",
+      "summary": "Selon ZATAZ, le groupe d'extorsion n0n, apparu en septembre 2026, affirme avoir volé près d'un milliard d'enregistrements liés à Expedia : plus de 830 millions issus de 35 programmes de fidélité, 58 millions de profils de voyageurs, plus de 333 millions de comptes consommateurs et environ 2,5 millions de données de dépenses par carte. Ces catégories peuvent se recouper. Les pirates disent aussi avoir obtenu du code source. Expedia confirme une cyberattaque passant par un fournisseur tiers de plateforme de données, mais ne valide pas les volumes. Selon des informations de Wiz et Sentra rapportées par ZATAZ, les pirates auraient utilisé une clé compromise d'un fournisseur lié à Qubole, partenaire de Google Cloud Platform. Expedia dit avoir pris des mesures de confinement, fait appel à des experts externes et assure que ses plateformes restent sûres. ZATAZ affirme avoir vu des données.",
+      "why_it_matters": "Les clients Expedia doivent s'attendre à de l'hameçonnage personnalisé et éviter de réutiliser leurs identifiants. Pour les équipes techniques, le schéma est une fois encore une clé d'intégration tierce compromise : inventoriez et limitez les accès délégués.",
+      "sources": [
+        {
+          "article_id": "c071",
+          "feed": "ZATAZ",
+          "title": "Expedia : un pirate revendique un vol massif de données",
+          "url": "https://www.zataz.com/expedia-un-pirate-revendique-un-vol-massif-de-donnees/",
+          "key": "link:https://zataz.com/expedia-un-pirate-revendique-un-vol-massif-de-donnees"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-17/fandango-skimmer-page-paiement",
+      "slug": "fandango-skimmer-page-paiement",
+      "theme": "leak",
+      "title": "Fandango : un skimmer sur la page de paiement a exposé des cartes bancaires en octobre",
+      "summary": "Fandango Media notifie ses clients d'une brèche : du code de skimming injecté dans sa page de paiement a intercepté les données saisies entre le 8 et le 11 octobre 2026. Fandango a établi le 30 octobre que des clients pouvaient être touchés. Les données exposées sont le numéro de carte, le CVV, la date d'expiration, le code postal de facturation et l'adresse e-mail. Selon l'entreprise, ni les noms, ni pièces d'identité, ni numéros de sécurité sociale, ni autres informations de compte ne sont concernés. Fandango a corrigé sa page, mené l'enquête avec des spécialistes externes et ne connaît pas de fraude. Elle propose deux ans de surveillance IDX, avec inscription possible jusqu'au 13 février 2027. Le nombre de clients touchés n'est pas communiqué ; BleepingComputer a sollicité l'entreprise.",
+      "why_it_matters": "Cas typique d'injection JavaScript sur page de paiement, comme l'incident Optimizely du jour. Une CSP stricte et la surveillance de l'intégrité des scripts du checkout réduisent le risque. Les clients concernés doivent surveiller leurs relevés.",
+      "sources": [
+        {
+          "article_id": "c088",
+          "feed": "BleepingComputer",
+          "title": "Fandango says hackers stole payment card details from checkout pages",
+          "url": "https://www.bleepingcomputer.com/news/security/fandango-says-hackers-stole-payment-card-details-from-checkout-pages/",
+          "key": "link:https://bleepingcomputer.com/news/security/fandango-says-hackers-stole-payment-card-details-from-checkout-pages"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-17/kube-proxy-retrait-backend-ipvs",
+      "slug": "kube-proxy-retrait-backend-ipvs",
+      "theme": "new_tech",
+      "title": "Kubernetes : le backend ipvs de kube-proxy sera retiré en 1.40",
+      "summary": "Le SIG Network de Kubernetes annonce le retrait du backend ipvs de kube-proxy dans Kubernetes 1.40. Il est déprécié depuis la 1.35 et reste disponible avec un avertissement. Créé pour corriger les problèmes de latence des plans de données et de contrôle d'iptables, il n'a jamais pu implémenter correctement tous les cas limites de l'API Services. L'API IPVS du noyau convient mal à Kubernetes, sans mise à jour par lots, et le backend recourt à iptables pour certaines fonctions. Ses auteurs d'origine sont partis et il est coûteux à maintenir. Le backend nftables, introduit en 1.29 et GA en 1.33, doit remplacer iptables et ipvs. Le projet note aussi que le retrait prévu de l'API iptables dans Red Hat Enterprise Linux rendrait le backend ipvs indisponible sur RHEL. Les utilisateurs d'ipvs doivent migrer vers nftables ou iptables.",
+      "why_it_matters": "Si vos clusters utilisent kube-proxy en mode ipvs, prévoyez une migration vers nftables avant la 1.40 et testez-la sur un cluster non critique. Vérifiez vos besoins en ordonnanceurs IPVS, que l'article traite en détail.",
+      "sources": [
+        {
+          "article_id": "c060",
+          "feed": "Kubernetes blog",
+          "title": "Scheduling the removal of the kube-proxy IPVS backend",
+          "url": "https://kubernetes.io/blog/2026/11/16/ipvs-removal/",
+          "key": "link:https://kubernetes.io/blog/2026/11/16/ipvs-removal"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-17/almalinux-10-3-modsecurity",
+      "slug": "almalinux-10-3-modsecurity",
+      "theme": "new_tech",
+      "title": "AlmaLinux 10.3 et 9.9 : ModSecurity de retour, Podman 6 et nouveaux toolsets",
+      "summary": "AlmaLinux 10.3 est disponible en production, avec AlmaLinux 9.9, après la sortie de RHEL 10.3. Selon Phoronix, la version 10.3 ajoute GCC Toolset 16, LLVM Toolset 22, Rust 1.97, Go 1.27, GDB 17.2 et Node.js 26, avec de nombreuses mises à jour de sécurité. Elle rétablit le pare-feu applicatif ModSecurity et le jeu de règles OWASP CRS, retirés depuis AlmaLinux 10.0. Elle passe aux outils de conteneurs Podman 6. Le support Btrfs et les autres améliorations propres à AlmaLinux 10.x par rapport à RHEL 10 sont conservés.",
+      "why_it_matters": "Si vous exécutez AlmaLinux ou un dérivé RHEL en production, le retour de ModSecurity évite de le compiler vous-même. Le passage à Podman 6 mérite un test des workflows de conteneurs avant de mettre à niveau.",
+      "sources": [
+        {
+          "article_id": "c032",
+          "feed": "Phoronix",
+          "title": "AlmaLinux 10.3 Released With ModSecurity Restored, Various Updates",
+          "url": "https://www.phoronix.com/news/AlmaLinux-10.3-Released",
+          "key": "link:https://phoronix.com/news/AlmaLinux-10.3-Released"
+        }
+      ]
+    }
+  ],
+  "episode_title": "Optimizely compromis, N-central, NoisyTCP et la panne Microsoft expliquée",
+  "script": [
+    {
+      "speaker": "Camille",
+      "text": "Salut et bienvenue dans La veille, on est le mardi 17 novembre 2026. Aujourd'hui : Optimizely qui sert du JavaScript malveillant, plein de correctifs, des nouvelles de Barracuda et de Microsoft, et un peu de Kubernetes.",
+      "style": "relaxed, warm morning greeting"
+    },
+    {
+      "speaker": "Max",
+      "text": "Salut Camille ! Et on commence fort. Le 16 novembre, du JavaScript malveillant a été diffusé aux visiteurs de 178 organisations, via la plateforme d'expérimentation Optimizely.",
+      "style": "relaxed, friendly"
+    },
+    {
+      "speaker": "Camille",
+      "text": "178 organisations, sérieux ? Ça donne quoi comme noms ?",
+      "style": "surprised"
+    },
+    {
+      "speaker": "Max",
+      "text": "Zoom, CNN, BBC, Salesforce, GitLab, Fox News, Air France. Selon le chercheur Scott Helme, 188 fichiers sur 1 611 analysés étaient infectés. Optimizely explique qu'un tiers a exploité une faille dans le parcours de création de compte Experimentation, pour ajouter du code dans le champ Project JavaScript de projets clients.",
+      "style": "calm, explaining"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Et ce code, il faisait quoi concrètement ?",
+      "style": "curious"
+    },
+    {
+      "speaker": "Max",
+      "text": "Il chargeait un script, track.js, qui remplace les adresses de portefeuilles crypto, copie les numéros de cartes bancaires, collecte cookies et captures d'écran. Et sur iPhone et iPad, il livrait les kits d'exploitation Coruna et DarkSword. Helme a relevé environ 7 000 dollars de transactions vers les portefeuilles de l'attaquant.",
+      "style": "serious, explaining"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Donc ce n'est pas un cache empoisonné, c'est ça ?",
+      "style": "thoughtful"
+    },
+    {
+      "speaker": "Max",
+      "text": "Exactement, le CDN a servi ce qu'on lui avait fourni. Optimizely dit avoir bloqué le chemin vulnérable, retiré le code, révoqué jetons et sessions, et notifié les clients. Report URI constate que le code n'était plus présent que dans 1 snippet sur 188 à 21 h 52 UTC. Par contre, la façon dont l'attaquant a accédé aux projets reste non expliquée.",
+      "style": "calm"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Côté action : vérifie que ton Project JavaScript ne contient rien d'inconnu, notamment des références à 1688360.cc, même en base64. Fais tourner les accès Optimizely. Et perso, une CSP en mode enforcement et de la surveillance d'intégrité des scripts tiers, ça aide vraiment.",
+      "style": "practical"
+    },
+    {
+      "speaker": "Max",
+      "text": "Et ça tombe bien, parce que Fandango a eu exactement ce genre de souci. Du code de skimming injecté dans leur page de paiement a intercepté les données saisies entre le 8 et le 11 octobre.",
+      "style": "amused"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Quelles données ?",
+      "style": "curious"
+    },
+    {
+      "speaker": "Max",
+      "text": "Numéro de carte, CVV, date d'expiration, code postal de facturation et e-mail. Pas les noms ni les pièces d'identité, selon l'entreprise. Ils proposent deux ans de surveillance IDX, inscription jusqu'au 13 février 2027. Le nombre de clients touchés n'est pas communiqué.",
+      "style": "calm, explaining"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Même remède : CSP stricte et intégrité des scripts du checkout. Passons à une suite. Tu te souviens de N-central et des failles 4EverAble2Shell, exploitées pour installer des mineurs ?",
+      "style": "relaxed"
+    },
+    {
+      "speaker": "Max",
+      "text": "Oui, et N-able a sorti le Hotfix 3 de la 2026.4, présenté comme une mise à jour de sécurité critique. Il corrige 17 CVE : élévation de privilèges, contournements d'authentification, injection de commandes en root via l'export d'audit, XXE, SSRF, traversée de chemin menant à une exécution de code.",
+      "style": "explaining"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Et les API héritées, vecteur de l'attaque ?",
+      "style": "curious"
+    },
+    {
+      "speaker": "Max",
+      "text": "L'option est supprimée définitivement, et l'exploitation dépendait de ce mode. Les serveurs hébergés sont mis à jour automatiquement. Sur site, tu mets à niveau ton serveur, et tout le monde doit mettre à jour agents et sondes, sinon risque d'usurpation. Petit bémol : le contrôle à distance et l'intégration Intune restent bloqués pour l'instant.",
+      "style": "calm"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Moi j'appliquerais sans attendre, quitte à vivre sans ces fonctions un moment. Autre sujet de patch : NoisyTCP, une faille de 11 ans dans la pile TCP du noyau Linux, la CVE 2026 tiret 99288.",
+      "style": "matter-of-fact"
+    },
+    {
+      "speaker": "Max",
+      "text": "Découverte par Hyunwoo Kim. Une situation de concurrence entre les SYN cookies et le hachage des sockets, qui donne une déréférence de pointeur NULL et un kernel panic. Un attaquant non authentifié peut l'exploiter avec des paquets TCP forgés, contre Nginx, Apache ou SSH en config par défaut.",
+      "style": "explaining"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Aïe. C'est de l'exécution de code ?",
+      "style": "worried, then relieved"
+    },
+    {
+      "speaker": "Max",
+      "text": "Non, déni de service seulement. La fenêtre de course est étroite, et ça peut être long à déclencher sur un bare metal peu sollicité. Il faut au moins deux files RX ou une distribution RPS entre CPU. Le correctif est dans le noyau principal depuis deux semaines.",
+      "style": "calm"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Planifie la mise à jour dès que ta distrib sort le patch. Le contournement, c'est désactiver les SYN cookies ou n'utiliser qu'une file RX, mais tu perds en protection contre les SYN flood. À réserver si le patch est impossible.",
+      "style": "practical"
+    },
+    {
+      "speaker": "Max",
+      "text": "Dernier patch du jour, plus urgent : UnrealIRCd, CVE 2026 tiret 114713, CVSS 8,6, exploitée un jour après sa divulgation.",
+      "style": "serious"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Ça marche comment ?",
+      "style": "curious"
+    },
+    {
+      "speaker": "Max",
+      "text": "Le module labeled-response n'échappe pas l'étiquette IRCv3 label. Du coup, n'importe quel utilisateur d'un réseau avec au moins deux serveurs liés peut injecter des commandes serveur à serveur, exécutées avec l'autorité d'un serveur. Le mainteneur Bram Matthys la juge la plus critique en 15 ans : un simple utilisateur peut lancer KILL, GLINE et d'autres.",
+      "style": "explaining"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Ouch. Et la CISA ?",
+      "style": "surprised"
+    },
+    {
+      "speaker": "Max",
+      "text": "Elle l'a ajoutée au catalogue KEV le 13 novembre, avec trois jours pour les agences fédérales américaines. Elle a aussi ajouté la CVE 2026 tiret 123039, qui touche des produits Check Point. Le correctif est dans la 6.2.7.1, sortie le 7 novembre, il y a aussi un hot patch. Les versions 5 et antérieures sont en fin de vie, sans correctif : il faut migrer.",
+      "style": "calm"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Passons à Barracuda, suite de l'histoire du FBI et d'ARTEX, l'outil de pentest par IA utilisé dans des attaques. Barracuda dit qu'un attaquant a accédé à environ 10 de ses comptes cloud en 44 heures, les 1er et 2 novembre.",
+      "style": "relaxed"
+    },
+    {
+      "speaker": "Max",
+      "text": "Et ils l'attribuent à ARTEX, une intrusion à vitesse machine. Le point d'entrée : une clé d'accès cloud confiée à un prestataire spécialisé en IA, jamais révoquée à la fin du projet. Elle aurait été volée en octobre dans un fichier de configuration d'un dépôt GitHub du prestataire.",
+      "style": "explaining"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Le classique du secret dans un dépôt. Et ensuite ?",
+      "style": "amused, rueful"
+    },
+    {
+      "speaker": "Max",
+      "text": "L'attaquant a navigué dans l'analytique, les dépôts de code et les clusters Kubernetes, cherché des secrets crypto, ce qui suggère un mobile financier, sans exclure une diversion. Il a déployé un conteneur montant le système de fichiers de l'hôte, mais une création d'identité administrateur a été bloquée. Les clients Managed XDR Cloud ou Monitored Endpoint concernés doivent recréer leurs identifiants d'intégration, même sans preuve d'accès.",
+      "style": "calm"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Leçon : audite les clés données aux prestataires et supprime celles qui ne servent plus. Et justement, Expedia : selon ZATAZ, le groupe n0n, apparu en septembre, revendique près d'un milliard d'enregistrements.",
+      "style": "thoughtful"
+    },
+    {
+      "speaker": "Max",
+      "text": "Un milliard ! Plus de 830 millions issus de 35 programmes de fidélité, 58 millions de profils de voyageurs, plus de 333 millions de comptes consommateurs, environ 2,5 millions de données de dépenses par carte. Mais ces catégories peuvent se recouper, et ils disent aussi avoir du code source.",
+      "style": "surprised"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Et Expedia confirme quoi ?",
+      "style": "skeptical"
+    },
+    {
+      "speaker": "Max",
+      "text": "Une cyberattaque via un fournisseur tiers de plateforme de données, mais pas les volumes. Selon Wiz et Sentra rapportés par ZATAZ, les pirates auraient utilisé une clé compromise d'un fournisseur lié à Qubole, partenaire de Google Cloud Platform. Expedia dit avoir confiné et assure que ses plateformes restent sûres. ZATAZ affirme avoir vu des données.",
+      "style": "calm"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Encore une clé d'intégration tierce. Côté clients : méfiance face à l'hameçonnage personnalisé, et pas de réutilisation de mots de passe. Allez, la grosse panne de la semaine dernière : Microsoft 365, le rapport préliminaire est sorti.",
+      "style": "matter-of-fact"
+    },
+    {
+      "speaker": "Max",
+      "text": "Trois facteurs pour la panne des 12 et 13 novembre. Un défaut latent introduit en juillet par une mise à jour des serveurs de passerelle réseau, non détecté parce que les tests de charge tournaient sur du matériel moins puissant. Ensuite un basculement de Teams vers l'infrastructure d'Exchange Online environ 15 heures avant. Et près de 14 % de la capacité de la passerelle déjà hors ligne.",
+      "style": "explaining"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Et ça s'écroule comment ?",
+      "style": "curious"
+    },
+    {
+      "speaker": "Max",
+      "text": "En moins de deux heures, plus de 80 % des serveurs ne répondaient plus. Le trafic redirigé a surchargé les serveurs sains, et les cloisons entre régions n'ont pas contenu la cascade. Exchange Online n'a pas pu basculer, contrairement à Teams, OneDrive et SharePoint. Les redémarrages échouaient sous le trafic accumulé, et le correctif a été de revenir à une version antérieure.",
+      "style": "explaining"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Perso ça me parle : des tests de charge sur du matériel pas représentatif, on a tous fait ça. Et la durée ?",
+      "style": "thoughtful"
+    },
+    {
+      "speaker": "Max",
+      "text": "Les sources divergent : près de 24 heures dans les rapports, 38 heures selon 01net. Rapport final attendu cette semaine. Et 01net rappelle que les entreprises peuvent demander un avoir SLA avant le 31 décembre, via le centre d'administration.",
+      "style": "relaxed"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Bon, un peu de Kubernetes pour finir doucement. Le SIG Network annonce le retrait du backend ipvs de kube-proxy dans la 1.40.",
+      "style": "relaxed"
+    },
+    {
+      "speaker": "Max",
+      "text": "Il est déprécié depuis la 1.35. Il avait été créé pour les problèmes de latence d'iptables, mais il n'a jamais bien géré tous les cas limites de l'API Services. L'API IPVS du noyau convient mal, sans mise à jour par lots, et le backend utilise quand même iptables pour certaines fonctions. Ses auteurs d'origine sont partis, c'est coûteux à maintenir.",
+      "style": "explaining"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Et on migre vers quoi ?",
+      "style": "curious"
+    },
+    {
+      "speaker": "Max",
+      "text": "nftables, introduit en 1.29 et GA en 1.33, ou iptables. Et le retrait prévu de l'API iptables dans RHEL rendrait de toute façon ipvs indisponible là-bas. Teste la migration sur un cluster non critique, et regarde si tu as besoin des ordonnanceurs IPVS, l'article les détaille.",
+      "style": "calm"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Et pour clore, AlmaLinux 10.3 et 9.9 sont disponibles, après RHEL 10.3.",
+      "style": "upbeat"
+    },
+    {
+      "speaker": "Max",
+      "text": "Selon Phoronix, la 10.3 ajoute GCC Toolset 16, LLVM Toolset 22, Rust 1.97, Go 1.27, GDB 17.2 et Node.js 26. Surtout, elle ramène ModSecurity et le jeu de règles OWASP CRS, retirés depuis la 10.0, et passe à Podman 6.",
+      "style": "upbeat, explaining"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Plus besoin de compiler ModSecurity soi-même, super. Par contre, teste tes workflows de conteneurs avant de passer à Podman 6.",
+      "style": "relaxed"
+    },
+    {
+      "speaker": "Max",
+      "text": "Voilà pour aujourd'hui. Merci d'avoir écouté, et bon courage pour les patchs !",
+      "style": "warm, relaxed"
+    },
+    {
+      "speaker": "Camille",
+      "text": "À demain pour une nouvelle veille !",
+      "style": "warm"
+    }
+  ],
+  "episode": {
+    "title": "Optimizely compromis, N-central, NoisyTCP et la panne Microsoft expliquée",
+    "release_tag": "ep-2026-11-17",
+    "mp3_url": "https://github.com/Elohyrr/veille/releases/download/ep-2026-11-17/veille-2026-11-17.mp3",
+    "bytes": 5036013,
+    "duration_s": 629,
+    "tts_provider": "openrouter"
+  },
+  "usage": {
+    "digest": {
+      "model": "sonnet",
+      "in": 40007,
+      "out": 6392,
+      "cost_usd": 0.223944
+    },
+    "podcast": {
+      "model": "sonnet",
+      "in": 8157,
+      "out": 5603,
+      "cost_usd": 0.08865400000000001
+    },
+    "triage": {
+      "model": "haiku",
+      "in": 37633,
+      "out": 7136,
+      "cost_usd": 0.0110944
+    }
+  }
+}
