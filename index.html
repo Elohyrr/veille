@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>mardi 17 novembre 2026 — La veille</title>
+<title>mercredi 18 novembre 2026 — La veille</title>
 <meta name="description" content="Tech, pannes, failles et fuites — digest quotidien">
 <link rel="canonical" href="https://elohyrr.github.io/veille/">
 <link rel="stylesheet" href="style.css">
@@ -18,188 +18,196 @@
 <main>
 
 
-<h1>mardi 17 novembre 2026</h1>
-<p class="meta">10 sujets · lecture estimée : 9 min</p>
+<h1>mercredi 18 novembre 2026</h1>
+<p class="meta">10 sujets · lecture estimée : 8 min</p>
 
 <section class="player" aria-label="Podcast du jour">
-<p><strong>Écouter</strong> · 10 min · Optimizely compromis, N-central, NoisyTCP et la panne Microsoft expliquée</p>
-<audio controls preload="none" src="https://github.com/Elohyrr/veille/releases/download/ep-2026-11-17/veille-2026-11-17.mp3"></audio>
-<p><a class="dl" href="https://github.com/Elohyrr/veille/releases/download/ep-2026-11-17/veille-2026-11-17.mp3" download>Télécharger le MP3</a> <span class="muted">(5,0 Mo)</span></p>
+<p><strong>Écouter</strong> · 10 min · Java4Shell, ScreenConnect, Optimizely et des clés Docker volées en 8 secondes</p>
+<audio controls preload="none" src="https://github.com/Elohyrr/veille/releases/download/ep-2026-11-18/veille-2026-11-18.mp3"></audio>
+<p><a class="dl" href="https://github.com/Elohyrr/veille/releases/download/ep-2026-11-18/veille-2026-11-18.mp3" download>Télécharger le MP3</a> <span class="muted">(4,8 Mo)</span></p>
 </section>
 
-<p class="intro">Journée marquée par la compromission d&#39;Optimizely, qui a servi du JavaScript malveillant sur 178 organisations. Côté correctifs : N-central HF3, noyau Linux (NoisyTCP) et UnrealIRCd exploité. Rapport préliminaire Microsoft sur la panne 365.</p>
+<p class="intro">Java4Shell domine la journée : une faille de décodage Base64 dans OpenJDK touche Jenkins, Jira et Keycloak. Côté pannes, Apple et le réseau interne de la NSA sont perturbés.</p>
 
 <nav class="toc" aria-label="Sommaire">
 <section class="toc-group t-new_tech">
-<h2><span class="pill" aria-hidden="true"></span>Nouvelles technos <span class="count">2</span></h2>
+<h2><span class="pill" aria-hidden="true"></span>Nouvelles technos <span class="count">1</span></h2>
 <ul>
-<li><a href="#kube-proxy-retrait-backend-ipvs">Kubernetes : le backend ipvs de kube-proxy sera retiré en 1.40</a></li>
-<li><a href="#almalinux-10-3-modsecurity">AlmaLinux 10.3 et 9.9 : ModSecurity de retour, Podman 6 et nouveaux toolsets</a></li>
+<li><a href="#canonical-surge-correctifs-ia-ubuntu">Canonical Surge : des correctifs de sécurité rédigés par IA, via une archive Edge optionnelle</a></li>
 </ul>
 </section>
 <section class="toc-group t-outage">
-<h2><span class="pill" aria-hidden="true"></span>Pannes <span class="count">1</span></h2>
+<h2><span class="pill" aria-hidden="true"></span>Pannes <span class="count">3</span></h2>
 <ul>
-<li><a href="#microsoft-365-rapport-preliminaire-panne">Mise à jour : Microsoft 365, un bug de juillet à l&#39;origine de la panne, selon le rapport préliminaire</a></li>
+<li><a href="#apple-icloud-panne-17-novembre">Apple : panne de la connexion iCloud, App Store et Apple Music indisponibles</a></li>
+<li><a href="#nsa-net-perturbations">NSA Net : le réseau interne classifié de la NSA subit des perturbations</a></li>
+<li><a href="#ovhcloud-kubernetes-us-west-or1">OVHcloud : plans de contrôle Managed Kubernetes inaccessibles à US-WEST-OR1 pendant 2 h 20</a></li>
 </ul>
 </section>
 <section class="toc-group t-breach">
-<h2><span class="pill" aria-hidden="true"></span>Failles et compromissions <span class="count">5</span></h2>
+<h2><span class="pill" aria-hidden="true"></span>Failles et compromissions <span class="count">4</span></h2>
 <ul>
-<li><a href="#optimizely-chaine-approvisionnement-javascript">Optimizely compromis : du JavaScript malveillant servi sur 178 organisations dont Zoom et GitLab</a></li>
-<li><a href="#n-central-hotfix-3-17-failles">Mise à jour : N-able publie N-central 2026.4 HF3 et corrige 17 failles</a></li>
-<li><a href="#noisytcp-noyau-linux-cve-2026-99288">NoisyTCP : CVE-2026-99288, un bug du noyau Linux permet de faire planter des serveurs à distance</a></li>
-<li><a href="#unrealircd-cve-2026-114713-exploitee">UnrealIRCd : CVE-2026-114713 (CVSS 8.6) exploitée et inscrite au catalogue KEV</a></li>
-<li><a href="#barracuda-cloud-artex-cle-prestataire">Mise à jour : Barracuda attribue sa brèche cloud à ARTEX et à une clé d&#39;un prestataire IA</a></li>
+<li><a href="#java4shell-openjdk-cve-2026-114938">Java4Shell : CVE-2026-114938 permet une exécution de code à distance via le décodeur Base64 d&#39;OpenJDK</a></li>
+<li><a href="#screenconnect-cve-2026-84869-msp">Mise à jour : ScreenConnect, CVE-2026-84869 exploitée contre des serveurs MSP, SCKit repart</a></li>
+<li><a href="#puppet-enterprise-cve-2026-115731-kev">Puppet Enterprise : CVE-2026-115731, désérialisation exploitée, ajoutée au catalogue KEV</a></li>
+<li><a href="#optimizely-mise-a-jour-skimmer-ios">Mise à jour : Optimizely, skimmer, substitution d&#39;adresses crypto et kit d&#39;exploit iOS</a></li>
 </ul>
 </section>
 <section class="toc-group t-leak">
 <h2><span class="pill" aria-hidden="true"></span>Fuites de données <span class="count">2</span></h2>
 <ul>
-<li><a href="#expedia-n0n-fournisseur-donnees">Expedia : le groupe n0n revendique près d&#39;un milliard d&#39;enregistrements via un fournisseur de données</a></li>
-<li><a href="#fandango-skimmer-page-paiement">Fandango : un skimmer sur la page de paiement a exposé des cartes bancaires en octobre</a></li>
+<li><a href="#fuite-rassemblement-national-shin0bi">Rassemblement National : un pirate revendique 500 782 enregistrements d&#39;adhérents</a></li>
+<li><a href="#docker-hub-cles-volees-en-secondes">Docker Hub : des clés cloud publiées par erreur sont exploitées en 8 secondes</a></li>
 </ul>
 </section>
 </nav>
 
-<article id="kube-proxy-retrait-backend-ipvs" class="topic t-new_tech">
-<h3><span class="pill" aria-hidden="true"></span>Kubernetes : le backend ipvs de kube-proxy sera retiré en 1.40</h3>
+<article id="canonical-surge-correctifs-ia-ubuntu" class="topic t-new_tech">
+<h3><span class="pill" aria-hidden="true"></span>Canonical Surge : des correctifs de sécurité rédigés par IA, via une archive Edge optionnelle</h3>
 
-<p>Le SIG Network de Kubernetes annonce le retrait du backend ipvs de kube-proxy dans Kubernetes 1.40. Il est déprécié depuis la 1.35 et reste disponible avec un avertissement. Créé pour corriger les problèmes de latence des plans de données et de contrôle d&#39;iptables, il n&#39;a jamais pu implémenter correctement tous les cas limites de l&#39;API Services. L&#39;API IPVS du noyau convient mal à Kubernetes, sans mise à jour par lots, et le backend recourt à iptables pour certaines fonctions. Ses auteurs d&#39;origine sont partis et il est coûteux à maintenir. Le backend nftables, introduit en 1.29 et GA en 1.33, doit remplacer iptables et ipvs. Le projet note aussi que le retrait prévu de l&#39;API iptables dans Red Hat Enterprise Linux rendrait le backend ipvs indisponible sur RHEL. Les utilisateurs d&#39;ipvs doivent migrer vers nftables ou iptables.</p>
-<div class="why"><p class="why-title">Pourquoi c'est important</p><p>Si vos clusters utilisent kube-proxy en mode ipvs, prévoyez une migration vers nftables avant la 1.40 et testez-la sur un cluster non critique. Vérifiez vos besoins en ordonnanceurs IPVS, que l&#39;article traite en détail.</p></div>
+<p>Lors de l&#39;Ubuntu Summit 26.10, Canonical a présenté Surge, un système multi-agents qui trie les vulnérabilités et rédige des correctifs rétroportés pour les paquets Ubuntu. Selon les diapositives, le volume de correctifs par trimestre est passé d&#39;environ 1 400 début 2025 à 3 100 mi-2026, et octobre 2026 a compté presque autant de CVE que toute l&#39;année 2025. Le pipeline compte six étapes : collecte, analyse du code avec reproduction, rétroportage par plusieurs modèles concurrents, jugement par consensus, escalade humaine si besoin, puis build et publication habituels. Surge couvre l&#39;espace utilisateur, pas le noyau. Ses correctifs vont dans l&#39;archive Edge, optionnelle et accessible via Ubuntu Pro, et n&#39;atteignent les mises à jour normales qu&#39;après tests humains.</p>
+<div class="why"><p class="why-title">Pourquoi c'est important</p><p>Rien ne change par défaut sur vos serveurs. L&#39;archive Edge offre des correctifs plus rapides mais moins testés : réservez-la à un poste de dev ou un homelab, pas à la production. C&#39;est surtout un signe de la pression des CVE découvertes par IA sur les distributions.</p></div>
 <details class="sources">
 <summary>Sources (1)</summary>
 <ul>
-<li><a href="https://kubernetes.io/blog/2026/11/16/ipvs-removal/" rel="noopener nofollow">Scheduling the removal of the kube-proxy IPVS backend</a> <span class="feed">Kubernetes blog</span></li>
+<li><a href="https://feed.itsfoss.com/link/24361/17526502/canonical-surge-announcemengt" rel="noopener nofollow">Canonical is Now Shipping AI-Written Security Patches to Ubuntu Pro Users</a> <span class="feed">It&#39;s FOSS</span></li>
 </ul>
 </details>
 
 </article>
 
-<article id="almalinux-10-3-modsecurity" class="topic t-new_tech">
-<h3><span class="pill" aria-hidden="true"></span>AlmaLinux 10.3 et 9.9 : ModSecurity de retour, Podman 6 et nouveaux toolsets</h3>
+<article id="apple-icloud-panne-17-novembre" class="topic t-outage">
+<h3><span class="pill" aria-hidden="true"></span>Apple : panne de la connexion iCloud, App Store et Apple Music indisponibles</h3>
 
-<p>AlmaLinux 10.3 est disponible en production, avec AlmaLinux 9.9, après la sortie de RHEL 10.3. Selon Phoronix, la version 10.3 ajoute GCC Toolset 16, LLVM Toolset 22, Rust 1.97, Go 1.27, GDB 17.2 et Node.js 26, avec de nombreuses mises à jour de sécurité. Elle rétablit le pare-feu applicatif ModSecurity et le jeu de règles OWASP CRS, retirés depuis AlmaLinux 10.0. Elle passe aux outils de conteneurs Podman 6. Le support Btrfs et les autres améliorations propres à AlmaLinux 10.x par rapport à RHEL 10 sont conservés.</p>
-<div class="why"><p class="why-title">Pourquoi c'est important</p><p>Si vous exécutez AlmaLinux ou un dérivé RHEL en production, le retour de ModSecurity évite de le compiler vous-même. Le passage à Podman 6 mérite un test des workflows de conteneurs avant de mettre à niveau.</p></div>
-<details class="sources">
-<summary>Sources (1)</summary>
-<ul>
-<li><a href="https://www.phoronix.com/news/AlmaLinux-10.3-Released" rel="noopener nofollow">AlmaLinux 10.3 Released With ModSecurity Restored, Various Updates</a> <span class="feed">Phoronix</span></li>
-</ul>
-</details>
-
-</article>
-
-<article id="microsoft-365-rapport-preliminaire-panne" class="topic t-outage">
-<h3><span class="pill" aria-hidden="true"></span>Mise à jour : Microsoft 365, un bug de juillet à l&#39;origine de la panne, selon le rapport préliminaire</h3>
-<p class="update"><a href="jours/2026-11-14/#microsoft-365-panne-mondiale">Mise à jour du 14 novembre</a> : Microsoft publie un rapport préliminaire : bug latent de juillet, basculement Teams et capacité réduite ; rapport final attendu cette semaine.</p>
-<p>Le rapport préliminaire de Microsoft attribue la panne des 12 et 13 novembre à trois facteurs. D&#39;abord, un défaut latent introduit en juillet par une mise à jour des serveurs de passerelle réseau, non détecté car les tests de charge utilisaient un matériel moins puissant. Ensuite, un basculement de Teams vers l&#39;infrastructure d&#39;Exchange Online environ 15 heures avant. Enfin, près de 14 % de la capacité de la passerelle déjà hors ligne. En moins de deux heures, plus de 80 % des serveurs ne répondaient plus. Le trafic redirigé a surchargé les serveurs sains, et les cloisons entre régions n&#39;ont pas contenu la cascade. Exchange Online n&#39;a pas pu basculer, contrairement à Teams, OneDrive et SharePoint. Les redémarrages échouaient sous le trafic accumulé. Le correctif a rétabli une version antérieure. Les sources divergent sur les horaires et la durée : près de 24 heures dans les rapports, 38 heures selon 01net. Un rapport final est attendu cette semaine. 01net rappelle que les entreprises peuvent demander un avoir SLA avant le 31 décembre.</p>
-<div class="why"><p class="why-title">Pourquoi c'est important</p><p>Le scénario, une panne en cascade avec redémarrages saturés et retour arrière impossible, vaut pour tout service interne. Si vous dépendez de Microsoft 365, vous pouvez réclamer un avoir SLA via le centre d&#39;administration, selon 01net. Relisez aussi vos tests de charge sur matériel représentatif.</p></div>
-<details class="sources">
-<summary>Sources (3)</summary>
-<ul>
-<li><a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-says-months-old-bug-caused-global-microsoft-365-outage/" rel="noopener nofollow">Microsoft says months-old bug caused global Microsoft 365 outage</a> <span class="feed">BleepingComputer</span></li>
-<li><a href="https://next.ink/267845/panne-microsoft-365-tout-est-une-partie-dun-correctif-deploye-en-aout/" rel="noopener nofollow">Panne Microsoft 365 : tout est parti d’un correctif déployé en août</a> <span class="feed">Next</span></li>
-<li><a href="https://www.01net.com/actualites/panne-mondiale-doutlook-et-teams-comment-reclamer-un-dedommagement-a-microsoft.html" rel="noopener nofollow">Panne mondiale d’Outlook et Teams : comment réclamer un dédommagement à Microsoft ?</a> <span class="feed">01net (pannes)</span></li>
-</ul>
-</details>
-
-</article>
-
-<article id="optimizely-chaine-approvisionnement-javascript" class="topic t-breach">
-<h3><span class="pill" aria-hidden="true"></span>Optimizely compromis : du JavaScript malveillant servi sur 178 organisations dont Zoom et GitLab</h3>
-
-<p>Le 16 novembre 2026, du JavaScript malveillant a été diffusé aux visiteurs de 178 organisations via la plateforme d&#39;expérimentation Optimizely. Selon le chercheur Scott Helme, 188 fichiers sur 1 611 analysés étaient infectés. Parmi les sites touchés figurent Zoom, CNN, BBC, Salesforce, GitLab, Fox News et Air France. Optimizely indique qu&#39;un tiers a exploité une faille du parcours de création de compte Experimentation pour ajouter du code dans le champ Project JavaScript de projets clients. Le code chargeait un script, track.js, qui remplace les adresses de portefeuilles crypto, copie les numéros de cartes bancaires, collecte cookies et captures d&#39;écran, et livre sur iPhone et iPad les kits d&#39;exploitation Coruna et DarkSword. Helme a relevé environ 7 000 dollars de transactions vers les portefeuilles de l&#39;attaquant. Le CDN a servi ce qu&#39;on lui avait fourni : il ne s&#39;agit pas d&#39;un empoisonnement de cache. Optimizely dit avoir bloqué le chemin vulnérable, retiré le code, révoqué jetons et sessions, et notifié les clients. Report URI constate que le code n&#39;était plus présent que dans 1 snippet sur 188 à 21 h 52 UTC. Le mode d&#39;accès aux projets reste non expliqué.</p>
-<div class="why"><p class="why-title">Pourquoi c'est important</p><p>Si vos sites chargent Optimizely Web, vérifiez que le Project JavaScript ne contient pas de code inconnu, notamment des références à 1688360.cc, y compris en base64. Une CSP en mode enforcement et la surveillance de l&#39;intégrité des scripts tiers limitent ce type d&#39;attaque. Faites tourner les accès Optimizely.</p></div>
+<p>Le 17 novembre en fin d&#39;après-midi, de nombreux utilisateurs d&#39;iPhone, iPad et Mac ont été déconnectés d&#39;iCloud et n&#39;ont pas pu se reconnecter. Selon 9to5Mac, ils rencontraient des échecs de vérification ou des erreurs inconnues. Comme les services reposent sur le même compte Apple, l&#39;App Store, Apple Pay, Apple Music, l&#39;activation des appareils et App Store Connect ont aussi eu des problèmes. À 19 h 10, Apple indiquait deux problèmes sur « Compte iCloud et connexion » et classait l&#39;App Store, Apple Music et AppleCare sur l&#39;appareil en « panne », le niveau le plus grave. Apple n&#39;a donné ni cause ni délai de rétablissement. Les signalements ont fortement grimpé sur Downdetector vers 18 h 42.</p>
+<div class="why"><p class="why-title">Pourquoi c'est important</p><p>Si vos équipes dépendent d&#39;un identifiant Apple, par exemple pour la distribution d&#39;applications via App Store Connect ou la gestion de flottes, attendez un rétablissement avant de dépanner les postes. L&#39;incident rappelle aussi qu&#39;un point unique d&#39;authentification peut paralyser plusieurs services.</p></div>
 <details class="sources">
 <summary>Sources (2)</summary>
 <ul>
-<li><a href="https://www.bleepingcomputer.com/news/security/optimizely-supply-chain-attack-delivers-malware-to-cnn-fox-news-bbc-salesforce-sites/" rel="noopener nofollow">Optimizely hack infected CNN, Fox News, BBC, Salesforce sites with malware</a> <span class="feed">BleepingComputer</span></li>
-<li><a href="https://blog.report-uri.com/worlds-largest-brands-infected-with-malware-via-optimizely/" rel="noopener nofollow">Optimizely compromised, served malware on Zoom, GitLab</a> <span class="feed">Hacker News (150&#43; pts)</span></li>
+<li><a href="https://www.numerama.com/tech/2377281-une-panne-icloud-prive-des-utilisateurs-de-leur-compte-apple-voici-ce-que-lon-sait.html" rel="noopener nofollow">Panne Apple : iCloud, l’App Store et Apple Music ne fonctionnent plus, voici ce que l’on sait</a> <span class="feed">Numerama (pannes)</span></li>
+<li><a href="https://developer.apple.com/system-status/" rel="noopener nofollow">Apple Services Down</a> <span class="feed">Hacker News (150&#43; pts)</span></li>
 </ul>
 </details>
 
 </article>
 
-<article id="n-central-hotfix-3-17-failles" class="topic t-breach">
-<h3><span class="pill" aria-hidden="true"></span>Mise à jour : N-able publie N-central 2026.4 HF3 et corrige 17 failles</h3>
-<p class="update"><a href="jours/2026-11-13/#n-able-n-central-4everable2shell">Mise à jour du 13 novembre</a> : N-able a livré HF3 avec 17 correctifs et supprimé définitivement les API héritées, vecteur de 4EverAble2Shell, exploité pour installer des mineurs.</p>
-<p>N-able a publié le Hotfix 3 de N-central 2026.4, présenté comme une mise à jour de sécurité critique. Il corrige 17 CVE (CVE-2026-129271 à CVE-2026-129287) : élévation locale de privilèges, contournements d&#39;authentification, injection de commandes en root via l&#39;export d&#39;audit, XXE, SSRF et traversée de chemin menant à une exécution de code. L&#39;option de configuration des API héritées est supprimée définitivement. À ce stade, le contrôle à distance et l&#39;intégration Intune restent bloqués. Les serveurs hébergés sont mis à jour automatiquement. Les clients sur site doivent mettre à niveau leurs serveurs, et tous les clients doivent mettre à jour agents et sondes, faute de quoi ils sont exposés à l&#39;usurpation. Les failles 4EverAble2Shell sont activement exploitées pour déployer des mineurs de cryptomonnaie ; leur exploitation dépend du mode API héritée, désormais supprimé. Sean Bales a publié des détails sur 24 CVE corrigées.</p>
-<div class="why"><p class="why-title">Pourquoi c'est important</p><p>Si vous gérez N-central sur site, appliquez HF3 sans attendre et mettez à jour tous les agents et sondes, hébergé ou non. Attendez-vous à des fonctions bloquées (contrôle à distance, Intune) tant que N-able ne les rétablit pas.</p></div>
+<article id="nsa-net-perturbations" class="topic t-outage">
+<h3><span class="pill" aria-hidden="true"></span>NSA Net : le réseau interne classifié de la NSA subit des perturbations</h3>
+
+<p>Selon CNN, repris par The Record et Numerama, NSA Net, le réseau interne classifié de la NSA, était perturbé le 17 novembre. L&#39;ouverture a été retardée et les arrivées du personnel échelonnées à Fort Meade pour réduire la charge de connexions. Deux sources de The Record disent que le réseau n&#39;est pas totalement arrêté mais fournit un service intermittent, et que la cause ne serait pas une cyberattaque. Une source ajoute qu&#39;il serait instable depuis des semaines. L&#39;agence évoque une « dégradation temporaire » pendant une maintenance programmée et affirme que ses capacités critiques restent opérationnelles. La durée et le périmètre exacts de l&#39;incident restent inconnus.</p>
+<div class="why"><p class="why-title">Pourquoi c'est important</p><p>Aucune action pour les lecteurs. L&#39;épisode illustre qu&#39;une maintenance planifiée sur une infrastructure redondante peut dégrader un service entier. À suivre : la cause réelle, que l&#39;agence n&#39;a pas détaillée.</p></div>
 <details class="sources">
-<summary>Sources (1)</summary>
+<summary>Sources (2)</summary>
 <ul>
-<li><a href="https://thehackernews.com/2026/11/n-able-patches-17-n-central-flaws-as.html" rel="noopener nofollow">N-able Patches 17 N-central Flaws as Attackers Exploit Earlier Bugs to Deploy Crypto Miners</a> <span class="feed">The Hacker News</span></li>
+<li><a href="https://therecord.media/nsa-net-disruptions" rel="noopener nofollow">NSA Net, agency’s classified internal network, faces unspecified disruptions</a> <span class="feed">The Record</span></li>
+<li><a href="https://www.numerama.com/cyberguerre/2377121-nsa-net-le-reseau-interne-ultra-secret-du-renseignement-americain-est-hors-service-voici-ce-que-lon-sait.html" rel="noopener nofollow">Une panne frappe NSA Net, le réseau ultra-secret du renseignement américain : voici ce que l’on sait</a> <span class="feed">Numerama (pannes)</span></li>
 </ul>
 </details>
 
 </article>
 
-<article id="noisytcp-noyau-linux-cve-2026-99288" class="topic t-breach">
-<h3><span class="pill" aria-hidden="true"></span>NoisyTCP : CVE-2026-99288, un bug du noyau Linux permet de faire planter des serveurs à distance</h3>
+<article id="ovhcloud-kubernetes-us-west-or1" class="topic t-outage">
+<h3><span class="pill" aria-hidden="true"></span>OVHcloud : plans de contrôle Managed Kubernetes inaccessibles à US-WEST-OR1 pendant 2 h 20</h3>
 
-<p>Le chercheur Hyunwoo Kim a décrit NoisyTCP, une faille vieille de 11 ans dans la pile TCP du noyau Linux, suivie sous CVE-2026-99288. Elle touche presque toutes les distributions. Une situation de concurrence entre la gestion des SYN cookies et le hachage des sockets provoque une déréférence de pointeur NULL et un kernel panic. Un attaquant non authentifié peut l&#39;exploiter par des paquets TCP forgés contre des serveurs Nginx, Apache ou SSH en configuration par défaut. Il s&#39;agit d&#39;un déni de service : pas d&#39;altération de données ni d&#39;exécution de code. La fenêtre de course est étroite, et le déclenchement peut être long sur un serveur bare metal peu sollicité. Il faut au moins deux files RX ou une distribution RPS entre CPU. Le correctif est fusionné dans le noyau principal depuis deux semaines. En contournement, Kim conseille de désactiver les SYN cookies, au prix d&#39;une moindre protection contre les SYN flood, et de n&#39;utiliser qu&#39;une seule file RX.</p>
-<div class="why"><p class="why-title">Pourquoi c'est important</p><p>Les serveurs exposés directement en TCP sont concernés. Planifiez la mise à jour du noyau dès que votre distribution publie le correctif. Le contournement a un coût de sécurité : n&#39;y recourez que si le patch est impossible.</p></div>
+<p>OVHcloud a clos le 17 novembre à 18 h 54 UTC un incident touchant Managed Kubernetes Service dans la région US-WEST-OR1. Il a duré de 16 h 13 à 18 h 35 UTC. Les plans de contrôle des clusters étaient temporairement injoignables : les clients ne pouvaient ni accéder à leurs clusters ni les gérer. OVHcloud indique que les charges de travail déployées n&#39;ont pas été affectées. Nous n&#39;avons qu&#39;un extrait de l&#39;avis, sans la cause.</p>
+<div class="why"><p class="why-title">Pourquoi c'est important</p><p>Si vous avez des clusters OVHcloud dans cette région, vos pods ont continué de tourner, mais kubectl, la CI/CD et l&#39;autoscaling pilotés par l&#39;API ont pu échouer pendant l&#39;incident. Vérifiez vos déploiements lancés dans cette fenêtre.</p></div>
 <details class="sources">
 <summary>Sources (1)</summary>
 <ul>
-<li><a href="https://www.bleepingcomputer.com/news/linux/new-noisytcp-linux-kernel-flaw-lets-attackers-crash-servers/" rel="noopener nofollow">New NoisyTCP vulnerability lets attackers crash Linux servers</a> <span class="feed">BleepingComputer</span></li>
+<li><a href="https://public-cloud.status-ovhcloud.com/incidents/tth02dflzrtv" rel="noopener nofollow">[US-WEST-OR1][Containers &amp; Orchestration] - Managed Kubernetes Service incident notification</a> <span class="feed">OVHcloud Public Cloud Status</span></li>
 </ul>
 </details>
 
 </article>
 
-<article id="unrealircd-cve-2026-114713-exploitee" class="topic t-breach">
-<h3><span class="pill" aria-hidden="true"></span>UnrealIRCd : CVE-2026-114713 (CVSS 8.6) exploitée et inscrite au catalogue KEV</h3>
+<article id="java4shell-openjdk-cve-2026-114938" class="topic t-breach">
+<h3><span class="pill" aria-hidden="true"></span>Java4Shell : CVE-2026-114938 permet une exécution de code à distance via le décodeur Base64 d&#39;OpenJDK</h3>
 
-<p>La faille CVE-2026-114713 (CVSS 8.6) d&#39;UnrealIRCd est exploitée un jour après sa divulgation. Le module labeled-response n&#39;échappe pas l&#39;étiquette IRCv3 « label », ce qui permet à tout utilisateur d&#39;un réseau avec au moins deux serveurs liés d&#39;injecter des commandes serveur à serveur exécutées avec l&#39;autorité d&#39;un serveur. Le mainteneur Bram Matthys la juge la plus critique en 15 ans : un utilisateur ordinaire peut lancer KILL, GLINE et d&#39;autres commandes. Le correctif est dans la version 6.2.7.1, publiée le 7 novembre avec huit autres corrections, et un hot patch existe. Les versions 5 et antérieures sont en fin de vie sans correctif. Matthys signalait l&#39;exploitation en cours le 8 novembre. La CISA a ajouté la faille au catalogue KEV le 13 novembre, avec trois jours aux agences fédérales américaines pour corriger. La CISA a aussi ajouté CVE-2026-123039, qui touche des produits Check Point.</p>
-<div class="why"><p class="why-title">Pourquoi c'est important</p><p>Si vous auto-hébergez un serveur IRC UnrealIRCd, passez en 6.2.7.1 ou appliquez le hot patch, ou au minimum le contournement par spamfilter. Les branches 5 et antérieures n&#39;auront pas de correctif : migrez.</p></div>
+<p>Calif a divulgué mardi Java4Shell, suivie sous CVE-2026-114938, une corruption mémoire dans le décodeur Base64 accéléré de Java. Le code fautif ne s&#39;exécute que sur les processeurs x86-64 compatibles AVX-512 VBMI. Il est présent dans Java 17.0.6 et ultérieur, ainsi que dans Java 21, 25 et 27. Java 8 et 11 standards ne sont pas concernés, mais la build 8u511b33-perf l&#39;est. Une chaîne terminée par un « = » provoque une écriture de 62 ou 63 octets hors tampon.
+
+Selon Calif, l&#39;exécution de code sans authentification a été obtenue sur Keycloak, Jira, Confluence, Artifactory, Jenkins et PingFederate dans leur configuration par défaut. Elle exige une authentification sur Kafka, Solr, Elasticsearch, Gerrit et Spinnaker. Il n&#39;existe pas d&#39;exploit universel. D&#39;autres laboratoires ont reproduit des plantages et une fuite mémoire, mais pas l&#39;exécution de code. Calif note un CVSS 4.0 de 9,2 ; Oracle, 8,1 en CVSS 3.1. Le Centre canadien n&#39;a connaissance d&#39;aucune exploitation, et la faille n&#39;était pas au catalogue KEV. Oracle a publié ses correctifs le 17 novembre. Amazon a corrigé Corretto, Red Hat préparait les siens.</p>
+<div class="why"><p class="why-title">Pourquoi c'est important</p><p>Si vous exploitez Jenkins, Jira, Keycloak ou Artifactory sur des serveurs Intel ou AMD récents, vous êtes probablement concerné. Mettez à jour le JDK vers les builds corrigées. À défaut, lancez la JVM avec -XX:-UseBASE64Intrinsics ou -XX:UseAVX=2, deux contournements temporaires. Vérifiez aussi les builds de votre distribution.</p></div>
 <details class="sources">
-<summary>Sources (1)</summary>
+<summary>Sources (3)</summary>
 <ul>
-<li><a href="https://www.securityweek.com/recent-unrealircd-vulnerability-exploited-in-attacks/" rel="noopener nofollow">Recent UnrealIRCd Vulnerability Exploited in Attacks</a> <span class="feed">SecurityWeek</span></li>
+<li><a href="https://thehackernews.com/2026/11/java4shell-cve-2026-114938-enables-pre.html" rel="noopener nofollow">Java4Shell (CVE-2026-114938) Enables Pre-Auth RCE in Jira, Jenkins, Keycloak on Java 17&#43; AVX-512 VBMI Servers</a> <span class="feed">The Hacker News</span></li>
+<li><a href="https://www.bleepingcomputer.com/news/security/critical-java4shell-flaw-allows-rce-attacks-on-major-java-applications/" rel="noopener nofollow">Critical Java4Shell flaw allows RCE attacks on major Java applications</a> <span class="feed">BleepingComputer</span></li>
+<li><a href="https://thehackernews.com/2026/11/oracle-to-patch-11-java-flaws-today-as.html" rel="noopener nofollow">Oracle to Patch 11 Java Flaws Today as Critical OpenJDK RCE (CVE-2026-114938) Report Emerges</a> <span class="feed">The Hacker News</span></li>
 </ul>
 </details>
 
 </article>
 
-<article id="barracuda-cloud-artex-cle-prestataire" class="topic t-breach">
-<h3><span class="pill" aria-hidden="true"></span>Mise à jour : Barracuda attribue sa brèche cloud à ARTEX et à une clé d&#39;un prestataire IA</h3>
-<p class="update"><a href="jours/2026-11-16/#fbi-artex-outil-pentest-ia-attaques">Mise à jour du 16 novembre</a> : Barracuda lie sa brèche cloud des 1er et 2 novembre à ARTEX et à une clé d&#39;un prestataire IA jamais révoquée.</p>
-<p>Barracuda indique qu&#39;un attaquant a accédé à environ 10 de ses comptes cloud en 44 heures, les 1er et 2 novembre. L&#39;intrusion a été découverte le 4 novembre. Barracuda attribue cette intrusion « à vitesse machine » au framework de pentest par IA ARTEX. L&#39;attaquant s&#39;est servi d&#39;une clé d&#39;accès cloud confiée à un prestataire spécialisé en IA, que Barracuda n&#39;avait pas révoquée à la fin du projet. Selon l&#39;entreprise, la clé a été volée en octobre dans un fichier de configuration d&#39;un dépôt GitHub du prestataire. L&#39;attaquant a ensuite navigué dans l&#39;environnement d&#39;analytique, les dépôts de code et les clusters Kubernetes. Il a cherché des secrets crypto, ce qui laisse penser à un mobile financier, sans exclure une diversion. Il a déployé un conteneur montant le système de fichiers de l&#39;hôte, et une création d&#39;identité administrateur a été bloquée. Barracuda n&#39;a pas de preuve d&#39;accès aux identifiants d&#39;intégration de XDR, mais demande aux clients Managed XDR Cloud ou Monitored Endpoint concernés de les recréer.</p>
-<div class="why"><p class="why-title">Pourquoi c'est important</p><p>La cause est un accès tiers jamais révoqué. Auditez les clés cloud données à des prestataires, supprimez celles qui ne servent plus et cherchez des secrets dans les dépôts. Les clients XDR notifiés doivent régénérer leurs identifiants d&#39;intégration.</p></div>
+<article id="screenconnect-cve-2026-84869-msp" class="topic t-breach">
+<h3><span class="pill" aria-hidden="true"></span>Mise à jour : ScreenConnect, CVE-2026-84869 exploitée contre des serveurs MSP, SCKit repart</h3>
+<p class="update"><a href="jours/2026-11-13/#screenconnect-sckit-rmm-plus">Mise à jour du 13 novembre</a> : Une campagne distincte exploite CVE-2026-84869 contre des serveurs MSP depuis le 20 octobre, et SCKit a touché 205 hôtes le 13 novembre.</p>
+<p>Selon Huntress, une campagne vise depuis au moins le 20 octobre des serveurs ScreenConnect de prestataires MSP via CVE-2026-84869 (CVSS 9,9), corrigée le 8 septembre. Huntress a compté au moins 688 000 requêtes « run file » pour update*.bat sur 42 serveurs depuis 29 adresses IP. Le fichier batch contacte un bot Telegram et installe un client ScreenConnect malveillant, sans invite visible pour le technicien.
+
+Par ailleurs, ConnectWise indique avoir terminé son enquête et signale la poursuite d&#39;activités visant des environnements sur site où les extensions identifiées restent actives. Huntress a détecté le 13 novembre un nouveau pic lié à SCKit : 205 hôtes dans 41 organisations. ConnectWise a désactivé cinq extensions chez 400 partenaires et précise que désactiver et mettre à jour ne supprime pas un accès ou une persistance déjà installés.</p>
+<div class="why"><p class="why-title">Pourquoi c'est important</p><p>Si vous administrez ScreenConnect, passez les clients techniciens en 26.6.5 ou plus et mettez à jour les agents Access listés par ConnectWise. Désactivez les extensions RMM&#43; et Labtech Plus. Cherchez une persistance, par exemple un service « Windows Update Agent » suspect, car la mise à jour seule ne nettoie rien.</p></div>
 <details class="sources">
-<summary>Sources (1)</summary>
+<summary>Sources (2)</summary>
 <ul>
-<li><a href="https://www.bleepingcomputer.com/news/security/barracuda-links-cloud-breach-to-artex-ai-powered-cyberattack/" rel="noopener nofollow">Barracuda links cloud breach to ARTEX AI-powered cyberattack</a> <span class="feed">BleepingComputer</span></li>
+<li><a href="https://www.securityweek.com/msp-screenconnect-servers-targeted-in-month-long-campaign/" rel="noopener nofollow">MSP ScreenConnect Servers Targeted in Month-Long Campaign</a> <span class="feed">SecurityWeek</span></li>
+<li><a href="https://thehackernews.com/2026/11/connectwise-warns-screenconnect-attacks.html" rel="noopener nofollow">ConnectWise Warns ScreenConnect Attacks Continue as SCKit Targets Unpatched Systems</a> <span class="feed">The Hacker News</span></li>
 </ul>
 </details>
 
 </article>
 
-<article id="expedia-n0n-fournisseur-donnees" class="topic t-leak">
-<h3><span class="pill" aria-hidden="true"></span>Expedia : le groupe n0n revendique près d&#39;un milliard d&#39;enregistrements via un fournisseur de données</h3>
+<article id="puppet-enterprise-cve-2026-115731-kev" class="topic t-breach">
+<h3><span class="pill" aria-hidden="true"></span>Puppet Enterprise : CVE-2026-115731, désérialisation exploitée, ajoutée au catalogue KEV</h3>
 
-<p>Selon ZATAZ, le groupe d&#39;extorsion n0n, apparu en septembre 2026, affirme avoir volé près d&#39;un milliard d&#39;enregistrements liés à Expedia : plus de 830 millions issus de 35 programmes de fidélité, 58 millions de profils de voyageurs, plus de 333 millions de comptes consommateurs et environ 2,5 millions de données de dépenses par carte. Ces catégories peuvent se recouper. Les pirates disent aussi avoir obtenu du code source. Expedia confirme une cyberattaque passant par un fournisseur tiers de plateforme de données, mais ne valide pas les volumes. Selon des informations de Wiz et Sentra rapportées par ZATAZ, les pirates auraient utilisé une clé compromise d&#39;un fournisseur lié à Qubole, partenaire de Google Cloud Platform. Expedia dit avoir pris des mesures de confinement, fait appel à des experts externes et assure que ses plateformes restent sûres. ZATAZ affirme avoir vu des données.</p>
-<div class="why"><p class="why-title">Pourquoi c'est important</p><p>Les clients Expedia doivent s&#39;attendre à de l&#39;hameçonnage personnalisé et éviter de réutiliser leurs identifiants. Pour les équipes techniques, le schéma est une fois encore une clé d&#39;intégration tierce compromise : inventoriez et limitez les accès délégués.</p></div>
+<p>La CISA a inscrit CVE-2026-115731 à son catalogue des vulnérabilités exploitées. Elle touche Perforce Puppet Enterprise, dans le code de traitement des rapports. Selon la description, un client disposant d&#39;un certificat d&#39;agent signé par la CA peut exécuter du code arbitraire sur le Puppet Server, avec les droits de l&#39;utilisateur du service, en envoyant par requête PUT un rapport contenant un type de données riches forgé. Si l&#39;autorité de certification signe automatiquement les demandes sans vérification forte, un attaquant non authentifié pourrait aussi l&#39;exploiter. Nous n&#39;avons qu&#39;un extrait de l&#39;avis, sans version corrigée.</p>
+<div class="why"><p class="why-title">Pourquoi c'est important</p><p>Un Puppet Server compromis donne la main sur toute la flotte gérée. Consultez l&#39;avis de Perforce pour la version corrigée. Désactivez l&#39;auto-signature des certificats ou assortissez-la d&#39;une vérification forte, et limitez l&#39;accès réseau au serveur.</p></div>
 <details class="sources">
 <summary>Sources (1)</summary>
 <ul>
-<li><a href="https://www.zataz.com/expedia-un-pirate-revendique-un-vol-massif-de-donnees/" rel="noopener nofollow">Expedia : un pirate revendique un vol massif de données</a> <span class="feed">ZATAZ</span></li>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-115731" rel="noopener nofollow">CVE-2026-115731 — Perforce Puppet Enterprise Deserialization of Untrusted Data Vulnerability</a> <span class="feed">CISA KEV</span></li>
 </ul>
 </details>
 
 </article>
 
-<article id="fandango-skimmer-page-paiement" class="topic t-leak">
-<h3><span class="pill" aria-hidden="true"></span>Fandango : un skimmer sur la page de paiement a exposé des cartes bancaires en octobre</h3>
+<article id="optimizely-mise-a-jour-skimmer-ios" class="topic t-breach">
+<h3><span class="pill" aria-hidden="true"></span>Mise à jour : Optimizely, skimmer, substitution d&#39;adresses crypto et kit d&#39;exploit iOS</h3>
+<p class="update"><a href="jours/2026-11-17/#optimizely-chaine-approvisionnement-javascript">Mise à jour du 17 novembre</a> : Optimizely a confirmé l&#39;exploitation d&#39;une faille de son service Experimentation. Report URI détaille le contenu de la charge : skimmer, substitution crypto et kit iOS.</p>
+<p>Optimizely a publié à 01 h 02 UTC un avis reconnaissant qu&#39;un attaquant a exploité une vulnérabilité dans Experimentation pour ajouter du JavaScript malveillant à des projets clients. Selon Report URI, le code a touché 188 snippets de 178 organisations, dont CNN, la BBC, Zoom, Salesforce et GitLab. Il remplaçait des adresses de portefeuilles crypto par celles de l&#39;attaquant et capturait des données de carte. Sur iPhone et iPad, il pouvait charger un second étage identifié comme un kit d&#39;exploit iOS, sans prise de contrôle signalée.
 
-<p>Fandango Media notifie ses clients d&#39;une brèche : du code de skimming injecté dans sa page de paiement a intercepté les données saisies entre le 8 et le 11 octobre 2026. Fandango a établi le 30 octobre que des clients pouvaient être touchés. Les données exposées sont le numéro de carte, le CVV, la date d&#39;expiration, le code postal de facturation et l&#39;adresse e-mail. Selon l&#39;entreprise, ni les noms, ni pièces d&#39;identité, ni numéros de sécurité sociale, ni autres informations de compte ne sont concernés. Fandango a corrigé sa page, mené l&#39;enquête avec des spécialistes externes et ne connaît pas de fraude. Elle propose deux ans de surveillance IDX, avec inscription possible jusqu&#39;au 13 février 2027. Le nombre de clients touchés n&#39;est pas communiqué ; BleepingComputer a sollicité l&#39;entreprise.</p>
-<div class="why"><p class="why-title">Pourquoi c'est important</p><p>Cas typique d&#39;injection JavaScript sur page de paiement, comme l&#39;incident Optimizely du jour. Une CSP stricte et la surveillance de l&#39;intégrité des scripts du checkout réduisent le risque. Les clients concernés doivent surveiller leurs relevés.</p></div>
+La première injection date de 04 h 21 UTC le 16 novembre. Un nettoyage massif a débuté vers 20 h 40 UTC. Le snippet de Smartsheet a été réinfecté après nettoyage, signe que l&#39;accès de l&#39;attaquant persistait. L&#39;avis n&#39;explique pas la faille ni ce que doivent faire les clients.</p>
+<div class="why"><p class="why-title">Pourquoi c'est important</p><p>Si vous chargez un snippet Optimizely, vérifiez le champ Project JavaScript de vos projets et cherchez le domaine du loader dans vos journaux. Auditez les scripts tiers, et envisagez une politique CSP et du SRI. Un site qui a servi le code n&#39;a pas forcément été compromis lui-même.</p></div>
 <details class="sources">
 <summary>Sources (1)</summary>
 <ul>
-<li><a href="https://www.bleepingcomputer.com/news/security/fandango-says-hackers-stole-payment-card-details-from-checkout-pages/" rel="noopener nofollow">Fandango says hackers stole payment card details from checkout pages</a> <span class="feed">BleepingComputer</span></li>
+<li><a href="https://thehackernews.com/2026/11/hijacked-optimizely-scripts-served-card.html" rel="noopener nofollow">Hijacked Optimizely Scripts Served Card Skimmer and iOS Exploit Kits to CNN, BBC and Zoom Visitors</a> <span class="feed">The Hacker News</span></li>
+</ul>
+</details>
+
+</article>
+
+<article id="fuite-rassemblement-national-shin0bi" class="topic t-leak">
+<h3><span class="pill" aria-hidden="true"></span>Rassemblement National : un pirate revendique 500 782 enregistrements d&#39;adhérents</h3>
+
+<p>Selon ZATAZ, le pirate shin0bi, déjà lié à l&#39;affaire Ciblex, propose à la vente pour 300 dollars en Monero une base de 500 782 enregistrements uniques liés aux adhérents du Rassemblement National. En octobre, il annonçait 432 597 lignes, dont 150 000 diffusées gratuitement. La nouvelle annonce mentionne un fichier Adherents_2025, un échantillon de 150 111 enregistrements et un second pseudonyme, 0tagada0, présenté comme disposant d&#39;un accès à l&#39;outil de gestion des adhésions. Le pirate a diffusé deux captures d&#39;écran, que ZATAZ a consultées. ZATAZ souligne que l&#39;origine des données, leur caractère inédit et l&#39;existence d&#39;une seconde intrusion restent à authentifier.</p>
+<div class="why"><p class="why-title">Pourquoi c'est important</p><p>Revendication non confirmée. Elle illustre le risque des outils de gestion d&#39;adhérents ou de CRM : comptes à privilèges, accès tiers et journalisation à surveiller. Un même adhérent peut apparaître plusieurs fois, donc le nombre de personnes touchées reste incertain.</p></div>
+<details class="sources">
+<summary>Sources (1)</summary>
+<ul>
+<li><a href="https://www.zataz.com/rassemblement-national-une-seconde-fuite-de-donnees/" rel="noopener nofollow">Rassemblement National : une seconde fuite de données ?</a> <span class="feed">ZATAZ</span></li>
+</ul>
+</details>
+
+</article>
+
+<article id="docker-hub-cles-volees-en-secondes" class="topic t-leak">
+<h3><span class="pill" aria-hidden="true"></span>Docker Hub : des clés cloud publiées par erreur sont exploitées en 8 secondes</h3>
+
+<p>Deux chercheurs de Stony Brook University, Billy Tsouvalas et Nick Nikiforakis, ont publié 300 images pièges sur huit registres publics pendant quatre mois, avec des clés AWS, OpenAI et Anthropic et de faux identifiants SSH et de bases de données. Présentés à la conférence ACM CCS, les résultats montrent que les images ont été tirées plus de 75 000 fois et que les clés AWS ont reçu plus de 140 000 appels API depuis 5 000 adresses IP. Le premier usage a eu lieu 7,86 secondes après publication ; la médiane est de 51,19 secondes et les 100 clés AWS ont toutes été utilisées en 15 minutes. Les scanners analysent surtout les couches d&#39;image sans exécuter le conteneur. Docker, prévenu en mai, n&#39;a pas répondu au-delà d&#39;un accusé de réception.</p>
+<div class="why"><p class="why-title">Pourquoi c'est important</p><p>Une clé commitée dans une image publique doit être considérée comme compromise immédiatement : révoquez-la, ne vous contentez pas de supprimer l&#39;image. Ajoutez un scan de secrets dans la CI avant le push, et privilégiez des identifiants éphémères ou injectés à l&#39;exécution.</p></div>
+<details class="sources">
+<summary>Sources (1)</summary>
+<ul>
+<li><a href="https://www.bleepingcomputer.com/news/security/cloud-keys-leaked-in-docker-hub-images-are-stolen-within-seconds/" rel="noopener nofollow">Cloud keys leaked in Docker Hub images are stolen within seconds</a> <span class="feed">BleepingComputer</span></li>
 </ul>
 </details>
 
@@ -208,59 +216,68 @@
 
 <details class="transcript">
 <summary>Transcription</summary>
-<p><strong>Camille</strong> <em>(relaxed, warm morning greeting)</em> : Salut et bienvenue dans La veille, on est le mardi 17 novembre 2026. Aujourd&#39;hui : Optimizely qui sert du JavaScript malveillant, plein de correctifs, des nouvelles de Barracuda et de Microsoft, et un peu de Kubernetes.</p>
-<p><strong>Max</strong> <em>(relaxed, friendly)</em> : Salut Camille ! Et on commence fort. Le 16 novembre, du JavaScript malveillant a été diffusé aux visiteurs de 178 organisations, via la plateforme d&#39;expérimentation Optimizely.</p>
-<p><strong>Camille</strong> <em>(surprised)</em> : 178 organisations, sérieux ? Ça donne quoi comme noms ?</p>
-<p><strong>Max</strong> <em>(calm, explaining)</em> : Zoom, CNN, BBC, Salesforce, GitLab, Fox News, Air France. Selon le chercheur Scott Helme, 188 fichiers sur 1 611 analysés étaient infectés. Optimizely explique qu&#39;un tiers a exploité une faille dans le parcours de création de compte Experimentation, pour ajouter du code dans le champ Project JavaScript de projets clients.</p>
-<p><strong>Camille</strong> <em>(curious)</em> : Et ce code, il faisait quoi concrètement ?</p>
-<p><strong>Max</strong> <em>(serious, explaining)</em> : Il chargeait un script, track.js, qui remplace les adresses de portefeuilles crypto, copie les numéros de cartes bancaires, collecte cookies et captures d&#39;écran. Et sur iPhone et iPad, il livrait les kits d&#39;exploitation Coruna et DarkSword. Helme a relevé environ 7 000 dollars de transactions vers les portefeuilles de l&#39;attaquant.</p>
-<p><strong>Camille</strong> <em>(thoughtful)</em> : Donc ce n&#39;est pas un cache empoisonné, c&#39;est ça ?</p>
-<p><strong>Max</strong> <em>(calm)</em> : Exactement, le CDN a servi ce qu&#39;on lui avait fourni. Optimizely dit avoir bloqué le chemin vulnérable, retiré le code, révoqué jetons et sessions, et notifié les clients. Report URI constate que le code n&#39;était plus présent que dans 1 snippet sur 188 à 21 h 52 UTC. Par contre, la façon dont l&#39;attaquant a accédé aux projets reste non expliquée.</p>
-<p><strong>Camille</strong> <em>(practical)</em> : Côté action : vérifie que ton Project JavaScript ne contient rien d&#39;inconnu, notamment des références à 1688360.cc, même en base64. Fais tourner les accès Optimizely. Et perso, une CSP en mode enforcement et de la surveillance d&#39;intégrité des scripts tiers, ça aide vraiment.</p>
-<p><strong>Max</strong> <em>(amused)</em> : Et ça tombe bien, parce que Fandango a eu exactement ce genre de souci. Du code de skimming injecté dans leur page de paiement a intercepté les données saisies entre le 8 et le 11 octobre.</p>
-<p><strong>Camille</strong> <em>(curious)</em> : Quelles données ?</p>
-<p><strong>Max</strong> <em>(calm, explaining)</em> : Numéro de carte, CVV, date d&#39;expiration, code postal de facturation et e-mail. Pas les noms ni les pièces d&#39;identité, selon l&#39;entreprise. Ils proposent deux ans de surveillance IDX, inscription jusqu&#39;au 13 février 2027. Le nombre de clients touchés n&#39;est pas communiqué.</p>
-<p><strong>Camille</strong> <em>(relaxed)</em> : Même remède : CSP stricte et intégrité des scripts du checkout. Passons à une suite. Tu te souviens de N-central et des failles 4EverAble2Shell, exploitées pour installer des mineurs ?</p>
-<p><strong>Max</strong> <em>(explaining)</em> : Oui, et N-able a sorti le Hotfix 3 de la 2026.4, présenté comme une mise à jour de sécurité critique. Il corrige 17 CVE : élévation de privilèges, contournements d&#39;authentification, injection de commandes en root via l&#39;export d&#39;audit, XXE, SSRF, traversée de chemin menant à une exécution de code.</p>
-<p><strong>Camille</strong> <em>(curious)</em> : Et les API héritées, vecteur de l&#39;attaque ?</p>
-<p><strong>Max</strong> <em>(calm)</em> : L&#39;option est supprimée définitivement, et l&#39;exploitation dépendait de ce mode. Les serveurs hébergés sont mis à jour automatiquement. Sur site, tu mets à niveau ton serveur, et tout le monde doit mettre à jour agents et sondes, sinon risque d&#39;usurpation. Petit bémol : le contrôle à distance et l&#39;intégration Intune restent bloqués pour l&#39;instant.</p>
-<p><strong>Camille</strong> <em>(matter-of-fact)</em> : Moi j&#39;appliquerais sans attendre, quitte à vivre sans ces fonctions un moment. Autre sujet de patch : NoisyTCP, une faille de 11 ans dans la pile TCP du noyau Linux, la CVE 2026 tiret 99288.</p>
-<p><strong>Max</strong> <em>(explaining)</em> : Découverte par Hyunwoo Kim. Une situation de concurrence entre les SYN cookies et le hachage des sockets, qui donne une déréférence de pointeur NULL et un kernel panic. Un attaquant non authentifié peut l&#39;exploiter avec des paquets TCP forgés, contre Nginx, Apache ou SSH en config par défaut.</p>
-<p><strong>Camille</strong> <em>(worried, then relieved)</em> : Aïe. C&#39;est de l&#39;exécution de code ?</p>
-<p><strong>Max</strong> <em>(calm)</em> : Non, déni de service seulement. La fenêtre de course est étroite, et ça peut être long à déclencher sur un bare metal peu sollicité. Il faut au moins deux files RX ou une distribution RPS entre CPU. Le correctif est dans le noyau principal depuis deux semaines.</p>
-<p><strong>Camille</strong> <em>(practical)</em> : Planifie la mise à jour dès que ta distrib sort le patch. Le contournement, c&#39;est désactiver les SYN cookies ou n&#39;utiliser qu&#39;une file RX, mais tu perds en protection contre les SYN flood. À réserver si le patch est impossible.</p>
-<p><strong>Max</strong> <em>(serious)</em> : Dernier patch du jour, plus urgent : UnrealIRCd, CVE 2026 tiret 114713, CVSS 8,6, exploitée un jour après sa divulgation.</p>
-<p><strong>Camille</strong> <em>(curious)</em> : Ça marche comment ?</p>
-<p><strong>Max</strong> <em>(explaining)</em> : Le module labeled-response n&#39;échappe pas l&#39;étiquette IRCv3 label. Du coup, n&#39;importe quel utilisateur d&#39;un réseau avec au moins deux serveurs liés peut injecter des commandes serveur à serveur, exécutées avec l&#39;autorité d&#39;un serveur. Le mainteneur Bram Matthys la juge la plus critique en 15 ans : un simple utilisateur peut lancer KILL, GLINE et d&#39;autres.</p>
-<p><strong>Camille</strong> <em>(surprised)</em> : Ouch. Et la CISA ?</p>
-<p><strong>Max</strong> <em>(calm)</em> : Elle l&#39;a ajoutée au catalogue KEV le 13 novembre, avec trois jours pour les agences fédérales américaines. Elle a aussi ajouté la CVE 2026 tiret 123039, qui touche des produits Check Point. Le correctif est dans la 6.2.7.1, sortie le 7 novembre, il y a aussi un hot patch. Les versions 5 et antérieures sont en fin de vie, sans correctif : il faut migrer.</p>
-<p><strong>Camille</strong> <em>(relaxed)</em> : Passons à Barracuda, suite de l&#39;histoire du FBI et d&#39;ARTEX, l&#39;outil de pentest par IA utilisé dans des attaques. Barracuda dit qu&#39;un attaquant a accédé à environ 10 de ses comptes cloud en 44 heures, les 1er et 2 novembre.</p>
-<p><strong>Max</strong> <em>(explaining)</em> : Et ils l&#39;attribuent à ARTEX, une intrusion à vitesse machine. Le point d&#39;entrée : une clé d&#39;accès cloud confiée à un prestataire spécialisé en IA, jamais révoquée à la fin du projet. Elle aurait été volée en octobre dans un fichier de configuration d&#39;un dépôt GitHub du prestataire.</p>
-<p><strong>Camille</strong> <em>(amused, rueful)</em> : Le classique du secret dans un dépôt. Et ensuite ?</p>
-<p><strong>Max</strong> <em>(calm)</em> : L&#39;attaquant a navigué dans l&#39;analytique, les dépôts de code et les clusters Kubernetes, cherché des secrets crypto, ce qui suggère un mobile financier, sans exclure une diversion. Il a déployé un conteneur montant le système de fichiers de l&#39;hôte, mais une création d&#39;identité administrateur a été bloquée. Les clients Managed XDR Cloud ou Monitored Endpoint concernés doivent recréer leurs identifiants d&#39;intégration, même sans preuve d&#39;accès.</p>
-<p><strong>Camille</strong> <em>(thoughtful)</em> : Leçon : audite les clés données aux prestataires et supprime celles qui ne servent plus. Et justement, Expedia : selon ZATAZ, le groupe n0n, apparu en septembre, revendique près d&#39;un milliard d&#39;enregistrements.</p>
-<p><strong>Max</strong> <em>(surprised)</em> : Un milliard ! Plus de 830 millions issus de 35 programmes de fidélité, 58 millions de profils de voyageurs, plus de 333 millions de comptes consommateurs, environ 2,5 millions de données de dépenses par carte. Mais ces catégories peuvent se recouper, et ils disent aussi avoir du code source.</p>
-<p><strong>Camille</strong> <em>(skeptical)</em> : Et Expedia confirme quoi ?</p>
-<p><strong>Max</strong> <em>(calm)</em> : Une cyberattaque via un fournisseur tiers de plateforme de données, mais pas les volumes. Selon Wiz et Sentra rapportés par ZATAZ, les pirates auraient utilisé une clé compromise d&#39;un fournisseur lié à Qubole, partenaire de Google Cloud Platform. Expedia dit avoir confiné et assure que ses plateformes restent sûres. ZATAZ affirme avoir vu des données.</p>
-<p><strong>Camille</strong> <em>(matter-of-fact)</em> : Encore une clé d&#39;intégration tierce. Côté clients : méfiance face à l&#39;hameçonnage personnalisé, et pas de réutilisation de mots de passe. Allez, la grosse panne de la semaine dernière : Microsoft 365, le rapport préliminaire est sorti.</p>
-<p><strong>Max</strong> <em>(explaining)</em> : Trois facteurs pour la panne des 12 et 13 novembre. Un défaut latent introduit en juillet par une mise à jour des serveurs de passerelle réseau, non détecté parce que les tests de charge tournaient sur du matériel moins puissant. Ensuite un basculement de Teams vers l&#39;infrastructure d&#39;Exchange Online environ 15 heures avant. Et près de 14 % de la capacité de la passerelle déjà hors ligne.</p>
-<p><strong>Camille</strong> <em>(curious)</em> : Et ça s&#39;écroule comment ?</p>
-<p><strong>Max</strong> <em>(explaining)</em> : En moins de deux heures, plus de 80 % des serveurs ne répondaient plus. Le trafic redirigé a surchargé les serveurs sains, et les cloisons entre régions n&#39;ont pas contenu la cascade. Exchange Online n&#39;a pas pu basculer, contrairement à Teams, OneDrive et SharePoint. Les redémarrages échouaient sous le trafic accumulé, et le correctif a été de revenir à une version antérieure.</p>
-<p><strong>Camille</strong> <em>(thoughtful)</em> : Perso ça me parle : des tests de charge sur du matériel pas représentatif, on a tous fait ça. Et la durée ?</p>
-<p><strong>Max</strong> <em>(relaxed)</em> : Les sources divergent : près de 24 heures dans les rapports, 38 heures selon 01net. Rapport final attendu cette semaine. Et 01net rappelle que les entreprises peuvent demander un avoir SLA avant le 31 décembre, via le centre d&#39;administration.</p>
-<p><strong>Camille</strong> <em>(relaxed)</em> : Bon, un peu de Kubernetes pour finir doucement. Le SIG Network annonce le retrait du backend ipvs de kube-proxy dans la 1.40.</p>
-<p><strong>Max</strong> <em>(explaining)</em> : Il est déprécié depuis la 1.35. Il avait été créé pour les problèmes de latence d&#39;iptables, mais il n&#39;a jamais bien géré tous les cas limites de l&#39;API Services. L&#39;API IPVS du noyau convient mal, sans mise à jour par lots, et le backend utilise quand même iptables pour certaines fonctions. Ses auteurs d&#39;origine sont partis, c&#39;est coûteux à maintenir.</p>
-<p><strong>Camille</strong> <em>(curious)</em> : Et on migre vers quoi ?</p>
-<p><strong>Max</strong> <em>(calm)</em> : nftables, introduit en 1.29 et GA en 1.33, ou iptables. Et le retrait prévu de l&#39;API iptables dans RHEL rendrait de toute façon ipvs indisponible là-bas. Teste la migration sur un cluster non critique, et regarde si tu as besoin des ordonnanceurs IPVS, l&#39;article les détaille.</p>
-<p><strong>Camille</strong> <em>(upbeat)</em> : Et pour clore, AlmaLinux 10.3 et 9.9 sont disponibles, après RHEL 10.3.</p>
-<p><strong>Max</strong> <em>(upbeat, explaining)</em> : Selon Phoronix, la 10.3 ajoute GCC Toolset 16, LLVM Toolset 22, Rust 1.97, Go 1.27, GDB 17.2 et Node.js 26. Surtout, elle ramène ModSecurity et le jeu de règles OWASP CRS, retirés depuis la 10.0, et passe à Podman 6.</p>
-<p><strong>Camille</strong> <em>(relaxed)</em> : Plus besoin de compiler ModSecurity soi-même, super. Par contre, teste tes workflows de conteneurs avant de passer à Podman 6.</p>
-<p><strong>Max</strong> <em>(warm, relaxed)</em> : Voilà pour aujourd&#39;hui. Merci d&#39;avoir écouté, et bon courage pour les patchs !</p>
-<p><strong>Camille</strong> <em>(warm)</em> : À demain pour une nouvelle veille !</p>
+<p><strong>Camille</strong> <em>(relaxed, warm morning tone)</em> : Salut et bienvenue dans La veille, on est le mercredi 18 novembre 2026. Au programme : Java4Shell, des suites sur ScreenConnect et Optimizely, Puppet, quelques pannes, et des clés Docker qui se font piquer à toute vitesse.</p>
+<p><strong>Max</strong> <em>(relaxed, amused)</em> : Salut Camille. Café en main, on attaque ? Java4Shell, ça sonne déjà un peu comme Log4Shell, non ?</p>
+<p><strong>Camille</strong> <em>(calm, explaining)</em> : Le nom oui, mais l&#39;ampleur est plus nuancée. Calif a divulgué mardi une corruption mémoire dans le décodeur Base64 accéléré de Java, la CVE 2026 tiret 114938. Une chaîne qui se termine par un signe égal provoque une écriture de 62 ou 63 octets hors tampon.</p>
+<p><strong>Max</strong> <em>(curious)</em> : Et ça touche qui exactement ? Parce que « Java », ça veut tout dire.</p>
+<p><strong>Camille</strong> <em>(calm, explaining)</em> : Le code fautif ne tourne que sur les processeurs x86-64 avec AVX-512 VBMI. Il est dans Java 17.0.6 et ultérieur, donc aussi Java 21, 25 et 27. Java 8 et 11 standards ne sont pas concernés, mais la build 8u511b33-perf l&#39;est.</p>
+<p><strong>Max</strong> <em>(concerned)</em> : Et côté exploitation, c&#39;est grave ?</p>
+<p><strong>Camille</strong> <em>(measured)</em> : Selon Calif, exécution de code sans authentification sur Keycloak, Jira, Confluence, Artifactory, Jenkins et PingFederate en config par défaut. Avec authentification requise sur Kafka, Solr, Elasticsearch, Gerrit et Spinnaker. Mais il n&#39;y a pas d&#39;exploit universel, et d&#39;autres labos ont reproduit des plantages et une fuite mémoire, pas l&#39;exécution de code.</p>
+<p><strong>Max</strong> <em>(thoughtful)</em> : Donc pas la panique totale. Le score ?</p>
+<p><strong>Camille</strong> <em>(calm)</em> : Calif met 9,2 en CVSS 4.0, Oracle 8,1 en CVSS 3.1. Le Centre canadien ne voit aucune exploitation, et ce n&#39;est pas au catalogue KEV. Oracle a sorti ses correctifs le 17 novembre, Amazon a corrigé Corretto, Red Hat prépare les siens.</p>
+<p><strong>Max</strong> <em>(relaxed, practical)</em> : Perso, je patcherais vite. Sinon, en contournement temporaire, tu lances la JVM avec moins XX moins UseBASE64Intrinsics, ou UseAVX égal 2. Et vérifie les builds de ta distribution.</p>
+<p><strong>Camille</strong> <em>(relaxed)</em> : Bon, on enchaîne sur une suite. Tu te souviens de ScreenConnect et SCKit, la semaine dernière, le 13 novembre ?</p>
+<p><strong>Max</strong> <em>(engaged)</em> : Oui, l&#39;extension RMM&#43;. Alors, il y a du neuf ?</p>
+<p><strong>Camille</strong> <em>(calm, explaining)</em> : Une campagne distincte, selon Huntress, vise depuis au moins le 20 octobre des serveurs ScreenConnect de prestataires MSP via la CVE 2026 tiret 84869, CVSS 9,9, pourtant corrigée le 8 septembre. Huntress a compté au moins 688 000 requêtes run file pour un update étoile point bat, sur 42 serveurs, depuis 29 adresses IP.</p>
+<p><strong>Max</strong> <em>(surprised)</em> : 688 000 ! Et le batch fait quoi ?</p>
+<p><strong>Camille</strong> <em>(calm)</em> : Il contacte un bot Telegram et installe un client ScreenConnect malveillant, sans invite visible pour le technicien. En plus, SCKit a eu un nouveau pic le 13 novembre : 205 hôtes dans 41 organisations.</p>
+<p><strong>Max</strong> <em>(concerned)</em> : Et ConnectWise ?</p>
+<p><strong>Camille</strong> <em>(calm, explaining)</em> : Enquête terminée, cinq extensions désactivées chez 400 partenaires. Mais attention : désactiver et mettre à jour ne supprime pas un accès ou une persistance déjà installés. Donc clients techniciens en 26.6.5 ou plus, extensions RMM&#43; et Labtech Plus coupées, et on cherche par exemple un faux service Windows Update Agent.</p>
+<p><strong>Max</strong> <em>(relaxed)</em> : Autre suite : Optimizely, que tu nous avais présenté hier. C&#39;est confirmé ?</p>
+<p><strong>Camille</strong> <em>(serious)</em> : Oui. Optimizely a publié à 1 h 02 UTC un avis reconnaissant qu&#39;un attaquant a exploité une faille dans Experimentation pour ajouter du JavaScript malveillant à des projets clients. Report URI parle de 188 snippets chez 178 organisations, dont CNN, la BBC, Zoom, Salesforce et GitLab.</p>
+<p><strong>Max</strong> <em>(curious)</em> : Et le JavaScript, il faisait quoi ?</p>
+<p><strong>Camille</strong> <em>(calm, explaining)</em> : Il remplaçait des adresses de portefeuilles crypto par celles de l&#39;attaquant et capturait des données de carte. Sur iPhone et iPad, il pouvait charger un second étage, identifié comme un kit d&#39;exploit iOS, sans prise de contrôle signalée.</p>
+<p><strong>Max</strong> <em>(concerned)</em> : Et l&#39;attaquant est parti ?</p>
+<p><strong>Camille</strong> <em>(measured)</em> : Pas sûr. Première injection le 16 novembre à 4 h 21 UTC, nettoyage massif vers 20 h 40, mais le snippet de Smartsheet a été réinfecté après nettoyage, donc l&#39;accès persistait. Et l&#39;avis n&#39;explique ni la faille ni quoi faire côté clients.</p>
+<p><strong>Max</strong> <em>(practical)</em> : Donc : vérifier le champ Project JavaScript de tes projets, chercher le domaine du loader dans les logs, et penser CSP et SRI. Et un site qui a servi le code n&#39;est pas forcément compromis lui-même.</p>
+<p><strong>Camille</strong> <em>(relaxed)</em> : Dernier gros morceau sécu : Puppet Enterprise. La CISA a ajouté la CVE 2026 tiret 115731 au catalogue KEV, donc exploitée.</p>
+<p><strong>Max</strong> <em>(curious)</em> : C&#39;est quoi le mécanisme ?</p>
+<p><strong>Camille</strong> <em>(calm, explaining)</em> : Dans le traitement des rapports. Un client avec un certificat d&#39;agent signé par la CA peut exécuter du code arbitraire sur le Puppet Server en envoyant par PUT un rapport avec un type de données riches forgé. Et si la CA signe automatiquement sans vérification forte, un attaquant non authentifié pourrait aussi s&#39;en servir.</p>
+<p><strong>Max</strong> <em>(concerned)</em> : Aïe, et le serveur Puppet gère toute la flotte. Version corrigée ?</p>
+<p><strong>Camille</strong> <em>(calm)</em> : On n&#39;a qu&#39;un extrait de l&#39;avis, donc pas de version. Va voir l&#39;avis de Perforce, et désactive l&#39;auto-signature ou ajoute une vérification forte, et limite l&#39;accès réseau.</p>
+<p><strong>Max</strong> <em>(relaxed)</em> : Passons aux pannes. Apple d&#39;abord : hier en fin d&#39;après-midi, plein de gens déconnectés d&#39;iCloud sans pouvoir se reconnecter.</p>
+<p><strong>Camille</strong> <em>(calm)</em> : Oui, selon 9to5Mac, des échecs de vérification ou des erreurs inconnues. Comme tout repose sur le même compte Apple, l&#39;App Store, Apple Pay, Apple Music, l&#39;activation des appareils et App Store Connect ont aussi eu des soucis.</p>
+<p><strong>Max</strong> <em>(amused)</em> : Le bon vieux point unique d&#39;authentification.</p>
+<p><strong>Camille</strong> <em>(relaxed)</em> : À 19 h 10, Apple annonçait deux problèmes sur Compte iCloud et connexion, et l&#39;App Store, Apple Music et AppleCare sur l&#39;appareil en panne, le niveau le plus grave. Aucune cause ni délai de rétablissement. Si tu gères une flotte ou App Store Connect, attends le retour à la normale avant de dépanner les postes.</p>
+<p><strong>Max</strong> <em>(curious)</em> : Autre panne, plus exotique : le réseau interne classifié de la NSA, NSA Net.</p>
+<p><strong>Camille</strong> <em>(calm, explaining)</em> : Selon CNN, repris par The Record et Numerama, il était perturbé hier. Ouverture retardée, arrivées échelonnées à Fort Meade pour réduire la charge de connexions. Deux sources parlent d&#39;un service intermittent, pas d&#39;un arrêt total, et pas d&#39;une cyberattaque.</p>
+<p><strong>Max</strong> <em>(amused)</em> : Et l&#39;agence ?</p>
+<p><strong>Camille</strong> <em>(relaxed)</em> : Une dégradation temporaire pendant une maintenance programmée, capacités critiques opérationnelles. Une source dit que c&#39;est instable depuis des semaines. Durée et périmètre inconnus. Perso, ça me rappelle que la maintenance planifiée, ça peut aussi faire mal.</p>
+<p><strong>Max</strong> <em>(relaxed)</em> : Et côté cloud, OVHcloud : Managed Kubernetes dans la région US-WEST-OR1.</p>
+<p><strong>Camille</strong> <em>(calm)</em> : Les plans de contrôle étaient injoignables de 16 h 13 à 18 h 35 UTC, soit environ 2 h 20. Impossible d&#39;accéder aux clusters ou de les gérer, mais OVHcloud dit que les charges déployées n&#39;ont pas été affectées. Cause inconnue, on n&#39;a qu&#39;un extrait.</p>
+<p><strong>Max</strong> <em>(practical)</em> : Donc les pods tournaient, mais kubectl, la CI/CD et l&#39;autoscaling via l&#39;API ont pu échouer. Vérifie les déploiements lancés dans cette fenêtre.</p>
+<p><strong>Camille</strong> <em>(serious)</em> : On passe aux fuites. Selon ZATAZ, le pirate shin0bi, déjà lié à l&#39;affaire Ciblex, vend pour 300 dollars en Monero une base de 500 782 enregistrements liés aux adhérents du Rassemblement National.</p>
+<p><strong>Max</strong> <em>(curious)</em> : Il n&#39;en avait pas déjà parlé ?</p>
+<p><strong>Camille</strong> <em>(calm, explaining)</em> : En octobre, il annonçait 432 597 lignes, dont 150 000 diffusées gratuitement. Là il cite un fichier Adherents_2025, un échantillon de 150 111 enregistrements et un second pseudo, 0tagada0, qui aurait accès à l&#39;outil de gestion des adhésions.</p>
+<p><strong>Max</strong> <em>(measured)</em> : Mais rien n&#39;est confirmé, c&#39;est ça ?</p>
+<p><strong>Camille</strong> <em>(measured)</em> : Exactement. ZATAZ dit que l&#39;origine, le caractère inédit et la seconde intrusion restent à authentifier. Et un même adhérent peut apparaître plusieurs fois, donc le nombre de personnes touchées est incertain.</p>
+<p><strong>Max</strong> <em>(energetic)</em> : Autre fuite, celle-là est fascinante : Docker Hub. Deux chercheurs de Stony Brook, Billy Tsouvalas et Nick Nikiforakis, ont publié 300 images pièges sur huit registres publics pendant quatre mois.</p>
+<p><strong>Camille</strong> <em>(curious)</em> : Avec de fausses clés, j&#39;imagine ?</p>
+<p><strong>Max</strong> <em>(explaining)</em> : Des clés AWS, OpenAI et Anthropic, plus de faux identifiants SSH et de bases de données. Les images ont été tirées plus de 75 000 fois, et les clés AWS ont reçu plus de 140 000 appels API depuis 5 000 adresses IP.</p>
+<p><strong>Camille</strong> <em>(surprised)</em> : Et c&#39;est rapide comment ?</p>
+<p><strong>Max</strong> <em>(impressed)</em> : Premier usage 7,86 secondes après publication, médiane à 51,19 secondes, et les 100 clés AWS toutes utilisées en 15 minutes. Les scanners analysent surtout les couches sans exécuter le conteneur. Docker, prévenu en mai, n&#39;a donné qu&#39;un accusé de réception.</p>
+<p><strong>Camille</strong> <em>(practical)</em> : Donc une clé dans une image publique est compromise, point. On la révoque, supprimer l&#39;image ne suffit pas. Scan de secrets en CI avant le push, et identifiants éphémères ou injectés à l&#39;exécution.</p>
+<p><strong>Max</strong> <em>(relaxed)</em> : Pour finir sur du plus léger : Canonical a présenté Surge à l&#39;Ubuntu Summit 26.10.</p>
+<p><strong>Camille</strong> <em>(curious)</em> : C&#39;est un système multi-agents qui trie les vulnérabilités et rédige des correctifs rétroportés, c&#39;est bien ça ?</p>
+<p><strong>Max</strong> <em>(explaining)</em> : Oui. Les correctifs par trimestre sont passés d&#39;environ 1 400 début 2025 à 3 100 mi-2026, et octobre 2026 a compté presque autant de CVE que toute l&#39;année 2025. Le pipeline a six étapes : collecte, analyse avec reproduction, rétroportage par plusieurs modèles concurrents, jugement par consensus, escalade humaine si besoin, puis build et publication habituels.</p>
+<p><strong>Camille</strong> <em>(thoughtful)</em> : Et c&#39;est déployé en prod ?</p>
+<p><strong>Max</strong> <em>(calm)</em> : Non. Ça couvre l&#39;espace utilisateur, pas le noyau, et les correctifs vont dans l&#39;archive Edge, optionnelle via Ubuntu Pro. Ils n&#39;arrivent dans les mises à jour normales qu&#39;après tests humains. Moi je la garderais pour un poste de dev ou un homelab.</p>
+<p><strong>Camille</strong> <em>(warm)</em> : Voilà pour aujourd&#39;hui. Patchez votre JDK, regardez vos ScreenConnect et vos Puppet, et révoquez vos clés.</p>
+<p><strong>Max</strong> <em>(relaxed, friendly)</em> : Bonne journée à tous, et à demain !</p>
 </details>
 
 <nav class="nav" aria-label="Navigation entre les jours">
-<a class="prev" href="jours/2026-11-16/">← 16 novembre</a>
+<a class="prev" href="jours/2026-11-17/">← 17 novembre</a>
 <a href="archives/">Archives</a>
 
 </nav>

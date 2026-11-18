@@ -5,9 +5,29 @@
 <link>https://elohyrr.github.io/veille/</link>
 <description>Tech, pannes, failles et fuites — digest quotidien</description>
 <language>fr-fr</language>
-<lastBuildDate>Tue, 17 Nov 2026 06:07:35 &#43;0000</lastBuildDate>
+<lastBuildDate>Wed, 18 Nov 2026 06:08:13 &#43;0000</lastBuildDate>
 <itunes:image href="https://elohyrr.github.io/veille/cover.png"/>
 <itunes:explicit>false</itunes:explicit>
+<item>
+<title>Java4Shell, ScreenConnect, Optimizely et des clés Docker volées en 8 secondes</title>
+<link>https://elohyrr.github.io/veille/jours/2026-11-18/</link>
+<guid isPermaLink="false">ep-2026-11-18</guid>
+<pubDate>Wed, 18 Nov 2026 06:08:13 &#43;0000</pubDate>
+<description>- Java4Shell : CVE-2026-114938 permet une exécution de code à distance via le décodeur Base64 d&#39;OpenJDK
+- Mise à jour : ScreenConnect, CVE-2026-84869 exploitée contre des serveurs MSP, SCKit repart
+- Puppet Enterprise : CVE-2026-115731, désérialisation exploitée, ajoutée au catalogue KEV
+- Mise à jour : Optimizely, skimmer, substitution d&#39;adresses crypto et kit d&#39;exploit iOS
+- Apple : panne de la connexion iCloud, App Store et Apple Music indisponibles
+- NSA Net : le réseau interne classifié de la NSA subit des perturbations
+- OVHcloud : plans de contrôle Managed Kubernetes inaccessibles à US-WEST-OR1 pendant 2 h 20
+- Rassemblement National : un pirate revendique 500 782 enregistrements d&#39;adhérents
+- Docker Hub : des clés cloud publiées par erreur sont exploitées en 8 secondes
+- Canonical Surge : des correctifs de sécurité rédigés par IA, via une archive Edge optionnelle
+https://elohyrr.github.io/veille/jours/2026-11-18/</description>
+<enclosure url="https://github.com/Elohyrr/veille/releases/download/ep-2026-11-18/veille-2026-11-18.mp3" length="4825773" type="audio/mpeg"/>
+<itunes:duration>00:10:03</itunes:duration>
+<itunes:explicit>false</itunes:explicit>
+</item>
 <item>
 <title>Optimizely compromis, N-central, NoisyTCP et la panne Microsoft expliquée</title>
 <link>https://elohyrr.github.io/veille/jours/2026-11-17/</link>

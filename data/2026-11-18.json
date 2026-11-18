@@ -1,0 +1,537 @@
+{
+  "date": "2026-11-18",
+  "published_at": "2026-11-18T06:08:13Z",
+  "intro": "Java4Shell domine la journée : une faille de décodage Base64 dans OpenJDK touche Jenkins, Jira et Keycloak. Côté pannes, Apple et le réseau interne de la NSA sont perturbés.",
+  "topics": [
+    {
+      "id": "2026-11-18/java4shell-openjdk-cve-2026-114938",
+      "slug": "java4shell-openjdk-cve-2026-114938",
+      "theme": "breach",
+      "title": "Java4Shell : CVE-2026-114938 permet une exécution de code à distance via le décodeur Base64 d'OpenJDK",
+      "summary": "Calif a divulgué mardi Java4Shell, suivie sous CVE-2026-114938, une corruption mémoire dans le décodeur Base64 accéléré de Java. Le code fautif ne s'exécute que sur les processeurs x86-64 compatibles AVX-512 VBMI. Il est présent dans Java 17.0.6 et ultérieur, ainsi que dans Java 21, 25 et 27. Java 8 et 11 standards ne sont pas concernés, mais la build 8u511b33-perf l'est. Une chaîne terminée par un « = » provoque une écriture de 62 ou 63 octets hors tampon.\n\nSelon Calif, l'exécution de code sans authentification a été obtenue sur Keycloak, Jira, Confluence, Artifactory, Jenkins et PingFederate dans leur configuration par défaut. Elle exige une authentification sur Kafka, Solr, Elasticsearch, Gerrit et Spinnaker. Il n'existe pas d'exploit universel. D'autres laboratoires ont reproduit des plantages et une fuite mémoire, mais pas l'exécution de code. Calif note un CVSS 4.0 de 9,2 ; Oracle, 8,1 en CVSS 3.1. Le Centre canadien n'a connaissance d'aucune exploitation, et la faille n'était pas au catalogue KEV. Oracle a publié ses correctifs le 17 novembre. Amazon a corrigé Corretto, Red Hat préparait les siens.",
+      "why_it_matters": "Si vous exploitez Jenkins, Jira, Keycloak ou Artifactory sur des serveurs Intel ou AMD récents, vous êtes probablement concerné. Mettez à jour le JDK vers les builds corrigées. À défaut, lancez la JVM avec -XX:-UseBASE64Intrinsics ou -XX:UseAVX=2, deux contournements temporaires. Vérifiez aussi les builds de votre distribution.",
+      "sources": [
+        {
+          "article_id": "c001",
+          "feed": "The Hacker News",
+          "title": "Java4Shell (CVE-2026-114938) Enables Pre-Auth RCE in Jira, Jenkins, Keycloak on Java 17+ AVX-512 VBMI Servers",
+          "url": "https://thehackernews.com/2026/11/java4shell-cve-2026-114938-enables-pre.html",
+          "key": "link:https://thehackernews.com/2026/11/java4shell-cve-2026-114938-enables-pre.html"
+        },
+        {
+          "article_id": "c025",
+          "feed": "BleepingComputer",
+          "title": "Critical Java4Shell flaw allows RCE attacks on major Java applications",
+          "url": "https://www.bleepingcomputer.com/news/security/critical-java4shell-flaw-allows-rce-attacks-on-major-java-applications/",
+          "key": "link:https://bleepingcomputer.com/news/security/critical-java4shell-flaw-allows-rce-attacks-on-major-java-applications"
+        },
+        {
+          "article_id": "c117",
+          "feed": "The Hacker News",
+          "title": "Oracle to Patch 11 Java Flaws Today as Critical OpenJDK RCE (CVE-2026-114938) Report Emerges",
+          "url": "https://thehackernews.com/2026/11/oracle-to-patch-11-java-flaws-today-as.html",
+          "key": "link:https://thehackernews.com/2026/11/oracle-to-patch-11-java-flaws-today-as.html"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-18/screenconnect-cve-2026-84869-msp",
+      "slug": "screenconnect-cve-2026-84869-msp",
+      "theme": "breach",
+      "title": "Mise à jour : ScreenConnect, CVE-2026-84869 exploitée contre des serveurs MSP, SCKit repart",
+      "summary": "Selon Huntress, une campagne vise depuis au moins le 20 octobre des serveurs ScreenConnect de prestataires MSP via CVE-2026-84869 (CVSS 9,9), corrigée le 8 septembre. Huntress a compté au moins 688 000 requêtes « run file » pour update*.bat sur 42 serveurs depuis 29 adresses IP. Le fichier batch contacte un bot Telegram et installe un client ScreenConnect malveillant, sans invite visible pour le technicien.\n\nPar ailleurs, ConnectWise indique avoir terminé son enquête et signale la poursuite d'activités visant des environnements sur site où les extensions identifiées restent actives. Huntress a détecté le 13 novembre un nouveau pic lié à SCKit : 205 hôtes dans 41 organisations. ConnectWise a désactivé cinq extensions chez 400 partenaires et précise que désactiver et mettre à jour ne supprime pas un accès ou une persistance déjà installés.",
+      "why_it_matters": "Si vous administrez ScreenConnect, passez les clients techniciens en 26.6.5 ou plus et mettez à jour les agents Access listés par ConnectWise. Désactivez les extensions RMM+ et Labtech Plus. Cherchez une persistance, par exemple un service « Windows Update Agent » suspect, car la mise à jour seule ne nettoie rien.",
+      "update_of": "2026-11-13/screenconnect-sckit-rmm-plus",
+      "what_is_new": "Une campagne distincte exploite CVE-2026-84869 contre des serveurs MSP depuis le 20 octobre, et SCKit a touché 205 hôtes le 13 novembre.",
+      "sources": [
+        {
+          "article_id": "c143",
+          "feed": "SecurityWeek",
+          "title": "MSP ScreenConnect Servers Targeted in Month-Long Campaign",
+          "url": "https://www.securityweek.com/msp-screenconnect-servers-targeted-in-month-long-campaign/",
+          "key": "link:https://securityweek.com/msp-screenconnect-servers-targeted-in-month-long-campaign"
+        },
+        {
+          "article_id": "c178",
+          "feed": "The Hacker News",
+          "title": "ConnectWise Warns ScreenConnect Attacks Continue as SCKit Targets Unpatched Systems",
+          "url": "https://thehackernews.com/2026/11/connectwise-warns-screenconnect-attacks.html",
+          "key": "link:https://thehackernews.com/2026/11/connectwise-warns-screenconnect-attacks.html"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-18/puppet-enterprise-cve-2026-115731-kev",
+      "slug": "puppet-enterprise-cve-2026-115731-kev",
+      "theme": "breach",
+      "title": "Puppet Enterprise : CVE-2026-115731, désérialisation exploitée, ajoutée au catalogue KEV",
+      "summary": "La CISA a inscrit CVE-2026-115731 à son catalogue des vulnérabilités exploitées. Elle touche Perforce Puppet Enterprise, dans le code de traitement des rapports. Selon la description, un client disposant d'un certificat d'agent signé par la CA peut exécuter du code arbitraire sur le Puppet Server, avec les droits de l'utilisateur du service, en envoyant par requête PUT un rapport contenant un type de données riches forgé. Si l'autorité de certification signe automatiquement les demandes sans vérification forte, un attaquant non authentifié pourrait aussi l'exploiter. Nous n'avons qu'un extrait de l'avis, sans version corrigée.",
+      "why_it_matters": "Un Puppet Server compromis donne la main sur toute la flotte gérée. Consultez l'avis de Perforce pour la version corrigée. Désactivez l'auto-signature des certificats ou assortissez-la d'une vérification forte, et limitez l'accès réseau au serveur.",
+      "sources": [
+        {
+          "article_id": "c182",
+          "feed": "CISA KEV",
+          "title": "CVE-2026-115731 — Perforce Puppet Enterprise Deserialization of Untrusted Data Vulnerability",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-115731",
+          "key": "link:https://nvd.nist.gov/vuln/detail/CVE-2026-115731"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-18/optimizely-mise-a-jour-skimmer-ios",
+      "slug": "optimizely-mise-a-jour-skimmer-ios",
+      "theme": "breach",
+      "title": "Mise à jour : Optimizely, skimmer, substitution d'adresses crypto et kit d'exploit iOS",
+      "summary": "Optimizely a publié à 01 h 02 UTC un avis reconnaissant qu'un attaquant a exploité une vulnérabilité dans Experimentation pour ajouter du JavaScript malveillant à des projets clients. Selon Report URI, le code a touché 188 snippets de 178 organisations, dont CNN, la BBC, Zoom, Salesforce et GitLab. Il remplaçait des adresses de portefeuilles crypto par celles de l'attaquant et capturait des données de carte. Sur iPhone et iPad, il pouvait charger un second étage identifié comme un kit d'exploit iOS, sans prise de contrôle signalée.\n\nLa première injection date de 04 h 21 UTC le 16 novembre. Un nettoyage massif a débuté vers 20 h 40 UTC. Le snippet de Smartsheet a été réinfecté après nettoyage, signe que l'accès de l'attaquant persistait. L'avis n'explique pas la faille ni ce que doivent faire les clients.",
+      "why_it_matters": "Si vous chargez un snippet Optimizely, vérifiez le champ Project JavaScript de vos projets et cherchez le domaine du loader dans vos journaux. Auditez les scripts tiers, et envisagez une politique CSP et du SRI. Un site qui a servi le code n'a pas forcément été compromis lui-même.",
+      "update_of": "2026-11-17/optimizely-chaine-approvisionnement-javascript",
+      "what_is_new": "Optimizely a confirmé l'exploitation d'une faille de son service Experimentation. Report URI détaille le contenu de la charge : skimmer, substitution crypto et kit iOS.",
+      "sources": [
+        {
+          "article_id": "c177",
+          "feed": "The Hacker News",
+          "title": "Hijacked Optimizely Scripts Served Card Skimmer and iOS Exploit Kits to CNN, BBC and Zoom Visitors",
+          "url": "https://thehackernews.com/2026/11/hijacked-optimizely-scripts-served-card.html",
+          "key": "link:https://thehackernews.com/2026/11/hijacked-optimizely-scripts-served-card.html"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-18/apple-icloud-panne-17-novembre",
+      "slug": "apple-icloud-panne-17-novembre",
+      "theme": "outage",
+      "title": "Apple : panne de la connexion iCloud, App Store et Apple Music indisponibles",
+      "summary": "Le 17 novembre en fin d'après-midi, de nombreux utilisateurs d'iPhone, iPad et Mac ont été déconnectés d'iCloud et n'ont pas pu se reconnecter. Selon 9to5Mac, ils rencontraient des échecs de vérification ou des erreurs inconnues. Comme les services reposent sur le même compte Apple, l'App Store, Apple Pay, Apple Music, l'activation des appareils et App Store Connect ont aussi eu des problèmes. À 19 h 10, Apple indiquait deux problèmes sur « Compte iCloud et connexion » et classait l'App Store, Apple Music et AppleCare sur l'appareil en « panne », le niveau le plus grave. Apple n'a donné ni cause ni délai de rétablissement. Les signalements ont fortement grimpé sur Downdetector vers 18 h 42.",
+      "why_it_matters": "Si vos équipes dépendent d'un identifiant Apple, par exemple pour la distribution d'applications via App Store Connect ou la gestion de flottes, attendez un rétablissement avant de dépanner les postes. L'incident rappelle aussi qu'un point unique d'authentification peut paralyser plusieurs services.",
+      "sources": [
+        {
+          "article_id": "c088",
+          "feed": "Numerama (pannes)",
+          "title": "Panne Apple : iCloud, l’App Store et Apple Music ne fonctionnent plus, voici ce que l’on sait",
+          "url": "https://www.numerama.com/tech/2377281-une-panne-icloud-prive-des-utilisateurs-de-leur-compte-apple-voici-ce-que-lon-sait.html",
+          "key": "link:https://numerama.com/tech/2377281-une-panne-icloud-prive-des-utilisateurs-de-leur-compte-apple-voici-ce-que-lon-sait.html"
+        },
+        {
+          "article_id": "c090",
+          "feed": "Hacker News (150+ pts)",
+          "title": "Apple Services Down",
+          "url": "https://developer.apple.com/system-status/",
+          "key": "link:https://developer.apple.com/system-status"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-18/nsa-net-perturbations",
+      "slug": "nsa-net-perturbations",
+      "theme": "outage",
+      "title": "NSA Net : le réseau interne classifié de la NSA subit des perturbations",
+      "summary": "Selon CNN, repris par The Record et Numerama, NSA Net, le réseau interne classifié de la NSA, était perturbé le 17 novembre. L'ouverture a été retardée et les arrivées du personnel échelonnées à Fort Meade pour réduire la charge de connexions. Deux sources de The Record disent que le réseau n'est pas totalement arrêté mais fournit un service intermittent, et que la cause ne serait pas une cyberattaque. Une source ajoute qu'il serait instable depuis des semaines. L'agence évoque une « dégradation temporaire » pendant une maintenance programmée et affirme que ses capacités critiques restent opérationnelles. La durée et le périmètre exacts de l'incident restent inconnus.",
+      "why_it_matters": "Aucune action pour les lecteurs. L'épisode illustre qu'une maintenance planifiée sur une infrastructure redondante peut dégrader un service entier. À suivre : la cause réelle, que l'agence n'a pas détaillée.",
+      "sources": [
+        {
+          "article_id": "c106",
+          "feed": "The Record",
+          "title": "NSA Net, agency’s classified internal network, faces unspecified disruptions",
+          "url": "https://therecord.media/nsa-net-disruptions",
+          "key": "link:https://therecord.media/nsa-net-disruptions"
+        },
+        {
+          "article_id": "c108",
+          "feed": "Numerama (pannes)",
+          "title": "Une panne frappe NSA Net, le réseau ultra-secret du renseignement américain : voici ce que l’on sait",
+          "url": "https://www.numerama.com/cyberguerre/2377121-nsa-net-le-reseau-interne-ultra-secret-du-renseignement-americain-est-hors-service-voici-ce-que-lon-sait.html",
+          "key": "link:https://numerama.com/cyberguerre/2377121-nsa-net-le-reseau-interne-ultra-secret-du-renseignement-americain-est-hors-service-voici-ce-que-lon-sait.html"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-18/ovhcloud-kubernetes-us-west-or1",
+      "slug": "ovhcloud-kubernetes-us-west-or1",
+      "theme": "outage",
+      "title": "OVHcloud : plans de contrôle Managed Kubernetes inaccessibles à US-WEST-OR1 pendant 2 h 20",
+      "summary": "OVHcloud a clos le 17 novembre à 18 h 54 UTC un incident touchant Managed Kubernetes Service dans la région US-WEST-OR1. Il a duré de 16 h 13 à 18 h 35 UTC. Les plans de contrôle des clusters étaient temporairement injoignables : les clients ne pouvaient ni accéder à leurs clusters ni les gérer. OVHcloud indique que les charges de travail déployées n'ont pas été affectées. Nous n'avons qu'un extrait de l'avis, sans la cause.",
+      "why_it_matters": "Si vous avez des clusters OVHcloud dans cette région, vos pods ont continué de tourner, mais kubectl, la CI/CD et l'autoscaling pilotés par l'API ont pu échouer pendant l'incident. Vérifiez vos déploiements lancés dans cette fenêtre.",
+      "sources": [
+        {
+          "article_id": "c072",
+          "feed": "OVHcloud Public Cloud Status",
+          "title": "[US-WEST-OR1][Containers \u0026 Orchestration] - Managed Kubernetes Service incident notification",
+          "url": "https://public-cloud.status-ovhcloud.com/incidents/tth02dflzrtv",
+          "key": "link:https://public-cloud.status-ovhcloud.com/incidents/tth02dflzrtv"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-18/fuite-rassemblement-national-shin0bi",
+      "slug": "fuite-rassemblement-national-shin0bi",
+      "theme": "leak",
+      "title": "Rassemblement National : un pirate revendique 500 782 enregistrements d'adhérents",
+      "summary": "Selon ZATAZ, le pirate shin0bi, déjà lié à l'affaire Ciblex, propose à la vente pour 300 dollars en Monero une base de 500 782 enregistrements uniques liés aux adhérents du Rassemblement National. En octobre, il annonçait 432 597 lignes, dont 150 000 diffusées gratuitement. La nouvelle annonce mentionne un fichier Adherents_2025, un échantillon de 150 111 enregistrements et un second pseudonyme, 0tagada0, présenté comme disposant d'un accès à l'outil de gestion des adhésions. Le pirate a diffusé deux captures d'écran, que ZATAZ a consultées. ZATAZ souligne que l'origine des données, leur caractère inédit et l'existence d'une seconde intrusion restent à authentifier.",
+      "why_it_matters": "Revendication non confirmée. Elle illustre le risque des outils de gestion d'adhérents ou de CRM : comptes à privilèges, accès tiers et journalisation à surveiller. Un même adhérent peut apparaître plusieurs fois, donc le nombre de personnes touchées reste incertain.",
+      "sources": [
+        {
+          "article_id": "c179",
+          "feed": "ZATAZ",
+          "title": "Rassemblement National : une seconde fuite de données ?",
+          "url": "https://www.zataz.com/rassemblement-national-une-seconde-fuite-de-donnees/",
+          "key": "link:https://zataz.com/rassemblement-national-une-seconde-fuite-de-donnees"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-18/docker-hub-cles-volees-en-secondes",
+      "slug": "docker-hub-cles-volees-en-secondes",
+      "theme": "leak",
+      "title": "Docker Hub : des clés cloud publiées par erreur sont exploitées en 8 secondes",
+      "summary": "Deux chercheurs de Stony Brook University, Billy Tsouvalas et Nick Nikiforakis, ont publié 300 images pièges sur huit registres publics pendant quatre mois, avec des clés AWS, OpenAI et Anthropic et de faux identifiants SSH et de bases de données. Présentés à la conférence ACM CCS, les résultats montrent que les images ont été tirées plus de 75 000 fois et que les clés AWS ont reçu plus de 140 000 appels API depuis 5 000 adresses IP. Le premier usage a eu lieu 7,86 secondes après publication ; la médiane est de 51,19 secondes et les 100 clés AWS ont toutes été utilisées en 15 minutes. Les scanners analysent surtout les couches d'image sans exécuter le conteneur. Docker, prévenu en mai, n'a pas répondu au-delà d'un accusé de réception.",
+      "why_it_matters": "Une clé commitée dans une image publique doit être considérée comme compromise immédiatement : révoquez-la, ne vous contentez pas de supprimer l'image. Ajoutez un scan de secrets dans la CI avant le push, et privilégiez des identifiants éphémères ou injectés à l'exécution.",
+      "sources": [
+        {
+          "article_id": "c052",
+          "feed": "BleepingComputer",
+          "title": "Cloud keys leaked in Docker Hub images are stolen within seconds",
+          "url": "https://www.bleepingcomputer.com/news/security/cloud-keys-leaked-in-docker-hub-images-are-stolen-within-seconds/",
+          "key": "link:https://bleepingcomputer.com/news/security/cloud-keys-leaked-in-docker-hub-images-are-stolen-within-seconds"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-18/canonical-surge-correctifs-ia-ubuntu",
+      "slug": "canonical-surge-correctifs-ia-ubuntu",
+      "theme": "new_tech",
+      "title": "Canonical Surge : des correctifs de sécurité rédigés par IA, via une archive Edge optionnelle",
+      "summary": "Lors de l'Ubuntu Summit 26.10, Canonical a présenté Surge, un système multi-agents qui trie les vulnérabilités et rédige des correctifs rétroportés pour les paquets Ubuntu. Selon les diapositives, le volume de correctifs par trimestre est passé d'environ 1 400 début 2025 à 3 100 mi-2026, et octobre 2026 a compté presque autant de CVE que toute l'année 2025. Le pipeline compte six étapes : collecte, analyse du code avec reproduction, rétroportage par plusieurs modèles concurrents, jugement par consensus, escalade humaine si besoin, puis build et publication habituels. Surge couvre l'espace utilisateur, pas le noyau. Ses correctifs vont dans l'archive Edge, optionnelle et accessible via Ubuntu Pro, et n'atteignent les mises à jour normales qu'après tests humains.",
+      "why_it_matters": "Rien ne change par défaut sur vos serveurs. L'archive Edge offre des correctifs plus rapides mais moins testés : réservez-la à un poste de dev ou un homelab, pas à la production. C'est surtout un signe de la pression des CVE découvertes par IA sur les distributions.",
+      "sources": [
+        {
+          "article_id": "c099",
+          "feed": "It's FOSS",
+          "title": "Canonical is Now Shipping AI-Written Security Patches to Ubuntu Pro Users",
+          "url": "https://feed.itsfoss.com/link/24361/17526502/canonical-surge-announcemengt",
+          "key": "link:https://feed.itsfoss.com/link/24361/17526502/canonical-surge-announcemengt"
+        }
+      ]
+    }
+  ],
+  "episode_title": "Java4Shell, ScreenConnect, Optimizely et des clés Docker volées en 8 secondes",
+  "script": [
+    {
+      "speaker": "Camille",
+      "text": "Salut et bienvenue dans La veille, on est le mercredi 18 novembre 2026. Au programme : Java4Shell, des suites sur ScreenConnect et Optimizely, Puppet, quelques pannes, et des clés Docker qui se font piquer à toute vitesse.",
+      "style": "relaxed, warm morning tone"
+    },
+    {
+      "speaker": "Max",
+      "text": "Salut Camille. Café en main, on attaque ? Java4Shell, ça sonne déjà un peu comme Log4Shell, non ?",
+      "style": "relaxed, amused"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Le nom oui, mais l'ampleur est plus nuancée. Calif a divulgué mardi une corruption mémoire dans le décodeur Base64 accéléré de Java, la CVE 2026 tiret 114938. Une chaîne qui se termine par un signe égal provoque une écriture de 62 ou 63 octets hors tampon.",
+      "style": "calm, explaining"
+    },
+    {
+      "speaker": "Max",
+      "text": "Et ça touche qui exactement ? Parce que « Java », ça veut tout dire.",
+      "style": "curious"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Le code fautif ne tourne que sur les processeurs x86-64 avec AVX-512 VBMI. Il est dans Java 17.0.6 et ultérieur, donc aussi Java 21, 25 et 27. Java 8 et 11 standards ne sont pas concernés, mais la build 8u511b33-perf l'est.",
+      "style": "calm, explaining"
+    },
+    {
+      "speaker": "Max",
+      "text": "Et côté exploitation, c'est grave ?",
+      "style": "concerned"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Selon Calif, exécution de code sans authentification sur Keycloak, Jira, Confluence, Artifactory, Jenkins et PingFederate en config par défaut. Avec authentification requise sur Kafka, Solr, Elasticsearch, Gerrit et Spinnaker. Mais il n'y a pas d'exploit universel, et d'autres labos ont reproduit des plantages et une fuite mémoire, pas l'exécution de code.",
+      "style": "measured"
+    },
+    {
+      "speaker": "Max",
+      "text": "Donc pas la panique totale. Le score ?",
+      "style": "thoughtful"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Calif met 9,2 en CVSS 4.0, Oracle 8,1 en CVSS 3.1. Le Centre canadien ne voit aucune exploitation, et ce n'est pas au catalogue KEV. Oracle a sorti ses correctifs le 17 novembre, Amazon a corrigé Corretto, Red Hat prépare les siens.",
+      "style": "calm"
+    },
+    {
+      "speaker": "Max",
+      "text": "Perso, je patcherais vite. Sinon, en contournement temporaire, tu lances la JVM avec moins XX moins UseBASE64Intrinsics, ou UseAVX égal 2. Et vérifie les builds de ta distribution.",
+      "style": "relaxed, practical"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Bon, on enchaîne sur une suite. Tu te souviens de ScreenConnect et SCKit, la semaine dernière, le 13 novembre ?",
+      "style": "relaxed"
+    },
+    {
+      "speaker": "Max",
+      "text": "Oui, l'extension RMM+. Alors, il y a du neuf ?",
+      "style": "engaged"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Une campagne distincte, selon Huntress, vise depuis au moins le 20 octobre des serveurs ScreenConnect de prestataires MSP via la CVE 2026 tiret 84869, CVSS 9,9, pourtant corrigée le 8 septembre. Huntress a compté au moins 688 000 requêtes run file pour un update étoile point bat, sur 42 serveurs, depuis 29 adresses IP.",
+      "style": "calm, explaining"
+    },
+    {
+      "speaker": "Max",
+      "text": "688 000 ! Et le batch fait quoi ?",
+      "style": "surprised"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Il contacte un bot Telegram et installe un client ScreenConnect malveillant, sans invite visible pour le technicien. En plus, SCKit a eu un nouveau pic le 13 novembre : 205 hôtes dans 41 organisations.",
+      "style": "calm"
+    },
+    {
+      "speaker": "Max",
+      "text": "Et ConnectWise ?",
+      "style": "concerned"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Enquête terminée, cinq extensions désactivées chez 400 partenaires. Mais attention : désactiver et mettre à jour ne supprime pas un accès ou une persistance déjà installés. Donc clients techniciens en 26.6.5 ou plus, extensions RMM+ et Labtech Plus coupées, et on cherche par exemple un faux service Windows Update Agent.",
+      "style": "calm, explaining"
+    },
+    {
+      "speaker": "Max",
+      "text": "Autre suite : Optimizely, que tu nous avais présenté hier. C'est confirmé ?",
+      "style": "relaxed"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Oui. Optimizely a publié à 1 h 02 UTC un avis reconnaissant qu'un attaquant a exploité une faille dans Experimentation pour ajouter du JavaScript malveillant à des projets clients. Report URI parle de 188 snippets chez 178 organisations, dont CNN, la BBC, Zoom, Salesforce et GitLab.",
+      "style": "serious"
+    },
+    {
+      "speaker": "Max",
+      "text": "Et le JavaScript, il faisait quoi ?",
+      "style": "curious"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Il remplaçait des adresses de portefeuilles crypto par celles de l'attaquant et capturait des données de carte. Sur iPhone et iPad, il pouvait charger un second étage, identifié comme un kit d'exploit iOS, sans prise de contrôle signalée.",
+      "style": "calm, explaining"
+    },
+    {
+      "speaker": "Max",
+      "text": "Et l'attaquant est parti ?",
+      "style": "concerned"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Pas sûr. Première injection le 16 novembre à 4 h 21 UTC, nettoyage massif vers 20 h 40, mais le snippet de Smartsheet a été réinfecté après nettoyage, donc l'accès persistait. Et l'avis n'explique ni la faille ni quoi faire côté clients.",
+      "style": "measured"
+    },
+    {
+      "speaker": "Max",
+      "text": "Donc : vérifier le champ Project JavaScript de tes projets, chercher le domaine du loader dans les logs, et penser CSP et SRI. Et un site qui a servi le code n'est pas forcément compromis lui-même.",
+      "style": "practical"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Dernier gros morceau sécu : Puppet Enterprise. La CISA a ajouté la CVE 2026 tiret 115731 au catalogue KEV, donc exploitée.",
+      "style": "relaxed"
+    },
+    {
+      "speaker": "Max",
+      "text": "C'est quoi le mécanisme ?",
+      "style": "curious"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Dans le traitement des rapports. Un client avec un certificat d'agent signé par la CA peut exécuter du code arbitraire sur le Puppet Server en envoyant par PUT un rapport avec un type de données riches forgé. Et si la CA signe automatiquement sans vérification forte, un attaquant non authentifié pourrait aussi s'en servir.",
+      "style": "calm, explaining"
+    },
+    {
+      "speaker": "Max",
+      "text": "Aïe, et le serveur Puppet gère toute la flotte. Version corrigée ?",
+      "style": "concerned"
+    },
+    {
+      "speaker": "Camille",
+      "text": "On n'a qu'un extrait de l'avis, donc pas de version. Va voir l'avis de Perforce, et désactive l'auto-signature ou ajoute une vérification forte, et limite l'accès réseau.",
+      "style": "calm"
+    },
+    {
+      "speaker": "Max",
+      "text": "Passons aux pannes. Apple d'abord : hier en fin d'après-midi, plein de gens déconnectés d'iCloud sans pouvoir se reconnecter.",
+      "style": "relaxed"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Oui, selon 9to5Mac, des échecs de vérification ou des erreurs inconnues. Comme tout repose sur le même compte Apple, l'App Store, Apple Pay, Apple Music, l'activation des appareils et App Store Connect ont aussi eu des soucis.",
+      "style": "calm"
+    },
+    {
+      "speaker": "Max",
+      "text": "Le bon vieux point unique d'authentification.",
+      "style": "amused"
+    },
+    {
+      "speaker": "Camille",
+      "text": "À 19 h 10, Apple annonçait deux problèmes sur Compte iCloud et connexion, et l'App Store, Apple Music et AppleCare sur l'appareil en panne, le niveau le plus grave. Aucune cause ni délai de rétablissement. Si tu gères une flotte ou App Store Connect, attends le retour à la normale avant de dépanner les postes.",
+      "style": "relaxed"
+    },
+    {
+      "speaker": "Max",
+      "text": "Autre panne, plus exotique : le réseau interne classifié de la NSA, NSA Net.",
+      "style": "curious"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Selon CNN, repris par The Record et Numerama, il était perturbé hier. Ouverture retardée, arrivées échelonnées à Fort Meade pour réduire la charge de connexions. Deux sources parlent d'un service intermittent, pas d'un arrêt total, et pas d'une cyberattaque.",
+      "style": "calm, explaining"
+    },
+    {
+      "speaker": "Max",
+      "text": "Et l'agence ?",
+      "style": "amused"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Une dégradation temporaire pendant une maintenance programmée, capacités critiques opérationnelles. Une source dit que c'est instable depuis des semaines. Durée et périmètre inconnus. Perso, ça me rappelle que la maintenance planifiée, ça peut aussi faire mal.",
+      "style": "relaxed"
+    },
+    {
+      "speaker": "Max",
+      "text": "Et côté cloud, OVHcloud : Managed Kubernetes dans la région US-WEST-OR1.",
+      "style": "relaxed"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Les plans de contrôle étaient injoignables de 16 h 13 à 18 h 35 UTC, soit environ 2 h 20. Impossible d'accéder aux clusters ou de les gérer, mais OVHcloud dit que les charges déployées n'ont pas été affectées. Cause inconnue, on n'a qu'un extrait.",
+      "style": "calm"
+    },
+    {
+      "speaker": "Max",
+      "text": "Donc les pods tournaient, mais kubectl, la CI/CD et l'autoscaling via l'API ont pu échouer. Vérifie les déploiements lancés dans cette fenêtre.",
+      "style": "practical"
+    },
+    {
+      "speaker": "Camille",
+      "text": "On passe aux fuites. Selon ZATAZ, le pirate shin0bi, déjà lié à l'affaire Ciblex, vend pour 300 dollars en Monero une base de 500 782 enregistrements liés aux adhérents du Rassemblement National.",
+      "style": "serious"
+    },
+    {
+      "speaker": "Max",
+      "text": "Il n'en avait pas déjà parlé ?",
+      "style": "curious"
+    },
+    {
+      "speaker": "Camille",
+      "text": "En octobre, il annonçait 432 597 lignes, dont 150 000 diffusées gratuitement. Là il cite un fichier Adherents_2025, un échantillon de 150 111 enregistrements et un second pseudo, 0tagada0, qui aurait accès à l'outil de gestion des adhésions.",
+      "style": "calm, explaining"
+    },
+    {
+      "speaker": "Max",
+      "text": "Mais rien n'est confirmé, c'est ça ?",
+      "style": "measured"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Exactement. ZATAZ dit que l'origine, le caractère inédit et la seconde intrusion restent à authentifier. Et un même adhérent peut apparaître plusieurs fois, donc le nombre de personnes touchées est incertain.",
+      "style": "measured"
+    },
+    {
+      "speaker": "Max",
+      "text": "Autre fuite, celle-là est fascinante : Docker Hub. Deux chercheurs de Stony Brook, Billy Tsouvalas et Nick Nikiforakis, ont publié 300 images pièges sur huit registres publics pendant quatre mois.",
+      "style": "energetic"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Avec de fausses clés, j'imagine ?",
+      "style": "curious"
+    },
+    {
+      "speaker": "Max",
+      "text": "Des clés AWS, OpenAI et Anthropic, plus de faux identifiants SSH et de bases de données. Les images ont été tirées plus de 75 000 fois, et les clés AWS ont reçu plus de 140 000 appels API depuis 5 000 adresses IP.",
+      "style": "explaining"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Et c'est rapide comment ?",
+      "style": "surprised"
+    },
+    {
+      "speaker": "Max",
+      "text": "Premier usage 7,86 secondes après publication, médiane à 51,19 secondes, et les 100 clés AWS toutes utilisées en 15 minutes. Les scanners analysent surtout les couches sans exécuter le conteneur. Docker, prévenu en mai, n'a donné qu'un accusé de réception.",
+      "style": "impressed"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Donc une clé dans une image publique est compromise, point. On la révoque, supprimer l'image ne suffit pas. Scan de secrets en CI avant le push, et identifiants éphémères ou injectés à l'exécution.",
+      "style": "practical"
+    },
+    {
+      "speaker": "Max",
+      "text": "Pour finir sur du plus léger : Canonical a présenté Surge à l'Ubuntu Summit 26.10.",
+      "style": "relaxed"
+    },
+    {
+      "speaker": "Camille",
+      "text": "C'est un système multi-agents qui trie les vulnérabilités et rédige des correctifs rétroportés, c'est bien ça ?",
+      "style": "curious"
+    },
+    {
+      "speaker": "Max",
+      "text": "Oui. Les correctifs par trimestre sont passés d'environ 1 400 début 2025 à 3 100 mi-2026, et octobre 2026 a compté presque autant de CVE que toute l'année 2025. Le pipeline a six étapes : collecte, analyse avec reproduction, rétroportage par plusieurs modèles concurrents, jugement par consensus, escalade humaine si besoin, puis build et publication habituels.",
+      "style": "explaining"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Et c'est déployé en prod ?",
+      "style": "thoughtful"
+    },
+    {
+      "speaker": "Max",
+      "text": "Non. Ça couvre l'espace utilisateur, pas le noyau, et les correctifs vont dans l'archive Edge, optionnelle via Ubuntu Pro. Ils n'arrivent dans les mises à jour normales qu'après tests humains. Moi je la garderais pour un poste de dev ou un homelab.",
+      "style": "calm"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Voilà pour aujourd'hui. Patchez votre JDK, regardez vos ScreenConnect et vos Puppet, et révoquez vos clés.",
+      "style": "warm"
+    },
+    {
+      "speaker": "Max",
+      "text": "Bonne journée à tous, et à demain !",
+      "style": "relaxed, friendly"
+    }
+  ],
+  "episode": {
+    "title": "Java4Shell, ScreenConnect, Optimizely et des clés Docker volées en 8 secondes",
+    "release_tag": "ep-2026-11-18",
+    "mp3_url": "https://github.com/Elohyrr/veille/releases/download/ep-2026-11-18/veille-2026-11-18.mp3",
+    "bytes": 4825773,
+    "duration_s": 603,
+    "tts_provider": "openrouter"
+  },
+  "usage": {
+    "digest": {
+      "model": "sonnet",
+      "in": 41070,
+      "out": 5736,
+      "cost_usd": 0.221636
+    },
+    "podcast": {
+      "model": "sonnet",
+      "in": 7435,
+      "out": 5638,
+      "cost_usd": 0.086116
+    },
+    "triage": {
+      "model": "haiku",
+      "in": 44681,
+      "out": 6790,
+      "cost_usd": 0.012331000000000002
+    }
+  }
+}
