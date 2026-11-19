@@ -5,9 +5,29 @@
 <link>https://elohyrr.github.io/veille/</link>
 <description>Tech, pannes, failles et fuites — digest quotidien</description>
 <language>fr-fr</language>
-<lastBuildDate>Wed, 18 Nov 2026 06:08:13 &#43;0000</lastBuildDate>
+<lastBuildDate>Thu, 19 Nov 2026 06:09:16 &#43;0000</lastBuildDate>
 <itunes:image href="https://elohyrr.github.io/veille/cover.png"/>
 <itunes:explicit>false</itunes:explicit>
+<item>
+<title>nginx2root, un paquet PyPI piégé et PHP sous tension</title>
+<link>https://elohyrr.github.io/veille/jours/2026-11-19/</link>
+<guid isPermaLink="false">ep-2026-11-19</guid>
+<pubDate>Thu, 19 Nov 2026 06:09:16 &#43;0000</pubDate>
+<description>- nginx2root : CVE-2026-123007, exécution de code via HTTP/2, corrigée en 1.31.9 et 1.30.7
+- Microsoft Agent Framework : deux versions PyPI malveillantes volent des identifiants cloud
+- Apache Roller : CVE-2026-129448 (CVSS 9.8) exploitée, désérialisation XML-RPC sans authentification
+- Mise à jour : Java4Shell, correctifs publiés, conditions d&#39;exploitation et reproductions partielles
+- PHP : correctifs de sécurité critiques annoncés pour le 19 novembre, toutes versions touchées
+- Incus avant 7.6.0 : CVE-2026-130778 (CVSS 10.0), contournement d&#39;authentification par certificat
+- LiteLLM : CVE-2026-40217 exploitée, exécution de code via /guardrails/test_custom_code
+- Mise à jour : NSA Net, deuxième jour de perturbations, une maintenance PHP évoquée
+- Mise à jour : panne iCloud, Apple incrimine un déploiement interne, retour à 23 h
+- Chargemap : données de comptes extraites via une ancienne interface technique
+https://elohyrr.github.io/veille/jours/2026-11-19/</description>
+<enclosure url="https://github.com/Elohyrr/veille/releases/download/ep-2026-11-19/veille-2026-11-19.mp3" length="5747181" type="audio/mpeg"/>
+<itunes:duration>00:11:58</itunes:duration>
+<itunes:explicit>false</itunes:explicit>
+</item>
 <item>
 <title>Java4Shell, ScreenConnect, Optimizely et des clés Docker volées en 8 secondes</title>
 <link>https://elohyrr.github.io/veille/jours/2026-11-18/</link>
