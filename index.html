@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>jeudi 19 novembre 2026 — La veille</title>
+<title>vendredi 20 novembre 2026 — La veille</title>
 <meta name="description" content="Tech, pannes, failles et fuites — digest quotidien">
 <link rel="canonical" href="https://elohyrr.github.io/veille/">
 <link rel="stylesheet" href="style.css">
@@ -18,182 +18,177 @@
 <main>
 
 
-<h1>jeudi 19 novembre 2026</h1>
-<p class="meta">10 sujets · lecture estimée : 8 min</p>
+<h1>vendredi 20 novembre 2026</h1>
+<p class="meta">9 sujets · lecture estimée : 8 min</p>
 
 <section class="player" aria-label="Podcast du jour">
-<p><strong>Écouter</strong> · 12 min · nginx2root, un paquet PyPI piégé et PHP sous tension</p>
-<audio controls preload="none" src="https://github.com/Elohyrr/veille/releases/download/ep-2026-11-19/veille-2026-11-19.mp3"></audio>
-<p><a class="dl" href="https://github.com/Elohyrr/veille/releases/download/ep-2026-11-19/veille-2026-11-19.mp3" download>Télécharger le MP3</a> <span class="muted">(5,7 Mo)</span></p>
+<p><strong>Écouter</strong> · 10 min · vCenter en zero-day, PHP et NGINX patchés, PostgreSQL 19</p>
+<audio controls preload="none" src="https://github.com/Elohyrr/veille/releases/download/ep-2026-11-20/veille-2026-11-20.mp3"></audio>
+<p><a class="dl" href="https://github.com/Elohyrr/veille/releases/download/ep-2026-11-20/veille-2026-11-20.mp3" download>Télécharger le MP3</a> <span class="muted">(4,6 Mo)</span></p>
 </section>
 
-<p class="intro">Journée dominée par les failles d&#39;exécution de code : nginx HTTP/2, Apache Roller exploité, PHP en attente de correctifs. Côté chaîne d&#39;approvisionnement, le paquet PyPI de Microsoft Agent Framework a été piégé.</p>
+<p class="intro">Journée dominée par un zero-day VMware vCenter exploité depuis septembre et par la publication des correctifs PHP et NGINX. Côté fuites, la Commission européenne confirme une attaque liée à ARTEX.</p>
 
 <nav class="toc" aria-label="Sommaire">
-<section class="toc-group t-outage">
-<h2><span class="pill" aria-hidden="true"></span>Pannes <span class="count">2</span></h2>
+<section class="toc-group t-new_tech">
+<h2><span class="pill" aria-hidden="true"></span>Nouvelles technos <span class="count">2</span></h2>
 <ul>
-<li><a href="#nsa-net-causes-php-maintenance">Mise à jour : NSA Net, deuxième jour de perturbations, une maintenance PHP évoquée</a></li>
-<li><a href="#mise-a-jour-icloud-panne-deploiement">Mise à jour : panne iCloud, Apple incrimine un déploiement interne, retour à 23 h</a></li>
+<li><a href="#postgresql-19-publie">PostgreSQL 19 : REPACK CONCURRENTLY, pg_plan_advice et JIT désactivé par défaut</a></li>
+<li><a href="#valkey-9-2">Valkey 9.2 : compression Zstd, ensembles triés en B&#43; tree et snapshots sans fork</a></li>
+</ul>
+</section>
+<section class="toc-group t-outage">
+<h2><span class="pill" aria-hidden="true"></span>Pannes <span class="count">1</span></h2>
+<ul>
+<li><a href="#ovhcloud-cloud-archive-us-west-or">OVHcloud : erreurs sur Cloud Archive dans la région US-WEST-OR</a></li>
 </ul>
 </section>
 <section class="toc-group t-breach">
-<h2><span class="pill" aria-hidden="true"></span>Failles et compromissions <span class="count">7</span></h2>
+<h2><span class="pill" aria-hidden="true"></span>Failles et compromissions <span class="count">4</span></h2>
 <ul>
-<li><a href="#nginx2root-cve-2026-123007">nginx2root : CVE-2026-123007, exécution de code via HTTP/2, corrigée en 1.31.9 et 1.30.7</a></li>
-<li><a href="#microsoft-agent-framework-pypi-compromis">Microsoft Agent Framework : deux versions PyPI malveillantes volent des identifiants cloud</a></li>
-<li><a href="#apache-roller-cve-2026-129448-exploitee">Apache Roller : CVE-2026-129448 (CVSS 9.8) exploitée, désérialisation XML-RPC sans authentification</a></li>
-<li><a href="#mise-a-jour-java4shell-correctifs-poc">Mise à jour : Java4Shell, correctifs publiés, conditions d&#39;exploitation et reproductions partielles</a></li>
-<li><a href="#php-correctifs-critiques-19-novembre">PHP : correctifs de sécurité critiques annoncés pour le 19 novembre, toutes versions touchées</a></li>
-<li><a href="#incus-cve-2026-130778-contournement-auth">Incus avant 7.6.0 : CVE-2026-130778 (CVSS 10.0), contournement d&#39;authentification par certificat</a></li>
-<li><a href="#litellm-cve-2026-40217-kev">LiteLLM : CVE-2026-40217 exploitée, exécution de code via /guardrails/test_custom_code</a></li>
+<li><a href="#vmware-vcenter-cve-2026-123890">VMware vCenter : CVE-2026-123890, contournement d&#39;authentification exploité depuis septembre</a></li>
+<li><a href="#php-sept-failles-critiques-corrigees">Mise à jour : PHP publie 8.6.0 et 8.5.13 avec sept failles critiques corrigées</a></li>
+<li><a href="#nginx2root-poc-publics">Mise à jour : nginx2root, preuves de concept publiques et cinq failles critiques F5</a></li>
+<li><a href="#java4shell-tentatives-exploitation">Mise à jour : Java4Shell, premières tentatives d&#39;exploitation et avis d&#39;éditeurs</a></li>
 </ul>
 </section>
 <section class="toc-group t-leak">
-<h2><span class="pill" aria-hidden="true"></span>Fuites de données <span class="count">1</span></h2>
+<h2><span class="pill" aria-hidden="true"></span>Fuites de données <span class="count">2</span></h2>
 <ul>
-<li><a href="#chargemap-fuite-comptes-ancienne-interface">Chargemap : données de comptes extraites via une ancienne interface technique</a></li>
+<li><a href="#commission-europeenne-cyberattaque-artex">Commission européenne : cyberattaque confirmée, l&#39;outil ARTEX évoqué, fuite non établie</a></li>
+<li><a href="#infoblox-fuite-prestataire-nios">Infoblox : un prestataire compromis expose des sauvegardes NIOS et des données de salariés</a></li>
 </ul>
 </section>
 </nav>
 
-<article id="nsa-net-causes-php-maintenance" class="topic t-outage">
-<h3><span class="pill" aria-hidden="true"></span>Mise à jour : NSA Net, deuxième jour de perturbations, une maintenance PHP évoquée</h3>
-<p class="update"><a href="jours/2026-11-18/#nsa-net-perturbations">Mise à jour du 18 novembre</a> : Les perturbations durent depuis deux jours ; une source confirme une cause liée à une maintenance PHP, et les responsables américains écartent une attaque coordonnée.</p>
-<p>Selon The Record, les perturbations du réseau interne classifié NSA Net sont entrées dans leur deuxième jour mercredi. Après des pannes intermittentes mardi, l&#39;agence a échelonné les arrivées à Fort Meade et fermé son campus à la plupart des employés. Une source affirme que le réseau fonctionne, mais que l&#39;ouverture de session est l&#39;opération la plus coûteuse, et qu&#39;un à deux jours de plus pourraient être nécessaires. La même source confirme les propos du directeur du renseignement national Jay Clayton : la panne vient d&#39;une maintenance touchant PHP. On ignore si la vulnérabilité était issue d&#39;une IA ou humaine. Devant la commission de la Sécurité intérieure de la Chambre, Clayton a décrit des pannes séparées liées à des changements techniques, ni coordonnées ni étatiques. Le Monde rapporte que trois hauts responsables assurent qu&#39;aucune activité malveillante n&#39;est en cause. Chuck Schumer demande une équipe rouge.</p>
-<div class="why"><p class="why-title">Pourquoi c'est important</p><p>L&#39;enjeu est le lien avec PHP et la série de pannes de la semaine. Pour vous, retenez qu&#39;un changement de maintenance sur un composant courant peut immobiliser un SI entier. Testez vos mises à jour et gardez un plan de retour arrière. Les causes restent déclaratives, sans rapport technique détaillé.</p></div>
+<article id="postgresql-19-publie" class="topic t-new_tech">
+<h3><span class="pill" aria-hidden="true"></span>PostgreSQL 19 : REPACK CONCURRENTLY, pg_plan_advice et JIT désactivé par défaut</h3>
+
+<p>Le PostgreSQL Global Development Group a publié PostgreSQL 19. La version introduit la commande REPACK (CONCURRENTLY), qui optimise les tables sans interrompre les opérations en cours, et l&#39;extension pg_plan_advice, pour mieux contrôler la stabilité des plans et les performances des requêtes. Selon Phoronix, la sortie a pris des semaines de retard, les développeurs étant submergés de rapports de bogues et de failles produits par IA. Parmi les nouveautés : autovacuum capable de traiter les index avec des workers parallèles, réplication logique des valeurs de séquences, syntaxe INSERT ... ON CONFLICT DO SELECT, vérifications de clés étrangères plus rapides, ajustement automatique du nombre de workers d&#39;E/S et prise en charge de SNI côté serveur. La compilation JIT est désormais désactivée par défaut, car ses estimations de coût étaient jugées peu fiables. Les utilisateurs de grosses requêtes analytiques sont invités à la réactiver manuellement.</p>
+<div class="why"><p class="why-title">Pourquoi c'est important</p><p>Avant de migrer, testez la désactivation du JIT si vos charges analytiques en dépendent. REPACK CONCURRENTLY peut simplifier la maintenance des tables gonflées. Consultez les notes de version : certaines fonctions prévues ont été retirées avant la sortie.</p></div>
 <details class="sources">
 <summary>Sources (2)</summary>
 <ul>
-<li><a href="https://therecord.media/nsa-continues-response-to-nsa-net-problems" rel="noopener nofollow">NSA continues response to interruptions in classified internal network</a> <span class="feed">The Record</span></li>
-<li><a href="https://www.lemonde.fr/international/article/2026/11/18/aucune-activite-malveillante-derriere-les-pannes-en-serie-aux-etats-unis-assurent-trois-hauts-responsables-americains_6813204_3210.html" rel="noopener nofollow">« Aucune activité malveillante » derrière les pannes en série aux Etats-Unis, assurent trois hauts responsables américains</a> <span class="feed">Le Monde Pixels (pannes)</span></li>
+<li><a href="https://lwn.net/Articles/1108561/" rel="noopener nofollow">PostgreSQL 19 released</a> <span class="feed">LWN</span></li>
+<li><a href="https://www.phoronix.com/news/PostgreSQL-19-Released" rel="noopener nofollow">PostgreSQL 19 Released With More Performance Improvements</a> <span class="feed">Phoronix</span></li>
 </ul>
 </details>
 
 </article>
 
-<article id="mise-a-jour-icloud-panne-deploiement" class="topic t-outage">
-<h3><span class="pill" aria-hidden="true"></span>Mise à jour : panne iCloud, Apple incrimine un déploiement interne, retour à 23 h</h3>
-<p class="update"><a href="jours/2026-11-18/#apple-icloud-panne-17-novembre">Mise à jour du 18 novembre</a> : Selon un média, Apple attribue la panne à un déploiement interne et les services sont revenus vers 23 h.</p>
-<p>Selon un titre relayé par Stéphane Larue News, Apple attribue la panne iCloud du 17 novembre à son propre déploiement interne, et les services seraient revenus vers 23 h. Nous n&#39;avons que le titre de l&#39;article, sans détail sur la nature du déploiement ni sur la chronologie exacte.</p>
-<div class="why"><p class="why-title">Pourquoi c'est important</p><p>Une cause interne de type déploiement, si elle se confirme, rappelle l&#39;intérêt des déploiements progressifs et des retours arrière rapides. Pour vos propres services dépendant de la connexion Apple, prévoyez un mode dégradé. Attendez la communication officielle d&#39;Apple pour les détails.</p></div>
+<article id="valkey-9-2" class="topic t-new_tech">
+<h3><span class="pill" aria-hidden="true"></span>Valkey 9.2 : compression Zstd, ensembles triés en B&#43; tree et snapshots sans fork</h3>
+
+<p>Valkey 9.2, fork de Redis, est disponible. Selon Phoronix, la version réduit la surcharge mémoire grâce à des ensembles triés en B&#43; tree. Elle ajoute la compression Zstd pour la persistance RDB et la réplication, avec de meilleurs taux que LZ4, ainsi que des snapshots et une synchronisation complète vers les réplicas sans fork. Une nouvelle commande, DELEX, supprime une clé chaîne si sa valeur correspond, ou non, à une valeur donnée. La version ajoute la détection de clés chaudes côté serveur et des dizaines de corrections. Phoronix relève que cette sortie suit de quelques jours la dépréciation du projet Redict au profit de Valkey.</p>
+<div class="why"><p class="why-title">Pourquoi c'est important</p><p>Si vous exploitez Valkey, la synchronisation sans fork et la réduction mémoire peuvent diminuer les pics de consommation pendant les snapshots. DELEX simplifie les verrous distribués. Testez Zstd sur vos charges avant la production, car la réplication nécessite des versions compatibles.</p></div>
 <details class="sources">
 <summary>Sources (1)</summary>
 <ul>
-<li><a href="https://news.google.com/rss/articles/CBMiqwFBVV95cUxNT1Utajk4cHhTMXBJSE9tdVVqMVlCMFNCVS1VZXJFUUR2UHhNVHpaSnM1MUtzaUllN3h5ajBmMXQyeGstS1FZQ2RPejdYanluQlpCczhfbjlGOXZlUFR4T2JxaDRscUJGaDhBenhYMmwybzBGcFdpb0lDMl9IcnNhc2dsZVlQZ3JHdi1jZmhaSVNtUDZBVElDczVyQk9qYkhiSmFxTE00bmltVWs?oc=5" rel="noopener nofollow">Panne iCloud : Apple incrimine son déploiement interne, les services revenus à 23 h - Stéphane Larue News</a> <span class="feed">Google Actualités : pannes opérateurs</span></li>
+<li><a href="https://www.phoronix.com/news/Valkey-9.2" rel="noopener nofollow">Valkey 9.2 Delivers More Performance, Zstd Compression &amp; Lower Memory Overhead</a> <span class="feed">Phoronix</span></li>
 </ul>
 </details>
 
 </article>
 
-<article id="nginx2root-cve-2026-123007" class="topic t-breach">
-<h3><span class="pill" aria-hidden="true"></span>nginx2root : CVE-2026-123007, exécution de code via HTTP/2, corrigée en 1.31.9 et 1.30.7</h3>
+<article id="ovhcloud-cloud-archive-us-west-or" class="topic t-outage">
+<h3><span class="pill" aria-hidden="true"></span>OVHcloud : erreurs sur Cloud Archive dans la région US-WEST-OR</h3>
 
-<p>Une faille du support HTTP/2 de NGINX, CVE-2026-123007 (« nginx2root »), est présente depuis la version 1.9.5 de septembre 2015. Elle permet à un attaquant non authentifié d&#39;exécuter du code sur un serveur où HTTP/2 est activé. F5 précise que cela suppose un ASLR désactivé ou contournable ; Wiz affirme l&#39;avoir contourné en test. Le code obtient les droits d&#39;un worker NGINX. Xint a obtenu root via un autre bug du noyau Linux (SCTP), même depuis un conteneur Docker. Quatre autres failles sont corrigées en même temps (CVE-2026-123633, CVE-2026-123634, CVE-2026-121810, CVE-2026-113425), toutes notées 9,2 en CVSS 4.0. Les versions corrigées sont 1.31.9 et 1.30.7 ; NGINX Plus 37.3.0.1 et 37.0.8.1, sans correctif listé pour R34 à R36. Un PoC public existe sur GitHub. Aucune exploitation n&#39;est signalée et la faille n&#39;est pas dans le KEV. Ubuntu et Debian n&#39;avaient pas encore de paquets corrigés. Il faut redémarrer NGINX complètement, un simple reload ne suffit pas.</p>
-<div class="why"><p class="why-title">Pourquoi c'est important</p><p>Presque toute infrastructure web ou Ingress repose sur NGINX. Vérifiez si HTTP/2 est actif sur l&#39;origine (openssl s_client -alpn h2), mettez à jour et redémarrez. En attendant, désactiver HTTP/2 bloque deux des cinq failles seulement. Comparez la version complète du paquet avec l&#39;avis de votre distribution.</p></div>
+<p>OVHcloud signale un incident sur son offre Cloud Archive dans la région US-WEST-OR. Il a débuté le 19 novembre à 16 h 30 UTC. Le service présente un taux d&#39;erreurs accru. Les clients peuvent rencontrer des erreurs lors du stockage ou de la récupération de données archivées. La cause racine est indiquée comme identifiée à 22 h 27 UTC, mais l&#39;extrait fourni ne la détaille pas. Le statut final n&#39;est pas connu dans les éléments disponibles.</p>
+<div class="why"><p class="why-title">Pourquoi c'est important</p><p>Si vous utilisez Cloud Archive à US-WEST-OR, prévoyez des nouvelles tentatives pour les écritures et lectures, et suivez la page de statut. Les sauvegardes planifiées vers cet espace peuvent échouer. Vérifiez vos journaux de tâches.</p></div>
 <details class="sources">
 <summary>Sources (1)</summary>
 <ul>
-<li><a href="https://thehackernews.com/2026/11/10-year-old-nginx-http2-flaw-lets.html" rel="noopener nofollow">10-Year-Old NGINX HTTP/2 Flaw Lets Unauthenticated Attackers Execute Code on Servers</a> <span class="feed">The Hacker News</span></li>
+<li><a href="https://public-cloud.status-ovhcloud.com/incidents/5mplv9fgbqyp" rel="noopener nofollow">[US-WEST-OR][Storage] - Cloud Archive incident notification</a> <span class="feed">OVHcloud Public Cloud Status</span></li>
 </ul>
 </details>
 
 </article>
 
-<article id="microsoft-agent-framework-pypi-compromis" class="topic t-breach">
-<h3><span class="pill" aria-hidden="true"></span>Microsoft Agent Framework : deux versions PyPI malveillantes volent des identifiants cloud</h3>
+<article id="vmware-vcenter-cve-2026-123890" class="topic t-breach">
+<h3><span class="pill" aria-hidden="true"></span>VMware vCenter : CVE-2026-123890, contournement d&#39;authentification exploité depuis septembre</h3>
 
-<p>Des attaquants ont compromis le paquet PyPI officiel de Microsoft Agent Framework, environ 200 000 téléchargements mensuels. Les versions 1.26.1 et 1.26.2, publiées le 17 novembre 2026, embarquent un voleur d&#39;identifiants lancé au démarrage de Python, même sans import du paquet. Il collecte variables d&#39;environnement, fichiers de configuration et processus, visant Azure, AWS, GitHub, Docker, Hugging Face, OpenAI et d&#39;autres. Il tente aussi d&#39;obtenir des jetons d&#39;identité managée Azure et OIDC Azure DevOps ; la 1.26.2 ajoute les jetons OIDC de GitHub Actions. Les données partent vers un endpoint webhook contrôlé par l&#39;attaquant. PyPI a mis en quarantaine la première version, mais l&#39;attaquant en a publié une seconde environ 2,5 minutes plus tard, elle aussi mise en quarantaine. On ignore comment l&#39;accès de publication a été obtenu ; Microsoft n&#39;avait pas répondu à BleepingComputer.</p>
-<div class="why"><p class="why-title">Pourquoi c'est important</p><p>Si un poste ou un runner CI a installé 1.26.1 ou 1.26.2, isolez-le, reconstruisez depuis un environnement sain avec la 1.26.0 et faites tourner tous les secrets accessibles. Cherchez le chemin du webhook dans les logs de sortie. Épinglez les versions et hashes de vos dépendances.</p></div>
+<p>Broadcom a publié le 19 novembre le correctif VMSA-2026-0009 pour CVE-2026-123890 (CVSS 9.8), un contournement d&#39;authentification du VMware Directory Service de vCenter Server. Un attaquant non authentifié disposant d&#39;un accès réseau obtient une session administrateur. Mandiant et Google indiquent que le groupe Armory Castle (ex-UNC5221), soupçonné d&#39;être lié à la Chine, l&#39;exploite comme zero-day depuis début septembre. Selon Mandiant, l&#39;accès initial passait par un zero-day BeyondTrust Remote Support (CVE-2026-102764), puis des appliances Linux internes, avant l&#39;usage de l&#39;outil Bonesaw. Celui-ci crée un compte SSO administrateur, vole la base d&#39;annuaire et extrait des clés de signature SAML, ce qui permet de forger des jetons (Golden SAML). Les correctifs sont disponibles en 9.1.1.0200, 9.0.2.0200 et 8.0 U3m. Il n&#39;existe pas de correctif public pour vCenter 7.0, hors support général depuis octobre 2025. Broadcom ne liste aucun contournement et son avis ne mentionne pas l&#39;exploitation. La mise à jour est cumulative et ne passe pas par Quick Patch. Installer 8.0 U3m ou 9.0.2.0200 bloque une mise à niveau ultérieure vers VCF 9.1.1.</p>
+<div class="why"><p class="why-title">Pourquoi c'est important</p><p>Si vous administrez vCenter, appliquez le correctif en urgence. Vérifiez aussi les traces de compromission : comptes SSO inattendus, accès à la base d&#39;annuaire. Après un vol de clés SAML, une simple mise à jour ne suffit pas. Isolez l&#39;interface de gestion du réseau. Les versions 7.0 et antérieures restent sans correctif public.</p></div>
 <details class="sources">
-<summary>Sources (1)</summary>
+<summary>Sources (3)</summary>
 <ul>
-<li><a href="https://www.bleepingcomputer.com/news/security/microsofts-agent-framework-pypi-package-compromised-to-steal-credentials/" rel="noopener nofollow">Microsoft’s Agent Framework PyPI package compromised to steal credentials</a> <span class="feed">BleepingComputer</span></li>
+<li><a href="https://www.bleepingcomputer.com/news/security/vmware-patches-vcenter-zero-day-exploited-in-attacks-since-september/" rel="noopener nofollow">VMware patches vCenter zero-day exploited in attacks since September</a> <span class="feed">BleepingComputer</span></li>
+<li><a href="https://www.securityweek.com/newly-patched-vmware-vcenter-flaw-exploited-as-zero-day-by-chinese-apt/" rel="noopener nofollow">Newly Patched VMware vCenter Flaw Exploited as Zero-Day by Chinese APT</a> <span class="feed">SecurityWeek</span></li>
+<li><a href="https://thehackernews.com/2026/11/critical-vmware-vcenter-flaw-cvss-98.html" rel="noopener nofollow">Critical VMware vCenter Zero-Day Flaw Lets Network Attackers Bypass Authentication</a> <span class="feed">The Hacker News</span></li>
 </ul>
 </details>
 
 </article>
 
-<article id="apache-roller-cve-2026-129448-exploitee" class="topic t-breach">
-<h3><span class="pill" aria-hidden="true"></span>Apache Roller : CVE-2026-129448 (CVSS 9.8) exploitée, désérialisation XML-RPC sans authentification</h3>
-
-<p>L&#39;Apache Software Foundation indique qu&#39;une faille d&#39;Apache Roller, plateforme de blog Java, est activement exploitée. CVE-2026-129448 (CVSS 9.8) est une désérialisation de données non fiables dans l&#39;endpoint XML-RPC, qui permet à un attaquant distant non authentifié d&#39;exécuter du code. Les versions 4.0.0 à 6.1.4 sont touchées. Le endpoint désérialise les types d&#39;extension fournisseur avant d&#39;authentifier la requête. L&#39;ASF précise que c&#39;est la même faille que CVE-2026-82384, corrigée en septembre 2026 mais qui ne listait que la 6.1.5 comme affectée. Elle ne donne aucun détail sur l&#39;exploitation ni sur les cibles. Le correctif est Roller 6.1.6 ou plus, qui désactive les types d&#39;extension. Contournement : mettre enabledForExtensions à false dans WEB-INF/web.xml, ou retirer le mapping du servlet /roller-services/xmlrpc, puis redémarrer. Désactiver XML-RPC dans l&#39;interface d&#39;administration ne suffit pas.</p>
-<div class="why"><p class="why-title">Pourquoi c'est important</p><p>Si vous auto-hébergez Roller, passez en 6.1.6 sans attendre, l&#39;exploitation étant déjà en cours. Sinon appliquez le contournement dans web.xml et redémarrez. Le cas rappelle qu&#39;un correctif de septembre pouvait être incomplet : vérifiez la version réellement déployée.</p></div>
-<details class="sources">
-<summary>Sources (1)</summary>
-<ul>
-<li><a href="https://thehackernews.com/2026/11/critical-apache-roller-rce-flaw-under.html" rel="noopener nofollow">Critical Apache Roller RCE Flaw Under Active Exploitation, No Authentication Required</a> <span class="feed">The Hacker News</span></li>
-</ul>
-</details>
-
-</article>
-
-<article id="mise-a-jour-java4shell-correctifs-poc" class="topic t-breach">
-<h3><span class="pill" aria-hidden="true"></span>Mise à jour : Java4Shell, correctifs publiés, conditions d&#39;exploitation et reproductions partielles</h3>
-<p class="update"><a href="jours/2026-11-18/#java4shell-openjdk-cve-2026-114938">Mise à jour du 18 novembre</a> : Les correctifs Oracle et Corretto sont publiés, Red Hat attend encore les siens, et des sociétés de sécurité ont reproduit la corruption mémoire sans exécution de code universelle.</p>
-<p>Calif a divulgué Java4Shell (CVE-2026-114938), qui touche OpenJDK depuis la 17.0.6. La faille dépend du décodeur Base64 accéléré par AVX-512 VBMI. Conditions : processeur compatible (Intel Ice Lake et suivants, AMD Zen 4 à Zen 6), JVM sans -XX:UseAVX=2 ou inférieur, et application décodant du Base64 fourni par l&#39;attaquant. ARM64 ainsi que Java 8 et 11 standard ne sont pas concernés, mais toutes les distributions dérivées d&#39;OpenJDK le sont. Oracle a publié les versions 17.0.21.1, 21.0.13.1, 25.0.5.1 et 27.0.1.1. Amazon fournit les builds Corretto correspondants. Red Hat indique que les mises à jour d&#39;EL 8, 9 et 10 ne sont pas encore disponibles. Calif affirme avoir exécuté du code sur Keycloak, Jira, Confluence, Artifactory, Jenkins et PingFederate sans identifiant. Upwind et Blackpoint n&#39;ont reproduit que la corruption mémoire, et Blackpoint dit qu&#39;il n&#39;existe pas de méthode d&#39;exploitation universelle. Les scores divergent : 8,1 (CVSS 3.1) chez Oracle, 9,2 (CVSS 4.0) chez Calif.</p>
-<div class="why"><p class="why-title">Pourquoi c'est important</p><p>Inventoriez les JVM, y compris celles embarquées dans Jenkins, Jira ou Keycloak. Mettez à jour dès que le correctif existe pour votre distribution. En attendant, -XX:UseAVX=2 est la mesure d&#39;atténuation citée dans les conditions. Les exploits restent privés, mais des équipes de sécurité reproduisent déjà la corruption mémoire.</p></div>
-<details class="sources">
-<summary>Sources (1)</summary>
-<ul>
-<li><a href="https://next.ink/268262/la-faille-java4shell-permet-dexecuter-du-code-a-distance-notamment-dans-jira-et-jenkins/" rel="noopener nofollow">La faille Java4Shell permet d’exécuter du code à distance, notamment dans Jira et Jenkins</a> <span class="feed">Next</span></li>
-</ul>
-</details>
-
-</article>
-
-<article id="php-correctifs-critiques-19-novembre" class="topic t-breach">
-<h3><span class="pill" aria-hidden="true"></span>PHP : correctifs de sécurité critiques annoncés pour le 19 novembre, toutes versions touchées</h3>
-
-<p>Les mainteneurs de PHP ont annoncé une publication de sécurité le 19 novembre 2026 entre 14 h et 14 h 30 UTC, dans le cycle régulier de quatre semaines. Elle corrige des failles touchant toutes les versions supportées, la gravité maximale étant « CRITICAL ». Le projet précise que les failles critiques exigent une configuration non par défaut ou des montages peu courants, sans autre détail. Selon The Hacker News, la publication devrait inclure CVE-2026-115560, une exécution de code à distance. Elle exige qu&#39;une application règle session.serialize_handler sur php_binary ou php_serialize, puis le repasse à php avec ini_set() avant session_start(), avec l&#39;upload progress de session activé, ce qui est le défaut. Mesure conseillée : session.upload_progress.enabled=0 puis redémarrage des workers PHP. Le même article rappelle que PHP2Shell (CVE-2026-109618 et CVE-2026-109619) subit une exploitation limitée.</p>
-<div class="why"><p class="why-title">Pourquoi c'est important</p><p>Préparez la mise à jour PHP du jour sur vos images et serveurs. Si votre code change le handler de session avec ini_set(), désactivez dès maintenant l&#39;upload progress de session. Surveillez aussi les images Docker et paquets de distribution, qui arrivent souvent avec un décalage.</p></div>
-<details class="sources">
-<summary>Sources (1)</summary>
-<ul>
-<li><a href="https://thehackernews.com/2026/11/php-warns-of-critical-security-flaws.html" rel="noopener nofollow">PHP Warns of Critical Security Flaws Affecting All Supported Versions, Fixes Coming November 19</a> <span class="feed">The Hacker News</span></li>
-</ul>
-</details>
-
-</article>
-
-<article id="incus-cve-2026-130778-contournement-auth" class="topic t-breach">
-<h3><span class="pill" aria-hidden="true"></span>Incus avant 7.6.0 : CVE-2026-130778 (CVSS 10.0), contournement d&#39;authentification par certificat</h3>
-
-<p>La NVD publie CVE-2026-130778 (CVSS 10.0) pour Incus avant la version 7.6.0. Un attaquant distant peut s&#39;authentifier comme n&#39;importe quel certificat de confiance en ajoutant ce certificat public à la chaîne client TLS qu&#39;il présente. En ajoutant le certificat du serveur ou d&#39;un membre du cluster, il obtient un accès au niveau du cluster. Il peut aussi contourner l&#39;autorisation, modifier le magasin de confiance et influencer les décisions d&#39;autorisation par scriptlet. Seul ce résumé de la NVD est disponible.</p>
-<div class="why"><p class="why-title">Pourquoi c'est important</p><p>Si vous exploitez Incus, y compris en cluster et avec l&#39;API exposée sur le réseau, passez en 7.6.0 rapidement. En attendant, limitez l&#39;accès réseau à l&#39;API. Après mise à jour, contrôlez le magasin de confiance à la recherche d&#39;entrées inattendues.</p></div>
-<details class="sources">
-<summary>Sources (1)</summary>
-<ul>
-<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-130778" rel="noopener nofollow">CVE-2026-130778 (CVSS 10.0) — Incus before 7.6.0 contains an authentication bypass vulnerability that allows remote attackers to authenticat…</a> <span class="feed">NVD critiques</span></li>
-</ul>
-</details>
-
-</article>
-
-<article id="litellm-cve-2026-40217-kev" class="topic t-breach">
-<h3><span class="pill" aria-hidden="true"></span>LiteLLM : CVE-2026-40217 exploitée, exécution de code via /guardrails/test_custom_code</h3>
-
-<p>La CISA a ajouté CVE-2026-40217 à son catalogue des vulnérabilités exploitées. Elle touche BerriAI LiteLLM : un canal alternatif non protégé permet à des attaquants distants d&#39;exécuter du code arbitraire par réécriture de bytecode via l&#39;URI /guardrails/test_custom_code. Seul un résumé de l&#39;entrée du catalogue est disponible, sans version corrigée ni détail sur les attaques.</p>
-<div class="why"><p class="why-title">Pourquoi c'est important</p><p>LiteLLM sert souvent de passerelle vers des API de modèles et détient des clés d&#39;API. Si vous en hébergez une, consultez l&#39;avis éditeur, mettez à jour et n&#39;exposez pas cet endpoint. Faites tourner les clés si l&#39;instance était accessible depuis Internet.</p></div>
-<details class="sources">
-<summary>Sources (1)</summary>
-<ul>
-<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-40217" rel="noopener nofollow">CVE-2026-40217 — BerriAI LiteLLM Unprotected Alternate Channel Vulnerability</a> <span class="feed">CISA KEV</span></li>
-</ul>
-</details>
-
-</article>
-
-<article id="chargemap-fuite-comptes-ancienne-interface" class="topic t-leak">
-<h3><span class="pill" aria-hidden="true"></span>Chargemap : données de comptes extraites via une ancienne interface technique</h3>
-
-<p>Chargemap, service de planification d&#39;itinéraires pour véhicules électriques et pass de paiement des recharges, a prévenu ses utilisateurs mercredi 18 novembre. Le 8 novembre 2026, une personne extérieure a exploité une faille sur une ancienne interface technique pour extraire des données de comptes. L&#39;entreprise a détecté une activité anormale le 10 novembre et corrigé la faille le 12. Sont susceptibles d&#39;être exposés : adresse e-mail, nom d&#39;utilisateur, coordonnées saisies à l&#39;inscription, statut d&#39;abonnement et identifiant de connexion Google, Facebook ou Apple. Une empreinte (hachage) du mot de passe a pu être extraite, aucun mot de passe en clair. Chargemap affirme que coordonnées bancaires, historique de recharges, factures et adresse postale sont épargnés, de même que l&#39;identifiant du badge Pass, sauf pour une vingtaine d&#39;utilisateurs prévenus. Les comptes d&#39;anciens utilisateurs peuvent être concernés. La CNIL a été notifiée le 13 novembre et une plainte est engagée. Le nombre de comptes n&#39;est pas communiqué.</p>
-<div class="why"><p class="why-title">Pourquoi c'est important</p><p>Si vous avez un compte Chargemap, changez le mot de passe, ici et partout où il est réutilisé, et méfiez-vous des messages se réclamant du service. Côté exploitation, c&#39;est un rappel : les anciennes interfaces techniques oubliées sont une surface d&#39;attaque à inventorier et à retirer.</p></div>
+<article id="php-sept-failles-critiques-corrigees" class="topic t-breach">
+<h3><span class="pill" aria-hidden="true"></span>Mise à jour : PHP publie 8.6.0 et 8.5.13 avec sept failles critiques corrigées</h3>
+<p class="update"><a href="jours/2026-11-19/#php-correctifs-critiques-19-novembre">Mise à jour du 19 novembre</a> : Les correctifs sont publiés : sept failles critiques corrigées dans PHP 8.6.0, 8.5.13 et les branches 8.4, 8.3 et 8.2 (pour la plupart).</p>
+<p>Le correctif annoncé la veille est sorti le 19 novembre. PHP 8.6.0 et 8.5.13 corrigent sept failles critiques d&#39;exécution de code (CVSS 9.2 pour les sept), dont CVE-2026-115560 (progression d&#39;envoi de session), CVE-2026-126714 (désérialisation de session après écriture interrompue) et CVE-2026-129289, une contrebande de requêtes PHP-FPM. Cette dernière suppose un frontal avec connexions persistantes, par exemple nginx avec fastcgi_keep_conn, Apache mod_proxy_fcgi avec enablereuse=on, HAProxy ou LSAPI, et une application qui lit php://input sans le consommer. Deux failles (CVE-2026-129481 et CVE-2026-129182) concernent des correctifs incomplets autour de CVE-2026-109619, l&#39;une des failles PHP2Shell d&#39;octobre, décrite comme largement exploitée. Les correctifs sont aussi dans PHP 8.4.28, 8.3.37 et 8.2.36, pour la plupart des failles. CVE-2026-129474 ne touche que PHP 8.5 et plus. Une faille locale CVE-2026-129291 (CVSS 8.8) est aussi corrigée.</p>
+<div class="why"><p class="why-title">Pourquoi c'est important</p><p>Toute pile PHP est concernée. Passez à 8.5.13, 8.4.28, 8.3.37 ou 8.2.36 selon votre branche. Si vous utilisez PHP-FPM derrière nginx, Apache ou HAProxy avec connexions persistantes, vérifiez ces options, car CVE-2026-129289 n&#39;exige pas de configuration PHP non standard.</p></div>
 <details class="sources">
 <summary>Sources (2)</summary>
 <ul>
-<li><a href="https://next.ink/brief-article/chargemap-signale-un-vol-de-donnees-suite-a-une-attaque-informatique/" rel="noopener nofollow">☕️ Chargemap signale un vol de données suite à une attaque informatique</a> <span class="feed">Next</span></li>
-<li><a href="https://news.google.com/rss/articles/CBMiYEFVX3lxTE1nOTZwekZNY2xsN1dRcVRCUHV6eEJCcm1hcVNWRWgyOVhPQ2FqT2JPa3RRV1ZtdXFlc1c3TU1oVWZnaGRUdVlqWF8ycjc3SFkxQzhDamJUdzE1OU9NbEFNTQ?oc=5" rel="noopener nofollow">Chargemap : fuite de données après une cyberattaque sur les comptes - Fuites Infos</a> <span class="feed">Google Actualités : fuites FR</span></li>
+<li><a href="https://www.securityweek.com/php-patches-seven-critical-rce-vulnerabilities/" rel="noopener nofollow">PHP Patches Seven Critical RCE Vulnerabilities</a> <span class="feed">SecurityWeek</span></li>
+<li><a href="https://thehackernews.com/2026/11/php-fixes-7-critical-flaws-including.html" rel="noopener nofollow">PHP Fixes 7 Critical Flaws, Including Bugs That Could Allow Remote Code Execution</a> <span class="feed">The Hacker News</span></li>
+</ul>
+</details>
+
+</article>
+
+<article id="nginx2root-poc-publics" class="topic t-breach">
+<h3><span class="pill" aria-hidden="true"></span>Mise à jour : nginx2root, preuves de concept publiques et cinq failles critiques F5</h3>
+<p class="update"><a href="jours/2026-11-19/#nginx2root-cve-2026-123007">Mise à jour du 19 novembre</a> : Des PoC publics (Rapid7, Censys) sont disponibles, quatre autres failles critiques sont détaillées et des estimations d&#39;exposition sont publiées.</p>
+<p>F5 a corrigé 22 vulnérabilités, dont cinq failles critiques NGINX, CVE-2026-113425, CVE-2026-121810, CVE-2026-123007, CVE-2026-123633 et CVE-2026-123634. Les deux premières à retenir sont les failles HTTP/2 CVE-2026-123007 et CVE-2026-123633. Rapid7 a publié un PoC pour CVE-2026-123007, qui exige environ 128 Go de trafic HTTP/2. Censys a publié son propre PoC, qui reproduit le comportement sans ce volume, en HTTP/2 en clair. Censys n&#39;a pas obtenu d&#39;exécution de code. Wiz montre un RCE sans publier ses exploits pour CVE-2026-123633. Xint enchaîne CVE-2026-123007 avec une faille SCTP du noyau Linux pour sortir d&#39;un conteneur Docker et obtenir root. F5 dit que l&#39;exécution de code exige ASLR désactivé ou contourné, mais Wiz et Rapid7 affirment pouvoir le contourner. Le chercheur Florian Roth estime que le risque n&#39;est pas imminent pour la plupart des déploiements, car l&#39;exploitation dépend de la configuration. Censys compte environ 9 millions de services NGINX potentiellement exposés. Les correctifs sont dans NGINX 1.30.7, 1.31.9, et Plus 37.0.8.1 ou 37.3.0.1.</p>
+<div class="why"><p class="why-title">Pourquoi c'est important</p><p>Mettez à jour NGINX. À défaut, désactivez HTTP/2, ce qui ne couvre que les deux failles HTTP/2. Vérifiez si votre build distribution intègre déjà les correctifs. Les images de conteneurs NGINX doivent être reconstruites. Aucune exploitation active n&#39;est signalée par F5, mais des PoC publics existent.</p></div>
+<details class="sources">
+<summary>Sources (2)</summary>
+<ul>
+<li><a href="https://www.bleepingcomputer.com/news/security/critical-nginx-nginx2root-bugs-let-attackers-hijack-servers/" rel="noopener nofollow">Critical NGINX ‘NGINX2Root’ bugs let attackers hijack servers</a> <span class="feed">BleepingComputer</span></li>
+<li><a href="https://www.securityweek.com/f5-patches-critical-nginx2root-flaws-as-poc-exploits-go-public/" rel="noopener nofollow">F5 Patches Critical NGINX2Root Flaws as PoC Exploits Go Public</a> <span class="feed">SecurityWeek</span></li>
+</ul>
+</details>
+
+</article>
+
+<article id="java4shell-tentatives-exploitation" class="topic t-breach">
+<h3><span class="pill" aria-hidden="true"></span>Mise à jour : Java4Shell, premières tentatives d&#39;exploitation et avis d&#39;éditeurs</h3>
+<p class="update"><a href="jours/2026-11-19/#mise-a-jour-java4shell-correctifs-poc">Mise à jour du 19 novembre</a> : Premières tentatives d&#39;exploitation observées par GreyNoise, WatchTowr, Cloudflare et Previdian ; Cisco, Siemens, Elastic et Red Hat publient leurs avis.</p>
+<p>Des attaquants sondent la faille CVE-2026-114938, divulguée le 17 novembre par Calif. GreyNoise a vu plus de 150 requêtes de forme compatible depuis cinq adresses IP, sans intrusion réussie sur ses capteurs. WatchTowr observe des requêtes avec un User-Agent « java4shell-recon » et attend des exploits adaptés produit par produit. Cloudflare note que certains scanners masquent leurs outils, et qu&#39;une adresse a servi à la fois pour Artex et Java4Shell. Le PoC de Calif ne déclenche que la corruption mémoire, mais VulnCheck propose un exploit RCE complet à ses clients. Côté éditeurs, Cisco confirme plus d&#39;une douzaine de produits touchés, sans correctif ni contournement. Siemens recommande de mettre hors ligne ses Industrial Edge Management. Elastic indique que toutes les versions d&#39;Elasticsearch depuis 7.17.3 sont concernées et prévoit des correctifs. Red Hat classe la faille comme critique pour RHEL 8, 9 et 10 et ses builds OpenJDK 17, 21 et 25. L&#39;exploitation exige un processeur x86-64 avec AVX-512 VBMI.</p>
+<div class="why"><p class="why-title">Pourquoi c'est important</p><p>Inventoriez vos JVM 17.0.6 et plus sur CPU récents Intel ou AMD, ainsi que les produits tiers embarquant Java (Elasticsearch, appliances Cisco). Appliquez les correctifs OpenJDK du 17 novembre. Pour les produits sans correctif, appliquez les consignes de l&#39;éditeur : isolement ou arrêt.</p></div>
+<details class="sources">
+<summary>Sources (1)</summary>
+<ul>
+<li><a href="https://www.securityweek.com/java4shell-exploitation-attempts-begin-as-vendors-rush-out-advisories/" rel="noopener nofollow">Java4Shell Exploitation Attempts Begin as Vendors Rush Out Advisories</a> <span class="feed">SecurityWeek</span></li>
+</ul>
+</details>
+
+</article>
+
+<article id="commission-europeenne-cyberattaque-artex" class="topic t-leak">
+<h3><span class="pill" aria-hidden="true"></span>Commission européenne : cyberattaque confirmée, l&#39;outil ARTEX évoqué, fuite non établie</h3>
+
+<p>La Commission européenne a confirmé le 19 novembre une cyberattaque dont les premiers signes ont été détectés le 22 octobre, après des révélations de Politico. Selon Politico, le CERT-EU a identifié l&#39;usage d&#39;ARTEX, un framework de pentest par IA. La Commission a qualifié l&#39;incident de campagne générée par IA sans nommer l&#39;outil. Selon Politico, les systèmes RH ont été perturbés plus de 10 jours, dont la paie, les congés et les remboursements médicaux. Un porte-parole indique que plusieurs applications ont été mises hors service par précaution et que la plupart sont revenues. Il affirme n&#39;avoir aucune preuve d&#39;une fuite de données du personnel, ni connaissance d&#39;une demande de rançon. Les personnes concernées ont été notifiées et l&#39;enquête se poursuit avec le CERT-EU. Next relève qu&#39;aucun lien formel n&#39;est établi entre ARTEX et l&#39;attaque. Le FBI a alerté sur ARTEX le 13 novembre et le CERT-EU le 5 novembre.</p>
+<div class="why"><p class="why-title">Pourquoi c'est important</p><p>ARTEX alimente désormais une série d&#39;incidents (WorkOS, Barracuda, ConnectWise). La vitesse d&#39;attaque, de l&#39;accès initial aux privilèges en moins de trois heures selon le FBI, réduit le délai pour patcher les équipements exposés. Surveillez vos surfaces exposées et vos délais de correction.</p></div>
+<details class="sources">
+<summary>Sources (3)</summary>
+<ul>
+<li><a href="https://next.ink/268532/cyberattaque-a-la-commission-europeenne-une-plateforme-agentique-de-pentest-mise-en-cause/" rel="noopener nofollow">Cyberattaque à la Commission européenne : une plateforme agentique de pentest mise en cause</a> <span class="feed">Next</span></li>
+<li><a href="https://www.lemagit.fr/actualites/366654993/La-Commission-Europeenne-frappee-par-une-lourde-cyberattaque" rel="noopener nofollow">La Commission européenne frappée par une lourde cyberattaque</a> <span class="feed">LeMagIT</span></li>
+<li><a href="https://therecord.media/european-commission-confirms-cyberattack-using-ai" rel="noopener nofollow">European Commission confirms cyberattack, says hackers used AI tool</a> <span class="feed">The Record</span></li>
+</ul>
+</details>
+
+</article>
+
+<article id="infoblox-fuite-prestataire-nios" class="topic t-leak">
+<h3><span class="pill" aria-hidden="true"></span>Infoblox : un prestataire compromis expose des sauvegardes NIOS et des données de salariés</h3>
+
+<p>Infoblox a reconnu le 16 novembre un incident chez un prestataire chargé de migrations de données. Selon ZATAZ, qui cite The Register, les attaquants ont utilisé les accès légitimes du prestataire pour extraire des fichiers de Microsoft SharePoint. Les fichiers comprendraient des sauvegardes de configurations NIOS, pouvant contenir des configurations DNS et DHCP, des bases Grid et des journaux. Selon un courrier du directeur général, des données de salariés et de leurs proches sont aussi concernées : coordonnées, dates de naissance, numéros de sécurité sociale américains et informations bancaires. Infoblox affirme ne disposer d&#39;aucun indice impliquant ses produits, ses services cloud ou sa distribution logicielle. L&#39;entreprise n&#39;a pas nommé le prestataire ni expliqué la compromission initiale. Elle notifie les personnes concernées et propose une surveillance du crédit de deux ans.</p>
+<div class="why"><p class="why-title">Pourquoi c'est important</p><p>Si vous exploitez NIOS, demandez à Infoblox si vos configurations figurent parmi les fichiers volés. Même sans mots de passe, ces sauvegardes décrivent votre réseau et facilitent une attaque ciblée. Réévaluez aussi les droits des prestataires de migration sur vos espaces de partage.</p></div>
+<details class="sources">
+<summary>Sources (1)</summary>
+<ul>
+<li><a href="https://www.zataz.com/infoblox-des-configurations-reseau-derobees/" rel="noopener nofollow">Infoblox : des configurations réseau dérobées</a> <span class="feed">ZATAZ</span></li>
 </ul>
 </details>
 
@@ -202,66 +197,54 @@
 
 <details class="transcript">
 <summary>Transcription</summary>
-<p><strong>Camille</strong> <em>(relaxed, warm morning greeting)</em> : Salut et bienvenue dans La veille, on est le jeudi 19 novembre 2026. Au programme aujourd&#39;hui : plein de failles d&#39;exécution de code, un paquet PyPI piégé, la panne de la NSA et une fuite de données chez Chargemap.</p>
-<p><strong>Max</strong> <em>(relaxed, amused)</em> : Salut Camille. Ouais, une journée où il vaut mieux avoir pris son café avant de lire les alertes. On commence par nginx ?</p>
-<p><strong>Camille</strong> <em>(calm, explaining)</em> : Allons-y. Ça s&#39;appelle nginx2root, la CVE 2026 tiret 123007. C&#39;est une faille dans le support HTTP/2 de NGINX, et elle est présente depuis la version 1.9.5, en septembre 2015. Un attaquant non authentifié peut exécuter du code sur un serveur où HTTP/2 est activé.</p>
-<p><strong>Max</strong> <em>(surprised)</em> : Depuis 2015 ? Attends, donc quasiment tout le monde est concerné. Mais c&#39;est du code directement, sans condition ?</p>
-<p><strong>Camille</strong> <em>(calm, nuanced)</em> : Il y a une condition. F5 explique qu&#39;il faut un ASLR désactivé ou contournable. Sauf que Wiz affirme l&#39;avoir contourné en test. Le code tourne avec les droits d&#39;un worker NGINX, donc pas root direct. Mais Xint a obtenu root en enchaînant avec un autre bug du noyau Linux, côté SCTP, et même depuis un conteneur Docker.</p>
-<p><strong>Max</strong> <em>(concerned)</em> : Aïe. Et c&#39;est tout seul, cette faille ?</p>
-<p><strong>Camille</strong> <em>(explaining)</em> : Non, quatre autres failles sont corrigées en même temps, toutes notées 9,2 en CVSS 4.0. Les versions corrigées sont la 1.31.9 et la 1.30.7. Côté NGINX Plus, la 37.3.0.1 et la 37.0.8.1, mais rien de listé pour les R34 à R36. Un PoC public existe sur GitHub, par contre aucune exploitation n&#39;est signalée et ce n&#39;est pas dans le KEV.</p>
-<p><strong>Max</strong> <em>(practical)</em> : Et côté distributions ? Parce que moi, je vais d&#39;abord regarder mes paquets Debian.</p>
-<p><strong>Camille</strong> <em>(calm)</em> : Ubuntu et Debian n&#39;avaient pas encore de paquets corrigés. Et attention : il faut redémarrer NGINX complètement, un simple reload ne suffit pas. Désactiver HTTP/2 ne bloque que deux des cinq failles. Tu peux vérifier si c&#39;est actif avec openssl s_client et l&#39;option alpn h2.</p>
-<p><strong>Max</strong> <em>(relaxed, thoughtful)</em> : Noté. Perso, je planifierais le redémarrage dès que le paquet sort. Bon, on passe à un truc plus désagréable pour les gens qui font du Python.</p>
-<p><strong>Camille</strong> <em>(serious)</em> : Le paquet PyPI officiel de Microsoft Agent Framework a été compromis. Il fait environ 200 000 téléchargements par mois. Les versions 1.26.1 et 1.26.2, publiées le 17 novembre, embarquent un voleur d&#39;identifiants.</p>
-<p><strong>Max</strong> <em>(curious)</em> : Et il faut l&#39;importer pour que ça se déclenche, j&#39;imagine ?</p>
-<p><strong>Camille</strong> <em>(serious, explaining)</em> : Même pas. Il se lance au démarrage de Python, sans import du paquet. Il collecte les variables d&#39;environnement, les fichiers de config, les processus, et vise Azure, AWS, GitHub, Docker, Hugging Face, OpenAI et d&#39;autres. Il essaie aussi d&#39;obtenir des jetons d&#39;identité managée Azure et OIDC Azure DevOps. La 1.26.2 ajoute ceux de GitHub Actions.</p>
-<p><strong>Max</strong> <em>(alarmed)</em> : Donc un runner CI qui l&#39;a installé, c&#39;est tous ses secrets qui partent. Et ça part où ?</p>
-<p><strong>Camille</strong> <em>(calm)</em> : Vers un endpoint webhook contrôlé par l&#39;attaquant. PyPI a mis la première version en quarantaine, mais l&#39;attaquant en a publié une seconde environ deux minutes et demie plus tard, elle aussi mise en quarantaine. On ne sait pas comment il a obtenu l&#39;accès de publication, et Microsoft n&#39;avait pas répondu à BleepingComputer.</p>
-<p><strong>Max</strong> <em>(practical)</em> : Donc si tu as installé l&#39;une des deux : tu isoles, tu reconstruis avec la 1.26.0, tu fais tourner tous les secrets accessibles, et tu cherches le chemin du webhook dans tes logs de sortie. Et franchement, épingler versions et hashes, c&#39;est le moment.</p>
-<p><strong>Camille</strong> <em>(agreeing)</em> : Exactement. Ensuite, Apache Roller, la plateforme de blog Java. L&#39;Apache Software Foundation dit qu&#39;une faille est activement exploitée : CVE 2026 tiret 129448, CVSS 9,8.</p>
-<p><strong>Max</strong> <em>(curious)</em> : C&#39;est quoi, le mécanisme ?</p>
-<p><strong>Camille</strong> <em>(explaining)</em> : Une désérialisation de données non fiables dans l&#39;endpoint XML-RPC. Il désérialise les types d&#39;extension fournisseur avant d&#39;authentifier la requête. Donc un attaquant distant, sans authentification, exécute du code. Versions 4.0.0 à 6.1.4 touchées.</p>
-<p><strong>Max</strong> <em>(puzzled)</em> : Attends, il y avait pas déjà eu un correctif en septembre ?</p>
-<p><strong>Camille</strong> <em>(explaining)</em> : Si, c&#39;est la même faille que la CVE 2026 tiret 82384, corrigée en septembre, mais qui ne listait que la 6.1.5 comme affectée. Le correctif est la 6.1.6 ou plus, qui désactive les types d&#39;extension. Sinon, contournement : mettre enabledForExtensions à false dans web.xml, ou retirer le mapping du servlet xmlrpc, puis redémarrer. Désactiver XML-RPC dans l&#39;interface d&#39;admin ne suffit pas.</p>
-<p><strong>Max</strong> <em>(thoughtful)</em> : Leçon : vérifie la version vraiment déployée, pas celle que tu crois avoir patchée. Et on reste en Java, parce qu&#39;on a une suite pour Java4Shell.</p>
-<p><strong>Camille</strong> <em>(relaxed, recalling)</em> : Tu te souviens, Java4Shell, hier, la CVE 2026 tiret 114938 dans OpenJDK ? Les correctifs sont sortis. Oracle a publié les 17.0.21.1, 21.0.13.1, 25.0.5.1 et 27.0.1.1, et Amazon fournit les builds Corretto correspondants.</p>
-<p><strong>Max</strong> <em>(relieved)</em> : Bon, ça c&#39;est bien. Red Hat aussi ?</p>
-<p><strong>Camille</strong> <em>(calm)</em> : Pas encore pour EL 8, 9 et 10. Rappel des conditions : un processeur compatible AVX-512 VBMI, donc Intel Ice Lake et suivants, AMD Zen 4 à Zen 6, une JVM sans UseAVX à 2 ou moins, et une appli qui décode du Base64 fourni par l&#39;attaquant. ARM64 et Java 8 et 11 standard ne sont pas concernés.</p>
-<p><strong>Max</strong> <em>(curious)</em> : Et l&#39;exploitation, c&#39;est du solide ?</p>
-<p><strong>Camille</strong> <em>(nuanced)</em> : Ça dépend de qui parle. Calif affirme avoir exécuté du code sur Keycloak, Jira, Confluence, Artifactory, Jenkins et PingFederate sans identifiant. Mais Upwind et Blackpoint n&#39;ont reproduit que la corruption mémoire, et Blackpoint dit qu&#39;il n&#39;existe pas de méthode d&#39;exploitation universelle. Les scores divergent aussi : 8,1 chez Oracle, 9,2 chez Calif.</p>
-<p><strong>Max</strong> <em>(practical)</em> : Perso je ferais l&#39;inventaire des JVM embarquées, genre celle de ton Jenkins, et je mettrais UseAVX égal 2 en attendant le correctif si ta distrib n&#39;en a pas.</p>
-<p><strong>Camille</strong> <em>(serious)</em> : Maintenant PHP. Les mainteneurs ont annoncé une publication de sécurité aujourd&#39;hui, entre 14 h et 14 h 30 UTC. Elle corrige des failles sur toutes les versions supportées, avec une gravité maximale « CRITICAL ».</p>
-<p><strong>Max</strong> <em>(wary)</em> : Toutes les versions, ça sent la grosse journée. Y a des détails ?</p>
-<p><strong>Camille</strong> <em>(explaining)</em> : Le projet dit que les failles critiques exigent une configuration non par défaut ou des montages peu courants. Selon The Hacker News, il y aurait la CVE 2026 tiret 115560, une exécution de code à distance. Il faut qu&#39;une appli règle session.serialize_handler sur php_binary ou php_serialize, puis le repasse à php avec ini_set avant session_start, avec l&#39;upload progress de session activé, ce qui est le défaut.</p>
-<p><strong>Max</strong> <em>(practical)</em> : Donc si ton code fait ça, tu mets session.upload_progress.enabled à 0 et tu redémarres les workers PHP, en attendant. Et pense aux images Docker, elles arrivent souvent en retard.</p>
-<p><strong>Camille</strong> <em>(calm)</em> : Le même article rappelle que PHP2Shell, les CVE 2026 tiret 109618 et 109619, subit une exploitation limitée. Et justement, PHP nous amène à la NSA.</p>
-<p><strong>Max</strong> <em>(intrigued)</em> : Ah, la suite du NSA Net !</p>
-<p><strong>Camille</strong> <em>(explaining)</em> : Oui. Selon The Record, les perturbations du réseau interne classifié sont entrées dans leur deuxième jour mercredi. L&#39;agence a échelonné les arrivées à Fort Meade et fermé son campus à la plupart des employés. Une source dit que le réseau fonctionne, mais que l&#39;ouverture de session est l&#39;opération la plus coûteuse, et qu&#39;un à deux jours de plus pourraient être nécessaires.</p>
-<p><strong>Max</strong> <em>(surprised)</em> : Et la cause ? Tu disais PHP.</p>
-<p><strong>Camille</strong> <em>(measured)</em> : La source confirme les propos du directeur du renseignement national, Jay Clayton : la panne vient d&#39;une maintenance touchant PHP. On ignore si la vulnérabilité était issue d&#39;une IA ou humaine. Clayton a parlé de pannes séparées, liées à des changements techniques, ni coordonnées ni étatiques, et Le Monde rapporte que trois hauts responsables assurent qu&#39;aucune activité malveillante n&#39;est en cause. Chuck Schumer demande une équipe rouge.</p>
-<p><strong>Max</strong> <em>(thoughtful, wry)</em> : Moralité, c&#39;est déclaratif, pas de rapport technique. Mais ça me rappelle qu&#39;une maintenance sur un composant banal peut immobiliser tout un SI. Teste tes mises à jour et garde un retour arrière.</p>
-<p><strong>Camille</strong> <em>(calm)</em> : Deux autres alertes rapides. Incus d&#39;abord : la NVD publie la CVE 2026 tiret 130778, CVSS 10,0, pour les versions avant la 7.6.0.</p>
-<p><strong>Max</strong> <em>(alarmed)</em> : Un 10 ! C&#39;est quoi le truc ?</p>
-<p><strong>Camille</strong> <em>(explaining)</em> : Un attaquant distant peut s&#39;authentifier comme n&#39;importe quel certificat de confiance, en ajoutant ce certificat public à la chaîne client TLS qu&#39;il présente. Avec le certificat du serveur ou d&#39;un membre du cluster, il obtient un accès au niveau du cluster. Il peut aussi contourner l&#39;autorisation et modifier le magasin de confiance. On n&#39;a que le résumé de la NVD.</p>
-<p><strong>Max</strong> <em>(practical)</em> : Donc passe en 7.6.0, limite l&#39;accès réseau à l&#39;API en attendant, et après la mise à jour, regarde le magasin de confiance pour des entrées bizarres.</p>
-<p><strong>Camille</strong> <em>(serious)</em> : Ensuite LiteLLM. La CISA a ajouté la CVE 2026 tiret 40217 à son catalogue des vulnérabilités exploitées. Un canal alternatif non protégé permet d&#39;exécuter du code arbitraire par réécriture de bytecode via l&#39;URI guardrails slash test_custom_code.</p>
-<p><strong>Max</strong> <em>(concerned)</em> : Et LiteLLM, ça détient souvent des clés d&#39;API de modèles. Pas de version corrigée indiquée ?</p>
-<p><strong>Camille</strong> <em>(calm)</em> : Non, juste un résumé de l&#39;entrée du catalogue. Donc consulte l&#39;avis éditeur, n&#39;expose pas cet endpoint, et fais tourner les clés si l&#39;instance était accessible depuis Internet.</p>
-<p><strong>Max</strong> <em>(relaxed)</em> : Côté pannes, il y a aussi la suite d&#39;iCloud, la panne du 17 novembre.</p>
-<p><strong>Camille</strong> <em>(measured)</em> : Selon un titre relayé par Stéphane Larue News, Apple attribue la panne à son propre déploiement interne, et les services seraient revenus vers 23 h. On n&#39;a que le titre, donc pas de détail sur le déploiement. Il vaut mieux attendre la communication officielle d&#39;Apple.</p>
-<p><strong>Max</strong> <em>(thoughtful)</em> : Si ça se confirme, ça plaide pour les déploiements progressifs et les retours arrière rapides. Et un mode dégradé si ton service dépend de la connexion Apple.</p>
-<p><strong>Camille</strong> <em>(calm, serious)</em> : Pour finir, Chargemap, le service d&#39;itinéraires et de pass de paiement pour véhicules électriques. Ils ont prévenu leurs utilisateurs mercredi : le 8 novembre, une personne extérieure a exploité une faille sur une ancienne interface technique pour extraire des données de comptes.</p>
-<p><strong>Max</strong> <em>(curious)</em> : Ils ont réagi vite ?</p>
-<p><strong>Camille</strong> <em>(explaining)</em> : Activité anormale détectée le 10, faille corrigée le 12, CNIL notifiée le 13 et plainte engagée. Sont susceptibles d&#39;être exposés l&#39;adresse e-mail, le nom d&#39;utilisateur, les coordonnées saisies à l&#39;inscription, le statut d&#39;abonnement et l&#39;identifiant de connexion Google, Facebook ou Apple. Une empreinte du mot de passe a pu être extraite, mais aucun mot de passe en clair.</p>
-<p><strong>Max</strong> <em>(reassuring, practical)</em> : Et les données bancaires ?</p>
-<p><strong>Camille</strong> <em>(calm)</em> : Épargnées, comme l&#39;historique de recharges, les factures et l&#39;adresse postale, selon Chargemap. Pareil pour l&#39;identifiant du badge Pass, sauf pour une vingtaine d&#39;utilisateurs prévenus. Les anciens comptes peuvent être concernés et le nombre de comptes n&#39;est pas communiqué.</p>
-<p><strong>Max</strong> <em>(thoughtful)</em> : Si t&#39;as un compte, change le mot de passe partout où il est réutilisé et méfie-toi des messages se réclamant du service. Et côté ops, la leçon : les vieilles interfaces techniques oubliées, il faut les inventorier et les retirer.</p>
-<p><strong>Camille</strong> <em>(warm, wrapping up)</em> : Voilà pour aujourd&#39;hui. Bon courage pour les mises à jour, surtout avec PHP qui tombe cet après-midi. À demain !</p>
-<p><strong>Max</strong> <em>(relaxed, friendly)</em> : À demain tout le monde, et patchez bien.</p>
+<p><strong>Camille</strong> <em>(relaxed, warm morning greeting)</em> : Salut et bienvenue dans La veille, on est le vendredi 20 novembre 2026. Au programme aujourd&#39;hui : un zero-day vCenter, les correctifs PHP et NGINX, Java4Shell qui évolue, la Commission européenne, et un peu de PostgreSQL et Valkey pour finir en douceur.</p>
+<p><strong>Max</strong> <em>(relaxed, amused)</em> : Salut Camille ! Le « en douceur », on va voir. On commence direct par du lourd : VMware vCenter. Broadcom a sorti hier le correctif VMSA-2026-0009 pour la CVE 2026 tiret 123890, score de 9,8.</p>
+<p><strong>Camille</strong> <em>(curious)</em> : Et c&#39;est quoi, concrètement ?</p>
+<p><strong>Max</strong> <em>(calm, explaining)</em> : Un contournement d&#39;authentification dans le Directory Service de vCenter. Un attaquant sans identifiants, mais qui a un accès réseau, obtient une session administrateur. Et le gros point, c&#39;est que Mandiant et Google disent que c&#39;est exploité en zero-day depuis début septembre par Armory Castle, ex-UNC5221, soupçonné d&#39;être lié à la Chine.</p>
+<p><strong>Camille</strong> <em>(surprised)</em> : Attends, depuis septembre ? Et l&#39;avis de Broadcom le mentionne ?</p>
+<p><strong>Max</strong> <em>(serious)</em> : Non, justement, l&#39;avis ne parle pas d&#39;exploitation. Selon Mandiant, l&#39;accès initial passait par un zero-day BeyondTrust Remote Support, la CVE 2026 tiret 102764, puis des appliances Linux internes, et ensuite l&#39;outil Bonesaw. Il crée un compte SSO administrateur, vole la base d&#39;annuaire et extrait des clés de signature SAML. Du coup ils peuvent forger des jetons, c&#39;est du Golden SAML.</p>
+<p><strong>Camille</strong> <em>(concerned)</em> : Donc patcher ne suffit pas si les clés sont déjà parties. Perso, je chercherais aussi des comptes SSO inattendus et des accès à la base d&#39;annuaire, et j&#39;isolerais l&#39;interface de gestion.</p>
+<p><strong>Max</strong> <em>(calm, explaining)</em> : Exactement. Les correctifs sont en 9.1.1.0200, 9.0.2.0200 et 8.0 U3m. Par contre rien de public pour vCenter 7.0, qui est hors support général depuis octobre 2025, et Broadcom ne liste aucun contournement. La mise à jour est cumulative, ne passe pas par Quick Patch, et installer 8.0 U3m ou 9.0.2.0200 bloque une mise à niveau ultérieure vers VCF 9.1.1.</p>
+<p><strong>Camille</strong> <em>(relaxed)</em> : Joli piège. Bon, on enchaîne sur PHP. Tu te souviens, les correctifs annoncés la veille ? Ils sont sortis hier.</p>
+<p><strong>Max</strong> <em>(explaining)</em> : Oui, PHP 8.6.0 et 8.5.13, avec sept failles critiques d&#39;exécution de code, toutes à 9,2. Les correctifs sont aussi dans 8.4.28, 8.3.37 et 8.2.36, pour la plupart des failles. Une seule, la CVE 2026 tiret 129474, ne touche que PHP 8.5 et plus.</p>
+<p><strong>Camille</strong> <em>(curious)</em> : Y en a une qui t&#39;a fait tiquer, non ?</p>
+<p><strong>Max</strong> <em>(engaged)</em> : La CVE 2026 tiret 129289, une contrebande de requêtes dans PHP-FPM. Il faut un frontal avec connexions persistantes, genre nginx avec fastcgi_keep_conn, Apache mod_proxy_fcgi avec enablereuse à on, HAProxy ou LSAPI, plus une appli qui lit php://input sans le consommer. Et pas besoin de config PHP exotique.</p>
+<p><strong>Camille</strong> <em>(thoughtful)</em> : Et deux autres corrigent des correctifs incomplets autour d&#39;une faille PHP2Shell d&#39;octobre, décrite comme largement exploitée. Il y a aussi une faille locale à 8,8, la CVE 2026 tiret 129291. Donc moi, je patche vite.</p>
+<p><strong>Max</strong> <em>(relaxed)</em> : Et tant qu&#39;on parle de patchs, NGINX. Suite de nginx2root : F5 a corrigé 22 vulnérabilités, dont cinq critiques.</p>
+<p><strong>Camille</strong> <em>(surprised)</em> : Cinq critiques, aïe. Et les PoC publics ?</p>
+<p><strong>Max</strong> <em>(calm, explaining)</em> : Les deux à retenir sont les failles HTTP/2, la CVE 2026 tiret 123007 et la 123633. Rapid7 a publié un PoC pour la première, mais il demande environ 128 Go de trafic HTTP/2. Censys en a fait un autre, sans ce volume, en HTTP/2 en clair, mais sans obtenir d&#39;exécution de code.</p>
+<p><strong>Camille</strong> <em>(curious)</em> : Donc c&#39;est pas encore le drame ?</p>
+<p><strong>Max</strong> <em>(nuanced)</em> : Nuance. Wiz montre un RCE sur la 123633 sans publier ses exploits, et Xint enchaîne la 123007 avec une faille SCTP du noyau Linux pour sortir d&#39;un conteneur Docker et passer root. F5 dit qu&#39;il faut ASLR désactivé ou contourné, mais Wiz et Rapid7 disent pouvoir le contourner. Florian Roth estime le risque non imminent pour la plupart, vu que ça dépend de la configuration.</p>
+<p><strong>Camille</strong> <em>(relaxed)</em> : Mais Censys compte environ 9 millions de services NGINX potentiellement exposés, ça fait du monde. Mettez à jour en 1.30.7 ou 1.31.9, sinon désactivez HTTP/2, qui ne couvre que les deux failles HTTP/2. Et pensez à reconstruire vos images de conteneurs.</p>
+<p><strong>Max</strong> <em>(relaxed)</em> : Et F5 ne signale pas d&#39;exploitation active pour l&#39;instant. Autre suite : Java4Shell, la CVE 2026 tiret 114938, divulguée le 17 novembre par Calif.</p>
+<p><strong>Camille</strong> <em>(curious)</em> : Des gens s&#39;y essaient déjà ?</p>
+<p><strong>Max</strong> <em>(explaining)</em> : Oui. GreyNoise a vu plus de 150 requêtes compatibles depuis cinq adresses IP, sans intrusion réussie sur ses capteurs. WatchTowr voit un User-Agent java4shell-recon. Cloudflare note que certains scanners masquent leurs outils, et qu&#39;une adresse a servi à la fois pour Artex et Java4Shell.</p>
+<p><strong>Camille</strong> <em>(thoughtful)</em> : Le PoC de Calif ne fait que de la corruption mémoire, mais VulnCheck propose un RCE complet à ses clients. Et côté éditeurs ?</p>
+<p><strong>Max</strong> <em>(serious)</em> : Cisco confirme plus d&#39;une douzaine de produits touchés, sans correctif ni contournement. Siemens recommande de mettre hors ligne ses Industrial Edge Management. Elastic dit que toutes les versions d&#39;Elasticsearch depuis 7.17.3 sont concernées et prévoit des correctifs. Red Hat classe ça critique sur RHEL 8, 9 et 10.</p>
+<p><strong>Camille</strong> <em>(relaxed)</em> : Rappel : l&#39;exploitation exige un processeur x86-64 avec AVX-512 VBMI. Donc inventoriez vos JVM sur CPU récents, et appliquez les correctifs OpenJDK du 17 novembre.</p>
+<p><strong>Max</strong> <em>(relaxed, amused)</em> : Allez, côté fuites. La Commission européenne a confirmé hier une cyberattaque, détectée dès le 22 octobre, après des révélations de Politico.</p>
+<p><strong>Camille</strong> <em>(curious)</em> : Et ARTEX là-dedans ?</p>
+<p><strong>Max</strong> <em>(nuanced)</em> : Selon Politico, le CERT-EU a identifié l&#39;usage d&#39;ARTEX, un framework de pentest par IA. La Commission parle d&#39;une campagne générée par IA sans nommer l&#39;outil, et Next relève qu&#39;aucun lien formel n&#39;est établi. Les systèmes RH ont été perturbés plus de 10 jours, paie, congés, remboursements médicaux.</p>
+<p><strong>Camille</strong> <em>(thoughtful)</em> : Pas de preuve de fuite de données du personnel ni de rançon, d&#39;après leur porte-parole. Mais ARTEX alimente une série d&#39;incidents, WorkOS, Barracuda, ConnectWise, et le FBI parle de l&#39;accès initial aux privilèges en moins de trois heures. Le délai pour patcher fond.</p>
+<p><strong>Max</strong> <em>(serious)</em> : Autre fuite : Infoblox a reconnu le 16 novembre un incident chez un prestataire de migrations de données. Selon ZATAZ, citant The Register, les attaquants ont utilisé ses accès légitimes pour extraire des fichiers SharePoint.</p>
+<p><strong>Camille</strong> <em>(concerned)</em> : Des fichiers de quel genre ?</p>
+<p><strong>Max</strong> <em>(explaining)</em> : Des sauvegardes de configurations NIOS, donc possiblement DNS, DHCP, bases Grid et journaux. Et d&#39;après le directeur général, des données de salariés et de leurs proches : coordonnées, dates de naissance, numéros de sécurité sociale américains, infos bancaires. Infoblox dit que ses produits ne sont pas impliqués, mais n&#39;a pas nommé le prestataire.</p>
+<p><strong>Camille</strong> <em>(thoughtful)</em> : Même sans mots de passe, ces sauvegardes décrivent ton réseau. Si tu exploites NIOS, demande si tes configs sont concernées, et revois les droits des prestataires sur tes partages.</p>
+<p><strong>Max</strong> <em>(upbeat)</em> : Bon, du plus léger : PostgreSQL 19 est sorti. REPACK CONCURRENTLY pour optimiser les tables sans bloquer les opérations, et l&#39;extension pg_plan_advice pour mieux contrôler la stabilité des plans.</p>
+<p><strong>Camille</strong> <em>(curious)</em> : Il paraît que la sortie a traîné ?</p>
+<p><strong>Max</strong> <em>(amused)</em> : Selon Phoronix, des semaines de retard, les développeurs étant submergés de rapports de bogues et de failles produits par IA. Sinon : autovacuum avec workers parallèles sur les index, réplication logique des séquences, INSERT ON CONFLICT DO SELECT, et SNI côté serveur.</p>
+<p><strong>Camille</strong> <em>(surprised)</em> : Le point qui va faire réagir : le JIT est désactivé par défaut, parce que ses estimations de coût étaient jugées peu fiables. Si tu fais de grosses requêtes analytiques, réactive-le à la main. Et lis les notes de version, certaines fonctions prévues ont été retirées.</p>
+<p><strong>Max</strong> <em>(upbeat)</em> : Et Valkey 9.2, le fork de Redis. Ensembles triés en B&#43; tree pour réduire la mémoire, compression Zstd pour RDB et la réplication, avec de meilleurs taux que LZ4.</p>
+<p><strong>Camille</strong> <em>(interested)</em> : Et les snapshots sans fork, ça évite les pics mémoire, non ? Perso c&#39;est ce qui me parle le plus. Il y a aussi DELEX, qui supprime une clé chaîne si sa valeur correspond, pratique pour les verrous distribués.</p>
+<p><strong>Max</strong> <em>(relaxed)</em> : Plus la détection de clés chaudes côté serveur. Phoronix note que ça suit de quelques jours la dépréciation de Redict au profit de Valkey. Teste Zstd avant la prod, la réplication demande des versions compatibles.</p>
+<p><strong>Camille</strong> <em>(calm)</em> : Dernière info : OVHcloud a un incident sur Cloud Archive en US-WEST-OR depuis le 19 novembre à 16 h 30 UTC, avec un taux d&#39;erreurs accru au stockage et à la récupération.</p>
+<p><strong>Max</strong> <em>(calm)</em> : La cause racine est identifiée depuis 22 h 27 UTC, mais on n&#39;a pas le statut final. Prévoyez des retries, regardez les journaux de tâches, les sauvegardes planifiées là-bas ont pu échouer.</p>
+<p><strong>Camille</strong> <em>(warm, wrapping up)</em> : Voilà pour aujourd&#39;hui. Bon patch à tous et bon week-end !</p>
+<p><strong>Max</strong> <em>(relaxed, friendly)</em> : À demain pour une nouvelle veille !</p>
 </details>
 
 <nav class="nav" aria-label="Navigation entre les jours">
-<a class="prev" href="jours/2026-11-18/">← 18 novembre</a>
+<a class="prev" href="jours/2026-11-19/">← 19 novembre</a>
 <a href="archives/">Archives</a>
 
 </nav>

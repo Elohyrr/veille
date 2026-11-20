@@ -5,9 +5,28 @@
 <link>https://elohyrr.github.io/veille/</link>
 <description>Tech, pannes, failles et fuites — digest quotidien</description>
 <language>fr-fr</language>
-<lastBuildDate>Thu, 19 Nov 2026 06:09:16 &#43;0000</lastBuildDate>
+<lastBuildDate>Fri, 20 Nov 2026 06:07:22 &#43;0000</lastBuildDate>
 <itunes:image href="https://elohyrr.github.io/veille/cover.png"/>
 <itunes:explicit>false</itunes:explicit>
+<item>
+<title>vCenter en zero-day, PHP et NGINX patchés, PostgreSQL 19</title>
+<link>https://elohyrr.github.io/veille/jours/2026-11-20/</link>
+<guid isPermaLink="false">ep-2026-11-20</guid>
+<pubDate>Fri, 20 Nov 2026 06:07:22 &#43;0000</pubDate>
+<description>- VMware vCenter : CVE-2026-123890, contournement d&#39;authentification exploité depuis septembre
+- Mise à jour : PHP publie 8.6.0 et 8.5.13 avec sept failles critiques corrigées
+- Mise à jour : nginx2root, preuves de concept publiques et cinq failles critiques F5
+- Mise à jour : Java4Shell, premières tentatives d&#39;exploitation et avis d&#39;éditeurs
+- Commission européenne : cyberattaque confirmée, l&#39;outil ARTEX évoqué, fuite non établie
+- Infoblox : un prestataire compromis expose des sauvegardes NIOS et des données de salariés
+- PostgreSQL 19 : REPACK CONCURRENTLY, pg_plan_advice et JIT désactivé par défaut
+- Valkey 9.2 : compression Zstd, ensembles triés en B&#43; tree et snapshots sans fork
+- OVHcloud : erreurs sur Cloud Archive dans la région US-WEST-OR
+https://elohyrr.github.io/veille/jours/2026-11-20/</description>
+<enclosure url="https://github.com/Elohyrr/veille/releases/download/ep-2026-11-20/veille-2026-11-20.mp3" length="4642989" type="audio/mpeg"/>
+<itunes:duration>00:09:40</itunes:duration>
+<itunes:explicit>false</itunes:explicit>
+</item>
 <item>
 <title>nginx2root, un paquet PyPI piégé et PHP sous tension</title>
 <link>https://elohyrr.github.io/veille/jours/2026-11-19/</link>
