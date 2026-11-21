@@ -5,9 +5,29 @@
 <link>https://elohyrr.github.io/veille/</link>
 <description>Tech, pannes, failles et fuites — digest quotidien</description>
 <language>fr-fr</language>
-<lastBuildDate>Fri, 20 Nov 2026 06:07:22 &#43;0000</lastBuildDate>
+<lastBuildDate>Sat, 21 Nov 2026 06:08:23 &#43;0000</lastBuildDate>
 <itunes:image href="https://elohyrr.github.io/veille/cover.png"/>
 <itunes:explicit>false</itunes:explicit>
+<item>
+<title>vCenter, GitLab, GPGME et les fuites n0n</title>
+<link>https://elohyrr.github.io/veille/jours/2026-11-21/</link>
+<guid isPermaLink="false">ep-2026-11-21</guid>
+<pubDate>Sat, 21 Nov 2026 06:08:23 &#43;0000</pubDate>
+<description>- GitLab 19.6.1, 19.5.8 et 19.4.10 : correctif critique pour CVE-2026-132825 dans Ruby
+- GPGME : double free critique via un identifiant d&#39;utilisateur trop long, correctif en 2.3.1
+- Mise à jour : vCenter CVE-2026-123890 attribuée à Armory Castle, groupe lié à la Chine
+- Cisco Expressway : CVE-2026-76466 (CVSS 9.8) exploitée après la publication d&#39;un PoC
+- KVM sur AMD : CVE-2026-99312 permet à une VM invitée de lire la mémoire de l&#39;hôte
+- Mise à jour : N-able : la panne de Mail Assure et SpamExperts vient d&#39;une intrusion sur un serveur
+- Mise à jour : n0n : JPMorgan, Visa et Mastercard citent des incidents chez des prestataires
+- Too Lost : 724 323 comptes exposés, dont des pièces d&#39;identité pour certains
+- France Travail : deux fichiers de 4,15 millions de lignes proposés à la vente
+- Cloud Hypervisor 55 : virtualisation imbriquée AArch64 et jusqu&#39;à 990 vCPU ARM
+https://elohyrr.github.io/veille/jours/2026-11-21/</description>
+<enclosure url="https://github.com/Elohyrr/veille/releases/download/ep-2026-11-21/veille-2026-11-21.mp3" length="5672877" type="audio/mpeg"/>
+<itunes:duration>00:11:49</itunes:duration>
+<itunes:explicit>false</itunes:explicit>
+</item>
 <item>
 <title>vCenter en zero-day, PHP et NGINX patchés, PostgreSQL 19</title>
 <link>https://elohyrr.github.io/veille/jours/2026-11-20/</link>
