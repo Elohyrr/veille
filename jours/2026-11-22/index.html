@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>dimanche 22 novembre 2026 — La veille</title>
+<meta name="description" content="Tech, pannes, failles et fuites — digest quotidien">
+<link rel="canonical" href="https://elohyrr.github.io/veille/jours/2026-11-22/">
+<link rel="stylesheet" href="../../style.css">
+<link rel="alternate" type="application/rss+xml" title="La veille (audio)" href="../../podcast.xml">
+<link rel="alternate" type="application/rss+xml" title="La veille (texte)" href="../../feed.xml">
+</head>
+<body>
+<header class="site">
+<a class="brand" href="../../">La veille</a>
+<p class="tagline">Tech, pannes, failles et fuites — digest quotidien</p>
+</header>
+<main>
+
+
+<h1>dimanche 22 novembre 2026</h1>
+<p class="meta">6 sujets · lecture estimée : 6 min</p>
+
+<section class="player" aria-label="Podcast du jour">
+<p><strong>Écouter</strong> · 7 min · Rackspace, Entra, agents IA et Ghostscript</p>
+<audio controls preload="none" src="https://github.com/Elohyrr/veille/releases/download/ep-2026-11-22/veille-2026-11-22.mp3"></audio>
+<p><a class="dl" href="https://github.com/Elohyrr/veille/releases/download/ep-2026-11-22/veille-2026-11-22.mp3" download>Télécharger le MP3</a> <span class="muted">(3,5 Mo)</span></p>
+</section>
+
+<p class="intro">Journée centrée sur le cloud et Kubernetes : Rackspace Spot et Microsoft Entra Connect Health reconnaissent des intrusions. Côté failles, des agents IA servent à trouver un zero-day, et Ghostscript expose un risque sur les uploads d&#39;images.</p>
+
+<nav class="toc" aria-label="Sommaire">
+<section class="toc-group t-breach">
+<h2><span class="pill" aria-hidden="true"></span>Failles et compromissions <span class="count">5</span></h2>
+<ul>
+<li><a href="#rackspace-spot-secrets-kubernetes">Rackspace Spot : des identifiants fuités ont donné accès aux Secrets Kubernetes de clients</a></li>
+<li><a href="#microsoft-entra-connect-health-fuite-metadonnees">Microsoft Entra Connect Health : une faille d&#39;API exploitée expose des métadonnées de tenants</a></li>
+<li><a href="#monai-label-zero-day-agents-ia">MONAI Label : des agents IA trouvent un zero-day et obtiennent root, sans version corrigée</a></li>
+<li><a href="#ghostscript-upload2shell-cve-2026-125396">Ghostscript : Upload2Shell (CVE-2026-125396) contourne -dSAFER via le chargeur de polices Type 1</a></li>
+<li><a href="#fbi-ncic-piratage-apparent">FBI : enquête sur un piratage apparent de la base nationale NCIC</a></li>
+</ul>
+</section>
+<section class="toc-group t-leak">
+<h2><span class="pill" aria-hidden="true"></span>Fuites de données <span class="count">1</span></h2>
+<ul>
+<li><a href="#fuites-revendiquees-france-21-novembre">Fuites revendiquées en France : Maison des Travaux, Robot Advance, Clevermate, Gotronic</a></li>
+</ul>
+</section>
+</nav>
+
+<article id="rackspace-spot-secrets-kubernetes" class="topic t-breach">
+<h3><span class="pill" aria-hidden="true"></span>Rackspace Spot : des identifiants fuités ont donné accès aux Secrets Kubernetes de clients</h3>
+
+<p>Rackspace a prévenu des clients que son offre Kubernetes Rackspace Spot a été compromise le 17 novembre 2026, entre environ 00 h 20 et 22 h 00 UTC, avec des identifiants fuités. Rackspace dit l&#39;avoir appris le 18 novembre grâce à un signalement client. Dans certaines organisations, les attaquants pouvaient agir comme des utilisateurs légitimes : créer des pods, lire les Secrets Kubernetes, lister nœuds et volumes. Ils pouvaient aussi lire les jetons d&#39;API et de rafraîchissement Spot de l&#39;utilisateur. Rackspace affirme avoir révoqué jetons et sessions, supprimé les pods non autorisés, fait tourner les clés et renforcé contrôles et supervision. Indicateurs fournis : l&#39;IP 23.224.79.106, la plage 23.224.0.0/15 et les préfixes de pods et objets i1, glm- et probe. BleepingComputer n&#39;a pas obtenu de réponse sur le nombre de clients touchés ni sur un éventuel vol de données. La console d&#39;administration est restée indisponible longtemps ; Rackspace a annoncé le 21 novembre un service pleinement rétabli.</p>
+<div class="why"><p class="why-title">Pourquoi c'est important</p><p>Si vous utilisez Rackspace Spot, réémettez les jetons d&#39;API, remplacez les jetons de rafraîchissement des automatisations, récupérez de nouveaux kubeconfig et faites tourner tous les identifiants stockés dans les Secrets. Examinez les journaux des bases, registres, dépôts Git et stockages depuis le 17 novembre. Un Secret lisible équivaut à un accès aux systèmes en aval.</p></div>
+<details class="sources">
+<summary>Sources (1)</summary>
+<ul>
+<li><a href="https://www.bleepingcomputer.com/news/security/rackspace-spot-breach-let-hackers-access-customer-kubernetes-secrets/" rel="noopener nofollow">Rackspace Spot breach let hackers access customer Kubernetes secrets</a> <span class="feed">BleepingComputer</span></li>
+</ul>
+</details>
+
+</article>
+
+<article id="microsoft-entra-connect-health-fuite-metadonnees" class="topic t-breach">
+<h3><span class="pill" aria-hidden="true"></span>Microsoft Entra Connect Health : une faille d&#39;API exploitée expose des métadonnées de tenants</h3>
+
+<p>Microsoft prévient des organisations qu&#39;une vulnérabilité de l&#39;API Entra Connect Health, introduite le 23 juillet et découverte le 9 novembre 2026, a été exploitée. Selon la notification, un accès en lecture seule à des métadonnées de niveau tenant a eu lieu : adresses e-mail des contacts techniques et des administrateurs, identifiants de tenant, noms, domaines initiaux, codes pays, niveaux de licence Entra, état de la synchronisation d&#39;annuaire, état d&#39;intégration de Connect Health et un certificat expiré. Microsoft dit n&#39;avoir identifié aucune modification de configuration, ni exposition de mots de passe, hachages, jetons, clés valides, topologie Active Directory ou abonnements Azure. Un correctif côté serveur a été déployé le 19 novembre ; l&#39;enquête s&#39;est terminée le 20. Microsoft ne dit ni combien d&#39;organisations sont touchées, ni qui est l&#39;auteur, ni quand les attaques ont commencé. Plusieurs administrateurs et MSP ont signalé avoir reçu l&#39;avis.</p>
+<div class="why"><p class="why-title">Pourquoi c'est important</p><p>Aucune mise à jour n&#39;est requise côté client. Prévenez vos équipes d&#39;un risque de phishing ciblé visant les adresses d&#39;administrateurs, imposez une MFA résistante au phishing aux comptes privilégiés, vérifiez la configuration Connect Health et relisez les journaux d&#39;audit et de connexion Entra. Surveillez Azure Service Health.</p></div>
+<details class="sources">
+<summary>Sources (1)</summary>
+<ul>
+<li><a href="https://www.bleepingcomputer.com/news/security/microsoft-entra-connect-health-flaw-exploited-to-steal-tenant-data/" rel="noopener nofollow">Microsoft Entra Connect Health flaw exploited to steal tenant data</a> <span class="feed">BleepingComputer</span></li>
+</ul>
+</details>
+
+</article>
+
+<article id="monai-label-zero-day-agents-ia" class="topic t-breach">
+<h3><span class="pill" aria-hidden="true"></span>MONAI Label : des agents IA trouvent un zero-day et obtiennent root, sans version corrigée</h3>
+
+<p>Amazon Threat Intelligence rapporte que des pirates soupçonnés d&#39;être liés à la Chine ont utilisé des agents IA autonomes pour trouver une faille inconnue dans MONAI Label, serveur open source d&#39;annotation d&#39;imagerie médicale, et obtenir root sur un serveur universitaire. C&#39;est une traversée de chemin permettant d&#39;écrire des fichiers hors du dossier de stockage sans compte ; elle touche les versions 0.8.5 et antérieures, dont la configuration par défaut n&#39;active aucune authentification. En septembre, en environ 48 heures, les agents ont atteint l&#39;écriture de fichiers en 11 minutes environ. Lors d&#39;une autre session, ils ont déposé un fichier exécuté au démarrage de Python, puis déclenché une fonction d&#39;entraînement pour obtenir un shell root. Une seconde université a probablement été visée, sans confirmation. Les mainteneurs ont fusionné un correctif le 19 octobre, mais aucune version corrigée n&#39;existe. La faille est suivie sous CVE-2026-133968, notée 9.8.</p>
+<div class="why"><p class="why-title">Pourquoi c'est important</p><p>Aucune version à installer : isolez les serveurs MONAI Label par pare-feu, activez l&#39;authentification, exécutez le service avec un compte limité et des dossiers d&#39;écriture restreints. Vérifiez qu&#39;une compilation depuis les sources inclut le correctif d&#39;octobre, et cherchez des fichiers de démarrage Python inattendus. Le cas illustre aussi des agents IA qui automatisent la recherche de failles.</p></div>
+<details class="sources">
+<summary>Sources (1)</summary>
+<ul>
+<li><a href="https://thehackernews.com/2026/11/attackers-ai-agents-found-zero-day-in.html" rel="noopener nofollow">Attackers&#39; AI Agents Found a Zero-Day in Medical-Imaging Software and Gained Root Access</a> <span class="feed">The Hacker News</span></li>
+</ul>
+</details>
+
+</article>
+
+<article id="ghostscript-upload2shell-cve-2026-125396" class="topic t-breach">
+<h3><span class="pill" aria-hidden="true"></span>Ghostscript : Upload2Shell (CVE-2026-125396) contourne -dSAFER via le chargeur de polices Type 1</h3>
+
+<p>Des chercheurs détaillent Upload2Shell, désormais suivie sous CVE-2026-125396 : un use-after-free dans le chargeur de polices Type 1 de Ghostscript. Il donne une primitive d&#39;écriture arbitraire en mémoire, permettant d&#39;altérer l&#39;état qui applique le bac à sable -dSAFER et d&#39;exécuter des commandes avec les droits du processus de rendu. Presque toutes les applications testées avec envoi de fichiers pouvaient transmettre à Ghostscript un fichier à l&#39;extension de confiance : un fichier nommé .pdf contenait du PostScript, par exemple. Les appels courants d&#39;images atteignent l&#39;interpréteur : Pillow load() et crop() avec du contenu EPS, imageio, PHP Imagick::readImage(), libvips thumbnail() selon la compilation, Qt avec le plugin KImageFormats. Image.open() seul ne suffit pas. Les chercheurs ont signalé plusieurs bugs à Artifex ; certains sont encore en cours de correction. Les tests ont eu lieu sur Ubuntu 24.04.</p>
+<div class="why"><p class="why-title">Pourquoi c'est important</p><p>Si vos applications traitent des images envoyées par des utilisateurs (miniatures, aperçus, pipelines d&#39;IA), Ghostscript peut être atteint même sans appel explicite à gs. Mettez à jour Ghostscript dès qu&#39;un correctif est disponible chez votre distribution et restreignez ou désactivez les délégués PostScript et EPS d&#39;ImageMagick.</p></div>
+<details class="sources">
+<summary>Sources (1)</summary>
+<ul>
+<li><a href="https://pwn.ai/upload2shell/research.html" rel="noopener nofollow">GhostScript CVE 2026-125396: &#34;Upload2Shell&#34;</a> <span class="feed">Lobsters</span></li>
+</ul>
+</details>
+
+</article>
+
+<article id="fbi-ncic-piratage-apparent" class="topic t-breach">
+<h3><span class="pill" aria-hidden="true"></span>FBI : enquête sur un piratage apparent de la base nationale NCIC</h3>
+
+<p>Le FBI enquête sur un piratage apparent du National Crime Information Center (NCIC), la base nationale d&#39;informations judiciaires qu&#39;il maintient. Elle est accessible aux forces de l&#39;ordre locales, d&#39;État et fédérales et contient des fugitifs, des personnes disparues, des casiers et des biens volés. L&#39;information, d&#39;abord publiée par CNN, a été confirmée à l&#39;Associated Press samedi par une source anonyme. Le FBI a refusé de commenter et l&#39;ampleur du problème n&#39;est pas connue. Donald Trump a déclaré sur Fox News que « ce n&#39;est pas bon ». L&#39;incident survient alors que des pannes numériques touchent l&#39;administration et le privé aux États-Unis, que des responsables attribuent à des mises à jour de routine plutôt qu&#39;à une cyberattaque ; rien n&#39;indique pour l&#39;instant de lien.</p>
+<div class="why"><p class="why-title">Pourquoi c'est important</p><p>Aucune action technique n&#39;est connue à ce stade. Le sujet compte comme signal : une base partagée par de nombreuses agences est une cible à fort effet de levier. Les détails (accès initial, données consultées) sont à suivre dans les prochains jours.</p></div>
+<details class="sources">
+<summary>Sources (1)</summary>
+<ul>
+<li><a href="https://www.securityweek.com/fbi-investigating-apparent-hack-of-its-key-national-criminal-justice-database-ap-source-says/" rel="noopener nofollow">FBI Investigating Apparent Hack of Its Key National Criminal Justice Database, AP Source Says</a> <span class="feed">SecurityWeek</span></li>
+</ul>
+</details>
+
+</article>
+
+<article id="fuites-revendiquees-france-21-novembre" class="topic t-leak">
+<h3><span class="pill" aria-hidden="true"></span>Fuites revendiquées en France : Maison des Travaux, Robot Advance, Clevermate, Gotronic</h3>
+
+<p>Plusieurs fuites de données visant des entreprises françaises ont été signalées le 21 novembre par les sites Fuites Infos et FrenchBreaches. Nous n&#39;avons que les titres. La Maison des Travaux : Fuites Infos parle d&#39;environ 2 millions de lignes revendiquées, FrenchBreaches de centaines de milliers de clients concernés. Robot Advance : près de 193 000 adresses e-mail revendiquées selon Fuites Infos, près de 200 000 clients potentiellement concernés selon FrenchBreaches. Clevermate : FrenchBreaches évoque des données d&#39;étudiants et de professeurs divulguées, Fuites Infos une fuite revendiquée. Gotronic : 328 190 adresses électroniques revendiquées selon Fuites Infos. Ce sont des revendications, que les entreprises n&#39;ont pas confirmées dans les articles fournis, et les types de données exactes ne sont pas précisés.</p>
+<div class="why"><p class="why-title">Pourquoi c'est important</p><p>Ces annonces restent à confirmer. Si vous avez un compte chez l&#39;une de ces sociétés, changez le mot de passe s&#39;il est réutilisé ailleurs et méfiez-vous des e-mails de phishing qui citeraient ces services. Pour les équipes, c&#39;est un rappel de l&#39;intérêt de mots de passe uniques.</p></div>
+<details class="sources">
+<summary>Sources (7)</summary>
+<ul>
+<li><a href="https://news.google.com/rss/articles/CBMicEFVX3lxTE5zTk5reTdMT2RnWm5zMVpxWmlWNFoybXZBamxEakV5c29yVWtDMDlweldwTElEbjAzeVBjM1BiZEFHbTA4ZnNPRWtodW1hWHJFVUI0TTh2RDlfcXozclV3UmNCdVpVblQ2QnZrTTFwaFE?oc=5" rel="noopener nofollow">La Maison des Travaux : fuite revendiquée d&#39;environ 2 millions de lignes - Fuites Infos</a> <span class="feed">Google Actualités : fuites FR</span></li>
+<li><a href="https://news.google.com/rss/articles/CBMiS0FVX3lxTFByd3lyMkV2OXV4N0l4dFdoc1dSeXhTLUdTbXdpS0hrXzRzSEVZV19IOElMMFp0dVMyQk9JREVwc0pwQ2dUcnNRbWswNA?oc=5" rel="noopener nofollow">La Maison des Travaux visée par une fuite de données, des centaines de milliers de clients concernés - FrenchBreaches</a> <span class="feed">Google Actualités : fuites FR</span></li>
+<li><a href="https://news.google.com/rss/articles/CBMiZkFVX3lxTE51cjkwaGRZNkJ0NW13N3YzaXpyZFhiVmp4c2ZXRzlnMDFmZ1NvdWlFa3pmQkRwd21rZ0JySXo0RTVaV010R01EVmVpQTZlNnBUWGtZNTF4NGItcWFwTVFUUjZ2OElJQQ?oc=5" rel="noopener nofollow">Robot Advance : fuite revendiquée de près de 193 000 adresses e-mail - Fuites Infos</a> <span class="feed">Google Actualités : fuites FR</span></li>
+<li><a href="https://news.google.com/rss/articles/CBMiswFBVV95cUxPX3VjTmp5NlFpeHVRaGt4SEVfRkZCRUxPcElWWThLVm13RzFsaHMtYWpKV1JYZ2kwWm4wcjhTbE9RQXdtQzA0ZzNheWRhQ0hWZnJoQVBfaFFQa29BNmhSUTN2ckhqc011S1d2ZXZfd2VaeFpWTklwUlpzdFdsLVZMY0RKN01NRVZLSGFFck9Tb3NTWkdWcjF4U2V2aTQ1T19RZjQxclM2ZURFTWlPZnEzV0Z2bw?oc=5" rel="noopener nofollow">Robot Advance visé par un piratage, près de 200 000 clients pourraient être concernés - FrenchBreaches</a> <span class="feed">Google Actualités : fuites FR</span></li>
+<li><a href="https://news.google.com/rss/articles/CBMiowFBVV95cUxPZU1KSFB0UUlYQm10WkdZb3hIcEhWQVdhaFVhSlFDSHZWeWg0eEZxQ2lYLVMzMnJnRzBoOTJuajZRY05DbVVLQno0T3JOWjMtV1dTYU5iMXJ2aWdkOGJsNDVMUTRUVXU4d3hQREktQkJVR0c5ejhqbmlFTHdTaG5fY3B2cXBpUGs0WXJzcWFHeTRvY295a3pSSXBlYVgxeTZrQ204?oc=5" rel="noopener nofollow">Clevermate visé par un piratage, les données d&#39;étudiants et de professeurs divulguées - FrenchBreaches</a> <span class="feed">Google Actualités : fuites FR</span></li>
+<li><a href="https://news.google.com/rss/articles/CBMiYkFVX3lxTE80bTZHWThyQ05mRFQwYnRaMmhhTkZFR1Y0c0I2amxOVFZSNW9sc2RPNWZmNFhJcFgtSTNDNTNhMDRTbmVfRTA5bXZYaHJUNG10NUVqUW9ZUS16MlZNN293dW1n?oc=5" rel="noopener nofollow">Clevermate visé par une fuite de données revendiquée - Fuites Infos</a> <span class="feed">Google Actualités : fuites FR</span></li>
+<li><a href="https://news.google.com/rss/articles/CBMiX0FVX3lxTFBjQmtOYXpWUm9CT2Y0cS1odjhjczMyYkZRQzNkd09Zb002ZmRVZEhPaXJFeF9hUGRZRW1hSkpaZDFVY2dOMGY3MXNCbHFVV1dTYktNM2plRHVkLWxLYUhn?oc=5" rel="noopener nofollow">Gotronic : fuite revendiquée de 328 190 adresses électroniques - Fuites Infos</a> <span class="feed">Google Actualités : fuites FR</span></li>
+</ul>
+</details>
+
+</article>
+
+
+<details class="transcript">
+<summary>Transcription</summary>
+<p><strong>Camille</strong> <em>(relaxed, warm morning tone)</em> : Salut et bienvenue dans La veille. On est le dimanche 22 novembre 2026. Au programme : deux intrusions dans le cloud, des agents IA qui trouvent un zero-day, Ghostscript, le FBI, et des fuites en France.</p>
+<p><strong>Max</strong> <em>(relaxed, friendly)</em> : Salut Camille. Un dimanche matin avec des Secrets Kubernetes qui fuitent, ça commence bien. Allez, on attaque.</p>
+<p><strong>Camille</strong> <em>(calm, explaining)</em> : Oui, Rackspace Spot. Rackspace a prévenu des clients que son offre Kubernetes a été compromise le 17 novembre, entre environ 0 h 20 et 22 h 00 UTC, avec des identifiants fuités.</p>
+<p><strong>Max</strong> <em>(curious)</em> : Et ils l&#39;ont su comment ? Une alerte interne ?</p>
+<p><strong>Camille</strong> <em>(calm)</em> : Non, justement : le 18 novembre, grâce à un signalement client. Dans certaines organisations, les attaquants pouvaient agir comme des utilisateurs légitimes : créer des pods, lire les Secrets Kubernetes, lister nœuds et volumes. Ils pouvaient aussi lire les jetons d&#39;API et de rafraîchissement Spot.</p>
+<p><strong>Max</strong> <em>(concerned)</em> : Aïe. Lire les Secrets, perso c&#39;est le pire : un Secret lisible, c&#39;est un accès aux systèmes en aval. Rackspace dit avoir révoqué jetons et sessions, supprimé les pods non autorisés et fait tourner les clés.</p>
+<p><strong>Camille</strong> <em>(explaining)</em> : Oui. Ils donnent des indicateurs : l&#39;IP 23.224.79.106, la plage 23.224.0.0/15, et des préfixes de pods et d&#39;objets : i1, glm- et probe. Par contre, pas de réponse sur le nombre de clients touchés ni sur un vol de données. Et la console d&#39;admin est restée indisponible longtemps ; service pleinement rétabli annoncé le 21.</p>
+<p><strong>Max</strong> <em>(practical)</em> : Si t&#39;es client : tu réémets les jetons d&#39;API, tu remplaces les jetons de rafraîchissement des automatisations, nouveaux kubeconfig, et tu fais tourner tout ce qu&#39;il y a dans les Secrets. Puis tu regardes les journaux des bases, registres, dépôts Git et stockages depuis le 17.</p>
+<p><strong>Camille</strong> <em>(transition, relaxed)</em> : Autre intrusion cloud, côté Microsoft. Une vulnérabilité de l&#39;API Entra Connect Health, introduite le 23 juillet et découverte le 9 novembre, a été exploitée.</p>
+<p><strong>Max</strong> <em>(curious)</em> : Ils ont perdu quoi ?</p>
+<p><strong>Camille</strong> <em>(calm, explaining)</em> : Un accès en lecture seule à des métadonnées de tenant : adresses e-mail des contacts techniques et des admins, identifiants de tenant, noms, domaines initiaux, codes pays, niveaux de licence, état de la synchro d&#39;annuaire, et un certificat expiré. Microsoft dit n&#39;avoir vu ni modification de config, ni mots de passe, hachages, jetons, ou abonnements Azure exposés.</p>
+<p><strong>Max</strong> <em>(thoughtful)</em> : Donc pas dramatique en soi, mais des adresses d&#39;admins, c&#39;est un joli carnet pour du phishing ciblé. Et on ne sait ni combien d&#39;organisations, ni qui, ni depuis quand.</p>
+<p><strong>Camille</strong> <em>(explaining)</em> : Exact. Correctif côté serveur le 19 novembre, enquête terminée le 20. Rien à mettre à jour chez toi, mais prévenir les équipes, imposer une MFA résistante au phishing aux comptes privilégiés, vérifier la config Connect Health et relire les journaux Entra.</p>
+<p><strong>Max</strong> <em>(transition, intrigued)</em> : Bon, ensuite un truc qui me fait un peu froid dans le dos : Amazon Threat Intelligence rapporte que des pirates soupçonnés d&#39;être liés à la Chine ont utilisé des agents IA autonomes pour trouver un zero-day.</p>
+<p><strong>Camille</strong> <em>(surprised)</em> : Attends, vraiment trouvé, pas juste exploité ?</p>
+<p><strong>Max</strong> <em>(explaining)</em> : Trouvé. Dans MONAI Label, un serveur open source d&#39;annotation d&#39;imagerie médicale. C&#39;est une traversée de chemin : on écrit des fichiers hors du dossier de stockage, sans compte. Versions 0.8.5 et antérieures, et la config par défaut n&#39;active aucune authentification.</p>
+<p><strong>Camille</strong> <em>(amazed)</em> : Et c&#39;est allé vite ?</p>
+<p><strong>Max</strong> <em>(impressed)</em> : En septembre, en environ 48 heures, les agents ont atteint l&#39;écriture de fichiers en 11 minutes environ. Une autre session : ils déposent un fichier exécuté au démarrage de Python, puis déclenchent une fonction d&#39;entraînement et obtiennent un shell root. Sur un serveur universitaire. Une seconde université a probablement été visée.</p>
+<p><strong>Camille</strong> <em>(concerned)</em> : Et côté correctif ?</p>
+<p><strong>Max</strong> <em>(calm)</em> : Les mainteneurs ont fusionné un correctif le 19 octobre, mais aucune version corrigée n&#39;existe. C&#39;est la CVE 2026 tiret 133968, notée 9.8. Donc : pare-feu, authentification, compte limité, dossiers d&#39;écriture restreints, et si tu compiles depuis les sources, vérifie que le correctif d&#39;octobre est dedans. Cherche aussi des fichiers de démarrage Python inattendus.</p>
+<p><strong>Camille</strong> <em>(reflective)</em> : Moi ce qui me marque, c&#39;est l&#39;automatisation de la recherche de failles. Ça va changer le rythme.</p>
+<p><strong>Max</strong> <em>(transition)</em> : Et on reste dans les failles avec Ghostscript.</p>
+<p><strong>Camille</strong> <em>(explaining)</em> : Oui, Upload2Shell, la CVE 2026 tiret 125396. Un use-after-free dans le chargeur de polices Type 1. Ça donne une écriture arbitraire en mémoire, qui permet d&#39;altérer l&#39;état qui applique le bac à sable dash dSAFER, et d&#39;exécuter des commandes avec les droits du processus de rendu.</p>
+<p><strong>Max</strong> <em>(naive question, curious)</em> : Mais il faut quand même que l&#39;appli appelle Ghostscript, non ?</p>
+<p><strong>Camille</strong> <em>(explaining)</em> : Pas explicitement. Presque toutes les applications testées avec envoi de fichiers pouvaient lui passer un fichier à l&#39;extension de confiance : un fichier nommé pdf qui contient du PostScript, par exemple. Pillow avec load et crop sur du contenu EPS, imageio, Imagick readImage en PHP, libvips thumbnail selon la compilation, Qt avec le plugin KImageFormats.</p>
+<p><strong>Max</strong> <em>(relaxed, reassured)</em> : Et Image.open tout seul ne suffit pas, c&#39;est une nuance utile. Donc si tu fais des miniatures ou des pipelines d&#39;IA sur des uploads, tu es concerné. Mise à jour dès que ta distribution sort un correctif, et on restreint ou désactive les délégués PostScript et EPS d&#39;ImageMagick.</p>
+<p><strong>Camille</strong> <em>(calm)</em> : Les chercheurs ont signalé plusieurs bugs à Artifex, certains encore en cours de correction. Tests sur Ubuntu 24.04.</p>
+<p><strong>Max</strong> <em>(transition, serious)</em> : Passons aux États-Unis : le FBI enquête sur un piratage apparent du NCIC, la base nationale d&#39;informations judiciaires.</p>
+<p><strong>Camille</strong> <em>(explaining)</em> : Une base accessible aux forces de l&#39;ordre locales, d&#39;État et fédérales : fugitifs, personnes disparues, casiers, biens volés. Révélé d&#39;abord par CNN, confirmé samedi à l&#39;Associated Press par une source anonyme. Le FBI refuse de commenter, l&#39;ampleur est inconnue.</p>
+<p><strong>Max</strong> <em>(thoughtful)</em> : Trump a dit sur Fox News que « ce n&#39;est pas bon ». Et il y a des pannes numériques côté administration et privé aux US, mais les responsables parlent de mises à jour de routine.</p>
+<p><strong>Camille</strong> <em>(calm)</em> : Rien n&#39;indique de lien pour l&#39;instant. Pas d&#39;action technique connue, mais une base partagée par plein d&#39;agences, c&#39;est une cible à fort effet de levier. À suivre.</p>
+<p><strong>Max</strong> <em>(relaxed, transition)</em> : Pour finir, les fuites revendiquées en France le 21 novembre, par Fuites Infos et FrenchBreaches. On n&#39;a que les titres, donc prudence.</p>
+<p><strong>Camille</strong> <em>(explaining)</em> : La Maison des Travaux : environ 2 millions de lignes revendiquées selon Fuites Infos, centaines de milliers de clients selon FrenchBreaches. Robot Advance : près de 193 000 adresses e-mail revendiquées, près de 200 000 clients potentiels selon l&#39;autre site.</p>
+<p><strong>Max</strong> <em>(explaining)</em> : Clevermate : des données d&#39;étudiants et de professeurs divulguées selon FrenchBreaches. Et Gotronic : 328 190 adresses électroniques revendiquées.</p>
+<p><strong>Camille</strong> <em>(calm, practical)</em> : Rien n&#39;est confirmé par les entreprises dans les articles, et on ne connaît pas les types de données. Si tu as un compte chez eux, change le mot de passe s&#39;il est réutilisé, et méfie-vous du phishing qui citerait ces services.</p>
+<p><strong>Max</strong> <em>(amused, relaxed)</em> : Le rappel habituel : un mot de passe unique par service. Voilà pour aujourd&#39;hui.</p>
+<p><strong>Camille</strong> <em>(warm, closing)</em> : Bon dimanche à tous, prenez un bon café, et à demain pour La veille.</p>
+</details>
+
+<nav class="nav" aria-label="Navigation entre les jours">
+<a class="prev" href="../2026-11-21/">← 21 novembre</a>
+<a href="../../archives/">Archives</a>
+
+</nav>
+
+
+</main>
+<footer class="site">
+<p><a href="../../archives/">Archives</a> · <a href="../../podcast.xml">Podcast (RSS)</a> · <a href="../../feed.xml">Flux texte (RSS)</a></p>
+</footer>
+</body>
+</html>

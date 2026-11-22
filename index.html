@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>samedi 21 novembre 2026 — La veille</title>
+<title>dimanche 22 novembre 2026 — La veille</title>
 <meta name="description" content="Tech, pannes, failles et fuites — digest quotidien">
 <link rel="canonical" href="https://elohyrr.github.io/veille/">
 <link rel="stylesheet" href="style.css">
@@ -18,191 +18,121 @@
 <main>
 
 
-<h1>samedi 21 novembre 2026</h1>
-<p class="meta">10 sujets · lecture estimée : 10 min</p>
+<h1>dimanche 22 novembre 2026</h1>
+<p class="meta">6 sujets · lecture estimée : 6 min</p>
 
 <section class="player" aria-label="Podcast du jour">
-<p><strong>Écouter</strong> · 12 min · vCenter, GitLab, GPGME et les fuites n0n</p>
-<audio controls preload="none" src="https://github.com/Elohyrr/veille/releases/download/ep-2026-11-21/veille-2026-11-21.mp3"></audio>
-<p><a class="dl" href="https://github.com/Elohyrr/veille/releases/download/ep-2026-11-21/veille-2026-11-21.mp3" download>Télécharger le MP3</a> <span class="muted">(5,7 Mo)</span></p>
+<p><strong>Écouter</strong> · 7 min · Rackspace, Entra, agents IA et Ghostscript</p>
+<audio controls preload="none" src="https://github.com/Elohyrr/veille/releases/download/ep-2026-11-22/veille-2026-11-22.mp3"></audio>
+<p><a class="dl" href="https://github.com/Elohyrr/veille/releases/download/ep-2026-11-22/veille-2026-11-22.mp3" download>Télécharger le MP3</a> <span class="muted">(3,5 Mo)</span></p>
 </section>
 
-<p class="intro">Journée chargée côté failles : vCenter attribué à un groupe lié à la Chine, GitLab et GPGME à corriger, Cisco Expressway exploité. Côté fuites, le groupe n0n touche des prestataires de banques et de Visa et Mastercard.</p>
+<p class="intro">Journée centrée sur le cloud et Kubernetes : Rackspace Spot et Microsoft Entra Connect Health reconnaissent des intrusions. Côté failles, des agents IA servent à trouver un zero-day, et Ghostscript expose un risque sur les uploads d&#39;images.</p>
 
 <nav class="toc" aria-label="Sommaire">
-<section class="toc-group t-new_tech">
-<h2><span class="pill" aria-hidden="true"></span>Nouvelles technos <span class="count">1</span></h2>
-<ul>
-<li><a href="#cloud-hypervisor-55">Cloud Hypervisor 55 : virtualisation imbriquée AArch64 et jusqu&#39;à 990 vCPU ARM</a></li>
-</ul>
-</section>
-<section class="toc-group t-outage">
-<h2><span class="pill" aria-hidden="true"></span>Pannes <span class="count">1</span></h2>
-<ul>
-<li><a href="#n-able-mail-assure-spamexperts-intrusion">Mise à jour : N-able : la panne de Mail Assure et SpamExperts vient d&#39;une intrusion sur un serveur</a></li>
-</ul>
-</section>
 <section class="toc-group t-breach">
 <h2><span class="pill" aria-hidden="true"></span>Failles et compromissions <span class="count">5</span></h2>
 <ul>
-<li><a href="#gitlab-cve-2026-132825-ruby">GitLab 19.6.1, 19.5.8 et 19.4.10 : correctif critique pour CVE-2026-132825 dans Ruby</a></li>
-<li><a href="#gpgme-double-free-critique">GPGME : double free critique via un identifiant d&#39;utilisateur trop long, correctif en 2.3.1</a></li>
-<li><a href="#mise-a-jour-vmware-vcenter-armory-castle">Mise à jour : vCenter CVE-2026-123890 attribuée à Armory Castle, groupe lié à la Chine</a></li>
-<li><a href="#cisco-expressway-cve-2026-76466-exploitee">Cisco Expressway : CVE-2026-76466 (CVSS 9.8) exploitée après la publication d&#39;un PoC</a></li>
-<li><a href="#kvm-amd-cve-2026-99312-memoire-hote">KVM sur AMD : CVE-2026-99312 permet à une VM invitée de lire la mémoire de l&#39;hôte</a></li>
+<li><a href="#rackspace-spot-secrets-kubernetes">Rackspace Spot : des identifiants fuités ont donné accès aux Secrets Kubernetes de clients</a></li>
+<li><a href="#microsoft-entra-connect-health-fuite-metadonnees">Microsoft Entra Connect Health : une faille d&#39;API exploitée expose des métadonnées de tenants</a></li>
+<li><a href="#monai-label-zero-day-agents-ia">MONAI Label : des agents IA trouvent un zero-day et obtiennent root, sans version corrigée</a></li>
+<li><a href="#ghostscript-upload2shell-cve-2026-125396">Ghostscript : Upload2Shell (CVE-2026-125396) contourne -dSAFER via le chargeur de polices Type 1</a></li>
+<li><a href="#fbi-ncic-piratage-apparent">FBI : enquête sur un piratage apparent de la base nationale NCIC</a></li>
 </ul>
 </section>
 <section class="toc-group t-leak">
-<h2><span class="pill" aria-hidden="true"></span>Fuites de données <span class="count">3</span></h2>
+<h2><span class="pill" aria-hidden="true"></span>Fuites de données <span class="count">1</span></h2>
 <ul>
-<li><a href="#n0n-jpmorgan-visa-mastercard-qubole">Mise à jour : n0n : JPMorgan, Visa et Mastercard citent des incidents chez des prestataires</a></li>
-<li><a href="#too-lost-724-000-comptes">Too Lost : 724 323 comptes exposés, dont des pièces d&#39;identité pour certains</a></li>
-<li><a href="#france-travail-4-15-millions-lignes">France Travail : deux fichiers de 4,15 millions de lignes proposés à la vente</a></li>
+<li><a href="#fuites-revendiquees-france-21-novembre">Fuites revendiquées en France : Maison des Travaux, Robot Advance, Clevermate, Gotronic</a></li>
 </ul>
 </section>
 </nav>
 
-<article id="cloud-hypervisor-55" class="topic t-new_tech">
-<h3><span class="pill" aria-hidden="true"></span>Cloud Hypervisor 55 : virtualisation imbriquée AArch64 et jusqu&#39;à 990 vCPU ARM</h3>
+<article id="rackspace-spot-secrets-kubernetes" class="topic t-breach">
+<h3><span class="pill" aria-hidden="true"></span>Rackspace Spot : des identifiants fuités ont donné accès aux Secrets Kubernetes de clients</h3>
 
-<p>Cloud Hypervisor 55.0 est sorti jeudi. C&#39;est un moniteur de machines virtuelles écrit en Rust, orienté cloud et sécurité. La version ajoute la virtualisation imbriquée AArch64 pour les processeurs ARM avec FEAT_NV2, sur les noyaux compatibles. Le snapshot/restore et la migration à chaud ne fonctionnent pas encore dans ce cas. La limite de vCPU AArch64 avec KVM passe de 255 à 990. La version apporte aussi des correctifs et un durcissement de sécurité, le DMA pair à pair VFIO avec DMA-BUF, le branchement à chaud de CPU pour les invités AMD SEV-SNP sur KVM, des améliorations de migration à chaud et des optimisations de performance. Selon Phoronix, la plupart des contributeurs viennent de Meta, Cloudflare, Google, Cyberus Tech et Microsoft.</p>
-<div class="why"><p class="why-title">Pourquoi c'est important</p><p>Utile si vous exploitez des hôtes ARM ou des plateformes de VM légères sur KVM. La virtualisation imbriquée sur ARM élargit les cas de test et de CI. Les limites annoncées, sans migration à chaud en mode imbriqué, sont à vérifier avant tout usage en production.</p></div>
+<p>Rackspace a prévenu des clients que son offre Kubernetes Rackspace Spot a été compromise le 17 novembre 2026, entre environ 00 h 20 et 22 h 00 UTC, avec des identifiants fuités. Rackspace dit l&#39;avoir appris le 18 novembre grâce à un signalement client. Dans certaines organisations, les attaquants pouvaient agir comme des utilisateurs légitimes : créer des pods, lire les Secrets Kubernetes, lister nœuds et volumes. Ils pouvaient aussi lire les jetons d&#39;API et de rafraîchissement Spot de l&#39;utilisateur. Rackspace affirme avoir révoqué jetons et sessions, supprimé les pods non autorisés, fait tourner les clés et renforcé contrôles et supervision. Indicateurs fournis : l&#39;IP 23.224.79.106, la plage 23.224.0.0/15 et les préfixes de pods et objets i1, glm- et probe. BleepingComputer n&#39;a pas obtenu de réponse sur le nombre de clients touchés ni sur un éventuel vol de données. La console d&#39;administration est restée indisponible longtemps ; Rackspace a annoncé le 21 novembre un service pleinement rétabli.</p>
+<div class="why"><p class="why-title">Pourquoi c'est important</p><p>Si vous utilisez Rackspace Spot, réémettez les jetons d&#39;API, remplacez les jetons de rafraîchissement des automatisations, récupérez de nouveaux kubeconfig et faites tourner tous les identifiants stockés dans les Secrets. Examinez les journaux des bases, registres, dépôts Git et stockages depuis le 17 novembre. Un Secret lisible équivaut à un accès aux systèmes en aval.</p></div>
 <details class="sources">
 <summary>Sources (1)</summary>
 <ul>
-<li><a href="https://www.phoronix.com/news/Cloud-Hypervisor-55" rel="noopener nofollow">Cloud Hypervisor 55 Released With AArch64 Nested Virtualization, Up To 990 ARM vCPUs</a> <span class="feed">Phoronix</span></li>
+<li><a href="https://www.bleepingcomputer.com/news/security/rackspace-spot-breach-let-hackers-access-customer-kubernetes-secrets/" rel="noopener nofollow">Rackspace Spot breach let hackers access customer Kubernetes secrets</a> <span class="feed">BleepingComputer</span></li>
 </ul>
 </details>
 
 </article>
 
-<article id="n-able-mail-assure-spamexperts-intrusion" class="topic t-outage">
-<h3><span class="pill" aria-hidden="true"></span>Mise à jour : N-able : la panne de Mail Assure et SpamExperts vient d&#39;une intrusion sur un serveur</h3>
-<p class="update"><a href="jours/2026-11-12/#n-able-n-central-able2shell">Mise à jour du 12 novembre</a> : N-able reconnaît une intrusion sur un serveur de Mail Assure et SpamExperts, distincte de N-central, après une première explication par la configuration.</p>
-<p>N-able indique que la perturbation de Mail Assure et SpamExperts Hosted Cloud, commencée le 16 novembre dans toutes les régions, résulte d&#39;une cyberattaque. L&#39;éditeur l&#39;avait d&#39;abord attribuée à « une combinaison de configuration de plateforme et de dépendances de service ». Le 18 novembre, il a confirmé l&#39;accès non autorisé à un serveur. Selon N-able, l&#39;incident est limité à un seul serveur web, où l&#39;attaquant a pu accéder à certains identifiants stockés. Le flux de courriels et le filtrage n&#39;ont pas été touchés. Le portail, l&#39;API, la quarantaine, les journaux et la synchronisation des boîtes ont été coupés. N-able a mis le serveur hors ligne, fait tourner les identifiants internes, révoqué les jetons d&#39;API clients et les jetons OAuth, et réinitialisé les mots de passe des utilisateurs locaux. L&#39;éditeur dit n&#39;avoir aucune preuve de compromission de données clients ni des boîtes. Il dit aussi que l&#39;incident est sans lien avec N-central. L&#39;enquête et la restauration continuent.</p>
-<div class="why"><p class="why-title">Pourquoi c'est important</p><p>Si vous utilisez Mail Assure ou SpamExperts, vos jetons d&#39;API ont été révoqués : vos intégrations vont échouer tant que vous n&#39;en recréez pas. Suivez les consignes envoyées par N-able. Ne considérez pas l&#39;incident comme une simple panne, puisque des identifiants stockés ont pu être exposés.</p></div>
-<details class="sources">
-<summary>Sources (2)</summary>
-<ul>
-<li><a href="https://www.bleepingcomputer.com/news/microsoft/n-able-says-recent-security-breach-led-to-major-service-outage/" rel="noopener nofollow">N-able says recent security breach led to major service outage</a> <span class="feed">BleepingComputer</span></li>
-<li><a href="https://www.securityweek.com/n-able-blames-service-disruption-on-cyberattack/" rel="noopener nofollow">N-able Blames Service Disruption on Cyberattack</a> <span class="feed">SecurityWeek</span></li>
-</ul>
-</details>
+<article id="microsoft-entra-connect-health-fuite-metadonnees" class="topic t-breach">
+<h3><span class="pill" aria-hidden="true"></span>Microsoft Entra Connect Health : une faille d&#39;API exploitée expose des métadonnées de tenants</h3>
 
-</article>
-
-<article id="gitlab-cve-2026-132825-ruby" class="topic t-breach">
-<h3><span class="pill" aria-hidden="true"></span>GitLab 19.6.1, 19.5.8 et 19.4.10 : correctif critique pour CVE-2026-132825 dans Ruby</h3>
-
-<p>GitLab a publié le 20 novembre un correctif critique hors calendrier pour les éditions CE et EE : 19.6.1, 19.5.8 et 19.4.10. Il corrige CVE-2026-132825, un débordement de tas dans la conversion de casse des chaînes de Ruby. Selon GitLab, changer la casse d&#39;une chaîne forgée peut provoquer une écriture hors limites ; l&#39;équipe sécurité de Ruby juge que l&#39;exécution de code à distance est possible dans certains scénarios. Elle classe la faille Critique, alors que MITRE la note High (CVSS 7,4). Sont touchées toutes les versions avant 19.4.10, la 19.5 avant 19.5.8 et la 19.6 avant 19.6.1. GitLab.com et GitLab Dedicated sont déjà patchés. Les paquets Linux officiels et les images de conteneur embarquent un Ruby corrigé. Pour les installations compilées depuis les sources, il faut reconstruire Ruby en 3.3.14 ou 3.4.13 (ou ultérieur dans la même série). Le CERT-FR a publié un avis reprenant ces versions.</p>
-<div class="why"><p class="why-title">Pourquoi c'est important</p><p>Si vous auto-hébergez GitLab, mettez à jour dès maintenant : l&#39;éditeur parle d&#39;une mise à niveau immédiate. Les installations compilées à la main doivent aussi reconstruire Ruby, sans quoi la mise à jour de GitLab seule ne suffit pas. Les instances Omnibus et les images officielles sont couvertes par la montée de version.</p></div>
-<details class="sources">
-<summary>Sources (2)</summary>
-<ul>
-<li><a href="https://docs.gitlab.com/releases/patches/patch-release-gitlab-19-6-1-released/" rel="noopener nofollow">GitLab Critical Patch Release: 19.6.1, 19.5.8, 19.4.10</a> <span class="feed">GitLab releases</span></li>
-<li><a href="https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1591/" rel="noopener nofollow">Vulnérabilité dans GitLab (20 novembre 2026)</a> <span class="feed">CERT-FR Avis</span></li>
-</ul>
-</details>
-
-</article>
-
-<article id="gpgme-double-free-critique" class="topic t-breach">
-<h3><span class="pill" aria-hidden="true"></span>GPGME : double free critique via un identifiant d&#39;utilisateur trop long, correctif en 2.3.1</h3>
-
-<p>Werner Koch a annoncé vendredi une faille critique dans GPGME, la bibliothèque GnuPG Made Easy. Toutes les versions existantes sont touchées, qu&#39;elles soient liées en bibliothèque partagée, en DLL ou statiquement. Une clé OpenPGP contenant un identifiant d&#39;utilisateur très long peut déclencher un double free. Il permet d&#39;extraire des données d&#39;applications, par exemple en leur envoyant des données signées. Une exécution de code à distance n&#39;est pas exclue, mais elle n&#39;est pas confirmée. La cause : deux fonctions internes qui lisent les lignes de statut et les listes de clés de gpg réallouent un tampon initial de 1024 octets. Le nouveau pointeur n&#39;est réaffecté au contexte qu&#39;en fin de fonction. Si la fonction sort tôt, le contexte garde un pointeur périmé et la mémoire est libérée deux fois. Les clients de messagerie, la plupart des clients XMPP, Flatpak et Samba utilisent GPGME. La première version corrigée est GPGME 2.3.1.</p>
-<div class="why"><p class="why-title">Pourquoi c'est important</p><p>GPGME est une dépendance transitive très répandue sur les postes et les serveurs Linux. Surveillez les mises à jour de votre distribution pour GPGME 2.3.1 ou son rétroportage, et redémarrez les applications qui l&#39;utilisent. Les binaires liés statiquement demandent une reconstruction. Werner Koch recommande une mise à jour immédiate.</p></div>
+<p>Microsoft prévient des organisations qu&#39;une vulnérabilité de l&#39;API Entra Connect Health, introduite le 23 juillet et découverte le 9 novembre 2026, a été exploitée. Selon la notification, un accès en lecture seule à des métadonnées de niveau tenant a eu lieu : adresses e-mail des contacts techniques et des administrateurs, identifiants de tenant, noms, domaines initiaux, codes pays, niveaux de licence Entra, état de la synchronisation d&#39;annuaire, état d&#39;intégration de Connect Health et un certificat expiré. Microsoft dit n&#39;avoir identifié aucune modification de configuration, ni exposition de mots de passe, hachages, jetons, clés valides, topologie Active Directory ou abonnements Azure. Un correctif côté serveur a été déployé le 19 novembre ; l&#39;enquête s&#39;est terminée le 20. Microsoft ne dit ni combien d&#39;organisations sont touchées, ni qui est l&#39;auteur, ni quand les attaques ont commencé. Plusieurs administrateurs et MSP ont signalé avoir reçu l&#39;avis.</p>
+<div class="why"><p class="why-title">Pourquoi c'est important</p><p>Aucune mise à jour n&#39;est requise côté client. Prévenez vos équipes d&#39;un risque de phishing ciblé visant les adresses d&#39;administrateurs, imposez une MFA résistante au phishing aux comptes privilégiés, vérifiez la configuration Connect Health et relisez les journaux d&#39;audit et de connexion Entra. Surveillez Azure Service Health.</p></div>
 <details class="sources">
 <summary>Sources (1)</summary>
 <ul>
-<li><a href="https://www.phoronix.com/news/GnuPG-GPGME-Critical" rel="noopener nofollow">GnuPG&#39;s GPGME Affected By Critical Security Bug In Turn Affecting Mail Clients, Flatpak</a> <span class="feed">Phoronix</span></li>
+<li><a href="https://www.bleepingcomputer.com/news/security/microsoft-entra-connect-health-flaw-exploited-to-steal-tenant-data/" rel="noopener nofollow">Microsoft Entra Connect Health flaw exploited to steal tenant data</a> <span class="feed">BleepingComputer</span></li>
 </ul>
 </details>
 
 </article>
 
-<article id="mise-a-jour-vmware-vcenter-armory-castle" class="topic t-breach">
-<h3><span class="pill" aria-hidden="true"></span>Mise à jour : vCenter CVE-2026-123890 attribuée à Armory Castle, groupe lié à la Chine</h3>
-<p class="update"><a href="jours/2026-11-20/#vmware-vcenter-cve-2026-123890">Mise à jour du 20 novembre</a> : Google et Mandiant attribuent l&#39;exploitation zero-day de septembre au groupe Armory Castle et décrivent ses outils et la chaîne d&#39;attaque.</p>
-<p>Selon Google Threat Intelligence Group et Mandiant, le groupe Armory Castle (ex-UNC5221), soupçonné d&#39;être lié à la Chine, a exploité CVE-2026-123890 en zero-day début septembre 2026. C&#39;est une divulgation de clé de session SRP-6a non authentifiée via DCE/RPC. Elle débouche sur une session administrator@vsphere.local. L&#39;outil Golang BONESAW exfiltre la base LMDB, détourne le service de jetons SAML (STS) et crée un compte SSO administrateur. La campagne a aussi exploité un zero-day BeyondTrust Remote Support (CVE-2026-102764) pour un accès initial, puis un déplacement latéral vers une appliance Linux interne. Six familles de malwares sont citées, dont SAWSNAKE, qui permet des attaques Golden SAML et le contournement du MFA. Les correctifs du 19 novembre : 9.1.1.0200, 9.0.2.0200, 8.0 U3m et Cloud Foundation 5.2.5. Pour vCenter 7.0, il faut contacter le support Broadcom en cas de support étendu.</p>
-<div class="why"><p class="why-title">Pourquoi c'est important</p><p>L&#39;exploitation remonte à septembre : appliquer le correctif ne suffit pas. Si vous gérez un vCenter, patchez, puis cherchez des signes de compromission : comptes SSO inconnus, accès au port 2012, fichiers vmdird. Pensez à renouveler les certificats de signature SAML, car un Golden SAML survit au correctif.</p></div>
+<article id="monai-label-zero-day-agents-ia" class="topic t-breach">
+<h3><span class="pill" aria-hidden="true"></span>MONAI Label : des agents IA trouvent un zero-day et obtiennent root, sans version corrigée</h3>
+
+<p>Amazon Threat Intelligence rapporte que des pirates soupçonnés d&#39;être liés à la Chine ont utilisé des agents IA autonomes pour trouver une faille inconnue dans MONAI Label, serveur open source d&#39;annotation d&#39;imagerie médicale, et obtenir root sur un serveur universitaire. C&#39;est une traversée de chemin permettant d&#39;écrire des fichiers hors du dossier de stockage sans compte ; elle touche les versions 0.8.5 et antérieures, dont la configuration par défaut n&#39;active aucune authentification. En septembre, en environ 48 heures, les agents ont atteint l&#39;écriture de fichiers en 11 minutes environ. Lors d&#39;une autre session, ils ont déposé un fichier exécuté au démarrage de Python, puis déclenché une fonction d&#39;entraînement pour obtenir un shell root. Une seconde université a probablement été visée, sans confirmation. Les mainteneurs ont fusionné un correctif le 19 octobre, mais aucune version corrigée n&#39;existe. La faille est suivie sous CVE-2026-133968, notée 9.8.</p>
+<div class="why"><p class="why-title">Pourquoi c'est important</p><p>Aucune version à installer : isolez les serveurs MONAI Label par pare-feu, activez l&#39;authentification, exécutez le service avec un compte limité et des dossiers d&#39;écriture restreints. Vérifiez qu&#39;une compilation depuis les sources inclut le correctif d&#39;octobre, et cherchez des fichiers de démarrage Python inattendus. Le cas illustre aussi des agents IA qui automatisent la recherche de failles.</p></div>
 <details class="sources">
 <summary>Sources (1)</summary>
 <ul>
-<li><a href="https://thehackernews.com/2026/11/china-linked-hackers-exploit-critical.html" rel="noopener nofollow">China-Linked Hackers Exploit Critical VMware vCenter Zero-Day to Gain Admin Access and Steal Data</a> <span class="feed">The Hacker News</span></li>
+<li><a href="https://thehackernews.com/2026/11/attackers-ai-agents-found-zero-day-in.html" rel="noopener nofollow">Attackers&#39; AI Agents Found a Zero-Day in Medical-Imaging Software and Gained Root Access</a> <span class="feed">The Hacker News</span></li>
 </ul>
 </details>
 
 </article>
 
-<article id="cisco-expressway-cve-2026-76466-exploitee" class="topic t-breach">
-<h3><span class="pill" aria-hidden="true"></span>Cisco Expressway : CVE-2026-76466 (CVSS 9.8) exploitée après la publication d&#39;un PoC</h3>
+<article id="ghostscript-upload2shell-cve-2026-125396" class="topic t-breach">
+<h3><span class="pill" aria-hidden="true"></span>Ghostscript : Upload2Shell (CVE-2026-125396) contourne -dSAFER via le chargeur de polices Type 1</h3>
 
-<p>La société russe F6 rapporte le premier cas d&#39;exploitation de CVE-2026-76466 dans la nature, peu après la publication d&#39;un PoC. La faille permet à un attaquant distant non authentifié d&#39;exécuter des commandes en root sur Cisco Expressway. Cisco l&#39;attribue à l&#39;usage de cookies persistants et à une validation insuffisante des certificats clients quand le mode TLS Verify est activé pour le clustering. Cisco a publié les correctifs le 21 octobre 2026 : X15.5.20 pour la branche X15.5.3 et antérieures, et migration vers une version corrigée pour X14 et antérieures. Les attaquants ont d&#39;abord compromis deux équipements exposés. Par l&#39;un d&#39;eux, ils ont atteint deux nœuds du cluster sur le réseau interne. Ils ont ensuite scanné le réseau avec des scripts Python, interrogé SMB, SQL Server et WinRM, et accédé à des dépôts GitLab pour voler des identifiants. Les scripts semblent écrits avec l&#39;aide d&#39;une IA. Aucun acteur n&#39;est attribué. La CISA a inscrit la faille à son catalogue KEV. F6 publie des indicateurs de compromission, dont « wombat@127.0.0.1 » dans erlang.log.</p>
-<div class="why"><p class="why-title">Pourquoi c'est important</p><p>Si vous exploitez Expressway, mettez à jour vers une version corrigée, et cherchez les indicateurs publiés par F6 dans erlang.log et les scripts Python sur le disque. Isolez les nœuds suspects. Segmentez les équipements de périmètre : ici, ils ont servi de point d&#39;entrée vers GitLab et les systèmes internes.</p></div>
-<details class="sources">
-<summary>Sources (2)</summary>
-<ul>
-<li><a href="https://thehackernews.com/2026/11/hackers-exploit-critical-cisco.html" rel="noopener nofollow">Hackers Exploit Critical Cisco Expressway Flaw, Breach Four Devices and Reach Internal Network</a> <span class="feed">The Hacker News</span></li>
-<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-76466" rel="noopener nofollow">CVE-2026-76466 — Cisco Expressway Series Use of Hard-coded Credentials Vulnerability</a> <span class="feed">CISA KEV</span></li>
-</ul>
-</details>
-
-</article>
-
-<article id="kvm-amd-cve-2026-99312-memoire-hote" class="topic t-breach">
-<h3><span class="pill" aria-hidden="true"></span>KVM sur AMD : CVE-2026-99312 permet à une VM invitée de lire la mémoire de l&#39;hôte</h3>
-
-<p>Oren Yomtov, de Terra Security, a trouvé CVE-2026-99312, une faille du noyau Linux KVM qui touche uniquement les hôtes AMD avec virtualisation imbriquée activée. Sur un serveur DigitalOcean, depuis une VM à lui, il a lu environ 127 Go de la mémoire de l&#39;hôte. Sur un serveur bare metal AMD à lui, un invité a aussi écrit 32 octets dans la mémoire du noyau hôte. Il faut être root dans une VM invitée. Le défaut est un pointeur laissé sur de la mémoire libérée : à l&#39;arrêt d&#39;une VM imbriquée par un signal INIT, KVM ne restaure pas le pointeur de table de pages. Le correctif réinitialise cet état à chaque INIT. Il est livré dans les noyaux stables 7.3.5, 6.18.64 et 6.12.118. Le défaut vient d&#39;un correctif de 2022, CVE-2022-3344. Les évaluations divergent : 8,8 pour l&#39;équipe CVE du noyau, 5,6 et « Moderate » pour Red Hat. Aucune exploitation hors recherche n&#39;est signalée. La plupart des noyaux de distribution n&#39;ont pas encore le correctif.</p>
-<div class="why"><p class="why-title">Pourquoi c'est important</p><p>Si vous gérez vos propres hôtes KVM sur AMD, mettez à jour le noyau hôte et redémarrez, ou désactivez la virtualisation imbriquée. Mettre à jour les VM invitées ne change rien. Les clients d&#39;un cloud public n&#39;ont rien à faire si le fournisseur a corrigé, comme DigitalOcean.</p></div>
+<p>Des chercheurs détaillent Upload2Shell, désormais suivie sous CVE-2026-125396 : un use-after-free dans le chargeur de polices Type 1 de Ghostscript. Il donne une primitive d&#39;écriture arbitraire en mémoire, permettant d&#39;altérer l&#39;état qui applique le bac à sable -dSAFER et d&#39;exécuter des commandes avec les droits du processus de rendu. Presque toutes les applications testées avec envoi de fichiers pouvaient transmettre à Ghostscript un fichier à l&#39;extension de confiance : un fichier nommé .pdf contenait du PostScript, par exemple. Les appels courants d&#39;images atteignent l&#39;interpréteur : Pillow load() et crop() avec du contenu EPS, imageio, PHP Imagick::readImage(), libvips thumbnail() selon la compilation, Qt avec le plugin KImageFormats. Image.open() seul ne suffit pas. Les chercheurs ont signalé plusieurs bugs à Artifex ; certains sont encore en cours de correction. Les tests ont eu lieu sur Ubuntu 24.04.</p>
+<div class="why"><p class="why-title">Pourquoi c'est important</p><p>Si vos applications traitent des images envoyées par des utilisateurs (miniatures, aperçus, pipelines d&#39;IA), Ghostscript peut être atteint même sans appel explicite à gs. Mettez à jour Ghostscript dès qu&#39;un correctif est disponible chez votre distribution et restreignez ou désactivez les délégués PostScript et EPS d&#39;ImageMagick.</p></div>
 <details class="sources">
 <summary>Sources (1)</summary>
 <ul>
-<li><a href="https://thehackernews.com/2026/11/new-linux-kvm-flaw-cve-2026-99312-lets.html" rel="noopener nofollow">Linux KVM Flaw CVE-2026-99312 Lets Guest VMs Access Host Memory on AMD Hosts</a> <span class="feed">The Hacker News</span></li>
+<li><a href="https://pwn.ai/upload2shell/research.html" rel="noopener nofollow">GhostScript CVE 2026-125396: &#34;Upload2Shell&#34;</a> <span class="feed">Lobsters</span></li>
 </ul>
 </details>
 
 </article>
 
-<article id="n0n-jpmorgan-visa-mastercard-qubole" class="topic t-leak">
-<h3><span class="pill" aria-hidden="true"></span>Mise à jour : n0n : JPMorgan, Visa et Mastercard citent des incidents chez des prestataires</h3>
-<p class="update"><a href="jours/2026-11-17/#expedia-n0n-fournisseur-donnees">Mise à jour du 17 novembre</a> : JPMorgan, Visa et Mastercard confirment des incidents chez des prestataires ; Qubole est soupçonné d&#39;être la source, selon BleepingComputer.</p>
-<p>JPMorgan Chase, Visa et Mastercard ont reconnu des incidents chez des prestataires, après des revendications du groupe d&#39;extorsion n0n du 16 novembre. JPMorgan pense que des données marketing, dont des noms et des adresses e-mail, ont été consultées. Visa évoque un prestataire en Asie-Pacifique, sans carte bancaire touchée. Mastercard parle d&#39;adresses e-mail d&#39;un petit sous-ensemble de titulaires inscrits à un programme d&#39;avantages. Selon Reuters, les données de JPMorgan contiennent plus de 16 000 e-mails de clients. Selon BleepingComputer, n0n a revendiqué le 11 novembre une attaque contre Qubole, soupçonné d&#39;être le prestataire commun. Le groupe dit avoir utilisé des identifiants Qubole compromis du 14 au 26 octobre pour accéder aux environnements AWS de clients via des rôles IAM, et avoir volé 53,9 Go. Qubole n&#39;a pas répondu. Par ailleurs, ZATAZ recense 179 fiches « Leaked » sur le site de n0n.</p>
-<div class="why"><p class="why-title">Pourquoi c'est important</p><p>L&#39;attaque passe par des identifiants d&#39;un prestataire et des rôles IAM de confiance vers des comptes AWS clients. Si vous donnez un accès cross-account à un outil tiers, auditez ces rôles, limitez leurs permissions et surveillez leur usage. Les victimes finales ne maîtrisent pas ce maillon.</p></div>
-<details class="sources">
-<summary>Sources (3)</summary>
-<ul>
-<li><a href="https://www.bleepingcomputer.com/news/security/vendor-data-breach-exposes-chase-visa-mastercard-customer-info/" rel="noopener nofollow">Vendor data breach exposes Chase, Visa, Mastercard customer info</a> <span class="feed">BleepingComputer</span></li>
-<li><a href="https://www.securityweek.com/jpmorgan-visa-mastercard-cite-third-party-incidents-amid-data-leak/" rel="noopener nofollow">JPMorgan, Visa, Mastercard Cite Third-Party Incidents Amid Data Leak</a> <span class="feed">SecurityWeek</span></li>
-<li><a href="https://www.zataz.com/non-cest-non-sauf-quand-il-reclame-une-rancon/" rel="noopener nofollow">NON, c’est NON. Sauf quand il réclame une rançon.</a> <span class="feed">ZATAZ</span></li>
-</ul>
-</details>
+<article id="fbi-ncic-piratage-apparent" class="topic t-breach">
+<h3><span class="pill" aria-hidden="true"></span>FBI : enquête sur un piratage apparent de la base nationale NCIC</h3>
 
-</article>
-
-<article id="too-lost-724-000-comptes" class="topic t-leak">
-<h3><span class="pill" aria-hidden="true"></span>Too Lost : 724 323 comptes exposés, dont des pièces d&#39;identité pour certains</h3>
-
-<p>Have I Been Pwned ajoute Too Lost, distributeur musical pour artistes indépendants. En novembre 2026, une partie non autorisée a affirmé détenir ses données. Elles couvrent 724 000 adresses e-mail uniques d&#39;artistes, de collaborateurs et de fans. Certains enregistrements contiennent des hachages de mots de passe bcrypt. Un petit sous-ensemble comprend des données partielles de carte (quatre derniers chiffres et type), des informations de vérification d&#39;identité (passeport, permis ou carte nationale d&#39;identité dans certains cas) et les paiements versés aux artistes. Too Lost dit que son enquête continue, qu&#39;il a mandaté des experts en forensique externes et qu&#39;il a sécurisé les systèmes et les identifiants touchés. Il prépare avec des conseillers la communication aux personnes concernées.</p>
-<div class="why"><p class="why-title">Pourquoi c'est important</p><p>Si vous avez un compte Too Lost, changez le mot de passe et ceux réutilisés ailleurs. Méfiez-vous de l&#39;hameçonnage ciblé, surtout pour les artistes dont l&#39;identité et les paiements sont exposés. Les hachages bcrypt sont plus lents à casser, mais pas inviolables avec un mot de passe faible.</p></div>
-<details class="sources">
-<summary>Sources (2)</summary>
-<ul>
-<li><a href="https://haveibeenpwned.com/Breach/TooLost" rel="noopener nofollow">Too Lost - 724,323 breached accounts</a> <span class="feed">HaveIBeenPwned</span></li>
-<li><a href="https://news.google.com/rss/articles/CBMiwgFBVV95cUxQVmd3TDEyVVdKTnBTaW5NUUFSTFQtNjNxZ256dkNrbzN2aHZuT1I4cE5zelpiV2gwNkhqNXRUazFSVDVCekFxdTk5b1ZVdzgwcXBEMERPckNBT1d2SlB3ZWhmZEo2SlAyNFZrRFF3Q3lXb1BBQnVXNEdJQlY0dnVVdksxQ1VCVk9kd2dOWlBUUk9pcUZKN05UdW1uenBMY0tVUXJfMF9DM2JOS0hVaDRtN3FGaHBBMExiT0Vwbm9QMmpSUQ?oc=5" rel="noopener nofollow">Le distributeur musical Too Lost piraté, les données de plus de 700 000 utilisateurs exposées - French Breaches</a> <span class="feed">Google Actualités : fuites FR</span></li>
-</ul>
-</details>
-
-</article>
-
-<article id="france-travail-4-15-millions-lignes" class="topic t-leak">
-<h3><span class="pill" aria-hidden="true"></span>France Travail : deux fichiers de 4,15 millions de lignes proposés à la vente</h3>
-
-<p>Selon ZATAZ, un vendeur anonyme a publié les 18 et 19 novembre deux annonces pour des fichiers qu&#39;il attribue à France Travail. Le premier revendique 1 551 344 lignes, avec état civil, adresse, e-mail, téléphone, statut de demandeur d&#39;emploi et numéro de sécurité sociale. Le second revendique 2 604 886 lignes, avec contacts et identifiant national. Au total, 4 156 230 lignes, mais le nombre de personnes distinctes est inconnu. Le champ d&#39;inscription du premier extrait correspond au 30 octobre 2025. La date d&#39;extraction reste inconnue, et la provenance n&#39;est pas établie. ZATAZ rappelle des incidents passés de l&#39;organisme, dont une intrusion rendue publique le 13 mars 2024 pour 43 millions de personnes et une amende CNIL de 5 millions d&#39;euros en janvier 2026. Il évoque une piste liée à une fuite de 2025.</p>
-<div class="why"><p class="why-title">Pourquoi c'est important</p><p>Il s&#39;agit d&#39;une revendication non vérifiée, sans confirmation de France Travail. Si vous êtes demandeur d&#39;emploi, restez vigilant face au hameçonnage et aux appels usurpant l&#39;organisme, car le numéro de sécurité sociale est cité. Pour les équipes, c&#39;est un rappel que les anciennes fuites recirculent.</p></div>
+<p>Le FBI enquête sur un piratage apparent du National Crime Information Center (NCIC), la base nationale d&#39;informations judiciaires qu&#39;il maintient. Elle est accessible aux forces de l&#39;ordre locales, d&#39;État et fédérales et contient des fugitifs, des personnes disparues, des casiers et des biens volés. L&#39;information, d&#39;abord publiée par CNN, a été confirmée à l&#39;Associated Press samedi par une source anonyme. Le FBI a refusé de commenter et l&#39;ampleur du problème n&#39;est pas connue. Donald Trump a déclaré sur Fox News que « ce n&#39;est pas bon ». L&#39;incident survient alors que des pannes numériques touchent l&#39;administration et le privé aux États-Unis, que des responsables attribuent à des mises à jour de routine plutôt qu&#39;à une cyberattaque ; rien n&#39;indique pour l&#39;instant de lien.</p>
+<div class="why"><p class="why-title">Pourquoi c'est important</p><p>Aucune action technique n&#39;est connue à ce stade. Le sujet compte comme signal : une base partagée par de nombreuses agences est une cible à fort effet de levier. Les détails (accès initial, données consultées) sont à suivre dans les prochains jours.</p></div>
 <details class="sources">
 <summary>Sources (1)</summary>
 <ul>
-<li><a href="https://www.zataz.com/france-travail-415-millions-de-nouvelles-lignes-en-vente/" rel="noopener nofollow">France Travail : 4,15 millions de nouvelles lignes en vente ?</a> <span class="feed">ZATAZ</span></li>
+<li><a href="https://www.securityweek.com/fbi-investigating-apparent-hack-of-its-key-national-criminal-justice-database-ap-source-says/" rel="noopener nofollow">FBI Investigating Apparent Hack of Its Key National Criminal Justice Database, AP Source Says</a> <span class="feed">SecurityWeek</span></li>
+</ul>
+</details>
+
+</article>
+
+<article id="fuites-revendiquees-france-21-novembre" class="topic t-leak">
+<h3><span class="pill" aria-hidden="true"></span>Fuites revendiquées en France : Maison des Travaux, Robot Advance, Clevermate, Gotronic</h3>
+
+<p>Plusieurs fuites de données visant des entreprises françaises ont été signalées le 21 novembre par les sites Fuites Infos et FrenchBreaches. Nous n&#39;avons que les titres. La Maison des Travaux : Fuites Infos parle d&#39;environ 2 millions de lignes revendiquées, FrenchBreaches de centaines de milliers de clients concernés. Robot Advance : près de 193 000 adresses e-mail revendiquées selon Fuites Infos, près de 200 000 clients potentiellement concernés selon FrenchBreaches. Clevermate : FrenchBreaches évoque des données d&#39;étudiants et de professeurs divulguées, Fuites Infos une fuite revendiquée. Gotronic : 328 190 adresses électroniques revendiquées selon Fuites Infos. Ce sont des revendications, que les entreprises n&#39;ont pas confirmées dans les articles fournis, et les types de données exactes ne sont pas précisés.</p>
+<div class="why"><p class="why-title">Pourquoi c'est important</p><p>Ces annonces restent à confirmer. Si vous avez un compte chez l&#39;une de ces sociétés, changez le mot de passe s&#39;il est réutilisé ailleurs et méfiez-vous des e-mails de phishing qui citeraient ces services. Pour les équipes, c&#39;est un rappel de l&#39;intérêt de mots de passe uniques.</p></div>
+<details class="sources">
+<summary>Sources (7)</summary>
+<ul>
+<li><a href="https://news.google.com/rss/articles/CBMicEFVX3lxTE5zTk5reTdMT2RnWm5zMVpxWmlWNFoybXZBamxEakV5c29yVWtDMDlweldwTElEbjAzeVBjM1BiZEFHbTA4ZnNPRWtodW1hWHJFVUI0TTh2RDlfcXozclV3UmNCdVpVblQ2QnZrTTFwaFE?oc=5" rel="noopener nofollow">La Maison des Travaux : fuite revendiquée d&#39;environ 2 millions de lignes - Fuites Infos</a> <span class="feed">Google Actualités : fuites FR</span></li>
+<li><a href="https://news.google.com/rss/articles/CBMiS0FVX3lxTFByd3lyMkV2OXV4N0l4dFdoc1dSeXhTLUdTbXdpS0hrXzRzSEVZV19IOElMMFp0dVMyQk9JREVwc0pwQ2dUcnNRbWswNA?oc=5" rel="noopener nofollow">La Maison des Travaux visée par une fuite de données, des centaines de milliers de clients concernés - FrenchBreaches</a> <span class="feed">Google Actualités : fuites FR</span></li>
+<li><a href="https://news.google.com/rss/articles/CBMiZkFVX3lxTE51cjkwaGRZNkJ0NW13N3YzaXpyZFhiVmp4c2ZXRzlnMDFmZ1NvdWlFa3pmQkRwd21rZ0JySXo0RTVaV010R01EVmVpQTZlNnBUWGtZNTF4NGItcWFwTVFUUjZ2OElJQQ?oc=5" rel="noopener nofollow">Robot Advance : fuite revendiquée de près de 193 000 adresses e-mail - Fuites Infos</a> <span class="feed">Google Actualités : fuites FR</span></li>
+<li><a href="https://news.google.com/rss/articles/CBMiswFBVV95cUxPX3VjTmp5NlFpeHVRaGt4SEVfRkZCRUxPcElWWThLVm13RzFsaHMtYWpKV1JYZ2kwWm4wcjhTbE9RQXdtQzA0ZzNheWRhQ0hWZnJoQVBfaFFQa29BNmhSUTN2ckhqc011S1d2ZXZfd2VaeFpWTklwUlpzdFdsLVZMY0RKN01NRVZLSGFFck9Tb3NTWkdWcjF4U2V2aTQ1T19RZjQxclM2ZURFTWlPZnEzV0Z2bw?oc=5" rel="noopener nofollow">Robot Advance visé par un piratage, près de 200 000 clients pourraient être concernés - FrenchBreaches</a> <span class="feed">Google Actualités : fuites FR</span></li>
+<li><a href="https://news.google.com/rss/articles/CBMiowFBVV95cUxPZU1KSFB0UUlYQm10WkdZb3hIcEhWQVdhaFVhSlFDSHZWeWg0eEZxQ2lYLVMzMnJnRzBoOTJuajZRY05DbVVLQno0T3JOWjMtV1dTYU5iMXJ2aWdkOGJsNDVMUTRUVXU4d3hQREktQkJVR0c5ejhqbmlFTHdTaG5fY3B2cXBpUGs0WXJzcWFHeTRvY295a3pSSXBlYVgxeTZrQ204?oc=5" rel="noopener nofollow">Clevermate visé par un piratage, les données d&#39;étudiants et de professeurs divulguées - FrenchBreaches</a> <span class="feed">Google Actualités : fuites FR</span></li>
+<li><a href="https://news.google.com/rss/articles/CBMiYkFVX3lxTE80bTZHWThyQ05mRFQwYnRaMmhhTkZFR1Y0c0I2amxOVFZSNW9sc2RPNWZmNFhJcFgtSTNDNTNhMDRTbmVfRTA5bXZYaHJUNG10NUVqUW9ZUS16MlZNN293dW1n?oc=5" rel="noopener nofollow">Clevermate visé par une fuite de données revendiquée - Fuites Infos</a> <span class="feed">Google Actualités : fuites FR</span></li>
+<li><a href="https://news.google.com/rss/articles/CBMiX0FVX3lxTFBjQmtOYXpWUm9CT2Y0cS1odjhjczMyYkZRQzNkd09Zb002ZmRVZEhPaXJFeF9hUGRZRW1hSkpaZDFVY2dOMGY3MXNCbHFVV1dTYktNM2plRHVkLWxLYUhn?oc=5" rel="noopener nofollow">Gotronic : fuite revendiquée de 328 190 adresses électroniques - Fuites Infos</a> <span class="feed">Google Actualités : fuites FR</span></li>
 </ul>
 </details>
 
@@ -211,66 +141,47 @@
 
 <details class="transcript">
 <summary>Transcription</summary>
-<p><strong>Camille</strong> <em>(relaxed, warm morning tone)</em> : Salut et bienvenue dans La veille, on est le samedi 21 novembre 2026. Au programme : plein de failles à patcher, des suites d&#39;histoires qu&#39;on suit, des fuites de données, et un petit hyperviseur en Rust pour finir.</p>
-<p><strong>Max</strong> <em>(relaxed, amused)</em> : Salut Camille. Oui, une journée chargée côté failles. Café en main, on attaque ?</p>
-<p><strong>Camille</strong> <em>(calm, explaining)</em> : Allez. Premier sujet : GitLab a sorti hier, le 20 novembre, un correctif critique hors calendrier. Versions 19.6.1, 19.5.8 et 19.4.10, pour CE et EE.</p>
-<p><strong>Max</strong> <em>(curious)</em> : Et la faille, c&#39;est quoi ? Parce que le titre parle de Ruby.</p>
-<p><strong>Camille</strong> <em>(calm, explaining)</em> : Exact. La CVE 2026 tiret 132825 est un débordement de tas dans la conversion de casse des chaînes de Ruby. Si tu changes la casse d&#39;une chaîne forgée, tu peux provoquer une écriture hors limites. L&#39;équipe sécurité de Ruby dit que l&#39;exécution de code à distance est possible dans certains scénarios.</p>
-<p><strong>Max</strong> <em>(thoughtful)</em> : Et la gravité, tout le monde est d&#39;accord ?</p>
-<p><strong>Camille</strong> <em>(matter-of-fact)</em> : Non. GitLab la classe Critique, alors que MITRE met High, avec un CVSS de 7,4. Le point important : GitLab.com et Dedicated sont déjà patchés, et les paquets Linux officiels et les images de conteneur embarquent un Ruby corrigé.</p>
-<p><strong>Max</strong> <em>(explaining)</em> : Donc le piège, c&#39;est ceux qui compilent depuis les sources. Là, mettre à jour GitLab ne suffit pas, il faut reconstruire Ruby en 3.3.14 ou 3.4.13, ou plus récent dans la même série. Perso, je ne traînerais pas.</p>
-<p><strong>Camille</strong> <em>(relaxed)</em> : Dans la même veine, GPGME. Werner Koch a annoncé vendredi une faille critique dans cette bibliothèque, GnuPG Made Easy.</p>
-<p><strong>Max</strong> <em>(surprised)</em> : GPGME, donc un truc qu&#39;on a partout sans le savoir.</p>
-<p><strong>Camille</strong> <em>(calm, explaining)</em> : Oui, clients de messagerie, la plupart des clients XMPP, Flatpak, Samba. Toutes les versions existantes sont touchées, même liées statiquement. Une clé OpenPGP avec un identifiant d&#39;utilisateur très long peut déclencher un double free.</p>
-<p><strong>Max</strong> <em>(curious)</em> : Je reformule : la mémoire est libérée deux fois ?</p>
-<p><strong>Camille</strong> <em>(explaining)</em> : Voilà. Deux fonctions internes réallouent un tampon initial de 1024 octets en lisant la sortie de gpg, mais le nouveau pointeur n&#39;est réaffecté au contexte qu&#39;à la fin. Si la fonction sort tôt, le contexte garde un pointeur périmé. Ça permet d&#39;extraire des données d&#39;applications, par exemple avec des données signées. Une exécution de code à distance n&#39;est pas exclue, mais pas confirmée.</p>
-<p><strong>Max</strong> <em>(relaxed)</em> : Le correctif, c&#39;est GPGME 2.3.1. Surveille ta distribution, redémarre les applis concernées, et reconstruis les binaires liés statiquement.</p>
-<p><strong>Camille</strong> <em>(serious but relaxed)</em> : Maintenant une suite. Tu te souviens de la faille vCenter du 20 novembre, la CVE 2026 tiret 123890 ? Google et Mandiant l&#39;attribuent à un groupe nommé Armory Castle, soupçonné d&#39;être lié à la Chine.</p>
-<p><strong>Max</strong> <em>(surprised)</em> : Et ils l&#39;exploitaient depuis quand ?</p>
-<p><strong>Camille</strong> <em>(calm, explaining)</em> : Début septembre 2026, en zero-day. C&#39;est une divulgation de clé de session SRP-6a non authentifiée via DCE/RPC, qui donne une session administrator@vsphere.local. Ensuite l&#39;outil BONESAW, en Golang, exfiltre la base LMDB, détourne le service de jetons SAML et crée un compte SSO administrateur.</p>
-<p><strong>Max</strong> <em>(impressed)</em> : Costaud. Et en amont ?</p>
-<p><strong>Camille</strong> <em>(explaining)</em> : Ils ont aussi exploité un zero-day BeyondTrust Remote Support pour l&#39;accès initial, puis ils sont passés sur une appliance Linux interne. Six familles de malwares, dont SAWSNAKE, qui permet des Golden SAML et le contournement du MFA.</p>
-<p><strong>Max</strong> <em>(serious)</em> : Donc patcher ne suffit pas. Les correctifs du 19 novembre : 9.1.1.0200, 9.0.2.0200, 8.0 U3m et Cloud Foundation 5.2.5. Pour vCenter 7.0, support Broadcom si tu as le support étendu. Après, tu cherches : comptes SSO inconnus, accès au port 2012, fichiers vmdird. Et tu renouvelles les certificats de signature SAML, parce qu&#39;un Golden SAML survit au correctif.</p>
-<p><strong>Camille</strong> <em>(relaxed)</em> : Autre faille exploitée : Cisco Expressway, la CVE 2026 tiret 76466, CVSS 9,8. La société russe F6 rapporte le premier cas d&#39;exploitation dans la nature, peu après la publication d&#39;un PoC.</p>
-<p><strong>Max</strong> <em>(curious)</em> : Ça permet quoi, concrètement ?</p>
-<p><strong>Camille</strong> <em>(calm, explaining)</em> : Un attaquant distant non authentifié exécute des commandes en root. Cisco parle de cookies persistants et d&#39;une validation insuffisante des certificats clients quand le mode TLS Verify est activé pour le clustering. Correctifs publiés le 21 octobre : X15.5.20 pour la branche X15.5.3 et antérieures, et migration vers une version corrigée pour X14 et antérieures.</p>
-<p><strong>Max</strong> <em>(explaining)</em> : Et l&#39;attaque observée ?</p>
-<p><strong>Camille</strong> <em>(calm)</em> : Deux équipements exposés compromis, puis deux nœuds du cluster en interne. Ensuite scan avec des scripts Python, requêtes SMB, SQL Server et WinRM, et accès à des dépôts GitLab pour voler des identifiants.</p>
-<p><strong>Max</strong> <em>(amused)</em> : Et les scripts semblent écrits avec l&#39;aide d&#39;une IA. Aucun acteur attribué. La CISA l&#39;a mise au catalogue KEV. F6 publie des indicateurs, dont wombat arobase 127.0.0.1 dans erlang.log. Moi, la leçon, c&#39;est de segmenter les équipements de périmètre.</p>
-<p><strong>Camille</strong> <em>(relaxed)</em> : Dernière faille : KVM sur AMD, la CVE 2026 tiret 99312. Oren Yomtov, de Terra Security, a lu environ 127 Go de la mémoire de l&#39;hôte depuis sa VM sur un serveur DigitalOcean.</p>
-<p><strong>Max</strong> <em>(surprised)</em> : Attends, sérieux ? Un invité qui lit la mémoire de l&#39;hôte ?</p>
-<p><strong>Camille</strong> <em>(explaining)</em> : Oui, mais seulement sur des hôtes AMD avec virtualisation imbriquée activée, et il faut être root dans la VM invitée. Sur son bare metal AMD, un invité a aussi écrit 32 octets dans la mémoire du noyau hôte. Le défaut, c&#39;est un pointeur laissé sur de la mémoire libérée : à l&#39;arrêt d&#39;une VM imbriquée par un signal INIT, KVM ne restaure pas le pointeur de table de pages.</p>
-<p><strong>Max</strong> <em>(thoughtful)</em> : Le correctif est dans les noyaux stables 7.3.5, 6.18.64 et 6.12.118, mais la plupart des noyaux de distribution ne l&#39;ont pas encore. Si tu gères tes hôtes, mets à jour le noyau hôte et redémarre, ou coupe la virtualisation imbriquée. Mettre à jour les invités ne change rien.</p>
-<p><strong>Camille</strong> <em>(curious)</em> : Et la gravité ?</p>
-<p><strong>Max</strong> <em>(amused)</em> : Ça divise : 8,8 pour l&#39;équipe CVE du noyau, 5,6 et Moderate pour Red Hat. Aucune exploitation hors recherche signalée. Le défaut vient d&#39;un correctif de 2022, la CVE 2022 tiret 3344. Ironique.</p>
-<p><strong>Camille</strong> <em>(relaxed)</em> : Passons aux incidents. N-able, suite de l&#39;histoire de N-central de la mi-novembre. La perturbation de Mail Assure et SpamExperts, commencée le 16 novembre, vient d&#39;une cyberattaque.</p>
-<p><strong>Max</strong> <em>(curious)</em> : Ils parlaient d&#39;abord de configuration, non ?</p>
-<p><strong>Camille</strong> <em>(calm, explaining)</em> : Oui, une combinaison de configuration de plateforme et de dépendances de service. Le 18 novembre, ils ont confirmé un accès non autorisé à un serveur web, où l&#39;attaquant a pu accéder à certains identifiants stockés. Le flux de courriels et le filtrage n&#39;ont pas été touchés.</p>
-<p><strong>Max</strong> <em>(explaining)</em> : Ils ont mis le serveur hors ligne, fait tourner les identifiants internes, révoqué les jetons d&#39;API clients et OAuth, et réinitialisé les mots de passe des utilisateurs locaux. Aucune preuve de compromission de données clients, et ils disent que c&#39;est sans lien avec N-central. Mais côté client, tes intégrations échouent tant que tu ne recrées pas de jetons.</p>
-<p><strong>Camille</strong> <em>(relaxed)</em> : Autre suite : le groupe n0n, qu&#39;on avait vu avec Expedia. JPMorgan Chase, Visa et Mastercard ont reconnu des incidents chez des prestataires.</p>
-<p><strong>Max</strong> <em>(curious)</em> : Qu&#39;est-ce qui a fuité ?</p>
-<p><strong>Camille</strong> <em>(calm, explaining)</em> : Chez JPMorgan, des données marketing, noms et adresses e-mail, selon Reuters plus de 16 000 e-mails de clients. Visa évoque un prestataire en Asie-Pacifique, sans carte bancaire touchée. Mastercard, des adresses e-mail d&#39;un petit sous-ensemble de titulaires inscrits à un programme d&#39;avantages.</p>
-<p><strong>Max</strong> <em>(explaining)</em> : Selon BleepingComputer, n0n a revendiqué le 11 novembre une attaque contre Qubole, soupçonné d&#39;être le prestataire commun. Le groupe dit avoir utilisé des identifiants Qubole compromis du 14 au 26 octobre pour atteindre des environnements AWS clients via des rôles IAM, et volé 53,9 Go. Qubole n&#39;a pas répondu.</p>
-<p><strong>Camille</strong> <em>(thoughtful)</em> : Donc si tu donnes un accès cross-account à un outil tiers, audite ces rôles, limite les permissions, surveille l&#39;usage. ZATAZ recense aussi 179 fiches Leaked sur le site de n0n.</p>
-<p><strong>Max</strong> <em>(relaxed)</em> : Autre fuite : Have I Been Pwned ajoute Too Lost, un distributeur musical pour artistes indépendants. En novembre 2026, une partie non autorisée a affirmé détenir ses données : 724 000 adresses e-mail uniques, d&#39;artistes, de collaborateurs et de fans.</p>
-<p><strong>Camille</strong> <em>(concerned)</em> : Et il y a pire pour certains ?</p>
-<p><strong>Max</strong> <em>(calm, explaining)</em> : Certains enregistrements ont des hachages bcrypt. Un petit sous-ensemble a des données partielles de carte, les quatre derniers chiffres et le type, des infos de vérification d&#39;identité, passeport, permis ou carte d&#39;identité dans certains cas, et les paiements versés aux artistes. Too Lost a mandaté des experts en forensique et prépare la communication aux personnes concernées.</p>
-<p><strong>Camille</strong> <em>(relaxed)</em> : Si t&#39;as un compte, change le mot de passe et ceux réutilisés ailleurs, et méfie-toi de l&#39;hameçonnage ciblé. Bcrypt, c&#39;est lent à casser, mais pas inviolable avec un mot de passe faible.</p>
-<p><strong>Max</strong> <em>(serious)</em> : Dernière fuite, en France : selon ZATAZ, un vendeur anonyme a publié les 18 et 19 novembre deux annonces pour des fichiers qu&#39;il attribue à France Travail.</p>
-<p><strong>Camille</strong> <em>(calm, explaining)</em> : Le premier revendique 1 551 344 lignes, avec état civil, adresse, e-mail, téléphone, statut de demandeur d&#39;emploi et numéro de sécurité sociale. Le second, 2 604 886 lignes, avec contacts et identifiant national. Au total 4 156 230 lignes, mais on ignore combien de personnes distinctes.</p>
-<p><strong>Max</strong> <em>(cautious)</em> : Attention, c&#39;est une revendication non vérifiée, sans confirmation de France Travail. Le champ d&#39;inscription du premier extrait correspond au 30 octobre 2025, la date d&#39;extraction et la provenance restent inconnues.</p>
-<p><strong>Camille</strong> <em>(thoughtful)</em> : ZATAZ rappelle les incidents passés : une intrusion rendue publique le 13 mars 2024 pour 43 millions de personnes, et une amende CNIL de 5 millions d&#39;euros en janvier 2026. Il évoque une piste liée à une fuite de 2025. Donc vigilance sur les appels et mails usurpant l&#39;organisme, et c&#39;est un rappel que les anciennes fuites recirculent.</p>
-<p><strong>Max</strong> <em>(relaxed, upbeat)</em> : Pour finir sur du positif : Cloud Hypervisor 55.0 est sorti jeudi. C&#39;est un moniteur de VM écrit en Rust, orienté cloud et sécurité.</p>
-<p><strong>Camille</strong> <em>(curious)</em> : Quoi de neuf dedans ?</p>
-<p><strong>Max</strong> <em>(explaining)</em> : La virtualisation imbriquée AArch64 pour les processeurs ARM avec FEAT_NV2, sur les noyaux compatibles. Snapshot, restore et migration à chaud ne marchent pas encore dans ce cas. La limite de vCPU AArch64 avec KVM passe de 255 à 990.</p>
-<p><strong>Camille</strong> <em>(amused)</em> : 990 vCPU, ça fait de la place. Et le reste ?</p>
-<p><strong>Max</strong> <em>(relaxed)</em> : Des correctifs, du durcissement, du DMA pair à pair VFIO avec DMA-BUF, le branchement à chaud de CPU pour les invités AMD SEV-SNP sur KVM, de la migration à chaud et des optimisations. Selon Phoronix, la plupart des contributeurs viennent de Meta, Cloudflare, Google, Cyberus Tech et Microsoft. Vérifie les limites avant la prod.</p>
-<p><strong>Camille</strong> <em>(warm)</em> : Voilà pour aujourd&#39;hui. Bon samedi, et patche ce qui doit l&#39;être.</p>
-<p><strong>Max</strong> <em>(relaxed, warm)</em> : À demain !</p>
+<p><strong>Camille</strong> <em>(relaxed, warm morning tone)</em> : Salut et bienvenue dans La veille. On est le dimanche 22 novembre 2026. Au programme : deux intrusions dans le cloud, des agents IA qui trouvent un zero-day, Ghostscript, le FBI, et des fuites en France.</p>
+<p><strong>Max</strong> <em>(relaxed, friendly)</em> : Salut Camille. Un dimanche matin avec des Secrets Kubernetes qui fuitent, ça commence bien. Allez, on attaque.</p>
+<p><strong>Camille</strong> <em>(calm, explaining)</em> : Oui, Rackspace Spot. Rackspace a prévenu des clients que son offre Kubernetes a été compromise le 17 novembre, entre environ 0 h 20 et 22 h 00 UTC, avec des identifiants fuités.</p>
+<p><strong>Max</strong> <em>(curious)</em> : Et ils l&#39;ont su comment ? Une alerte interne ?</p>
+<p><strong>Camille</strong> <em>(calm)</em> : Non, justement : le 18 novembre, grâce à un signalement client. Dans certaines organisations, les attaquants pouvaient agir comme des utilisateurs légitimes : créer des pods, lire les Secrets Kubernetes, lister nœuds et volumes. Ils pouvaient aussi lire les jetons d&#39;API et de rafraîchissement Spot.</p>
+<p><strong>Max</strong> <em>(concerned)</em> : Aïe. Lire les Secrets, perso c&#39;est le pire : un Secret lisible, c&#39;est un accès aux systèmes en aval. Rackspace dit avoir révoqué jetons et sessions, supprimé les pods non autorisés et fait tourner les clés.</p>
+<p><strong>Camille</strong> <em>(explaining)</em> : Oui. Ils donnent des indicateurs : l&#39;IP 23.224.79.106, la plage 23.224.0.0/15, et des préfixes de pods et d&#39;objets : i1, glm- et probe. Par contre, pas de réponse sur le nombre de clients touchés ni sur un vol de données. Et la console d&#39;admin est restée indisponible longtemps ; service pleinement rétabli annoncé le 21.</p>
+<p><strong>Max</strong> <em>(practical)</em> : Si t&#39;es client : tu réémets les jetons d&#39;API, tu remplaces les jetons de rafraîchissement des automatisations, nouveaux kubeconfig, et tu fais tourner tout ce qu&#39;il y a dans les Secrets. Puis tu regardes les journaux des bases, registres, dépôts Git et stockages depuis le 17.</p>
+<p><strong>Camille</strong> <em>(transition, relaxed)</em> : Autre intrusion cloud, côté Microsoft. Une vulnérabilité de l&#39;API Entra Connect Health, introduite le 23 juillet et découverte le 9 novembre, a été exploitée.</p>
+<p><strong>Max</strong> <em>(curious)</em> : Ils ont perdu quoi ?</p>
+<p><strong>Camille</strong> <em>(calm, explaining)</em> : Un accès en lecture seule à des métadonnées de tenant : adresses e-mail des contacts techniques et des admins, identifiants de tenant, noms, domaines initiaux, codes pays, niveaux de licence, état de la synchro d&#39;annuaire, et un certificat expiré. Microsoft dit n&#39;avoir vu ni modification de config, ni mots de passe, hachages, jetons, ou abonnements Azure exposés.</p>
+<p><strong>Max</strong> <em>(thoughtful)</em> : Donc pas dramatique en soi, mais des adresses d&#39;admins, c&#39;est un joli carnet pour du phishing ciblé. Et on ne sait ni combien d&#39;organisations, ni qui, ni depuis quand.</p>
+<p><strong>Camille</strong> <em>(explaining)</em> : Exact. Correctif côté serveur le 19 novembre, enquête terminée le 20. Rien à mettre à jour chez toi, mais prévenir les équipes, imposer une MFA résistante au phishing aux comptes privilégiés, vérifier la config Connect Health et relire les journaux Entra.</p>
+<p><strong>Max</strong> <em>(transition, intrigued)</em> : Bon, ensuite un truc qui me fait un peu froid dans le dos : Amazon Threat Intelligence rapporte que des pirates soupçonnés d&#39;être liés à la Chine ont utilisé des agents IA autonomes pour trouver un zero-day.</p>
+<p><strong>Camille</strong> <em>(surprised)</em> : Attends, vraiment trouvé, pas juste exploité ?</p>
+<p><strong>Max</strong> <em>(explaining)</em> : Trouvé. Dans MONAI Label, un serveur open source d&#39;annotation d&#39;imagerie médicale. C&#39;est une traversée de chemin : on écrit des fichiers hors du dossier de stockage, sans compte. Versions 0.8.5 et antérieures, et la config par défaut n&#39;active aucune authentification.</p>
+<p><strong>Camille</strong> <em>(amazed)</em> : Et c&#39;est allé vite ?</p>
+<p><strong>Max</strong> <em>(impressed)</em> : En septembre, en environ 48 heures, les agents ont atteint l&#39;écriture de fichiers en 11 minutes environ. Une autre session : ils déposent un fichier exécuté au démarrage de Python, puis déclenchent une fonction d&#39;entraînement et obtiennent un shell root. Sur un serveur universitaire. Une seconde université a probablement été visée.</p>
+<p><strong>Camille</strong> <em>(concerned)</em> : Et côté correctif ?</p>
+<p><strong>Max</strong> <em>(calm)</em> : Les mainteneurs ont fusionné un correctif le 19 octobre, mais aucune version corrigée n&#39;existe. C&#39;est la CVE 2026 tiret 133968, notée 9.8. Donc : pare-feu, authentification, compte limité, dossiers d&#39;écriture restreints, et si tu compiles depuis les sources, vérifie que le correctif d&#39;octobre est dedans. Cherche aussi des fichiers de démarrage Python inattendus.</p>
+<p><strong>Camille</strong> <em>(reflective)</em> : Moi ce qui me marque, c&#39;est l&#39;automatisation de la recherche de failles. Ça va changer le rythme.</p>
+<p><strong>Max</strong> <em>(transition)</em> : Et on reste dans les failles avec Ghostscript.</p>
+<p><strong>Camille</strong> <em>(explaining)</em> : Oui, Upload2Shell, la CVE 2026 tiret 125396. Un use-after-free dans le chargeur de polices Type 1. Ça donne une écriture arbitraire en mémoire, qui permet d&#39;altérer l&#39;état qui applique le bac à sable dash dSAFER, et d&#39;exécuter des commandes avec les droits du processus de rendu.</p>
+<p><strong>Max</strong> <em>(naive question, curious)</em> : Mais il faut quand même que l&#39;appli appelle Ghostscript, non ?</p>
+<p><strong>Camille</strong> <em>(explaining)</em> : Pas explicitement. Presque toutes les applications testées avec envoi de fichiers pouvaient lui passer un fichier à l&#39;extension de confiance : un fichier nommé pdf qui contient du PostScript, par exemple. Pillow avec load et crop sur du contenu EPS, imageio, Imagick readImage en PHP, libvips thumbnail selon la compilation, Qt avec le plugin KImageFormats.</p>
+<p><strong>Max</strong> <em>(relaxed, reassured)</em> : Et Image.open tout seul ne suffit pas, c&#39;est une nuance utile. Donc si tu fais des miniatures ou des pipelines d&#39;IA sur des uploads, tu es concerné. Mise à jour dès que ta distribution sort un correctif, et on restreint ou désactive les délégués PostScript et EPS d&#39;ImageMagick.</p>
+<p><strong>Camille</strong> <em>(calm)</em> : Les chercheurs ont signalé plusieurs bugs à Artifex, certains encore en cours de correction. Tests sur Ubuntu 24.04.</p>
+<p><strong>Max</strong> <em>(transition, serious)</em> : Passons aux États-Unis : le FBI enquête sur un piratage apparent du NCIC, la base nationale d&#39;informations judiciaires.</p>
+<p><strong>Camille</strong> <em>(explaining)</em> : Une base accessible aux forces de l&#39;ordre locales, d&#39;État et fédérales : fugitifs, personnes disparues, casiers, biens volés. Révélé d&#39;abord par CNN, confirmé samedi à l&#39;Associated Press par une source anonyme. Le FBI refuse de commenter, l&#39;ampleur est inconnue.</p>
+<p><strong>Max</strong> <em>(thoughtful)</em> : Trump a dit sur Fox News que « ce n&#39;est pas bon ». Et il y a des pannes numériques côté administration et privé aux US, mais les responsables parlent de mises à jour de routine.</p>
+<p><strong>Camille</strong> <em>(calm)</em> : Rien n&#39;indique de lien pour l&#39;instant. Pas d&#39;action technique connue, mais une base partagée par plein d&#39;agences, c&#39;est une cible à fort effet de levier. À suivre.</p>
+<p><strong>Max</strong> <em>(relaxed, transition)</em> : Pour finir, les fuites revendiquées en France le 21 novembre, par Fuites Infos et FrenchBreaches. On n&#39;a que les titres, donc prudence.</p>
+<p><strong>Camille</strong> <em>(explaining)</em> : La Maison des Travaux : environ 2 millions de lignes revendiquées selon Fuites Infos, centaines de milliers de clients selon FrenchBreaches. Robot Advance : près de 193 000 adresses e-mail revendiquées, près de 200 000 clients potentiels selon l&#39;autre site.</p>
+<p><strong>Max</strong> <em>(explaining)</em> : Clevermate : des données d&#39;étudiants et de professeurs divulguées selon FrenchBreaches. Et Gotronic : 328 190 adresses électroniques revendiquées.</p>
+<p><strong>Camille</strong> <em>(calm, practical)</em> : Rien n&#39;est confirmé par les entreprises dans les articles, et on ne connaît pas les types de données. Si tu as un compte chez eux, change le mot de passe s&#39;il est réutilisé, et méfie-vous du phishing qui citerait ces services.</p>
+<p><strong>Max</strong> <em>(amused, relaxed)</em> : Le rappel habituel : un mot de passe unique par service. Voilà pour aujourd&#39;hui.</p>
+<p><strong>Camille</strong> <em>(warm, closing)</em> : Bon dimanche à tous, prenez un bon café, et à demain pour La veille.</p>
 </details>
 
 <nav class="nav" aria-label="Navigation entre les jours">
-<a class="prev" href="jours/2026-11-20/">← 20 novembre</a>
+<a class="prev" href="jours/2026-11-21/">← 21 novembre</a>
 <a href="archives/">Archives</a>
 
 </nav>

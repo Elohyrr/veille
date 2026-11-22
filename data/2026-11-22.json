@@ -1,0 +1,367 @@
+{
+  "date": "2026-11-22",
+  "published_at": "2026-11-22T06:05:39Z",
+  "intro": "Journée centrée sur le cloud et Kubernetes : Rackspace Spot et Microsoft Entra Connect Health reconnaissent des intrusions. Côté failles, des agents IA servent à trouver un zero-day, et Ghostscript expose un risque sur les uploads d'images.",
+  "topics": [
+    {
+      "id": "2026-11-22/rackspace-spot-secrets-kubernetes",
+      "slug": "rackspace-spot-secrets-kubernetes",
+      "theme": "breach",
+      "title": "Rackspace Spot : des identifiants fuités ont donné accès aux Secrets Kubernetes de clients",
+      "summary": "Rackspace a prévenu des clients que son offre Kubernetes Rackspace Spot a été compromise le 17 novembre 2026, entre environ 00 h 20 et 22 h 00 UTC, avec des identifiants fuités. Rackspace dit l'avoir appris le 18 novembre grâce à un signalement client. Dans certaines organisations, les attaquants pouvaient agir comme des utilisateurs légitimes : créer des pods, lire les Secrets Kubernetes, lister nœuds et volumes. Ils pouvaient aussi lire les jetons d'API et de rafraîchissement Spot de l'utilisateur. Rackspace affirme avoir révoqué jetons et sessions, supprimé les pods non autorisés, fait tourner les clés et renforcé contrôles et supervision. Indicateurs fournis : l'IP 23.224.79.106, la plage 23.224.0.0/15 et les préfixes de pods et objets i1, glm- et probe. BleepingComputer n'a pas obtenu de réponse sur le nombre de clients touchés ni sur un éventuel vol de données. La console d'administration est restée indisponible longtemps ; Rackspace a annoncé le 21 novembre un service pleinement rétabli.",
+      "why_it_matters": "Si vous utilisez Rackspace Spot, réémettez les jetons d'API, remplacez les jetons de rafraîchissement des automatisations, récupérez de nouveaux kubeconfig et faites tourner tous les identifiants stockés dans les Secrets. Examinez les journaux des bases, registres, dépôts Git et stockages depuis le 17 novembre. Un Secret lisible équivaut à un accès aux systèmes en aval.",
+      "sources": [
+        {
+          "article_id": "c017",
+          "feed": "BleepingComputer",
+          "title": "Rackspace Spot breach let hackers access customer Kubernetes secrets",
+          "url": "https://www.bleepingcomputer.com/news/security/rackspace-spot-breach-let-hackers-access-customer-kubernetes-secrets/",
+          "key": "link:https://bleepingcomputer.com/news/security/rackspace-spot-breach-let-hackers-access-customer-kubernetes-secrets"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-22/microsoft-entra-connect-health-fuite-metadonnees",
+      "slug": "microsoft-entra-connect-health-fuite-metadonnees",
+      "theme": "breach",
+      "title": "Microsoft Entra Connect Health : une faille d'API exploitée expose des métadonnées de tenants",
+      "summary": "Microsoft prévient des organisations qu'une vulnérabilité de l'API Entra Connect Health, introduite le 23 juillet et découverte le 9 novembre 2026, a été exploitée. Selon la notification, un accès en lecture seule à des métadonnées de niveau tenant a eu lieu : adresses e-mail des contacts techniques et des administrateurs, identifiants de tenant, noms, domaines initiaux, codes pays, niveaux de licence Entra, état de la synchronisation d'annuaire, état d'intégration de Connect Health et un certificat expiré. Microsoft dit n'avoir identifié aucune modification de configuration, ni exposition de mots de passe, hachages, jetons, clés valides, topologie Active Directory ou abonnements Azure. Un correctif côté serveur a été déployé le 19 novembre ; l'enquête s'est terminée le 20. Microsoft ne dit ni combien d'organisations sont touchées, ni qui est l'auteur, ni quand les attaques ont commencé. Plusieurs administrateurs et MSP ont signalé avoir reçu l'avis.",
+      "why_it_matters": "Aucune mise à jour n'est requise côté client. Prévenez vos équipes d'un risque de phishing ciblé visant les adresses d'administrateurs, imposez une MFA résistante au phishing aux comptes privilégiés, vérifiez la configuration Connect Health et relisez les journaux d'audit et de connexion Entra. Surveillez Azure Service Health.",
+      "sources": [
+        {
+          "article_id": "c030",
+          "feed": "BleepingComputer",
+          "title": "Microsoft Entra Connect Health flaw exploited to steal tenant data",
+          "url": "https://www.bleepingcomputer.com/news/security/microsoft-entra-connect-health-flaw-exploited-to-steal-tenant-data/",
+          "key": "link:https://bleepingcomputer.com/news/security/microsoft-entra-connect-health-flaw-exploited-to-steal-tenant-data"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-22/monai-label-zero-day-agents-ia",
+      "slug": "monai-label-zero-day-agents-ia",
+      "theme": "breach",
+      "title": "MONAI Label : des agents IA trouvent un zero-day et obtiennent root, sans version corrigée",
+      "summary": "Amazon Threat Intelligence rapporte que des pirates soupçonnés d'être liés à la Chine ont utilisé des agents IA autonomes pour trouver une faille inconnue dans MONAI Label, serveur open source d'annotation d'imagerie médicale, et obtenir root sur un serveur universitaire. C'est une traversée de chemin permettant d'écrire des fichiers hors du dossier de stockage sans compte ; elle touche les versions 0.8.5 et antérieures, dont la configuration par défaut n'active aucune authentification. En septembre, en environ 48 heures, les agents ont atteint l'écriture de fichiers en 11 minutes environ. Lors d'une autre session, ils ont déposé un fichier exécuté au démarrage de Python, puis déclenché une fonction d'entraînement pour obtenir un shell root. Une seconde université a probablement été visée, sans confirmation. Les mainteneurs ont fusionné un correctif le 19 octobre, mais aucune version corrigée n'existe. La faille est suivie sous CVE-2026-133968, notée 9.8.",
+      "why_it_matters": "Aucune version à installer : isolez les serveurs MONAI Label par pare-feu, activez l'authentification, exécutez le service avec un compte limité et des dossiers d'écriture restreints. Vérifiez qu'une compilation depuis les sources inclut le correctif d'octobre, et cherchez des fichiers de démarrage Python inattendus. Le cas illustre aussi des agents IA qui automatisent la recherche de failles.",
+      "sources": [
+        {
+          "article_id": "c074",
+          "feed": "The Hacker News",
+          "title": "Attackers' AI Agents Found a Zero-Day in Medical-Imaging Software and Gained Root Access",
+          "url": "https://thehackernews.com/2026/11/attackers-ai-agents-found-zero-day-in.html",
+          "key": "link:https://thehackernews.com/2026/11/attackers-ai-agents-found-zero-day-in.html"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-22/ghostscript-upload2shell-cve-2026-125396",
+      "slug": "ghostscript-upload2shell-cve-2026-125396",
+      "theme": "breach",
+      "title": "Ghostscript : Upload2Shell (CVE-2026-125396) contourne -dSAFER via le chargeur de polices Type 1",
+      "summary": "Des chercheurs détaillent Upload2Shell, désormais suivie sous CVE-2026-125396 : un use-after-free dans le chargeur de polices Type 1 de Ghostscript. Il donne une primitive d'écriture arbitraire en mémoire, permettant d'altérer l'état qui applique le bac à sable -dSAFER et d'exécuter des commandes avec les droits du processus de rendu. Presque toutes les applications testées avec envoi de fichiers pouvaient transmettre à Ghostscript un fichier à l'extension de confiance : un fichier nommé .pdf contenait du PostScript, par exemple. Les appels courants d'images atteignent l'interpréteur : Pillow load() et crop() avec du contenu EPS, imageio, PHP Imagick::readImage(), libvips thumbnail() selon la compilation, Qt avec le plugin KImageFormats. Image.open() seul ne suffit pas. Les chercheurs ont signalé plusieurs bugs à Artifex ; certains sont encore en cours de correction. Les tests ont eu lieu sur Ubuntu 24.04.",
+      "why_it_matters": "Si vos applications traitent des images envoyées par des utilisateurs (miniatures, aperçus, pipelines d'IA), Ghostscript peut être atteint même sans appel explicite à gs. Mettez à jour Ghostscript dès qu'un correctif est disponible chez votre distribution et restreignez ou désactivez les délégués PostScript et EPS d'ImageMagick.",
+      "sources": [
+        {
+          "article_id": "c011",
+          "feed": "Lobsters",
+          "title": "GhostScript CVE 2026-125396: \"Upload2Shell\"",
+          "url": "https://pwn.ai/upload2shell/research.html",
+          "key": "link:https://pwn.ai/upload2shell/research.html"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-22/fbi-ncic-piratage-apparent",
+      "slug": "fbi-ncic-piratage-apparent",
+      "theme": "breach",
+      "title": "FBI : enquête sur un piratage apparent de la base nationale NCIC",
+      "summary": "Le FBI enquête sur un piratage apparent du National Crime Information Center (NCIC), la base nationale d'informations judiciaires qu'il maintient. Elle est accessible aux forces de l'ordre locales, d'État et fédérales et contient des fugitifs, des personnes disparues, des casiers et des biens volés. L'information, d'abord publiée par CNN, a été confirmée à l'Associated Press samedi par une source anonyme. Le FBI a refusé de commenter et l'ampleur du problème n'est pas connue. Donald Trump a déclaré sur Fox News que « ce n'est pas bon ». L'incident survient alors que des pannes numériques touchent l'administration et le privé aux États-Unis, que des responsables attribuent à des mises à jour de routine plutôt qu'à une cyberattaque ; rien n'indique pour l'instant de lien.",
+      "why_it_matters": "Aucune action technique n'est connue à ce stade. Le sujet compte comme signal : une base partagée par de nombreuses agences est une cible à fort effet de levier. Les détails (accès initial, données consultées) sont à suivre dans les prochains jours.",
+      "sources": [
+        {
+          "article_id": "c010",
+          "feed": "SecurityWeek",
+          "title": "FBI Investigating Apparent Hack of Its Key National Criminal Justice Database, AP Source Says",
+          "url": "https://www.securityweek.com/fbi-investigating-apparent-hack-of-its-key-national-criminal-justice-database-ap-source-says/",
+          "key": "link:https://securityweek.com/fbi-investigating-apparent-hack-of-its-key-national-criminal-justice-database-ap-source-says"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-22/fuites-revendiquees-france-21-novembre",
+      "slug": "fuites-revendiquees-france-21-novembre",
+      "theme": "leak",
+      "title": "Fuites revendiquées en France : Maison des Travaux, Robot Advance, Clevermate, Gotronic",
+      "summary": "Plusieurs fuites de données visant des entreprises françaises ont été signalées le 21 novembre par les sites Fuites Infos et FrenchBreaches. Nous n'avons que les titres. La Maison des Travaux : Fuites Infos parle d'environ 2 millions de lignes revendiquées, FrenchBreaches de centaines de milliers de clients concernés. Robot Advance : près de 193 000 adresses e-mail revendiquées selon Fuites Infos, près de 200 000 clients potentiellement concernés selon FrenchBreaches. Clevermate : FrenchBreaches évoque des données d'étudiants et de professeurs divulguées, Fuites Infos une fuite revendiquée. Gotronic : 328 190 adresses électroniques revendiquées selon Fuites Infos. Ce sont des revendications, que les entreprises n'ont pas confirmées dans les articles fournis, et les types de données exactes ne sont pas précisés.",
+      "why_it_matters": "Ces annonces restent à confirmer. Si vous avez un compte chez l'une de ces sociétés, changez le mot de passe s'il est réutilisé ailleurs et méfiez-vous des e-mails de phishing qui citeraient ces services. Pour les équipes, c'est un rappel de l'intérêt de mots de passe uniques.",
+      "sources": [
+        {
+          "article_id": "c039",
+          "feed": "Google Actualités : fuites FR",
+          "title": "La Maison des Travaux : fuite revendiquée d'environ 2 millions de lignes - Fuites Infos",
+          "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE5zTk5reTdMT2RnWm5zMVpxWmlWNFoybXZBamxEakV5c29yVWtDMDlweldwTElEbjAzeVBjM1BiZEFHbTA4ZnNPRWtodW1hWHJFVUI0TTh2RDlfcXozclV3UmNCdVpVblQ2QnZrTTFwaFE?oc=5",
+          "key": "link:https://news.google.com/rss/articles/CBMicEFVX3lxTE5zTk5reTdMT2RnWm5zMVpxWmlWNFoybXZBamxEakV5c29yVWtDMDlweldwTElEbjAzeVBjM1BiZEFHbTA4ZnNPRWtodW1hWHJFVUI0TTh2RDlfcXozclV3UmNCdVpVblQ2QnZrTTFwaFE?oc=5"
+        },
+        {
+          "article_id": "c050",
+          "feed": "Google Actualités : fuites FR",
+          "title": "La Maison des Travaux visée par une fuite de données, des centaines de milliers de clients concernés - FrenchBreaches",
+          "url": "https://news.google.com/rss/articles/CBMiS0FVX3lxTFByd3lyMkV2OXV4N0l4dFdoc1dSeXhTLUdTbXdpS0hrXzRzSEVZV19IOElMMFp0dVMyQk9JREVwc0pwQ2dUcnNRbWswNA?oc=5",
+          "key": "link:https://news.google.com/rss/articles/CBMiS0FVX3lxTFByd3lyMkV2OXV4N0l4dFdoc1dSeXhTLUdTbXdpS0hrXzRzSEVZV19IOElMMFp0dVMyQk9JREVwc0pwQ2dUcnNRbWswNA?oc=5"
+        },
+        {
+          "article_id": "c041",
+          "feed": "Google Actualités : fuites FR",
+          "title": "Robot Advance : fuite revendiquée de près de 193 000 adresses e-mail - Fuites Infos",
+          "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE51cjkwaGRZNkJ0NW13N3YzaXpyZFhiVmp4c2ZXRzlnMDFmZ1NvdWlFa3pmQkRwd21rZ0JySXo0RTVaV010R01EVmVpQTZlNnBUWGtZNTF4NGItcWFwTVFUUjZ2OElJQQ?oc=5",
+          "key": "link:https://news.google.com/rss/articles/CBMiZkFVX3lxTE51cjkwaGRZNkJ0NW13N3YzaXpyZFhiVmp4c2ZXRzlnMDFmZ1NvdWlFa3pmQkRwd21rZ0JySXo0RTVaV010R01EVmVpQTZlNnBUWGtZNTF4NGItcWFwTVFUUjZ2OElJQQ?oc=5"
+        },
+        {
+          "article_id": "c049",
+          "feed": "Google Actualités : fuites FR",
+          "title": "Robot Advance visé par un piratage, près de 200 000 clients pourraient être concernés - FrenchBreaches",
+          "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPX3VjTmp5NlFpeHVRaGt4SEVfRkZCRUxPcElWWThLVm13RzFsaHMtYWpKV1JYZ2kwWm4wcjhTbE9RQXdtQzA0ZzNheWRhQ0hWZnJoQVBfaFFQa29BNmhSUTN2ckhqc011S1d2ZXZfd2VaeFpWTklwUlpzdFdsLVZMY0RKN01NRVZLSGFFck9Tb3NTWkdWcjF4U2V2aTQ1T19RZjQxclM2ZURFTWlPZnEzV0Z2bw?oc=5",
+          "key": "link:https://news.google.com/rss/articles/CBMiswFBVV95cUxPX3VjTmp5NlFpeHVRaGt4SEVfRkZCRUxPcElWWThLVm13RzFsaHMtYWpKV1JYZ2kwWm4wcjhTbE9RQXdtQzA0ZzNheWRhQ0hWZnJoQVBfaFFQa29BNmhSUTN2ckhqc011S1d2ZXZfd2VaeFpWTklwUlpzdFdsLVZMY0RKN01NRVZLSGFFck9Tb3NTWkdWcjF4U2V2aTQ1T19RZjQxclM2ZURFTWlPZnEzV0Z2bw?oc=5"
+        },
+        {
+          "article_id": "c054",
+          "feed": "Google Actualités : fuites FR",
+          "title": "Clevermate visé par un piratage, les données d'étudiants et de professeurs divulguées - FrenchBreaches",
+          "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxPZU1KSFB0UUlYQm10WkdZb3hIcEhWQVdhaFVhSlFDSHZWeWg0eEZxQ2lYLVMzMnJnRzBoOTJuajZRY05DbVVLQno0T3JOWjMtV1dTYU5iMXJ2aWdkOGJsNDVMUTRUVXU4d3hQREktQkJVR0c5ejhqbmlFTHdTaG5fY3B2cXBpUGs0WXJzcWFHeTRvY295a3pSSXBlYVgxeTZrQ204?oc=5",
+          "key": "link:https://news.google.com/rss/articles/CBMiowFBVV95cUxPZU1KSFB0UUlYQm10WkdZb3hIcEhWQVdhaFVhSlFDSHZWeWg0eEZxQ2lYLVMzMnJnRzBoOTJuajZRY05DbVVLQno0T3JOWjMtV1dTYU5iMXJ2aWdkOGJsNDVMUTRUVXU4d3hQREktQkJVR0c5ejhqbmlFTHdTaG5fY3B2cXBpUGs0WXJzcWFHeTRvY295a3pSSXBlYVgxeTZrQ204?oc=5"
+        },
+        {
+          "article_id": "c071",
+          "feed": "Google Actualités : fuites FR",
+          "title": "Clevermate visé par une fuite de données revendiquée - Fuites Infos",
+          "url": "https://news.google.com/rss/articles/CBMiYkFVX3lxTE80bTZHWThyQ05mRFQwYnRaMmhhTkZFR1Y0c0I2amxOVFZSNW9sc2RPNWZmNFhJcFgtSTNDNTNhMDRTbmVfRTA5bXZYaHJUNG10NUVqUW9ZUS16MlZNN293dW1n?oc=5",
+          "key": "link:https://news.google.com/rss/articles/CBMiYkFVX3lxTE80bTZHWThyQ05mRFQwYnRaMmhhTkZFR1Y0c0I2amxOVFZSNW9sc2RPNWZmNFhJcFgtSTNDNTNhMDRTbmVfRTA5bXZYaHJUNG10NUVqUW9ZUS16MlZNN293dW1n?oc=5"
+        },
+        {
+          "article_id": "c040",
+          "feed": "Google Actualités : fuites FR",
+          "title": "Gotronic : fuite revendiquée de 328 190 adresses électroniques - Fuites Infos",
+          "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTFBjQmtOYXpWUm9CT2Y0cS1odjhjczMyYkZRQzNkd09Zb002ZmRVZEhPaXJFeF9hUGRZRW1hSkpaZDFVY2dOMGY3MXNCbHFVV1dTYktNM2plRHVkLWxLYUhn?oc=5",
+          "key": "link:https://news.google.com/rss/articles/CBMiX0FVX3lxTFBjQmtOYXpWUm9CT2Y0cS1odjhjczMyYkZRQzNkd09Zb002ZmRVZEhPaXJFeF9hUGRZRW1hSkpaZDFVY2dOMGY3MXNCbHFVV1dTYktNM2plRHVkLWxLYUhn?oc=5"
+        }
+      ]
+    }
+  ],
+  "episode_title": "Rackspace, Entra, agents IA et Ghostscript",
+  "script": [
+    {
+      "speaker": "Camille",
+      "text": "Salut et bienvenue dans La veille. On est le dimanche 22 novembre 2026. Au programme : deux intrusions dans le cloud, des agents IA qui trouvent un zero-day, Ghostscript, le FBI, et des fuites en France.",
+      "style": "relaxed, warm morning tone"
+    },
+    {
+      "speaker": "Max",
+      "text": "Salut Camille. Un dimanche matin avec des Secrets Kubernetes qui fuitent, ça commence bien. Allez, on attaque.",
+      "style": "relaxed, friendly"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Oui, Rackspace Spot. Rackspace a prévenu des clients que son offre Kubernetes a été compromise le 17 novembre, entre environ 0 h 20 et 22 h 00 UTC, avec des identifiants fuités.",
+      "style": "calm, explaining"
+    },
+    {
+      "speaker": "Max",
+      "text": "Et ils l'ont su comment ? Une alerte interne ?",
+      "style": "curious"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Non, justement : le 18 novembre, grâce à un signalement client. Dans certaines organisations, les attaquants pouvaient agir comme des utilisateurs légitimes : créer des pods, lire les Secrets Kubernetes, lister nœuds et volumes. Ils pouvaient aussi lire les jetons d'API et de rafraîchissement Spot.",
+      "style": "calm"
+    },
+    {
+      "speaker": "Max",
+      "text": "Aïe. Lire les Secrets, perso c'est le pire : un Secret lisible, c'est un accès aux systèmes en aval. Rackspace dit avoir révoqué jetons et sessions, supprimé les pods non autorisés et fait tourner les clés.",
+      "style": "concerned"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Oui. Ils donnent des indicateurs : l'IP 23.224.79.106, la plage 23.224.0.0/15, et des préfixes de pods et d'objets : i1, glm- et probe. Par contre, pas de réponse sur le nombre de clients touchés ni sur un vol de données. Et la console d'admin est restée indisponible longtemps ; service pleinement rétabli annoncé le 21.",
+      "style": "explaining"
+    },
+    {
+      "speaker": "Max",
+      "text": "Si t'es client : tu réémets les jetons d'API, tu remplaces les jetons de rafraîchissement des automatisations, nouveaux kubeconfig, et tu fais tourner tout ce qu'il y a dans les Secrets. Puis tu regardes les journaux des bases, registres, dépôts Git et stockages depuis le 17.",
+      "style": "practical"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Autre intrusion cloud, côté Microsoft. Une vulnérabilité de l'API Entra Connect Health, introduite le 23 juillet et découverte le 9 novembre, a été exploitée.",
+      "style": "transition, relaxed"
+    },
+    {
+      "speaker": "Max",
+      "text": "Ils ont perdu quoi ?",
+      "style": "curious"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Un accès en lecture seule à des métadonnées de tenant : adresses e-mail des contacts techniques et des admins, identifiants de tenant, noms, domaines initiaux, codes pays, niveaux de licence, état de la synchro d'annuaire, et un certificat expiré. Microsoft dit n'avoir vu ni modification de config, ni mots de passe, hachages, jetons, ou abonnements Azure exposés.",
+      "style": "calm, explaining"
+    },
+    {
+      "speaker": "Max",
+      "text": "Donc pas dramatique en soi, mais des adresses d'admins, c'est un joli carnet pour du phishing ciblé. Et on ne sait ni combien d'organisations, ni qui, ni depuis quand.",
+      "style": "thoughtful"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Exact. Correctif côté serveur le 19 novembre, enquête terminée le 20. Rien à mettre à jour chez toi, mais prévenir les équipes, imposer une MFA résistante au phishing aux comptes privilégiés, vérifier la config Connect Health et relire les journaux Entra.",
+      "style": "explaining"
+    },
+    {
+      "speaker": "Max",
+      "text": "Bon, ensuite un truc qui me fait un peu froid dans le dos : Amazon Threat Intelligence rapporte que des pirates soupçonnés d'être liés à la Chine ont utilisé des agents IA autonomes pour trouver un zero-day.",
+      "style": "transition, intrigued"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Attends, vraiment trouvé, pas juste exploité ?",
+      "style": "surprised"
+    },
+    {
+      "speaker": "Max",
+      "text": "Trouvé. Dans MONAI Label, un serveur open source d'annotation d'imagerie médicale. C'est une traversée de chemin : on écrit des fichiers hors du dossier de stockage, sans compte. Versions 0.8.5 et antérieures, et la config par défaut n'active aucune authentification.",
+      "style": "explaining"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Et c'est allé vite ?",
+      "style": "amazed"
+    },
+    {
+      "speaker": "Max",
+      "text": "En septembre, en environ 48 heures, les agents ont atteint l'écriture de fichiers en 11 minutes environ. Une autre session : ils déposent un fichier exécuté au démarrage de Python, puis déclenchent une fonction d'entraînement et obtiennent un shell root. Sur un serveur universitaire. Une seconde université a probablement été visée.",
+      "style": "impressed"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Et côté correctif ?",
+      "style": "concerned"
+    },
+    {
+      "speaker": "Max",
+      "text": "Les mainteneurs ont fusionné un correctif le 19 octobre, mais aucune version corrigée n'existe. C'est la CVE 2026 tiret 133968, notée 9.8. Donc : pare-feu, authentification, compte limité, dossiers d'écriture restreints, et si tu compiles depuis les sources, vérifie que le correctif d'octobre est dedans. Cherche aussi des fichiers de démarrage Python inattendus.",
+      "style": "calm"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Moi ce qui me marque, c'est l'automatisation de la recherche de failles. Ça va changer le rythme.",
+      "style": "reflective"
+    },
+    {
+      "speaker": "Max",
+      "text": "Et on reste dans les failles avec Ghostscript.",
+      "style": "transition"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Oui, Upload2Shell, la CVE 2026 tiret 125396. Un use-after-free dans le chargeur de polices Type 1. Ça donne une écriture arbitraire en mémoire, qui permet d'altérer l'état qui applique le bac à sable dash dSAFER, et d'exécuter des commandes avec les droits du processus de rendu.",
+      "style": "explaining"
+    },
+    {
+      "speaker": "Max",
+      "text": "Mais il faut quand même que l'appli appelle Ghostscript, non ?",
+      "style": "naive question, curious"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Pas explicitement. Presque toutes les applications testées avec envoi de fichiers pouvaient lui passer un fichier à l'extension de confiance : un fichier nommé pdf qui contient du PostScript, par exemple. Pillow avec load et crop sur du contenu EPS, imageio, Imagick readImage en PHP, libvips thumbnail selon la compilation, Qt avec le plugin KImageFormats.",
+      "style": "explaining"
+    },
+    {
+      "speaker": "Max",
+      "text": "Et Image.open tout seul ne suffit pas, c'est une nuance utile. Donc si tu fais des miniatures ou des pipelines d'IA sur des uploads, tu es concerné. Mise à jour dès que ta distribution sort un correctif, et on restreint ou désactive les délégués PostScript et EPS d'ImageMagick.",
+      "style": "relaxed, reassured"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Les chercheurs ont signalé plusieurs bugs à Artifex, certains encore en cours de correction. Tests sur Ubuntu 24.04.",
+      "style": "calm"
+    },
+    {
+      "speaker": "Max",
+      "text": "Passons aux États-Unis : le FBI enquête sur un piratage apparent du NCIC, la base nationale d'informations judiciaires.",
+      "style": "transition, serious"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Une base accessible aux forces de l'ordre locales, d'État et fédérales : fugitifs, personnes disparues, casiers, biens volés. Révélé d'abord par CNN, confirmé samedi à l'Associated Press par une source anonyme. Le FBI refuse de commenter, l'ampleur est inconnue.",
+      "style": "explaining"
+    },
+    {
+      "speaker": "Max",
+      "text": "Trump a dit sur Fox News que « ce n'est pas bon ». Et il y a des pannes numériques côté administration et privé aux US, mais les responsables parlent de mises à jour de routine.",
+      "style": "thoughtful"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Rien n'indique de lien pour l'instant. Pas d'action technique connue, mais une base partagée par plein d'agences, c'est une cible à fort effet de levier. À suivre.",
+      "style": "calm"
+    },
+    {
+      "speaker": "Max",
+      "text": "Pour finir, les fuites revendiquées en France le 21 novembre, par Fuites Infos et FrenchBreaches. On n'a que les titres, donc prudence.",
+      "style": "relaxed, transition"
+    },
+    {
+      "speaker": "Camille",
+      "text": "La Maison des Travaux : environ 2 millions de lignes revendiquées selon Fuites Infos, centaines de milliers de clients selon FrenchBreaches. Robot Advance : près de 193 000 adresses e-mail revendiquées, près de 200 000 clients potentiels selon l'autre site.",
+      "style": "explaining"
+    },
+    {
+      "speaker": "Max",
+      "text": "Clevermate : des données d'étudiants et de professeurs divulguées selon FrenchBreaches. Et Gotronic : 328 190 adresses électroniques revendiquées.",
+      "style": "explaining"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Rien n'est confirmé par les entreprises dans les articles, et on ne connaît pas les types de données. Si tu as un compte chez eux, change le mot de passe s'il est réutilisé, et méfie-vous du phishing qui citerait ces services.",
+      "style": "calm, practical"
+    },
+    {
+      "speaker": "Max",
+      "text": "Le rappel habituel : un mot de passe unique par service. Voilà pour aujourd'hui.",
+      "style": "amused, relaxed"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Bon dimanche à tous, prenez un bon café, et à demain pour La veille.",
+      "style": "warm, closing"
+    }
+  ],
+  "episode": {
+    "title": "Rackspace, Entra, agents IA et Ghostscript",
+    "release_tag": "ep-2026-11-22",
+    "mp3_url": "https://github.com/Elohyrr/veille/releases/download/ep-2026-11-22/veille-2026-11-22.mp3",
+    "bytes": 3531117,
+    "duration_s": 441,
+    "tts_provider": "openrouter"
+  },
+  "usage": {
+    "digest": {
+      "model": "sonnet",
+      "in": 34669,
+      "out": 4419,
+      "cost_usd": 0.18286200000000002
+    },
+    "podcast": {
+      "model": "sonnet",
+      "in": 5524,
+      "out": 3947,
+      "cost_usd": 0.06156199999999999
+    },
+    "triage": {
+      "model": "haiku",
+      "in": 34662,
+      "out": 4760,
+      "cost_usd": 0.009312200000000001
+    }
+  }
+}

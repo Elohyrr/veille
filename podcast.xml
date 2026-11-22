@@ -5,9 +5,25 @@
 <link>https://elohyrr.github.io/veille/</link>
 <description>Tech, pannes, failles et fuites — digest quotidien</description>
 <language>fr-fr</language>
-<lastBuildDate>Sat, 21 Nov 2026 06:08:23 &#43;0000</lastBuildDate>
+<lastBuildDate>Sun, 22 Nov 2026 06:05:39 &#43;0000</lastBuildDate>
 <itunes:image href="https://elohyrr.github.io/veille/cover.png"/>
 <itunes:explicit>false</itunes:explicit>
+<item>
+<title>Rackspace, Entra, agents IA et Ghostscript</title>
+<link>https://elohyrr.github.io/veille/jours/2026-11-22/</link>
+<guid isPermaLink="false">ep-2026-11-22</guid>
+<pubDate>Sun, 22 Nov 2026 06:05:39 &#43;0000</pubDate>
+<description>- Rackspace Spot : des identifiants fuités ont donné accès aux Secrets Kubernetes de clients
+- Microsoft Entra Connect Health : une faille d&#39;API exploitée expose des métadonnées de tenants
+- MONAI Label : des agents IA trouvent un zero-day et obtiennent root, sans version corrigée
+- Ghostscript : Upload2Shell (CVE-2026-125396) contourne -dSAFER via le chargeur de polices Type 1
+- FBI : enquête sur un piratage apparent de la base nationale NCIC
+- Fuites revendiquées en France : Maison des Travaux, Robot Advance, Clevermate, Gotronic
+https://elohyrr.github.io/veille/jours/2026-11-22/</description>
+<enclosure url="https://github.com/Elohyrr/veille/releases/download/ep-2026-11-22/veille-2026-11-22.mp3" length="3531117" type="audio/mpeg"/>
+<itunes:duration>00:07:21</itunes:duration>
+<itunes:explicit>false</itunes:explicit>
+</item>
 <item>
 <title>vCenter, GitLab, GPGME et les fuites n0n</title>
 <link>https://elohyrr.github.io/veille/jours/2026-11-21/</link>
