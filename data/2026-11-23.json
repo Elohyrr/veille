@@ -1,0 +1,355 @@
+{
+  "date": "2026-11-23",
+  "published_at": "2026-11-23T06:03:24Z",
+  "intro": "Journée centrée sur la chaîne d'approvisionnement de l'IA et du matériel réseau : vol de prompts chez des hébergeurs d'inférence, routeurs GL.iNet infectés via le cloud, et brèche de cartes bancaires chez Cleverbridge.",
+  "topics": [
+    {
+      "id": "2026-11-23/openrouter-vol-prompts-fournisseurs-ia",
+      "slug": "openrouter-vol-prompts-fournisseurs-ia",
+      "theme": "breach",
+      "title": "OpenRouter retire trois fournisseurs après des mois de vol de prompts détectés par Dragos",
+      "summary": "Selon Dragos, des attaquants ont volé des données à l'intérieur de trois fournisseurs d'inférence IA pendant des mois, sans que ceux-ci s'en aperçoivent avant d'être prévenus. La plus ancienne intrusion remonte à la mi-juillet. Certaines requêtes volées étaient marquées Zero Data Retention. La recherche reposait sur environ deux millions de prompts piégés avec des liens et identifiants canaris, envoyés entre juillet et novembre. Dans le cas le plus important, des clés AWS plantées ont été utilisées en quelques heures : listage de buckets S3, recherche dans Secrets Manager et Parameter Store, tentatives de créer des clés d'API Bedrock et des utilisateurs IAM. Un même attaquant semble avoir compromis deux fournisseurs. Le 1er novembre, il a employé ARTEX uniquement pour vérifier que ses clés étaient valides ; deux user agents, artex-agent et artex-judge-r121, sont signalés comme absents des listes publiques d'indicateurs. Dragos décrit aussi des vendeurs d'une place de marché d'inférence qui journalisent les requêtes. OpenRouter indique avoir retiré trois fournisseurs, retiré 125 endpoints de l'éligibilité Zero Data Retention et prévenu les clients concernés. Il affirme que sa propre plateforme n'a pas été compromise.",
+      "why_it_matters": "Si vous envoyez du code, des secrets ou des clés dans des prompts vers une passerelle ou un hébergeur IA tiers, considérez-les comme exposables, même avec l'option « zero retention ». Faites tourner les clés qui ont transité, évitez d'y mettre des secrets et ajoutez les user agents ARTEX à vos détections.",
+      "sources": [
+        {
+          "article_id": "c066",
+          "feed": "The Hacker News",
+          "title": "OpenRouter Drops 3 Providers After Researchers Catch Months of Prompt Theft at AI Hosting Firms",
+          "url": "https://thehackernews.com/2026/11/openrouter-drops-3-providers-after.html",
+          "key": "link:https://thehackernews.com/2026/11/openrouter-drops-3-providers-after.html"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-23/gl-inet-goodcloud-malware-routeurs-kvm",
+      "slug": "gl-inet-goodcloud-malware-routeurs-kvm",
+      "theme": "breach",
+      "title": "GL.iNet : une faille du cloud GoodCloud a servi à installer du malware sur routeurs et KVM",
+      "summary": "GL.iNet a confirmé dans un avis du 20 novembre qu'un tiers a exploité une vulnérabilité de ses services de gestion à distance dans le cloud pour accéder à des appareils et y installer un logiciel malveillant. Des utilisateurs signalent des portes dérobées et des reverse shells avec accès distant, certains en root, via l'utilitaire nc vers une adresse IP unique. L'éditeur affirme avoir corrigé la faille et bloqué l'accès utilisé, ce qui empêche de nouvelles infections par ce chemin mais ne nettoie pas les appareils déjà infectés. Il n'a pas précisé la méthode, le nombre de clients touchés ni d'éventuels vols de données, et enquête sur les ordinateurs reliés aux KVM infectés. Son indicateur initial est un processus « crond -i /tmp/.log », mais des membres du forum jugent que ce critère ne détecte pas tous les cas. Des firmwares stables sont annoncés pour le 22 novembre, avec KVM en 1.10.3 ou plus selon le modèle. Un outil communautaire de détection est référencé ; ses auteurs indiquent qu'une réinstallation sans conserver la configuration peut être nécessaire. Des chercheurs de RemoteToHome Consulting évoquent une possible injection de commande dans le client GoodCloud, non confirmée par GL.iNet.",
+      "why_it_matters": "Si vous utilisez des routeurs ou KVM GL.iNet avec GoodCloud, mettez à jour le firmware, cherchez les indicateurs de compromission et ne vous fiez pas au seul test du processus crond. En cas de doute, réinstallez sans restaurer la configuration, changez les identifiants et clés, et auditez les machines pilotées par les KVM.",
+      "sources": [
+        {
+          "article_id": "c038",
+          "feed": "BleepingComputer",
+          "title": "Hackers exploit GL.iNet cloud flaw to infect routers, KVM devices",
+          "url": "https://www.bleepingcomputer.com/news/security/hackers-exploit-glinet-cloud-flaw-to-infect-routers-kvm-devices/",
+          "key": "link:https://bleepingcomputer.com/news/security/hackers-exploit-glinet-cloud-flaw-to-infect-routers-kvm-devices"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-23/cleverbridge-cartes-bancaires-cvv",
+      "slug": "cleverbridge-cartes-bancaires-cvv",
+      "theme": "leak",
+      "title": "Cleverbridge : des numéros de cartes et des CVV copiés sur sa plateforme e-commerce",
+      "summary": "Cleverbridge, plateforme e-commerce utilisée par des éditeurs logiciels et SaaS, prévient que des pirates ont copié des données de cartes de paiement. L'entreprise dit avoir détecté une activité non autorisée le 4 novembre 2026 et mis ses systèmes hors ligne, puis les avoir remis en service le même jour. L'enquête a ensuite établi qu'un tiers avait copié des données de cartes stockées sur la plateforme. Les notifications aux clients ont commencé le 20 novembre. Selon un courrier obtenu par BleepingComputer, les données comprennent le numéro de carte, la date d'expiration et le code CVV/CVC ; la société affirme que ni nom ni coordonnées n'ont été copiés. Cleverbridge dit qu'il ne s'agit pas d'un rançongiciel. Elle n'a pas précisé comment les pirates sont entrés, combien de temps ils sont restés, combien de clients sont touchés, ni si les données étaient chiffrées. Elle ne dit pas non plus quelles marques clientes sont concernées, même si elle cite notamment Red Hat, SUSE, Tenable et Veeam parmi ses clients. Elle propose une surveillance de crédit via Cyberscout.",
+      "why_it_matters": "Si vous avez acheté ou renouvelé des licences logicielles ou abonnements SaaS auprès d'éditeurs passant par Cleverbridge, surveillez vos relevés et contactez votre banque, qui peut remplacer la carte. Le stockage de CVV par un prestataire de paiement pose question et mérite d'être suivi.",
+      "sources": [
+        {
+          "article_id": "c044",
+          "feed": "BleepingComputer",
+          "title": "Cleverbridge warns hackers stole credit card numbers, CVVs in data breach",
+          "url": "https://www.bleepingcomputer.com/news/security/cleverbridge-warns-hackers-stole-credit-card-numbers-cvvs-in-data-breach/",
+          "key": "link:https://bleepingcomputer.com/news/security/cleverbridge-warns-hackers-stole-credit-card-numbers-cvvs-in-data-breach"
+        },
+        {
+          "article_id": "c014",
+          "feed": "Google Actualités : breaches EN",
+          "title": "Cleverbridge Confirms Hackers Stole Customer Card Numbers and CVV Codes in a Major Data Breach - CyberSecurityNews",
+          "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE9pbnd2bGVvTUJweHpiVURfRG16VEphdW5sOGpPbURZUVRzSDNweDNiWGNMUVRIVDJja2RrVktadFp4bHdSS3RFMU1JN0NwZVNBV191dEZEemJpWDRvSk1MYk1IZ0FTZ9IBa0FVX3lxTE8yQVRhOHVaQmxYRzVCOURMM1lCbHRtcG54V2hhVmpRTFlWdWlYUUNTSEdIRC0zalpsQ2YwZDhrUlU3aXg2VVFsWV9yaC03YzZhLTA4VXZPSkdqal82T3UxZ0RGRURGUkhJU2NZ?oc=5",
+          "key": "link:https://news.google.com/rss/articles/CBMiZkFVX3lxTE9pbnd2bGVvTUJweHpiVURfRG16VEphdW5sOGpPbURZUVRzSDNweDNiWGNMUVRIVDJja2RrVktadFp4bHdSS3RFMU1JN0NwZVNBV191dEZEemJpWDRvSk1MYk1IZ0FTZ9IBa0FVX3lxTE8yQVRhOHVaQmxYRzVCOURMM1lCbHRtcG54V2hhVmpRTFlWdWlYUUNTSEdIRC0zalpsQ2YwZDhrUlU3aXg2VVFsWV9yaC03YzZhLTA4VXZPSkdqal82T3UxZ0RGRURGUkhJU2NZ?oc=5"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-23/chambourcy-inc-ransom",
+      "slug": "chambourcy-inc-ransom",
+      "theme": "leak",
+      "title": "Chambourcy : INC Ransom revendique la cyberattaque contre la mairie",
+      "summary": "La mairie de Chambourcy (Yvelines) a confirmé le 8 novembre 2026 une cyberattaque survenue pendant le week-end. Par précaution, elle a coupé son réseau informatique ; les démarches se font surtout sur papier, tandis que messagerie, téléphonie, site web et réseaux sociaux restent opérationnels. Une plainte a été déposée et la CNIL informée. Le 19 novembre, le groupe INC Ransom a inscrit la commune parmi ses victimes. Selon ZATAZ, des échantillons de documents ont été diffusés, notamment des fichiers de la police municipale sur la surveillance de domiciles pendant les vacances. L'espace de stockage proposé par les pirates était vide lors de son examen, ce qui ne permet pas de conclure à la mise à disposition d'une archive complète. ZATAZ rappelle aussi que l'étendue réelle des données dérobées n'est pas établie par ces seuls échantillons.",
+      "why_it_matters": "Les collectivités restent des cibles régulières des rançongiciels. Pour les équipes qui les accompagnent, c'est un rappel : segmentation du réseau, sauvegardes hors ligne et plan de continuité sans informatique. Les habitants inscrits à la surveillance de domicile peuvent être exposés à des risques de cambriolage ciblé.",
+      "sources": [
+        {
+          "article_id": "c025",
+          "feed": "ZATAZ",
+          "title": "Cyberattaque à Chambourcy : INC Ransom revendique l’attaque",
+          "url": "https://www.zataz.com/cyberattaque-a-chambourcy-inc-ransom-revendique-lattaque/",
+          "key": "link:https://zataz.com/cyberattaque-a-chambourcy-inc-ransom-revendique-lattaque"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-23/fuites-revendiquees-france-23-novembre",
+      "slug": "fuites-revendiquees-france-23-novembre",
+      "theme": "leak",
+      "title": "Fuites revendiquées en France : Decathlon, Fondation des Femmes, AAAEP",
+      "summary": "Fuites Infos et French Breaches ont signalé le 23 novembre trois nouvelles fuites visant des organisations françaises, d'après des résumés seulement. Pour Decathlon, Fuites Infos évoque une fuite revendiquée visant 137 140 clients, tandis que French Breaches parle de 163 000 clients potentiellement exposés : les deux chiffres diffèrent. Pour la Fondation des Femmes, les deux sites mentionnent plus de 118 000 adresses e-mail, soit 118 130 signataires selon Fuites Infos. Pour l'AAAEP, Fuites Infos indique une fuite revendiquée visant 445 000 candidats au permis. Les articles disponibles sont de simples extraits : nature exacte des données, origine de l'incident et confirmation par les organisations ne sont pas établies ici.",
+      "why_it_matters": "Ces revendications ne sont pas confirmées. Les personnes inscrites à ces services doivent se méfier d'e-mails ou SMS d'hameçonnage qui s'appuieraient sur ces données. Utilisez des mots de passe uniques, et attendez les communications officielles pour connaître le périmètre réel.",
+      "sources": [
+        {
+          "article_id": "c017",
+          "feed": "Google Actualités : fuites FR",
+          "title": "Decathlon : fuite de données revendiquée visant 137 140 clients - Fuites Infos",
+          "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTFA0VnNlaFUza3R4dFJTM2YwN2ZiSHBDbjJXSkR2Ykh3ZVlRREpES0dkM01mVVBLTUNTWXcwbF9BdVNxQTZITHB6TmlfWkxqWm9vUFNkcUk3Zy1rQVFqSnRNQQ?oc=5",
+          "key": "link:https://news.google.com/rss/articles/CBMiYEFVX3lxTFA0VnNlaFUza3R4dFJTM2YwN2ZiSHBDbjJXSkR2Ykh3ZVlRREpES0dkM01mVVBLTUNTWXcwbF9BdVNxQTZITHB6TmlfWkxqWm9vUFNkcUk3Zy1rQVFqSnRNQQ?oc=5"
+        },
+        {
+          "article_id": "c020",
+          "feed": "Google Actualités : fuites FR",
+          "title": "Decathlon, les données de 163 000 clients potentiellement exposées dans une fuite - French Breaches",
+          "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxPTm1McGs0OHlxUHI0emZUdjlnUHNaSGZINEoyYU1vSzFWZFUtaldmUDBNSGpwLUJNVkRrTm03Tm1vTXdNVVd0NEw1NUx2dC1hckwyX0dZR2NYNHNRdi1VSlhVVGZIY0xLVGI3SEY0VWQtRUdnNTBaNWxwVDl3bHlGbG42YXJObC1RQThpMGZiSjdlYU9xOF9sclNjc1FXNUdKR2xVaUgxNVFhZnlzMlB5cWxHbw?oc=5",
+          "key": "link:https://news.google.com/rss/articles/CBMiswFBVV95cUxPTm1McGs0OHlxUHI0emZUdjlnUHNaSGZINEoyYU1vSzFWZFUtaldmUDBNSGpwLUJNVkRrTm03Tm1vTXdNVVd0NEw1NUx2dC1hckwyX0dZR2NYNHNRdi1VSlhVVGZIY0xLVGI3SEY0VWQtRUdnNTBaNWxwVDl3bHlGbG42YXJObC1RQThpMGZiSjdlYU9xOF9sclNjc1FXNUdKR2xVaUgxNVFhZnlzMlB5cWxHbw?oc=5"
+        },
+        {
+          "article_id": "c009",
+          "feed": "Google Actualités : fuites FR",
+          "title": "Fuite de données à la Fondation des Femmes, plus de 118 000 adresses e-mail concernées - French Breaches",
+          "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxOQkRwVXk2STFEQVQwLUJ4LXRkc19zQ0JROG8wUXJnYmpaTGJyMk9Ga2RvT2xnNUZ5QTFLMmJsMXh6eTFoWmpvN3JmbTMzTVBxQlNfNHllTnViSkp4VEE4VldJZml2RHZQTzhBVWFZMENLMjVaWFhLendDS3ZOc1Z3T3NILUdGQXVlUkdZaEM4YklfbURWQjljcDh4ZkdkdmpXT2k5cFBqc1ZSVVVVb2RaUw?oc=5",
+          "key": "link:https://news.google.com/rss/articles/CBMisAFBVV95cUxOQkRwVXk2STFEQVQwLUJ4LXRkc19zQ0JROG8wUXJnYmpaTGJyMk9Ga2RvT2xnNUZ5QTFLMmJsMXh6eTFoWmpvN3JmbTMzTVBxQlNfNHllTnViSkp4VEE4VldJZml2RHZQTzhBVWFZMENLMjVaWFhLendDS3ZOc1Z3T3NILUdGQXVlUkdZaEM4YklfbURWQjljcDh4ZkdkdmpXT2k5cFBqc1ZSVVVVb2RaUw?oc=5"
+        },
+        {
+          "article_id": "c019",
+          "feed": "Google Actualités : fuites FR",
+          "title": "Fondation des Femmes : fuite revendiquée visant 118 130 signataires - Fuites Infos",
+          "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE50VEtQVm9XMDljZDdkY1cwbHRjVEtDUjkwVEY1ZU40QXEwMWgyaTRwZlFWRS1DejZlNEpZZW1LZTZwbFpBd1dSY1FHLVVseDN2VXA1SXZBUFZ3cFRCc3R1UkhNaVJ4enlMbk5adEtkTQ?oc=5",
+          "key": "link:https://news.google.com/rss/articles/CBMib0FVX3lxTE50VEtQVm9XMDljZDdkY1cwbHRjVEtDUjkwVEY1ZU40QXEwMWgyaTRwZlFWRS1DejZlNEpZZW1LZTZwbFpBd1dSY1FHLVVseDN2VXA1SXZBUFZ3cFRCc3R1UkhNaVJ4enlMbk5adEtkTQ?oc=5"
+        },
+        {
+          "article_id": "c018",
+          "feed": "Google Actualités : fuites FR",
+          "title": "AAAEP : fuite revendiquée visant 445 000 candidats au permis - Fuites Infos",
+          "url": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE9aaUk1UGpsOTc1NmlWNU1JaDBCSjhZaHdOUzJRZDF6SHhhd0hjbEpwVW5sOE5oMFdzU1A2RzlrM1dCV1dXYzc0NzlyMnpPekpkU0NOeGxtTWp1NXM?oc=5",
+          "key": "link:https://news.google.com/rss/articles/CBMiW0FVX3lxTE9aaUk1UGpsOTc1NmlWNU1JaDBCSjhZaHdOUzJRZDF6SHhhd0hjbEpwVW5sOE5oMFdzU1A2RzlrM1dCV1dXYzc0NzlyMnpPekpkU0NOeGxtTWp1NXM?oc=5"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-23/csc-telecom-lettonie-sms-exposes",
+      "slug": "csc-telecom-lettonie-sms-exposes",
+      "theme": "leak",
+      "title": "CSC Telecom Lettonie : une base de plus de 125 millions de SMS laissée exposée",
+      "summary": "Selon un article rapporté sur DataBreaches.net, qui cite Vilius Petkauskas, la filiale lettone de l'opérateur CSC Telecom a laissé exposée une base contenant plus de 125 millions de SMS. Les enregistrements couvrent la période d'octobre 2022 à septembre 2026. Le titre mentionne des clients de Swedbank, SEB, airBaltic et de dizaines d'autres entreprises. Nous ne disposons que d'un extrait : le détail du contenu, la durée d'exposition et la correction ne sont pas connus ici.",
+      "why_it_matters": "Les SMS d'entreprises transitent souvent par des plateformes d'envoi tierces, parfois pour des codes à usage unique. Si vos services dépendent d'un prestataire SMS, vérifiez ce qu'il stocke, sa configuration d'accès et privilégiez des méthodes d'authentification qui ne reposent pas sur les SMS.",
+      "sources": [
+        {
+          "article_id": "c053",
+          "feed": "DataBreaches.net",
+          "title": "Huge European telecom leak exposes Swedbank, SEB, airBaltic and dozens of other companies’ clients",
+          "url": "https://databreaches.net/2026/11/22/huge-european-telecom-leak-exposes-swedbank-seb-airbaltic-and-dozens-of-other-companies-clients/",
+          "key": "link:https://databreaches.net/2026/11/22/huge-european-telecom-leak-exposes-swedbank-seb-airbaltic-and-dozens-of-other-companies-clients"
+        }
+      ]
+    }
+  ],
+  "episode_title": "Prompts volés, routeurs infectés et CVV copiés",
+  "script": [
+    {
+      "speaker": "Camille",
+      "text": "Salut et bienvenue dans La veille, on est le lundi 23 novembre 2026. Au programme : des prompts volés chez des hébergeurs d'IA, des routeurs GL.iNet infectés, et pas mal de fuites de données.",
+      "style": "relaxed, warm morning greeting"
+    },
+    {
+      "speaker": "Max",
+      "text": "Salut Camille ! Un lundi bien chargé, quoi. On commence par l'IA ? Dragos a publié une recherche assez costaude sur trois fournisseurs d'inférence.",
+      "style": "relaxed, amused"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Oui. Selon Dragos, des attaquants ont volé des données à l'intérieur de trois fournisseurs d'inférence pendant des mois, et les fournisseurs ne s'en étaient pas rendu compte avant d'être prévenus. La plus ancienne intrusion remonte à la mi-juillet.",
+      "style": "calm, explaining"
+    },
+    {
+      "speaker": "Max",
+      "text": "Et ils ont découvert ça comment ? Parce que si personne ne voyait rien...",
+      "style": "curious"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Ils ont envoyé environ deux millions de prompts piégés entre juillet et novembre, avec des liens et des identifiants canaris dedans. Un peu comme des billets marqués. Et dans le cas le plus important, des clés AWS plantées ont été utilisées en quelques heures.",
+      "style": "explaining, engaged"
+    },
+    {
+      "speaker": "Max",
+      "text": "En quelques heures ? Ils font quoi avec les clés ?",
+      "style": "surprised"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Ils listent des buckets S3, fouillent Secrets Manager et Parameter Store, et tentent de créer des clés d'API Bedrock et des utilisateurs IAM. Un même attaquant semble avoir compromis deux fournisseurs. Le 1er novembre, il a utilisé ARTEX juste pour vérifier que ses clés étaient valides.",
+      "style": "calm"
+    },
+    {
+      "speaker": "Max",
+      "text": "Et le détail qui pique, c'est que certaines requêtes volées étaient marquées Zero Data Retention.",
+      "style": "thoughtful"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Voilà. Dragos parle aussi de vendeurs, sur une place de marché d'inférence, qui journalisent les requêtes. OpenRouter dit avoir retiré trois fournisseurs, sorti 125 endpoints de l'éligibilité Zero Data Retention et prévenu les clients concernés. Il affirme que sa propre plateforme n'a pas été compromise.",
+      "style": "serious"
+    },
+    {
+      "speaker": "Max",
+      "text": "Perso, je considère que tout ce que j'envoie à un tiers peut fuiter, même avec l'option zero retention. Donc on fait tourner les clés qui ont transité, on évite d'y mettre des secrets, et on ajoute les user agents artex-agent et artex-judge-r121 dans les détections. Dragos dit qu'ils ne sont pas dans les listes publiques.",
+      "style": "relaxed, practical"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Parfait. Passons au matériel : GL.iNet. Dans un avis du 20 novembre, l'éditeur confirme qu'un tiers a exploité une vulnérabilité de ses services de gestion à distance dans le cloud pour installer un malware sur des appareils.",
+      "style": "relaxed"
+    },
+    {
+      "speaker": "Max",
+      "text": "Aïe. Et côté symptômes ?",
+      "style": "concerned"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Des utilisateurs signalent des portes dérobées et des reverse shells, certains en root, via nc vers une seule adresse IP. L'éditeur dit avoir corrigé la faille et bloqué l'accès utilisé. Ça empêche de nouvelles infections par ce chemin, mais ça ne nettoie pas les appareils déjà touchés.",
+      "style": "explaining"
+    },
+    {
+      "speaker": "Max",
+      "text": "Et ils disent combien de clients sont touchés ?",
+      "style": "curious"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Non, ni la méthode, ni le nombre, ni d'éventuels vols de données. Ils enquêtent aussi sur les ordinateurs reliés aux KVM infectés. Leur indicateur de départ, c'est un processus crond -i /tmp/.log, mais des membres du forum disent que ça ne détecte pas tous les cas.",
+      "style": "calm"
+    },
+    {
+      "speaker": "Max",
+      "text": "Donc ne pas se fier à ce seul test. Des firmwares stables sont annoncés pour le 22 novembre, avec KVM en 1.10.3 ou plus selon le modèle. Il y a un outil communautaire de détection, dont les auteurs disent qu'une réinstallation sans garder la configuration peut être nécessaire.",
+      "style": "practical"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Et des chercheurs de RemoteToHome Consulting évoquent une possible injection de commande dans le client GoodCloud, mais GL.iNet ne l'a pas confirmé. Moi, au moindre doute : réinstallation propre, changement des identifiants et clés.",
+      "style": "thoughtful"
+    },
+    {
+      "speaker": "Max",
+      "text": "Et on audite les machines derrière les KVM. Allez, les cartes bancaires : Cleverbridge.",
+      "style": "relaxed"
+    },
+    {
+      "speaker": "Camille",
+      "text": "C'est une plateforme e-commerce utilisée par des éditeurs et des SaaS. Elle a détecté une activité non autorisée le 4 novembre 2026, mis ses systèmes hors ligne, puis les a remis en service le même jour. L'enquête a ensuite établi qu'un tiers avait copié des données de cartes stockées.",
+      "style": "explaining"
+    },
+    {
+      "speaker": "Max",
+      "text": "Quelles données ?",
+      "style": "surprised"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Selon un courrier obtenu par BleepingComputer : numéro de carte, date d'expiration et code CVV ou CVC. Pas de nom ni de coordonnées, dit la société. Et elle précise que ce n'est pas un rançongiciel.",
+      "style": "serious"
+    },
+    {
+      "speaker": "Max",
+      "text": "Attends, ils stockaient le CVV ? Ça, c'est quand même bizarre.",
+      "style": "incredulous"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Oui, ça pose question. Et on ne sait pas comment ils sont entrés, combien de temps, combien de clients, ni si c'était chiffré. Les marques concernées ne sont pas citées, même si Red Hat, SUSE, Tenable et Veeam figurent parmi les clients. Notifications depuis le 20 novembre, avec surveillance de crédit via Cyberscout.",
+      "style": "thoughtful"
+    },
+    {
+      "speaker": "Max",
+      "text": "Si tu as renouvelé des licences ou abonnements dans ce coin-là, surveille tes relevés et appelle ta banque, qui peut remplacer la carte.",
+      "style": "practical"
+    },
+    {
+      "speaker": "Camille",
+      "text": "On enchaîne avec la France. La mairie de Chambourcy, dans les Yvelines, a confirmé le 8 novembre une cyberattaque survenue pendant le week-end. Réseau coupé par précaution, démarches surtout sur papier, mais messagerie, téléphonie et site web restent opérationnels.",
+      "style": "relaxed"
+    },
+    {
+      "speaker": "Max",
+      "text": "Et le 19 novembre, INC Ransom a inscrit la commune sur sa liste de victimes. Plainte déposée, CNIL informée.",
+      "style": "serious"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Selon ZATAZ, des échantillons ont été diffusés, notamment des fichiers de la police municipale sur la surveillance de domiciles pendant les vacances. Par contre, l'espace de stockage des pirates était vide quand ils l'ont regardé, donc on ne peut pas conclure à une archive complète.",
+      "style": "concerned"
+    },
+    {
+      "speaker": "Max",
+      "text": "Pour les habitants inscrits à ce service, le risque de cambriolage ciblé est réel. Et pour les équipes qui accompagnent les collectivités : segmentation, sauvegardes hors ligne, plan de continuité sans informatique.",
+      "style": "thoughtful"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Autre série : trois fuites revendiquées en France aujourd'hui, d'après Fuites Infos et French Breaches. Mais ce ne sont que des résumés, rien n'est confirmé.",
+      "style": "relaxed"
+    },
+    {
+      "speaker": "Max",
+      "text": "Decathlon : Fuites Infos parle de 137 140 clients, French Breaches de 163 000. Les chiffres diffèrent. Fondation des Femmes : plus de 118 000 adresses e-mail, 118 130 signataires selon Fuites Infos. Et l'AAAEP : 445 000 candidats au permis, d'après Fuites Infos.",
+      "style": "explaining"
+    },
+    {
+      "speaker": "Camille",
+      "text": "On ne sait ni la nature exacte des données, ni l'origine, ni si les organisations confirment. Donc prudence avec les e-mails et SMS d'hameçonnage, mots de passe uniques, et on attend les communications officielles.",
+      "style": "calm"
+    },
+    {
+      "speaker": "Max",
+      "text": "Dernier sujet : CSC Telecom en Lettonie. Selon un article rapporté sur DataBreaches.net, citant Vilius Petkauskas, une base de plus de 125 millions de SMS est restée exposée.",
+      "style": "surprised"
+    },
+    {
+      "speaker": "Camille",
+      "text": "125 millions ! Sur la période d'octobre 2022 à septembre 2026. Le titre cite des clients de Swedbank, SEB, airBaltic et des dizaines d'autres entreprises.",
+      "style": "amazed"
+    },
+    {
+      "speaker": "Max",
+      "text": "On n'a qu'un extrait, donc pas le détail du contenu, la durée d'exposition ni la correction. Mais ça rappelle que les SMS d'entreprise passent par des plateformes tierces, parfois pour des codes à usage unique. Vérifie ce que ton prestataire stocke, et si tu peux, évite l'authentification par SMS.",
+      "style": "calm, explaining"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Voilà pour aujourd'hui. Bonne semaine à tous, et à demain !",
+      "style": "warm, wrapping up"
+    },
+    {
+      "speaker": "Max",
+      "text": "À demain, et patchez vos routeurs !",
+      "style": "relaxed, friendly"
+    }
+  ],
+  "episode": {
+    "title": "Prompts volés, routeurs infectés et CVV copiés",
+    "release_tag": "ep-2026-11-23",
+    "mp3_url": "https://github.com/Elohyrr/veille/releases/download/ep-2026-11-23/veille-2026-11-23.mp3",
+    "bytes": 3387885,
+    "duration_s": 423,
+    "tts_provider": "openrouter"
+  },
+  "usage": {
+    "digest": {
+      "model": "sonnet",
+      "in": 28437,
+      "out": 3832,
+      "cost_usd": 0.15206399999999998
+    },
+    "podcast": {
+      "model": "sonnet",
+      "in": 5510,
+      "out": 3897,
+      "cost_usd": 0.06100599999999999
+    },
+    "triage": {
+      "model": "haiku",
+      "in": 30197,
+      "out": 3038,
+      "cost_usd": 0.0075582
+    }
+  }
+}

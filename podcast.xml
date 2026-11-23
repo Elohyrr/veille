@@ -5,9 +5,25 @@
 <link>https://elohyrr.github.io/veille/</link>
 <description>Tech, pannes, failles et fuites — digest quotidien</description>
 <language>fr-fr</language>
-<lastBuildDate>Sun, 22 Nov 2026 06:05:39 &#43;0000</lastBuildDate>
+<lastBuildDate>Mon, 23 Nov 2026 06:03:24 &#43;0000</lastBuildDate>
 <itunes:image href="https://elohyrr.github.io/veille/cover.png"/>
 <itunes:explicit>false</itunes:explicit>
+<item>
+<title>Prompts volés, routeurs infectés et CVV copiés</title>
+<link>https://elohyrr.github.io/veille/jours/2026-11-23/</link>
+<guid isPermaLink="false">ep-2026-11-23</guid>
+<pubDate>Mon, 23 Nov 2026 06:03:24 &#43;0000</pubDate>
+<description>- OpenRouter retire trois fournisseurs après des mois de vol de prompts détectés par Dragos
+- GL.iNet : une faille du cloud GoodCloud a servi à installer du malware sur routeurs et KVM
+- Cleverbridge : des numéros de cartes et des CVV copiés sur sa plateforme e-commerce
+- Chambourcy : INC Ransom revendique la cyberattaque contre la mairie
+- Fuites revendiquées en France : Decathlon, Fondation des Femmes, AAAEP
+- CSC Telecom Lettonie : une base de plus de 125 millions de SMS laissée exposée
+https://elohyrr.github.io/veille/jours/2026-11-23/</description>
+<enclosure url="https://github.com/Elohyrr/veille/releases/download/ep-2026-11-23/veille-2026-11-23.mp3" length="3387885" type="audio/mpeg"/>
+<itunes:duration>00:07:03</itunes:duration>
+<itunes:explicit>false</itunes:explicit>
+</item>
 <item>
 <title>Rackspace, Entra, agents IA et Ghostscript</title>
 <link>https://elohyrr.github.io/veille/jours/2026-11-22/</link>
