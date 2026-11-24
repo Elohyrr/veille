@@ -1,0 +1,506 @@
+{
+  "date": "2026-11-24",
+  "published_at": "2026-11-24T06:07:30Z",
+  "intro": "Azure API Management Classic est au cœur de la journée : des secrets clients ont pu être volés, avec des victimes en Norvège. Côté fuites, KEPCO et Tower Records. Côté outils, Stalwart vise Exchange et Kubernetes 1.38 se précise.",
+  "topics": [
+    {
+      "id": "2026-11-24/azure-apim-classic-secrets-norvege",
+      "slug": "azure-apim-classic-secrets-norvege",
+      "theme": "breach",
+      "title": "Azure API Management Classic : une faille a permis de voler des secrets, Equinor touché",
+      "summary": "Microsoft prévient ses clients qu'une vulnérabilité d'Azure API Management (APIM) Classic a été exploitée pour accéder à des secrets stockés. Microsoft dit l'avoir identifiée le 18 novembre 2026 et fermé le chemin d'accès le 19. Les paliers Developer, Basic, Standard et Premium sont concernés. Le palier Consumption de Classic et tous les paliers APIM v2 ne le sont pas. Selon Microsoft, l'accès non autorisé au plan de gestion visait surtout les instances non configurées selon les bonnes pratiques. Les données exposées peuvent inclure les Named Values, les secrets clients de fournisseurs d'identité et OpenID Connect, les clés d'abonnement et les jetons des API de gestion. L'autorité norvégienne NSM relie la faille aux attaques contre Equinor et Skagerak Energi, et indique que d'autres secteurs et pays sont touchés. Equinor dit n'avoir aucun indice de vol ou de modification de données. L'ampleur de l'exploitation reste inconnue. Un administrateur affirme sur Reddit que l'API héritée ne produisait pas de journaux ; BleepingComputer n'a pas pu le vérifier.",
+      "why_it_matters": "Si vous utilisez APIM Classic, le correctif de Microsoft n'invalide pas les identifiants déjà consultés. Suivez la consigne de la NSM : considérez les secrets et Named Values comme compromis et remplacez-les. Examinez les journaux des systèmes accessibles par ces identifiants, Key Vault compris. Stocker les secrets dans Key Vault plutôt que dans APIM est la pratique recommandée.",
+      "sources": [
+        {
+          "article_id": "c054",
+          "feed": "BleepingComputer",
+          "title": "Microsoft Azure flaw exploited to steal customers' API credentials",
+          "url": "https://www.bleepingcomputer.com/news/security/microsoft-azure-flaw-exploited-to-steal-customers-api-credentials/",
+          "key": "link:https://bleepingcomputer.com/news/security/microsoft-azure-flaw-exploited-to-steal-customers-api-credentials"
+        },
+        {
+          "article_id": "c082",
+          "feed": "SecurityWeek",
+          "title": "Azure Flaw Exploited to Target Secrets at Norwegian Energy Firms",
+          "url": "https://www.securityweek.com/azure-flaw-exploited-to-target-secrets-at-norwegian-energy-firms/",
+          "key": "link:https://securityweek.com/azure-flaw-exploited-to-target-secrets-at-norwegian-energy-firms"
+        },
+        {
+          "article_id": "c083",
+          "feed": "The Record",
+          "title": "Norway says hackers exploited Microsoft security flaw to attack energy firms Equinor, Skagerak Energi",
+          "url": "https://therecord.media/norway-microsoft-cyberattack-equinor",
+          "key": "link:https://therecord.media/norway-microsoft-cyberattack-equinor"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-24/mise-a-jour-n-able-mail-assure-cve-2026-134624",
+      "slug": "mise-a-jour-n-able-mail-assure-cve-2026-134624",
+      "theme": "breach",
+      "title": "Mise à jour : N-able Mail Assure, SSRF CVE-2026-134624 corrigée et ajoutée au KEV",
+      "summary": "N-able a divulgué une faille critique trouvée pendant l'enquête sur l'intrusion dans Mail Assure et SpamExperts Hosted Cloud. CVE-2026-134624 est une SSRF dans la vérification de connexion LDAP : un utilisateur d'API authentifié peut faire se connecter le serveur à des hôtes et ports internes arbitraires. Le CVSS 4.0 est de 9,3. Les builds antérieurs à 20261121.1943 sont touchés. La CISA a inscrit la faille à son catalogue KEV. N-able a rétabli le tableau de bord et les API samedi soir et n'indique pas si cette faille a servi aux attaquants. Il dit n'avoir trouvé aucune preuve de compromission de données clients, boîtes aux lettres comprises. L'enquête reste ouverte et une analyse de cause racine est promise sous deux semaines. Les jetons d'API et OAuth ont été révoqués : scripts et intégrations doivent être reconnectés avec de nouveaux identifiants.",
+      "why_it_matters": "Les clients Hosted Cloud n'ont rien à installer, mais doivent régénérer leurs jetons. Les exploitants de SpamExperts Local Cloud doivent vérifier qu'ils sont au moins sur le build 20261121.1943, car les communications ne décrivent que le Hosted Cloud.",
+      "update_of": "2026-11-21/n-able-mail-assure-spamexperts-intrusion",
+      "what_is_new": "N-able a divulgué la SSRF CVE-2026-134624 (CVSS 4.0 : 9,3), corrigée et exploitée selon la CISA, et a rétabli dashboard et API samedi.",
+      "sources": [
+        {
+          "article_id": "c117",
+          "feed": "The Hacker News",
+          "title": "N-able Discloses Critical Mail Assure Vulnerability Found During Breach Investigation",
+          "url": "https://thehackernews.com/2026/11/n-able-discloses-critical-mail-assure.html",
+          "key": "link:https://thehackernews.com/2026/11/n-able-discloses-critical-mail-assure.html"
+        },
+        {
+          "article_id": "c156",
+          "feed": "CISA KEV",
+          "title": "CVE-2026-134624 — N-able MailAssure (SpamExperts) Server-Side Request Forgery (SSRF) Vulnerability",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-134624",
+          "key": "link:https://nvd.nist.gov/vuln/detail/CVE-2026-134624"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-24/sap-netweaver-cisco-expressway-kev",
+      "slug": "sap-netweaver-cisco-expressway-kev",
+      "theme": "breach",
+      "title": "Mise à jour : la CISA ajoute SAP NetWeaver et Cisco Expressway au catalogue KEV",
+      "summary": "La CISA a averti vendredi que des attaquants exploitent deux failles. La première touche SAP NetWeaver : CVE-2025-42884 (CVSS 6,5), qui permet à un attaquant non authentifié de lire ou modifier des informations du serveur via des opérations JNDI. SAP l'a corrigée en novembre 2025 et aucune exploitation n'avait été signalée avant l'alerte. La seconde est CVE-2026-76466 (CVSS 9,8) dans Cisco Expressway, déjà traitée : des identifiants codés en dur permettent d'exécuter des commandes en root sur les Expressway-C et Expressway-E configurés en cluster. Elle est corrigée dans la version X15.5.20 depuis le 21 octobre. La CISA l'a inscrite le 20 novembre avec un délai de trois jours pour les agences fédérales, deux jours après l'alerte de F6 sur l'exploitation après publication d'un PoC. Le catalogue KEV a aussi reçu CVE-2026-123890 (vCenter) et CVE-2026-129448 (Apache Roller).",
+      "why_it_matters": "Vérifiez vos instances SAP NetWeaver : le correctif date de novembre 2025 et la faille est désormais exploitée. Pour Expressway en cluster, passez à X15.5.20 sans attendre. Une base de score moyenne ne dispense pas de patcher quand l'exploitation est confirmée.",
+      "update_of": "2026-11-21/cisco-expressway-cve-2026-76466-exploitee",
+      "what_is_new": "La CISA a inscrit CVE-2026-76466 au KEV le 20 novembre, avec SAP NetWeaver CVE-2025-42884, désormais exploitée.",
+      "sources": [
+        {
+          "article_id": "c126",
+          "feed": "SecurityWeek",
+          "title": "SAP NetWeaver, Cisco Expressway Flaws Exploited in Attacks",
+          "url": "https://www.securityweek.com/sap-netweaver-cisco-expressway-flaws-exploited-in-attacks/",
+          "key": "link:https://securityweek.com/sap-netweaver-cisco-expressway-flaws-exploited-in-attacks"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-24/mise-a-jour-monai-label-cve-2026-133968-kev",
+      "slug": "mise-a-jour-monai-label-cve-2026-133968-kev",
+      "theme": "breach",
+      "title": "Mise à jour : MONAI Label, CVE-2026-133968 inscrite au catalogue KEV de la CISA",
+      "summary": "La CISA a inscrit CVE-2026-133968 à son catalogue des vulnérabilités exploitées. Il s'agit d'une traversée de chemin dans MONAI Label, qui permet à un attaquant distant non authentifié d'écrire des fichiers arbitraires en dehors du répertoire de données prévu, avec une exécution de code possible. Nous ne disposons que d'un résumé de l'entrée. Elle intervient après le rapport d'Amazon sur des agents IA ayant trouvé un zero-day dans ce serveur d'annotation d'images médicales ; le résumé du KEV ne fait pas le lien explicite avec cette faille.",
+      "why_it_matters": "Si vous exposez un serveur MONAI Label, même sur un réseau interne partagé, considérez-le comme à risque : l'exploitation est confirmée et la faille ne demande aucune authentification. Limitez son accès réseau et surveillez les écritures de fichiers hors du datastore.",
+      "update_of": "2026-11-22/monai-label-zero-day-agents-ia",
+      "what_is_new": "La CISA a inscrit CVE-2026-133968, traversée de chemin dans MONAI Label, à son catalogue KEV, signe d'une exploitation active.",
+      "sources": [
+        {
+          "article_id": "c154",
+          "feed": "CISA KEV",
+          "title": "CVE-2026-133968 — Project MONAI MONAI Label Path Traversal Vulnerability",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-133968",
+          "key": "link:https://nvd.nist.gov/vuln/detail/CVE-2026-133968"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-24/chu-guadeloupe-cyberattaque",
+      "slug": "chu-guadeloupe-cyberattaque",
+      "theme": "breach",
+      "title": "CHU de Guadeloupe : cyberattaque majeure sur les systèmes d'information",
+      "summary": "Selon RFI, repris par DataBreaches.net, une cyberattaque majeure a frappé le centre hospitalier universitaire de Guadeloupe dans la nuit de samedi. Elle a touché les systèmes d'information et la téléphonie. Le personnel ne pouvait plus accéder à plusieurs applications et bases de données. L'hôpital a activé son plan d'urgence et reporté les interventions non urgentes. Nous n'avons qu'un résumé : ni le type d'attaque, ni l'éventuel vol de données, ni la durée prévue de la perturbation ne sont précisés.",
+      "why_it_matters": "Les hôpitaux restent des cibles où l'indisponibilité a un effet direct sur les soins. Pour un lecteur qui exploite des SI de santé, cet incident rappelle l'intérêt de procédures dégradées testées et de sauvegardes isolées.",
+      "sources": [
+        {
+          "article_id": "c095",
+          "feed": "DataBreaches.net",
+          "title": "Major cyberattack hits IT systems at Guadeloupe university hospital",
+          "url": "https://databreaches.net/2026/11/23/major-cyberattack-hits-it-systems-at-guadeloupe-university-hospital/",
+          "key": "link:https://databreaches.net/2026/11/23/major-cyberattack-hits-it-systems-at-guadeloupe-university-hospital"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-24/kepco-fuite-1-5-million",
+      "slug": "kepco-fuite-1-5-million",
+      "theme": "leak",
+      "title": "KEPCO : plus de 1,5 million de personnes touchées par une intrusion",
+      "summary": "L'électricien sud-coréen KEPCO confirme qu'un attaquant a pénétré son réseau interne et accédé à deux systèmes : la plateforme de facturation KEPCO ON et le système d'achats SRM. L'accès a été détecté le 20 novembre. Les données exposées concernent 650 487 clients, 426 827 représentants d'entreprises et 442 934 employés. Pour les clients, elles incluent noms, pièces d'identité, coordonnées bancaires, numéros de cartes et facturation. KEPCO a bloqué l'accès depuis les IP externes et suspendu les services concernés. L'entreprise attribue l'attaque à des « technologies avancées telles que l'IA » sans détailler l'accès initial. Un acteur nommé Noiem a revendiqué l'attaque le 19 novembre sur un forum. Cette attribution n'est pas confirmée. Les personnes touchées sont prévenues et la commission de protection des données est saisie.",
+      "why_it_matters": "Un opérateur d'infrastructure critique expose des données bancaires et de cartes. Pour les clients concernés, le risque principal est le hameçonnage ciblé. Pour les équipes sécurité, c'est un rappel de segmenter les systèmes de facturation et d'achats, souvent accessibles à des tiers.",
+      "sources": [
+        {
+          "article_id": "c046",
+          "feed": "BleepingComputer",
+          "title": "South Korea’s power giant KEPCO confirms data breach impacting 1.5 million",
+          "url": "https://www.bleepingcomputer.com/news/security/south-koreas-power-giant-kepco-confirms-data-breach-impacting-15-million/",
+          "key": "link:https://bleepingcomputer.com/news/security/south-koreas-power-giant-kepco-confirms-data-breach-impacting-15-million"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-24/tower-records-japon-11-millions",
+      "slug": "tower-records-japon-11-millions",
+      "theme": "leak",
+      "title": "Tower Records Japan : jusqu'à 11 millions d'enregistrements clients potentiellement fuités",
+      "summary": "Selon News on Japan, repris par DataBreaches.net, Tower Records annonce qu'environ 11 millions d'enregistrements clients ont pu être compromis lors d'une cyberattaque survenue le 19 novembre 2026. Les données incluent des noms, dates de naissance et adresses de livraison. L'entreprise affirme qu'aucune information de carte bancaire n'a fuité. Nous n'avons qu'un résumé, sans détail sur la méthode d'intrusion ni sur l'éventuelle revendication.",
+      "why_it_matters": "Les clients concernés s'exposent surtout à du phishing basé sur l'identité et l'adresse. Pour les équipes e-commerce, l'absence déclarée de données de carte montre l'intérêt de déléguer le paiement, mais ne limite pas les obligations de notification.",
+      "sources": [
+        {
+          "article_id": "c098",
+          "feed": "DataBreaches.net",
+          "title": "Jpn: Tower Records Online Hit by Cyberattack, 11 Million Customer Records Potentially Leaked",
+          "url": "https://databreaches.net/2026/11/23/jpn-tower-records-online-hit-by-cyberattack-11-million-customer-records-potentially-leaked/",
+          "key": "link:https://databreaches.net/2026/11/23/jpn-tower-records-online-hit-by-cyberattack-11-million-customer-records-potentially-leaked"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-24/mise-a-jour-aaaep-blackhatsect0r-metabase",
+      "slug": "mise-a-jour-aaaep-blackhatsect0r-metabase",
+      "theme": "leak",
+      "title": "Mise à jour : AAAEP, BlackHatSect0r revendique 585 000 personnes et un accès Metabase admin",
+      "summary": "ZATAZ détaille la revendication visant AAAEP, spécialiste des tests psychotechniques du permis de conduire. Le groupe BlackHatSect0r affirme avoir agi entre le 21 et le 23 novembre 2026 via un accès privilégié à une instance Metabase. Il annonce plus de trois millions de lignes, 1 002 022 réservations et 584 867 personnes distinctes. Les données évoquées comprennent des coordonnées, des évaluations psychotechniques, des mentions de handicap, des factures et 54 228 conversations téléphoniques retranscrites. Les pirates disent avoir touché dix comptes Metabase, dont cinq superutilisateurs, et conservé un accès administrateur. ZATAZ note qu'aucune preuve indépendante ne confirme ce dernier point et relève une incohérence chiffrée dans la publication. Le même groupe vend par ailleurs un outil de phishing bancaire et un agent IA offensif loué de 500 à 1 800 euros, selon ZATAZ.",
+      "why_it_matters": "Un Metabase exposé avec des comptes superutilisateur donne accès à toutes les sources connectées. Vérifiez qui peut atteindre votre instance, limitez les comptes admin et ses connexions aux bases. Les chiffres restent des revendications non confirmées par AAAEP.",
+      "update_of": "2026-11-23/fuites-revendiquees-france-23-novembre",
+      "what_is_new": "ZATAZ détaille la revendication AAAEP : 584 867 personnes, accès Metabase superutilisateur et données médicales, le tout non confirmé.",
+      "sources": [
+        {
+          "article_id": "c138",
+          "feed": "ZATAZ",
+          "title": "Cyberattaque contre AAAEP : 585 000 personnes exposées ?",
+          "url": "https://www.zataz.com/cyberattaque-contre-aaaep-585-000-personnes-exposees/",
+          "key": "link:https://zataz.com/cyberattaque-contre-aaaep-585-000-personnes-exposees"
+        },
+        {
+          "article_id": "c141",
+          "feed": "ZATAZ",
+          "title": "BlackHatSect0r : phishing bancaire, extorsion et industrie",
+          "url": "https://www.zataz.com/blackhatsect0r-phishing-bancaire-extorsion-et-industrie/",
+          "key": "link:https://zataz.com/blackhatsect0r-phishing-bancaire-extorsion-et-industrie"
+        },
+        {
+          "article_id": "c137",
+          "feed": "ZATAZ",
+          "title": "BlackHat Sector : une IA offensive à louer pour 500 €",
+          "url": "https://www.zataz.com/blackhat-sector-une-ia-offensive-a-louer-pour-500-e/",
+          "key": "link:https://zataz.com/blackhat-sector-une-ia-offensive-a-louer-pour-500-e"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-24/stalwart-1-2-compatible-exchange",
+      "slug": "stalwart-1-2-compatible-exchange",
+      "theme": "new_tech",
+      "title": "Stalwart 1.2.0 : le serveur mail open source parle les protocoles d'Exchange",
+      "summary": "Le projet Stalwart publie la version 1.2.0, qui implémente les protocoles des clients Exchange : MAPI over HTTP, Exchange Web Services, Exchange ActiveSync et Autodiscover. Outlook, Apple Mail et les clients mobiles peuvent s'y connecter comme à un serveur Exchange, avec courrier, calendriers, contacts, tâches et notes. Les utilisateurs saisissent adresse et mot de passe, Autodiscover fait le reste. Le support Exchange fait partie de l'édition Community, sous licence AGPL. Les protocoles sont servis sur le même port HTTPS que JMAP et l'interface web. Le projet justifie la sortie par l'état d'Exchange sur site : Exchange 2016 et 2019 ne sont plus supportés depuis octobre 2025, et Exchange Server SE est la seule version sur site restante. L'annonce date de l'éditeur et reste une présentation du projet lui-même.",
+      "why_it_matters": "Si vous auto-hébergez Exchange ou cherchez à en sortir, l'obstacle principal était le client Outlook : celui-ci peut désormais rester. Testez en pré-production avant toute migration, car il s'agit d'une première version annoncée par l'éditeur.",
+      "sources": [
+        {
+          "article_id": "c027",
+          "feed": "Hacker News (150+ pts)",
+          "title": "Stalwart is now a drop-in replacement for Microsoft Exchange",
+          "url": "https://stalw.art/blog/microsoft-exchange-replacement/",
+          "key": "link:https://stalw.art/blog/microsoft-exchange-replacement"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-24/kubernetes-1-38-apercu-retraits",
+      "slug": "kubernetes-1-38-apercu-retraits",
+      "theme": "new_tech",
+      "title": "Kubernetes 1.38 : variables kubectl WebSocket retirées, kubelet dépendant du runtime",
+      "summary": "L'équipe de release publie un aperçu de Kubernetes 1.38, sujet à changement. Les variables KUBECTL_REMOTE_COMMAND_WEBSOCKETS et KUBECTL_PORT_FORWARD_WEBSOCKETS seront retirées : kubectl essaiera toujours WebSockets puis basculera sur SPDY. Dans les entrées de la liste d'autorisation des plugins d'identifiants de kuberc, le champ name disparaît de la nouvelle API v1, qui doit passer en stable ; il faut utiliser command. Côté kubelet, le runtime de conteneurs devra indiquer le pilote cgroup via le RPC CRI RuntimeConfig. Le mécanisme hérité sera désactivé par défaut et le kubelet quittera en erreur s'il ne le obtient pas. Le champ cgroupDriver sera déprécié. Le support de cgroup v1 reste en voie de suppression, avec failCgroupV1: false comme solution temporaire. Enfin, les webhooks d'admission ne reçoivent plus certaines requêtes de revue d'authentification et d'autorisation.",
+      "why_it_matters": "Passez en revue vos scripts CI pour supprimer les variables WebSocket, remplacez name par command dans kuberc et planifiez la migration vers cgroup v2. Vérifiez aussi que vos runtimes démarrent avant le kubelet et que vos webhooks ne dépendent pas des revues d'accès.",
+      "sources": [
+        {
+          "article_id": "c081",
+          "feed": "Kubernetes blog",
+          "title": "Kubernetes v1.38 Sneak Peek",
+          "url": "https://kubernetes.io/blog/2026/11/23/kubernetes-v1-38-sneak-peek/",
+          "key": "link:https://kubernetes.io/blog/2026/11/23/kubernetes-v1-38-sneak-peek"
+        }
+      ]
+    }
+  ],
+  "episode_title": "APIM Classic, secrets à changer et Exchange sans Exchange",
+  "script": [
+    {
+      "speaker": "Camille",
+      "text": "Bonjour à tous, on est le mardi 24 novembre 2026, et c'est La veille. Au programme : une faille Azure API Management qui a fait des dégâts, des suites de sujets de la semaine dernière, des fuites de données, et deux outils intéressants, Stalwart et Kubernetes 1.38.",
+      "style": "relaxed, warm"
+    },
+    {
+      "speaker": "Max",
+      "text": "Salut Camille. Allez, on commence par le plus chaud : Azure API Management Classic. Microsoft prévient ses clients qu'une vulnérabilité a été exploitée pour accéder à des secrets stockés.",
+      "style": "relaxed, amused"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Aïe. Ça touche quoi exactement ? Parce qu'APIM, il y a plein de paliers.",
+      "style": "concerned"
+    },
+    {
+      "speaker": "Max",
+      "text": "Les paliers Developer, Basic, Standard et Premium de Classic. Le palier Consumption de Classic n'est pas concerné, ni tous les paliers APIM v2. Microsoft dit avoir identifié le problème le 18 novembre et fermé le chemin d'accès le 19.",
+      "style": "calm, explaining"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Et ils ont pris quoi, les attaquants ?",
+      "style": "curious"
+    },
+    {
+      "speaker": "Max",
+      "text": "L'accès visait le plan de gestion, surtout des instances pas configurées selon les bonnes pratiques, d'après Microsoft. Les données exposées peuvent inclure les Named Values, les secrets clients des fournisseurs d'identité et OpenID Connect, les clés d'abonnement et les jetons des API de gestion. Et côté Norvège, l'autorité NSM relie la faille aux attaques contre Equinor et Skagerak Energi, avec d'autres secteurs et pays touchés.",
+      "style": "serious"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Equinor a dit quoi ?",
+      "style": "surprised"
+    },
+    {
+      "speaker": "Max",
+      "text": "Qu'ils n'ont aucun indice de vol ou de modification de données. Mais l'ampleur de l'exploitation reste inconnue. Et un admin raconte sur Reddit que l'API héritée ne produisait pas de journaux. BleepingComputer n'a pas pu le vérifier, donc prudence.",
+      "style": "calm"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Le point clé, c'est que le correctif n'invalide pas les identifiants déjà consultés. Donc perso, je suivrais la consigne de la NSM : secrets et Named Values considérés comme compromis, on les remplace, et on épluche les journaux des systèmes accessibles, Key Vault compris.",
+      "style": "thoughtful"
+    },
+    {
+      "speaker": "Max",
+      "text": "Et à l'avenir, les secrets dans Key Vault plutôt que dans APIM, c'est la pratique recommandée.",
+      "style": "relaxed"
+    },
+    {
+      "speaker": "Camille",
+      "text": "On enchaîne avec les suites. Tu te souviens de la panne N-able, Mail Assure et SpamExperts, samedi ?",
+      "style": "relaxed"
+    },
+    {
+      "speaker": "Max",
+      "text": "Oui, l'intrusion sur un serveur. Eh ben, N-able a divulgué une faille critique trouvée pendant l'enquête : la CVE 2026 tiret 134624, une SSRF dans la vérification de connexion LDAP. Un utilisateur d'API authentifié peut faire se connecter le serveur à des hôtes et ports internes de son choix. CVSS 4.0 de 9,3.",
+      "style": "engaged"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Et c'est exploité ?",
+      "style": "curious"
+    },
+    {
+      "speaker": "Max",
+      "text": "La CISA l'a mise au catalogue KEV. Par contre N-able n'indique pas si cette faille a servi dans leur propre incident. Ils disent n'avoir trouvé aucune preuve de compromission de données clients, boîtes aux lettres comprises. Dashboard et API sont revenus samedi soir, et une analyse de cause racine est promise sous deux semaines.",
+      "style": "calm, explaining"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Pour les clients Hosted Cloud : rien à installer, mais les jetons d'API et OAuth ont été révoqués, donc il faut reconnecter scripts et intégrations avec de nouveaux identifiants. Et ceux qui exploitent SpamExperts Local Cloud, vérifiez que vous êtes au moins sur le build 20261121.1943, parce que les communications ne parlent que du Hosted.",
+      "style": "practical"
+    },
+    {
+      "speaker": "Max",
+      "text": "Autre suite : Cisco Expressway, avec la CVE 2026 tiret 76466, CVSS 9,8. La CISA l'a ajoutée au KEV le 20 novembre, avec SAP NetWeaver.",
+      "style": "relaxed"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Expressway, ce sont des identifiants codés en dur qui permettent d'exécuter des commandes en root sur les Expressway-C et Expressway-E en cluster. Corrigé en X15.5.20 depuis le 21 octobre. Et l'exploitation est arrivée après la publication d'un PoC, d'après l'alerte de F6.",
+      "style": "explaining"
+    },
+    {
+      "speaker": "Max",
+      "text": "Délai de trois jours pour les agences fédérales, ça rigole pas. Et SAP NetWeaver ?",
+      "style": "surprised"
+    },
+    {
+      "speaker": "Camille",
+      "text": "La CVE 2025 tiret 42884, score de 6,5 seulement, un attaquant non authentifié peut lire ou modifier des infos du serveur via des opérations JNDI. SAP l'a corrigée en novembre 2025, et aucune exploitation n'avait été signalée avant l'alerte. Leçon : un score moyen ne dispense pas de patcher quand l'exploitation est confirmée.",
+      "style": "calm"
+    },
+    {
+      "speaker": "Max",
+      "text": "Le KEV a aussi reçu une faille vCenter, la CVE 2026 tiret 123890, et une Apache Roller, la CVE 2026 tiret 129448. Et une dernière suite : MONAI Label.",
+      "style": "relaxed"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Le serveur d'annotation d'images médicales, où des agents IA d'Amazon avaient trouvé un zero-day ?",
+      "style": "curious"
+    },
+    {
+      "speaker": "Max",
+      "text": "Voilà. La CISA a inscrit la CVE 2026 tiret 133968 : une traversée de chemin qui permet à un attaquant distant, sans authentification, d'écrire des fichiers en dehors du répertoire prévu, avec exécution de code possible. Attention, on n'a qu'un résumé, et il ne fait pas le lien explicite avec la faille d'Amazon.",
+      "style": "explaining"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Si tu exposes un MONAI Label, même sur un réseau interne partagé, je le considérerais à risque. On limite l'accès réseau et on surveille les écritures hors du datastore.",
+      "style": "practical"
+    },
+    {
+      "speaker": "Max",
+      "text": "Côté fuites maintenant. D'abord le CHU de Guadeloupe : cyberattaque majeure dans la nuit de samedi, systèmes d'information et téléphonie touchés.",
+      "style": "serious"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Le personnel n'avait plus accès à plusieurs applications et bases de données. L'hôpital a activé son plan d'urgence et reporté les interventions non urgentes. On n'a qu'un résumé : pas de type d'attaque, pas de vol de données confirmé, pas de durée prévue.",
+      "style": "concerned"
+    },
+    {
+      "speaker": "Max",
+      "text": "Ça rappelle l'intérêt de procédures dégradées testées et de sauvegardes isolées. Quand c'est un hôpital, l'indispo touche directement les soins.",
+      "style": "thoughtful"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Direction la Corée : KEPCO, l'électricien. Un attaquant est entré dans le réseau interne et a accédé à la plateforme de facturation KEPCO ON et au système d'achats SRM. Détecté le 20 novembre.",
+      "style": "engaged"
+    },
+    {
+      "speaker": "Max",
+      "text": "Ça fait combien de monde ?",
+      "style": "surprised"
+    },
+    {
+      "speaker": "Camille",
+      "text": "650 487 clients, 426 827 représentants d'entreprises et 442 934 employés, donc plus d'1,5 million de personnes. Pour les clients : noms, pièces d'identité, coordonnées bancaires, numéros de cartes et facturation.",
+      "style": "calm"
+    },
+    {
+      "speaker": "Max",
+      "text": "Et ils expliquent comment ?",
+      "style": "curious"
+    },
+    {
+      "speaker": "Camille",
+      "text": "KEPCO parle de technologies avancées comme l'IA, sans détailler l'accès initial. Un acteur nommé Noiem a revendiqué le 19 novembre sur un forum, mais ce n'est pas confirmé. Les personnes sont prévenues, la commission de protection des données est saisie. Perso, ça me rappelle qu'il faut segmenter facturation et achats, souvent ouverts à des tiers.",
+      "style": "amused, skeptical"
+    },
+    {
+      "speaker": "Max",
+      "text": "Autre gros chiffre : Tower Records Japon. Environ 11 millions d'enregistrements clients ont pu être compromis lors d'une attaque le 19 novembre.",
+      "style": "relaxed"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Quelles données ?",
+      "style": "curious"
+    },
+    {
+      "speaker": "Max",
+      "text": "Noms, dates de naissance, adresses de livraison. L'entreprise affirme qu'aucune info de carte bancaire n'a fuité. Là aussi, simple résumé, sans méthode d'intrusion ni revendication.",
+      "style": "calm"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Déléguer le paiement, ça aide, mais ça ne dispense pas de notifier. Et pour les clients, le risque, c'est le phishing basé sur l'identité et l'adresse.",
+      "style": "thoughtful"
+    },
+    {
+      "speaker": "Max",
+      "text": "Et en France, suite des fuites revendiquées : ZATAZ détaille AAAEP, spécialiste des tests psychotechniques du permis de conduire.",
+      "style": "engaged"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Le groupe BlackHatSect0r affirme avoir agi entre le 21 et le 23 novembre via un accès privilégié à une instance Metabase. Plus de trois millions de lignes, 1 002 022 réservations, 584 867 personnes distinctes.",
+      "style": "explaining"
+    },
+    {
+      "speaker": "Max",
+      "text": "Et dedans ?",
+      "style": "surprised"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Coordonnées, évaluations psychotechniques, mentions de handicap, factures, et 54 228 conversations téléphoniques retranscrites. Ils disent avoir touché dix comptes Metabase, dont cinq superutilisateurs, et gardé un accès admin. ZATAZ note qu'aucune preuve indépendante ne confirme ce dernier point, et relève une incohérence chiffrée. Donc tout ça reste des revendications.",
+      "style": "serious"
+    },
+    {
+      "speaker": "Max",
+      "text": "Le même groupe vendrait aussi un outil de phishing bancaire et un agent IA offensif loué de 500 à 1 800 euros, selon ZATAZ. Côté leçon : un Metabase avec des superutilisateurs, ça ouvre toutes les sources connectées. Vérifiez qui l'atteint et limitez les comptes admin.",
+      "style": "amused"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Allez, on finit par du plus léger. Stalwart 1.2.0, le serveur mail open source, implémente les protocoles des clients Exchange : MAPI over HTTP, Exchange Web Services, ActiveSync et Autodiscover.",
+      "style": "upbeat"
+    },
+    {
+      "speaker": "Max",
+      "text": "Attends, donc Outlook peut s'y connecter comme à un Exchange ?",
+      "style": "curious"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Oui, Outlook, Apple Mail, clients mobiles, avec courrier, calendriers, contacts, tâches et notes. L'utilisateur saisit adresse et mot de passe, Autodiscover fait le reste. C'est dans l'édition Community, sous licence AGPL, sur le même port HTTPS que JMAP et l'interface web.",
+      "style": "explaining"
+    },
+    {
+      "speaker": "Max",
+      "text": "Le projet justifie ça par l'état d'Exchange sur site : 2016 et 2019 ne sont plus supportés depuis octobre 2025, et Exchange Server SE est la seule version restante. Mais attention, c'est l'annonce de l'éditeur sur son propre projet, et c'est une première version. Je testerais en pré-production avant toute migration.",
+      "style": "thoughtful"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Dernier sujet : l'aperçu de Kubernetes 1.38, sujet à changement. Les variables kubectl KUBECTL_REMOTE_COMMAND_WEBSOCKETS et KUBECTL_PORT_FORWARD_WEBSOCKETS seront retirées : kubectl essaiera toujours WebSockets, puis basculera sur SPDY.",
+      "style": "relaxed"
+    },
+    {
+      "speaker": "Max",
+      "text": "Donc un coup d'œil à vos scripts CI. Autre point : dans la liste d'autorisation des plugins d'identifiants de kuberc, le champ name disparaît de la nouvelle API v1, qui doit passer en stable. Il faudra utiliser command.",
+      "style": "practical"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Côté kubelet, le runtime devra indiquer le pilote cgroup via le RPC CRI RuntimeConfig. Le mécanisme hérité sera désactivé par défaut, et le kubelet quittera en erreur s'il n'obtient pas l'info. Le champ cgroupDriver sera déprécié.",
+      "style": "explaining"
+    },
+    {
+      "speaker": "Max",
+      "text": "Donc il faut que le runtime démarre avant le kubelet. Et cgroup v1 ?",
+      "style": "curious"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Toujours en voie de suppression, avec failCgroupV1 à false comme solution temporaire. Planifiez cgroup v2. Et les webhooks d'admission ne reçoivent plus certaines requêtes de revue d'authentification et d'autorisation, donc vérifiez que les vôtres n'en dépendent pas.",
+      "style": "calm"
+    },
+    {
+      "speaker": "Max",
+      "text": "Voilà pour aujourd'hui. Pensez à changer vos secrets APIM si vous êtes concernés.",
+      "style": "relaxed, warm"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Merci d'avoir écouté, bon mardi à tous, et à demain.",
+      "style": "relaxed, warm"
+    }
+  ],
+  "episode": {
+    "title": "APIM Classic, secrets à changer et Exchange sans Exchange",
+    "release_tag": "ep-2026-11-24",
+    "mp3_url": "https://github.com/Elohyrr/veille/releases/download/ep-2026-11-24/veille-2026-11-24.mp3",
+    "bytes": 4914093,
+    "duration_s": 614,
+    "tts_provider": "openrouter"
+  },
+  "usage": {
+    "digest": {
+      "model": "sonnet",
+      "in": 39330,
+      "out": 6879,
+      "cost_usd": 0.226106
+    },
+    "podcast": {
+      "model": "sonnet",
+      "in": 7765,
+      "out": 5524,
+      "cost_usd": 0.086296
+    },
+    "triage": {
+      "model": "haiku",
+      "in": 43813,
+      "out": 5014,
+      "cost_usd": 0.011269400000000002
+    }
+  }
+}

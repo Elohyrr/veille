@@ -5,9 +5,29 @@
 <link>https://elohyrr.github.io/veille/</link>
 <description>Tech, pannes, failles et fuites — digest quotidien</description>
 <language>fr-fr</language>
-<lastBuildDate>Mon, 23 Nov 2026 06:03:24 &#43;0000</lastBuildDate>
+<lastBuildDate>Tue, 24 Nov 2026 06:07:30 &#43;0000</lastBuildDate>
 <itunes:image href="https://elohyrr.github.io/veille/cover.png"/>
 <itunes:explicit>false</itunes:explicit>
+<item>
+<title>APIM Classic, secrets à changer et Exchange sans Exchange</title>
+<link>https://elohyrr.github.io/veille/jours/2026-11-24/</link>
+<guid isPermaLink="false">ep-2026-11-24</guid>
+<pubDate>Tue, 24 Nov 2026 06:07:30 &#43;0000</pubDate>
+<description>- Azure API Management Classic : une faille a permis de voler des secrets, Equinor touché
+- Mise à jour : N-able Mail Assure, SSRF CVE-2026-134624 corrigée et ajoutée au KEV
+- Mise à jour : la CISA ajoute SAP NetWeaver et Cisco Expressway au catalogue KEV
+- Mise à jour : MONAI Label, CVE-2026-133968 inscrite au catalogue KEV de la CISA
+- CHU de Guadeloupe : cyberattaque majeure sur les systèmes d&#39;information
+- KEPCO : plus de 1,5 million de personnes touchées par une intrusion
+- Tower Records Japan : jusqu&#39;à 11 millions d&#39;enregistrements clients potentiellement fuités
+- Mise à jour : AAAEP, BlackHatSect0r revendique 585 000 personnes et un accès Metabase admin
+- Stalwart 1.2.0 : le serveur mail open source parle les protocoles d&#39;Exchange
+- Kubernetes 1.38 : variables kubectl WebSocket retirées, kubelet dépendant du runtime
+https://elohyrr.github.io/veille/jours/2026-11-24/</description>
+<enclosure url="https://github.com/Elohyrr/veille/releases/download/ep-2026-11-24/veille-2026-11-24.mp3" length="4914093" type="audio/mpeg"/>
+<itunes:duration>00:10:14</itunes:duration>
+<itunes:explicit>false</itunes:explicit>
+</item>
 <item>
 <title>Prompts volés, routeurs infectés et CVV copiés</title>
 <link>https://elohyrr.github.io/veille/jours/2026-11-23/</link>
