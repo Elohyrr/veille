@@ -5,9 +5,29 @@
 <link>https://elohyrr.github.io/veille/</link>
 <description>Tech, pannes, failles et fuites — digest quotidien</description>
 <language>fr-fr</language>
-<lastBuildDate>Tue, 24 Nov 2026 06:07:30 &#43;0000</lastBuildDate>
+<lastBuildDate>Wed, 25 Nov 2026 06:08:34 &#43;0000</lastBuildDate>
 <itunes:image href="https://elohyrr.github.io/veille/cover.png"/>
 <itunes:explicit>false</itunes:explicit>
+<item>
+<title>vCenter remet ça, Drupal exploité et Rackspace Spot ferme</title>
+<link>https://elohyrr.github.io/veille/jours/2026-11-25/</link>
+<guid isPermaLink="false">ep-2026-11-25</guid>
+<pubDate>Wed, 25 Nov 2026 06:08:34 &#43;0000</pubDate>
+<description>- Mise à jour : VMware vCenter : nouvelle faille CVE-2026-123903 (CVSS 9.8), 23 failles corrigées
+- Drupal Core : CVE-2026-132165 exploitée, prise de contrôle via install.php
+- Mise à jour : Rackspace ferme Spot après la brèche, migration avant le 8 décembre
+- Mise à jour : Azure APIM Classic, l&#39;autorité norvégienne NSM et Microsoft précisent la portée
+- Inception : un nouveau groupe d&#39;extorsion vise les identifiants SSO par vishing
+- Mise à jour : Check Point : une campagne d&#39;intrusion active vise les serveurs de gestion de sécurité
+- Traefik : le CERT-FR publie un avis sur de multiples vulnérabilités
+- Mise à jour : panne Microsoft 365, le rapport final révise l&#39;analyse préliminaire
+- myColorado : cyberattaque, application hors ligne et données de près de 150 000 personnes volées
+- Shirudo : OpenAI et Cisco lancent un outil de protection runtime pour Linux non corrigé
+https://elohyrr.github.io/veille/jours/2026-11-25/</description>
+<enclosure url="https://github.com/Elohyrr/veille/releases/download/ep-2026-11-25/veille-2026-11-25.mp3" length="3999597" type="audio/mpeg"/>
+<itunes:duration>00:08:20</itunes:duration>
+<itunes:explicit>false</itunes:explicit>
+</item>
 <item>
 <title>APIM Classic, secrets à changer et Exchange sans Exchange</title>
 <link>https://elohyrr.github.io/veille/jours/2026-11-24/</link>

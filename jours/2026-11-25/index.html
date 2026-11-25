@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>mercredi 25 novembre 2026 — La veille</title>
+<meta name="description" content="Tech, pannes, failles et fuites — digest quotidien">
+<link rel="canonical" href="https://elohyrr.github.io/veille/jours/2026-11-25/">
+<link rel="stylesheet" href="../../style.css">
+<link rel="alternate" type="application/rss+xml" title="La veille (audio)" href="../../podcast.xml">
+<link rel="alternate" type="application/rss+xml" title="La veille (texte)" href="../../feed.xml">
+</head>
+<body>
+<header class="site">
+<a class="brand" href="../../">La veille</a>
+<p class="tagline">Tech, pannes, failles et fuites — digest quotidien</p>
+</header>
+<main>
+
+
+<h1>mercredi 25 novembre 2026</h1>
+<p class="meta">10 sujets · lecture estimée : 6 min</p>
+
+<section class="player" aria-label="Podcast du jour">
+<p><strong>Écouter</strong> · 8 min · vCenter remet ça, Drupal exploité et Rackspace Spot ferme</p>
+<audio controls preload="none" src="https://github.com/Elohyrr/veille/releases/download/ep-2026-11-25/veille-2026-11-25.mp3"></audio>
+<p><a class="dl" href="https://github.com/Elohyrr/veille/releases/download/ep-2026-11-25/veille-2026-11-25.mp3" download>Télécharger le MP3</a> <span class="muted">(4,0 Mo)</span></p>
+</section>
+
+<p class="intro">Journée chargée côté vulnérabilités : un nouveau contournement d&#39;authentification vCenter, Drupal exploité, Rackspace Spot qui ferme. Les rapports de pannes Microsoft se précisent, et un outil de protection runtime pour Linux apparaît.</p>
+
+<nav class="toc" aria-label="Sommaire">
+<section class="toc-group t-new_tech">
+<h2><span class="pill" aria-hidden="true"></span>Nouvelles technos <span class="count">1</span></h2>
+<ul>
+<li><a href="#shirudo-openai-cisco-linux">Shirudo : OpenAI et Cisco lancent un outil de protection runtime pour Linux non corrigé</a></li>
+</ul>
+</section>
+<section class="toc-group t-outage">
+<h2><span class="pill" aria-hidden="true"></span>Pannes <span class="count">1</span></h2>
+<ul>
+<li><a href="#microsoft-365-rapport-final-panne">Mise à jour : panne Microsoft 365, le rapport final révise l&#39;analyse préliminaire</a></li>
+</ul>
+</section>
+<section class="toc-group t-breach">
+<h2><span class="pill" aria-hidden="true"></span>Failles et compromissions <span class="count">7</span></h2>
+<ul>
+<li><a href="#vmware-vcenter-cve-2026-123903">Mise à jour : VMware vCenter : nouvelle faille CVE-2026-123903 (CVSS 9.8), 23 failles corrigées</a></li>
+<li><a href="#drupal-core-install-php-kev">Drupal Core : CVE-2026-132165 exploitée, prise de contrôle via install.php</a></li>
+<li><a href="#rackspace-spot-fermeture">Mise à jour : Rackspace ferme Spot après la brèche, migration avant le 8 décembre</a></li>
+<li><a href="#azure-apim-classic-nsm-microsoft">Mise à jour : Azure APIM Classic, l&#39;autorité norvégienne NSM et Microsoft précisent la portée</a></li>
+<li><a href="#inception-vishing-sso">Inception : un nouveau groupe d&#39;extorsion vise les identifiants SSO par vishing</a></li>
+<li><a href="#check-point-campagne-serveurs-gestion">Mise à jour : Check Point : une campagne d&#39;intrusion active vise les serveurs de gestion de sécurité</a></li>
+<li><a href="#traefik-avis-cert-fr">Traefik : le CERT-FR publie un avis sur de multiples vulnérabilités</a></li>
+</ul>
+</section>
+<section class="toc-group t-leak">
+<h2><span class="pill" aria-hidden="true"></span>Fuites de données <span class="count">1</span></h2>
+<ul>
+<li><a href="#mycolorado-cyberattaque-150000">myColorado : cyberattaque, application hors ligne et données de près de 150 000 personnes volées</a></li>
+</ul>
+</section>
+</nav>
+
+<article id="shirudo-openai-cisco-linux" class="topic t-new_tech">
+<h3><span class="pill" aria-hidden="true"></span>Shirudo : OpenAI et Cisco lancent un outil de protection runtime pour Linux non corrigé</h3>
+
+<p>Selon BleepingComputer, OpenAI et Cisco ont lancé Shirudo, un outil de sécurité Linux open source. Il déploie des protections temporaires à l&#39;exécution pour bloquer l&#39;exploitation de vulnérabilités pendant que les administrateurs préparent et déploient les correctifs, sans redémarrer les services. BleepingComputer précise que l&#39;outil s&#39;appuie sur l&#39;IA. Nous n&#39;avons qu&#39;un extrait : fonctionnement, périmètre et maturité ne sont pas détaillés.</p>
+<div class="why"><p class="why-title">Pourquoi c'est important</p><p>L&#39;approche rappelle le « virtual patching » : réduire la fenêtre d&#39;exposition entre divulgation et correctif, utile quand un redémarrage est difficile. À évaluer avec prudence, comme complément du patching et non comme remplacement.</p></div>
+<details class="sources">
+<summary>Sources (1)</summary>
+<ul>
+<li><a href="https://www.bleepingcomputer.com/news/security/new-shirudo-tool-uses-ai-to-shield-unpatched-linux-systems-from-exploits/" rel="noopener nofollow">New Shirudo tool uses AI to shield unpatched Linux systems from exploits</a> <span class="feed">BleepingComputer</span></li>
+</ul>
+</details>
+
+</article>
+
+<article id="microsoft-365-rapport-final-panne" class="topic t-outage">
+<h3><span class="pill" aria-hidden="true"></span>Mise à jour : panne Microsoft 365, le rapport final révise l&#39;analyse préliminaire</h3>
+<p class="update"><a href="../2026-11-17/#microsoft-365-rapport-preliminaire-panne">Mise à jour du 17 novembre</a> : Le rapport final porte les facteurs à quatre, réécrit plusieurs points du rapport préliminaire et reconnaît des e-mails perdus dans un cas précis.</p>
+<p>Selon Next, le rapport final de Microsoft sur la panne des 12 et 13 novembre écarte toute cyberattaque ou usage de l&#39;IA. L&#39;origine reste une mise à jour déployée trois mois plus tôt dans Windows Server, pour les serveurs de passerelle. Le rapport compte désormais quatre facteurs au lieu de trois : le défaut latent, la charge liée à Teams, la capacité réduite et le pic de trafic en Amérique du Nord. La perte de 14 % de capacité vient d&#39;une maintenance planifiée, et non plus d&#39;un incident séparé. La propagation mondiale est présentée comme un comportement prévu : les régions saturées reportent le trafic sur d&#39;autres, qui avaient le même correctif. Microsoft revient aussi sur plusieurs affirmations : des e-mails destinés à des boîtes grand public inactives depuis plus de 30 jours ont expiré, et la liste des atteintes à Teams est élargie.</p>
+<div class="why"><p class="why-title">Pourquoi c'est important</p><p>Le rapport montre qu&#39;un correctif validé en test, y compris en charge, peut rester fragile quand il est déployé partout. Pour vos propres déploiements, vérifiez que le cloisonnement entre régions tient face à un défaut commun, et que le report de trafic ne propage pas la panne.</p></div>
+<details class="sources">
+<summary>Sources (1)</summary>
+<ul>
+<li><a href="https://next.ink/269535/panne-microsoft-plus-precis-le-rapport-final-nie-toute-cyberattaque-ou-usage-de-lia/" rel="noopener nofollow">Panne Microsoft : plus précis, le rapport final nie toute cyberattaque ou usage de l’IA</a> <span class="feed">Next</span></li>
+</ul>
+</details>
+
+</article>
+
+<article id="vmware-vcenter-cve-2026-123903" class="topic t-breach">
+<h3><span class="pill" aria-hidden="true"></span>Mise à jour : VMware vCenter : nouvelle faille CVE-2026-123903 (CVSS 9.8), 23 failles corrigées</h3>
+<p class="update"><a href="../2026-11-20/#vmware-vcenter-cve-2026-123890">Mise à jour du 20 novembre</a> : Broadcom corrige une seconde faille distincte, CVE-2026-123903, avec 22 autres vulnérabilités, sans exploitation connue à ce stade.</p>
+<p>Broadcom a publié des correctifs pour 23 vulnérabilités touchant VMware ESX, vCenter, Workstation, Fusion et Avi Load Balancer. La plus grave, CVE-2026-123903 (CVSS 9.8), se trouve dans le VMware Directory Service (vmdir). Un acteur ayant un accès réseau à vCenter peut contourner l&#39;authentification et accéder au système sans autorisation. Quatre failles de gravité élevée sont aussi corrigées, dont une écriture arbitraire de fichier lors du traitement d&#39;archives, pouvant mener à l&#39;exécution de code sur l&#39;appliance (CVE-2026-123904, CVSS 7.5), et trois dénis de service dans vmdir (CVE-2026-123905, CVE-2026-123906, CVE-2026-123907). Les correctifs sont : 9.1.2 et 9.0.2.0300 pour VCF/VVF, vCenter 8.0 U3m, VCF 5.2.5. Pour vCenter 7.0, il faut contacter le support Broadcom en cas de contrat étendu. Broadcom ne signale aucune exploitation pour ces failles. Elles arrivent quelques jours après CVE-2026-123890, exploitée en zero-day par Armory Castle, mais Broadcom précise que les deux problèmes sont distincts.</p>
+<div class="why"><p class="why-title">Pourquoi c'est important</p><p>Si vous exploitez vCenter, planifiez rapidement la mise à jour : un contournement d&#39;authentification 9.8 sur un composant d&#39;administration est une cible de choix, d&#39;autant que la faille précédente a été exploitée. Vérifiez que l&#39;accès réseau à vCenter est restreint et appliquez la version de votre branche.</p></div>
+<details class="sources">
+<summary>Sources (1)</summary>
+<ul>
+<li><a href="https://thehackernews.com/2026/11/vmware-vcenter-hit-by-another-critical.html" rel="noopener nofollow">VMware vCenter Hit by Another Critical 9.8-Rated Auth Bypass Flaw After Zero-Day Exploitation</a> <span class="feed">The Hacker News</span></li>
+</ul>
+</details>
+
+</article>
+
+<article id="drupal-core-install-php-kev" class="topic t-breach">
+<h3><span class="pill" aria-hidden="true"></span>Drupal Core : CVE-2026-132165 exploitée, prise de contrôle via install.php</h3>
+
+<p>La CISA a inscrit CVE-2026-132165 à son catalogue des vulnérabilités exploitées. Selon la description, Drupal Core contient une faille de type « échec non sécurisé » : un attaquant non authentifié pourrait prendre le contrôle d&#39;un site existant ou exécuter du code arbitraire via l&#39;installeur de Drupal. Dans certaines conditions, il peut utiliser install.php pour tenter de réinstaller Drupal sur le site. Nous n&#39;avons qu&#39;un extrait de l&#39;entrée KEV : versions touchées et correctifs ne sont pas précisés ici.</p>
+<div class="why"><p class="why-title">Pourquoi c'est important</p><p>Si vous hébergez des sites Drupal, consultez l&#39;avis officiel pour la version corrigée et appliquez-la. En attendant, vérifiez que install.php n&#39;est pas accessible depuis l&#39;extérieur, par exemple en le bloquant au niveau du reverse proxy. L&#39;exploitation active rend l&#39;urgence réelle.</p></div>
+<details class="sources">
+<summary>Sources (1)</summary>
+<ul>
+<li><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-132165" rel="noopener nofollow">CVE-2026-132165 — Drupal Core Remote Code Execution Vulnerability</a> <span class="feed">CISA KEV</span></li>
+</ul>
+</details>
+
+</article>
+
+<article id="rackspace-spot-fermeture" class="topic t-breach">
+<h3><span class="pill" aria-hidden="true"></span>Mise à jour : Rackspace ferme Spot après la brèche, migration avant le 8 décembre</h3>
+<p class="update"><a href="../2026-11-22/#rackspace-spot-secrets-kubernetes">Mise à jour du 22 novembre</a> : Rackspace met fin à l&#39;offre Spot : les clients ont jusqu&#39;au 8 décembre pour migrer et récupérer leurs données.</p>
+<p>Selon BleepingComputer, Rackspace arrête sa plateforme cloud Rackspace Spot à la suite de la compromission qui a permis à des pirates d&#39;accéder à des clusters Kubernetes de clients et à leurs secrets. Les clients ont jusqu&#39;au 8 décembre pour migrer leurs services et télécharger leurs données. Nous ne disposons que d&#39;un extrait de l&#39;article.</p>
+<div class="why"><p class="why-title">Pourquoi c'est important</p><p>Si vous utilisez Rackspace Spot, prévoyez la migration avant la date limite. Considérez tous les Secrets Kubernetes présents sur ces clusters comme compromis : faites-les tourner, y compris les identifiants vers d&#39;autres services, et auditez leur usage récent.</p></div>
+<details class="sources">
+<summary>Sources (1)</summary>
+<ul>
+<li><a href="https://www.bleepingcomputer.com/news/security/rackspace-shuts-down-spot-cloud-platform-after-security-breach/" rel="noopener nofollow">Rackspace shuts down Spot cloud platform after security breach</a> <span class="feed">BleepingComputer</span></li>
+</ul>
+</details>
+
+</article>
+
+<article id="azure-apim-classic-nsm-microsoft" class="topic t-breach">
+<h3><span class="pill" aria-hidden="true"></span>Mise à jour : Azure APIM Classic, l&#39;autorité norvégienne NSM et Microsoft précisent la portée</h3>
+<p class="update"><a href="../2026-11-24/#azure-apim-classic-secrets-norvege">Mise à jour du 24 novembre</a> : La NSM norvégienne confirme que plusieurs entreprises sont touchées, dont Skagerak Energi, et détaille le calendrier Microsoft (18-19 novembre) ainsi que les types de secrets concernés.</p>
+<p>L&#39;autorité norvégienne de sécurité nationale (NSM) indique que la faille d&#39;Azure API Management a touché plusieurs entreprises du pays, dont Equinor et Skagerak Energi. Selon elle, un acteur inconnu a activement cherché des jetons d&#39;accès, secrets et named values dans APIM. L&#39;ampleur reste incertaine, et la NSM n&#39;a pas vu d&#39;impact sur des entreprises norvégiennes à ce stade. D&#39;après un avis non public de Microsoft, seul le niveau Classic est concerné, pas les niveaux v2. Microsoft a identifié le problème le 18 novembre et fermé le chemin d&#39;accès le 19. Des secrets ont pu être consultés si le service n&#39;était pas configuré selon les bonnes pratiques : named values, secrets clients de fournisseurs d&#39;identité et OpenID Connect, clés d&#39;abonnement, jetons d&#39;API de gestion. Un guide de rotation existe depuis le 21 novembre.</p>
+<div class="why"><p class="why-title">Pourquoi c'est important</p><p>Si vous avez des instances APIM Classic, suivez le guide de Microsoft pour identifier et renouveler named values, secrets clients, clés d&#39;abonnement et jetons. Un secret volé reste exploitable directement contre le service qu&#39;il protège, tant qu&#39;il n&#39;est pas révoqué.</p></div>
+<details class="sources">
+<summary>Sources (1)</summary>
+<ul>
+<li><a href="https://thehackernews.com/2026/11/microsoft-fixes-azure-api-management.html" rel="noopener nofollow">Microsoft Fixes Azure API Management Classic Flaw as Actor Targets Customer Secrets</a> <span class="feed">The Hacker News</span></li>
+</ul>
+</details>
+
+</article>
+
+<article id="inception-vishing-sso" class="topic t-breach">
+<h3><span class="pill" aria-hidden="true"></span>Inception : un nouveau groupe d&#39;extorsion vise les identifiants SSO par vishing</h3>
+
+<p>BleepingComputer rapporte qu&#39;un groupe d&#39;extorsion récemment formé, nommé Inception, est lié à une campagne de vishing à grande échelle. Elle cible les identifiants d&#39;authentification unique (SSO) de plusieurs marques et entreprises dans le monde. Nous n&#39;avons qu&#39;un extrait : ni victimes, ni méthode détaillée, ni ampleur ne sont connues ici.</p>
+<div class="why"><p class="why-title">Pourquoi c'est important</p><p>Le SSO donne accès à de nombreux services d&#39;un coup. Rappelez aux équipes de ne jamais communiquer de code MFA par téléphone, privilégiez des facteurs résistants à l&#39;hameçonnage et vérifiez le processus de réinitialisation de mot de passe de votre support informatique.</p></div>
+<details class="sources">
+<summary>Sources (1)</summary>
+<ul>
+<li><a href="https://www.bleepingcomputer.com/news/security/new-inception-extortion-gang-launches-large-scale-vishing-campaign/" rel="noopener nofollow">New Inception extortion gang launches large-scale vishing campaign</a> <span class="feed">BleepingComputer</span></li>
+</ul>
+</details>
+
+</article>
+
+<article id="check-point-campagne-serveurs-gestion" class="topic t-breach">
+<h3><span class="pill" aria-hidden="true"></span>Mise à jour : Check Point : une campagne d&#39;intrusion active vise les serveurs de gestion de sécurité</h3>
+<p class="update"><a href="../2026-11-14/#check-point-php2shell-wiper-esxi">Mise à jour du 14 novembre</a> : Une nouvelle campagne d&#39;intrusion active est signalée contre les serveurs de gestion de sécurité de Check Point.</p>
+<p>Un article intitulé « Active intrusion campaign against Check Point security management servers » a atteint plus de 275 points sur Hacker News. Nous n&#39;avons que le titre : détails, versions touchées et correctifs ne sont pas disponibles ici. Une campagne précédente, PHP2Shell, avait visé des passerelles Check Point non corrigées.</p>
+<div class="why"><p class="why-title">Pourquoi c'est important</p><p>Si vous administrez des serveurs de gestion Check Point, consultez sans attendre l&#39;avis du constructeur. Vérifiez que l&#39;interface de gestion n&#39;est pas exposée sur Internet et que les correctifs sont appliqués.</p></div>
+<details class="sources">
+<summary>Sources (1)</summary>
+<ul>
+<li><a href="https://www.greynoise.io/blog/check-point-security-management-servers-intrusion-campaign" rel="noopener nofollow">Active intrusion campaign against Check Point security management servers</a> <span class="feed">Hacker News (150&#43; pts)</span></li>
+</ul>
+</details>
+
+</article>
+
+<article id="traefik-avis-cert-fr" class="topic t-breach">
+<h3><span class="pill" aria-hidden="true"></span>Traefik : le CERT-FR publie un avis sur de multiples vulnérabilités</h3>
+
+<p>Le CERT-FR a publié le 24 novembre l&#39;avis CERTFR-2026-AVI-1611 sur de multiples vulnérabilités dans Traefik. Il reprend trois bulletins de sécurité Traefik du même jour : GHSA-3rh5-223h-cpwr, GHSA-42x2-976f-ph52 et GHSA-9657-c2gv-wjpj. Le contenu fourni ne détaille ni la gravité, ni les versions touchées, ni les correctifs.</p>
+<div class="why"><p class="why-title">Pourquoi c'est important</p><p>Traefik est très répandu comme ingress controller Kubernetes et reverse proxy. Si vous l&#39;utilisez, lisez les trois bulletins GitHub pour identifier les versions corrigées et planifiez la mise à jour.</p></div>
+<details class="sources">
+<summary>Sources (1)</summary>
+<ul>
+<li><a href="https://www.cert.cyber.gouv.fr/avis/CERTFR-2026-AVI-1611/" rel="noopener nofollow">Multiples vulnérabilités dans Traefik (24 novembre 2026)</a> <span class="feed">CERT-FR Avis</span></li>
+</ul>
+</details>
+
+</article>
+
+<article id="mycolorado-cyberattaque-150000" class="topic t-leak">
+<h3><span class="pill" aria-hidden="true"></span>myColorado : cyberattaque, application hors ligne et données de près de 150 000 personnes volées</h3>
+
+<p>L&#39;Office des technologies de l&#39;information du Colorado a découvert dans la soirée du 18 novembre une intrusion dans l&#39;application myColorado, utilisée pour l&#39;identité numérique, le stockage de documents et l&#39;accès aux services de l&#39;État. L&#39;application a été coupée et reste indisponible mardi. Elle compte 2,1 millions d&#39;utilisateurs ; les données d&#39;environ 150 000 personnes auraient été volées. Les enquêteurs n&#39;ont pas précisé la nature des données. L&#39;État conseille de se munir d&#39;une pièce d&#39;identité physique pour voyager pendant Thanksgiving, et les services restent accessibles via les sites des agences.</p>
+<div class="why"><p class="why-title">Pourquoi c'est important</p><p>Cas d&#39;école de dépendance à une application unique d&#39;identité numérique : sa coupure a un impact direct sur les usagers. Prévoir un mode dégradé et des procédures de repli fait partie du plan de continuité.</p></div>
+<details class="sources">
+<summary>Sources (1)</summary>
+<ul>
+<li><a href="https://therecord.media/mycolorado-app-down-data-breach" rel="noopener nofollow">Colorado says cyberattack took down myColorado app, warns 150,000 had data stolen</a> <span class="feed">The Record</span></li>
+</ul>
+</details>
+
+</article>
+
+
+<details class="transcript">
+<summary>Transcription</summary>
+<p><strong>Camille</strong> <em>(relaxed, warm morning greeting)</em> : Salut à tous, bienvenue dans La veille, on est le mercredi 25 novembre 2026. Max, bonjour !</p>
+<p><strong>Max</strong> <em>(relaxed, amused)</em> : Salut Camille. Alors au programme aujourd&#39;hui : une journée bien chargée en vulnérabilités, avec vCenter, Drupal, Check Point et Traefik. Et puis des suites de feuilletons, Rackspace, Azure et la panne Microsoft, plus un nouvel outil pour Linux.</p>
+<p><strong>Camille</strong> <em>(calm, easing in)</em> : On commence par vCenter. Tu te souviens de la CVE 2026 tiret 123890, exploitée en zero-day par Armory Castle ? Eh bien Broadcom vient de sortir des correctifs pour 23 vulnérabilités, et il y en a une nouvelle qui pique.</p>
+<p><strong>Max</strong> <em>(curious)</em> : Encore une ? C&#39;est la même ou pas ?</p>
+<p><strong>Camille</strong> <em>(calm, explaining)</em> : Non, Broadcom précise que ce sont deux problèmes distincts. Celle-là, c&#39;est la CVE 2026 tiret 123903, score CVSS de 9,8, dans le VMware Directory Service, vmdir. Quelqu&#39;un qui a un accès réseau à vCenter peut contourner l&#39;authentification et entrer sans autorisation.</p>
+<p><strong>Max</strong> <em>(concerned)</em> : Aïe. Et autour, il y a quoi d&#39;autre dans le lot ?</p>
+<p><strong>Camille</strong> <em>(calm, explaining)</em> : Quatre failles de gravité élevée. Une écriture arbitraire de fichier au traitement d&#39;archives, qui peut mener à de l&#39;exécution de code sur l&#39;appliance, la CVE 2026 tiret 123904, et trois dénis de service dans vmdir. Les correctifs : vCenter 8.0 U3m, VCF 5.2.5, et 9.1.2 ou 9.0.2.0300 pour VCF et VVF. Pour vCenter 7.0, il faut contacter le support Broadcom si tu as un contrat étendu.</p>
+<p><strong>Max</strong> <em>(relaxed, opinionated)</em> : Bon, pour l&#39;instant Broadcom ne signale pas d&#39;exploitation. Mais perso, avec la faille précédente déjà exploitée, je planifierais ça vite, et je vérifierais que l&#39;accès réseau à vCenter est bien restreint.</p>
+<p><strong>Camille</strong> <em>(agreeing)</em> : Même avis. Et dans la même veine, Drupal. La CISA a ajouté la CVE 2026 tiret 132165 à son catalogue des vulnérabilités exploitées.</p>
+<p><strong>Max</strong> <em>(curious)</em> : Qu&#39;est-ce qui se passe, concrètement ?</p>
+<p><strong>Camille</strong> <em>(calm, explaining)</em> : Une faille de type échec non sécurisé dans Drupal Core. Un attaquant non authentifié pourrait prendre le contrôle d&#39;un site ou exécuter du code via l&#39;installeur. Dans certaines conditions, il peut utiliser install.php pour tenter de réinstaller Drupal sur le site.</p>
+<p><strong>Max</strong> <em>(surprised, amused)</em> : Réinstaller le site de quelqu&#39;un d&#39;autre, sympa. Par contre on n&#39;a que l&#39;extrait de l&#39;entrée, donc pas les versions ni les correctifs.</p>
+<p><strong>Camille</strong> <em>(calm)</em> : Voilà, faut aller voir l&#39;avis officiel. En attendant, tu bloques install.php depuis l&#39;extérieur, par exemple au niveau du reverse proxy. Comme c&#39;est exploité, l&#39;urgence est réelle.</p>
+<p><strong>Max</strong> <em>(relaxed, transitioning)</em> : Allez, on enchaîne avec Check Point. Tu te souviens de la campagne PHP2Shell, qui visait des passerelles non corrigées ? Là, une nouvelle campagne d&#39;intrusion active vise les serveurs de gestion de sécurité.</p>
+<p><strong>Camille</strong> <em>(calm)</em> : L&#39;article a dépassé les 275 points sur Hacker News, mais on n&#39;a que le titre. Pas de détails, pas de versions, pas de correctifs.</p>
+<p><strong>Max</strong> <em>(calm, advising)</em> : Donc le réflexe : lire l&#39;avis du constructeur sans attendre. Et vérifier que l&#39;interface de gestion n&#39;est pas exposée sur Internet. Ça, ça devrait être acquis, mais bon.</p>
+<p><strong>Camille</strong> <em>(relaxed)</em> : Toujours dans les avis, le CERT-FR a publié hier l&#39;avis CERTFR-2026-AVI-1611 sur de multiples vulnérabilités dans Traefik. Il reprend trois bulletins de sécurité Traefik du même jour.</p>
+<p><strong>Max</strong> <em>(thoughtful)</em> : On n&#39;a ni la gravité ni les versions. Mais Traefik, c&#39;est très répandu comme ingress controller Kubernetes et comme reverse proxy. Si tu en as, lis les trois bulletins GitHub et planifie la mise à jour.</p>
+<p><strong>Camille</strong> <em>(calm, transitioning)</em> : Parlons de Kubernetes justement. Suite de la brèche Rackspace Spot : Rackspace arrête la plateforme, après la compromission qui a donné à des pirates accès à des clusters de clients et à leurs secrets.</p>
+<p><strong>Max</strong> <em>(surprised)</em> : Attends, ils ferment carrément le service ? Et les clients font quoi ?</p>
+<p><strong>Camille</strong> <em>(calm, explaining)</em> : Ils ont jusqu&#39;au 8 décembre pour migrer et télécharger leurs données. Et mon conseil, c&#39;est de considérer tous les Secrets Kubernetes présents là-bas comme compromis : tu les fais tourner, y compris les identifiants vers d&#39;autres services, et tu audites leur usage récent.</p>
+<p><strong>Max</strong> <em>(agreeing)</em> : Oui, c&#39;est le piège classique : tu migres, mais tes identifiants fuités continuent de marcher ailleurs. Et ça me fait penser à l&#39;autre histoire de secrets : Azure API Management Classic.</p>
+<p><strong>Camille</strong> <em>(calm, explaining)</em> : Exactement, on en parlait hier. L&#39;autorité norvégienne de sécurité nationale, la NSM, dit que plusieurs entreprises du pays sont touchées, dont Equinor et Skagerak Energi. Un acteur inconnu a activement cherché des jetons d&#39;accès, des secrets et des named values dans APIM.</p>
+<p><strong>Max</strong> <em>(curious)</em> : Et côté Microsoft, le calendrier ?</p>
+<p><strong>Camille</strong> <em>(calm, explaining)</em> : D&#39;après un avis non public, seul le niveau Classic est concerné, pas les v2. Microsoft a identifié le problème le 18 novembre et fermé le chemin d&#39;accès le 19. Des secrets ont pu être consultés si le service n&#39;était pas configuré selon les bonnes pratiques : named values, secrets clients de fournisseurs d&#39;identité et OpenID Connect, clés d&#39;abonnement, jetons d&#39;API de gestion.</p>
+<p><strong>Max</strong> <em>(thoughtful)</em> : L&#39;ampleur reste incertaine, et la NSM n&#39;a pas vu d&#39;impact sur des entreprises norvégiennes à ce stade. Mais un secret volé reste exploitable tant qu&#39;il n&#39;est pas révoqué. Il y a un guide de rotation depuis le 21 novembre, donc si t&#39;as de l&#39;APIM Classic, suis-le.</p>
+<p><strong>Camille</strong> <em>(relaxed, transitioning)</em> : Autre suite : la panne Microsoft 365 des 12 et 13 novembre. Le rapport final est sorti, selon Next, et il écarte toute cyberattaque ou usage de l&#39;IA.</p>
+<p><strong>Max</strong> <em>(curious)</em> : Donc l&#39;origine, c&#39;est quoi ?</p>
+<p><strong>Camille</strong> <em>(calm, explaining)</em> : Une mise à jour déployée trois mois plus tôt dans Windows Server, pour les serveurs de passerelle. Le rapport compte maintenant quatre facteurs au lieu de trois : le défaut latent, la charge liée à Teams, la capacité réduite et le pic de trafic en Amérique du Nord.</p>
+<p><strong>Max</strong> <em>(amused)</em> : La capacité réduite, c&#39;était pas un incident à part avant ?</p>
+<p><strong>Camille</strong> <em>(calm, explaining)</em> : Si, mais maintenant la perte de 14 % de capacité vient d&#39;une maintenance planifiée. Et la propagation mondiale est présentée comme un comportement prévu : les régions saturées reportent le trafic sur d&#39;autres, qui avaient le même correctif.</p>
+<p><strong>Max</strong> <em>(thoughtful)</em> : Moi ça me parle : le cloisonnement entre régions ne sert à rien si le défaut est commun partout. Chez toi, vérifie que le report de trafic ne propage pas la panne.</p>
+<p><strong>Camille</strong> <em>(serious)</em> : Microsoft revient aussi sur plusieurs affirmations. Des e-mails destinés à des boîtes grand public inactives depuis plus de 30 jours ont expiré, et la liste des atteintes à Teams est élargie.</p>
+<p><strong>Max</strong> <em>(relaxed, transitioning)</em> : Passons à l&#39;humain. Un nouveau groupe d&#39;extorsion, Inception, serait lié à une campagne de vishing à grande échelle qui vise les identifiants SSO de plusieurs marques et entreprises dans le monde.</p>
+<p><strong>Camille</strong> <em>(calm)</em> : On n&#39;a qu&#39;un extrait, donc ni victimes ni méthode détaillée. Mais le SSO, c&#39;est la clé de plein de services d&#39;un coup. Rappelle aux équipes de ne jamais donner un code MFA par téléphone, et regarde le processus de réinitialisation de mot de passe de ton support.</p>
+<p><strong>Max</strong> <em>(agreeing)</em> : Et des facteurs résistants à l&#39;hameçonnage, si tu peux. Maintenant, un cas d&#39;école : myColorado.</p>
+<p><strong>Camille</strong> <em>(serious)</em> : L&#39;Office des technologies de l&#39;information du Colorado a découvert dans la soirée du 18 novembre une intrusion dans l&#39;application myColorado, qui sert à l&#39;identité numérique, au stockage de documents et à l&#39;accès aux services de l&#39;État. L&#39;application a été coupée et restait indisponible mardi.</p>
+<p><strong>Max</strong> <em>(concerned)</em> : Combien de monde ?</p>
+<p><strong>Camille</strong> <em>(calm, explaining)</em> : 2,1 millions d&#39;utilisateurs, et les données d&#39;environ 150 000 personnes auraient été volées. La nature des données n&#39;est pas précisée. L&#39;État conseille de prendre une pièce d&#39;identité physique pour voyager pendant Thanksgiving.</p>
+<p><strong>Max</strong> <em>(thoughtful)</em> : Ça montre le risque de tout mettre dans une seule appli d&#39;identité. Un mode dégradé et des procédures de repli, ça fait partie du plan de continuité.</p>
+<p><strong>Camille</strong> <em>(upbeat, transitioning)</em> : On finit sur du nouveau : OpenAI et Cisco ont lancé Shirudo, un outil de sécurité Linux open source.</p>
+<p><strong>Max</strong> <em>(curious)</em> : Il fait quoi ?</p>
+<p><strong>Camille</strong> <em>(calm, explaining)</em> : Il déploie des protections temporaires à l&#39;exécution pour bloquer l&#39;exploitation de vulnérabilités pendant que les admins préparent et déploient les correctifs, sans redémarrer les services. BleepingComputer précise qu&#39;il s&#39;appuie sur l&#39;IA. Mais on n&#39;a qu&#39;un extrait : fonctionnement, périmètre et maturité ne sont pas détaillés.</p>
+<p><strong>Max</strong> <em>(relaxed, opinionated)</em> : Moi ça me fait penser au virtual patching : réduire la fenêtre entre la divulgation et le correctif. Pratique quand un redémarrage est compliqué, mais je l&#39;évaluerais prudemment, en complément du patching, pas à la place.</p>
+<p><strong>Camille</strong> <em>(warm, closing)</em> : Voilà pour aujourd&#39;hui. Patchez bien, et faites tourner vos secrets. Merci d&#39;avoir écouté, à demain !</p>
+<p><strong>Max</strong> <em>(relaxed, warm)</em> : À demain, bonne journée à tous !</p>
+</details>
+
+<nav class="nav" aria-label="Navigation entre les jours">
+<a class="prev" href="../2026-11-24/">← 24 novembre</a>
+<a href="../../archives/">Archives</a>
+
+</nav>
+
+
+</main>
+<footer class="site">
+<p><a href="../../archives/">Archives</a> · <a href="../../podcast.xml">Podcast (RSS)</a> · <a href="../../feed.xml">Flux texte (RSS)</a></p>
+</footer>
+</body>
+</html>
