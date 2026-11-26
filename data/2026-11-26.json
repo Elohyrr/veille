@@ -1,0 +1,503 @@
+{
+  "date": "2026-11-26",
+  "published_at": "2026-11-26T06:11:19Z",
+  "intro": "Journée chargée côté sécurité de la chaîne logicielle : Hex.pm exploité, 1Password touché via un compte GitHub, GeoServer attaqué. Côté pannes, Microsoft déclenche un « code rouge » après l'incident de Microsoft 365.",
+  "topics": [
+    {
+      "id": "2026-11-26/hex-pm-rce-cve-2026-129514",
+      "slug": "hex-pm-rce-cve-2026-129514",
+      "theme": "breach",
+      "title": "Hex.pm : CVE-2026-129514 (CVSS 10.0) exploitée, six serveurs du registre compromis",
+      "summary": "Lundi, un attaquant a exécuté des commandes système sur six serveurs de production de Hex.pm, le registre de paquets d'Elixir et Erlang. La faille, CVE-2026-129514 (CVSS 10.0), se trouvait dans le code depuis le 23 février 2016. Elle touchait l'analyseur des corps de requête au format de données Erlang, exécuté avant le routage et l'authentification : une simple requête POST non authentifiée suffisait. Le décodeur acceptait des maps avec une clé __struct__, ce qui permettait de se faire passer pour une struct Elixir ; le code de rapport d'erreur l'inspectait ensuite et appelait une fonction choisie par l'attaquant. Les journaux du répartiteur de charge montrent 69 requêtes d'exploitation entre 18 h 16 et 18 h 29 UTC, depuis deux adresses. Tous les serveurs étaient corrigés à 18 h 31 UTC. L'équipe n'a trouvé aucune modification de paquet, mais ne peut pas exclure un accès aux données de la base : e-mails, hachages de mots de passe, secrets 2FA. Tous les comptes ont été déconnectés. La clé de signature du registre n'a pas encore été remplacée.",
+      "why_it_matters": "Si vous utilisez Hex (Elixir, Erlang), changez votre mot de passe, réinitialisez le 2FA, puis reconnectez le client avec mix hex.user auth ou rebar3 hex user auth. Les clés d'API n'ont pas besoin d'être remplacées. En attendant le nouveau client, récupérez les paquets uniquement depuis repo.hex.pm, sans miroir tiers. Méfiez-vous du hameçonnage.",
+      "sources": [
+        {
+          "article_id": "c111",
+          "feed": "The Hacker News",
+          "title": "Hackers Exploited CVSS 10.0 Hex.pm RCE Flaw to Compromise 6 Package Registry Servers",
+          "url": "https://thehackernews.com/2026/11/hackers-exploited-cvss-100-hexpm-rce.html",
+          "key": "link:https://thehackernews.com/2026/11/hackers-exploited-cvss-100-hexpm-rce.html"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-26/1password-compte-github-employe",
+      "slug": "1password-compte-github-employe",
+      "theme": "leak",
+      "title": "1Password : données clients volées après la compromission d'un compte GitHub d'employé",
+      "summary": "1Password a publié mercredi un avis d'incident. Son enquête a débuté le 19 novembre, après des signes de compromission du compte GitHub d'un employé. L'attaquant a utilisé ce compte pour accéder à des dépôts privés et injecter du code malveillant dans des services backend, qui ont téléchargé des fiches de comptes clients. Les données volées comprennent noms, e-mails, identifiants de compte et d'utilisateur, horodatages, clés publiques, paramètres SRP, jetons d'invitation, de provisionnement et de récupération de compte, et d'autres métadonnées. Le code source interne a été copié et l'environnement CI/CD a été atteint, avec une exposition possible d'identifiants d'infrastructure. 1Password affirme que les coffres et leurs clés de chiffrement n'ont pas été touchés. Selon l'entreprise, les jetons ne suffisent pas seuls : il faut le SSO ou un code envoyé par e-mail, désormais passé de six chiffres à dix caractères alphanumériques. Elle dit avoir désactivé le compte, révoqué le jeton volé, restauré les services et fait tourner les identifiants exposés. Elle n'a trouvé aucune prise de contrôle de compte.",
+      "why_it_matters": "Aucun changement de mot de passe n'est demandé, mais les clients sont exposés au hameçonnage ciblé usurpant 1Password. Accédez à votre compte via le site ou l'application, jamais via un lien reçu par e-mail. Pour vos équipes : cet incident rappelle qu'un compte GitHub unique peut atteindre le CI/CD et les secrets.",
+      "sources": [
+        {
+          "article_id": "c036",
+          "feed": "BleepingComputer",
+          "title": "1Password customer data stolen after employee GitHub account breach",
+          "url": "https://www.bleepingcomputer.com/news/security/1password-customer-data-stolen-after-employee-github-account-breach/",
+          "key": "link:https://bleepingcomputer.com/news/security/1password-customer-data-stolen-after-employee-github-account-breach"
+        },
+        {
+          "article_id": "c045",
+          "feed": "DataBreaches.net",
+          "title": "1Password says a hacker used an employee’s GitHub account to take customer data",
+          "url": "https://databreaches.net/2026/11/25/1password-says-a-hacker-used-an-employees-github-account-to-take-customer-data/",
+          "key": "link:https://databreaches.net/2026/11/25/1password-says-a-hacker-used-an-employees-github-account-to-take-customer-data"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-26/geoserver-exploitation-cve-2026-120705",
+      "slug": "geoserver-exploitation-cve-2026-120705",
+      "theme": "breach",
+      "title": "GeoServer : CVE-2026-120705 et CVE-2026-129243 exploitées, chaînes de RCE sans authentification",
+      "summary": "Selon watchTowr, des attaquants exploitent deux failles de GeoServer corrigées le 24 novembre. CVE-2026-120705 (CVSS 8.6) permet, par une requête WFS non authentifiée, de lire des fichiers locaux ou d'interroger des URL choisies. CVE-2026-129243 (CVSS 8.8) permet d'appeler sans authentification des opérations OWS normalement protégées. Les correctifs sont dans les versions 3.0.2, 2.28.6 et 2.27.7. watchTowr a observé le 25 novembre des tentatives de validation de machines vulnérables, avec création puis suppression de requêtes stockées. Eye Security, qui a découvert CVE-2026-120705, la combine avec CVE-2026-129245 (CVSS 9.2, clé de signature « remember me » codée en dur) et CVE-2026-120704 (CVSS 7.2, exécution de code via la configuration JDBC) pour obtenir une exécution de code sans authentification. Les mainteneurs décrivent aussi une chaîne en cinq étapes. Ils précisent que changer la clé dans security/config.xml ne suffit pas si une divulgation de fichier la révèle aussi.",
+      "why_it_matters": "Si vous exposez GeoServer, passez sans délai en 3.0.2, 2.28.6 ou 2.27.7. Si une instance était accessible avant le correctif, considérez que users.xml et la configuration de sécurité ont pu fuiter : changez les mots de passe administrateur et les secrets stockés.",
+      "sources": [
+        {
+          "article_id": "c091",
+          "feed": "The Hacker News",
+          "title": "Hackers Exploit Two GeoServer Flaws as Researchers Warn of Unauthenticated RCE Chains",
+          "url": "https://thehackernews.com/2026/11/hackers-exploit-two-geoserver-flaws-as.html",
+          "key": "link:https://thehackernews.com/2026/11/hackers-exploit-two-geoserver-flaws-as.html"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-26/palo-alto-fragnesia-pan-os",
+      "slug": "palo-alto-fragnesia-pan-os",
+      "theme": "breach",
+      "title": "Palo Alto Networks : la faille Fragnesia exploitée sur PAN-OS, chaînée avec PHP2Shell",
+      "summary": "Selon BleepingComputer, Palo Alto Networks avertit que la vulnérabilité Fragnesia est exploitée contre des équipements PAN-OS. Des attaquants enchaînent des exploits visant PHP2Shell et Fragnesia pour cibler les appareils dont l'interface de gestion est exposée à Internet. Nous n'avons qu'un résumé de l'article : ni numéro de CVE, ni versions corrigées, ni ampleur ne sont connus ici.",
+      "why_it_matters": "Si vous administrez des pare-feu PAN-OS, vérifiez que l'interface de gestion n'est pas joignable depuis Internet et consultez l'avis de l'éditeur pour les versions corrigées. L'exposition de l'administration reste le facteur déterminant de ces campagnes.",
+      "sources": [
+        {
+          "article_id": "c034",
+          "feed": "BleepingComputer",
+          "title": "Palo Alto Networks warns of Fragnesia flaw exploited in PAN-OS attacks",
+          "url": "https://www.bleepingcomputer.com/news/security/palo-alto-networks-warns-of-fragnesia-flaw-exploited-in-pan-os-attacks/",
+          "key": "link:https://bleepingcomputer.com/news/security/palo-alto-networks-warns-of-fragnesia-flaw-exploited-in-pan-os-attacks"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-26/mise-a-jour-check-point-gt13-greynoise",
+      "slug": "mise-a-jour-check-point-gt13-greynoise",
+      "theme": "breach",
+      "title": "Mise à jour : Check Point, GreyNoise détaille la campagne GT13, 24 serveurs de gestion compromis",
+      "summary": "Selon GreyNoise, la campagne baptisée GT13 vise des serveurs Check Point Security Management et touche 22 organisations de secteurs variés dans de nombreux pays. L'activité confirmée date du 17 octobre au 2 novembre 2026, avec 99 adresses IP, passant par ExpressVPN ou par des équipements Check Point compromis. GreyNoise suspecte un outillage offensif piloté par IA, sans attribution à un acteur connu. Un serveur Rejetto HFS compromis via CVE-2026-61500 a servi de relais pour exfiltrer des données de 24 serveurs Check Point. Les attaquants ont aussi utilisé un script exploitant CVE-2026-16232, déjà corrigée, pour lancer plus de 100 tâches de gestion : vol des bases de pare-feu et des fichiers de l'autorité de certification interne, création d'un certificat, déchargement des politiques de sécurité. Check Point affirme qu'il ne s'agit pas d'une nouvelle faille et appelle à appliquer les correctifs et son guide de durcissement.",
+      "why_it_matters": "Si vous exploitez des serveurs Check Point Security Management, vérifiez que le correctif de CVE-2026-16232 est appliqué et que l'accès à la gestion est restreint. Un serveur de gestion compromis expose les politiques, les certificats et les pare-feu qu'il pilote.",
+      "update_of": "2026-11-25/check-point-campagne-serveurs-gestion",
+      "what_is_new": "GreyNoise attribue la campagne à GT13 : 22 organisations touchées, 24 serveurs de gestion compromis entre le 17 octobre et le 2 novembre, avec un outillage soupçonné d'être piloté par IA.",
+      "sources": [
+        {
+          "article_id": "c117",
+          "feed": "The Hacker News",
+          "title": "Hackers Compromise 24 Check Point Management Servers in Suspected AI-Driven Attack Campaign",
+          "url": "https://thehackernews.com/2026/11/hackers-compromise-24-check-point.html",
+          "key": "link:https://thehackernews.com/2026/11/hackers-compromise-24-check-point.html"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-26/gitlab-19-6-2-correctifs",
+      "slug": "gitlab-19-6-2-correctifs",
+      "theme": "breach",
+      "title": "GitLab 19.6.2, 19.5.9 et 19.4.11 : correctifs de sécurité, NGINX 1.31.9 et GPGME",
+      "summary": "GitLab a publié le 25 novembre les versions 19.6.2, 19.5.9 et 19.4.11 pour CE et EE, ainsi que des rétroportages sur des branches plus anciennes. L'éditeur recommande de mettre à jour immédiatement les instances auto-hébergées ; GitLab.com est déjà corrigé. Parmi les correctifs figure CVE-2026-119452 (CVSS 6.7) : un utilisateur Maintainer pouvait obtenir le cookie de session d'un autre utilisateur via le proxy de dépendances. CVE-2026-132156 permet un déni de service sur l'API de rotation d'astreinte (EE). GitLab corrige aussi CVE-2026-129975, le double free de GPGME, avec une bibliothèque patchée, la gem gpgme 2.0.27 et une validation de l'entrée OpenPGP. NGINX passe en 1.31.9 dans le paquet Linux et les images Docker. Les installations Helm Chart et Operator utilisant l'Ingress NGINX déprécié sont concernées ; l'éditeur conseille de migrer vers Envoy Gateway ou un autre contrôleur.",
+      "why_it_matters": "Si vous auto-hébergez GitLab, passez en 19.6.2, 19.5.9 ou 19.4.11 (ou le rétroportage de votre branche). Sur Kubernetes, vérifiez si vous dépendez encore de l'Ingress NGINX déprécié : il ne reçoit plus de correctifs de sécurité en amont.",
+      "sources": [
+        {
+          "article_id": "c130",
+          "feed": "GitLab releases",
+          "title": "GitLab Patch Release: 19.6.2, 19.5.9, 19.4.11, 19.3.10, 19.2.11, 19.1.11, 19.0.12, 18.11.15",
+          "url": "https://docs.gitlab.com/releases/patches/patch-release-gitlab-19-6-2-released/",
+          "key": "link:https://docs.gitlab.com/releases/patches/patch-release-gitlab-19-6-2-released"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-26/xen-orchestra-cve-2026-133469-kev",
+      "slug": "xen-orchestra-cve-2026-133469-kev",
+      "theme": "breach",
+      "title": "Xen Orchestra : CVE-2026-133469, contournement d'authentification ajouté au catalogue KEV",
+      "summary": "La CISA a inscrit CVE-2026-133469 à son catalogue des vulnérabilités exploitées. Elle touche Xen Orchestra de Vates : une validation incorrecte du type d'entrée permet à un attaquant non authentifié de contourner l'authentification et d'agir avec des privilèges d'administrateur, au moyen d'un jeton d'authentification contenant un objet JSON vide. Nous n'avons qu'un résumé : les versions corrigées ne sont pas précisées.",
+      "why_it_matters": "Xen Orchestra pilote des hyperviseurs XCP-ng et Xen. Si votre interface est joignable depuis un réseau non fiable, consultez l'avis de Vates pour la version corrigée, mettez à jour et limitez l'accès. L'exploitation active est confirmée.",
+      "sources": [
+        {
+          "article_id": "c132",
+          "feed": "CISA KEV",
+          "title": "CVE-2026-133469 — Vates Xen Orchestra Improper Validation of Specified Type of Input Vulnerability",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2026-133469",
+          "key": "link:https://nvd.nist.gov/vuln/detail/CVE-2026-133469"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-26/mise-a-jour-drupal-exploitation-active",
+      "slug": "mise-a-jour-drupal-exploitation-active",
+      "theme": "breach",
+      "title": "Mise à jour : Drupal, l'équipe de sécurité confirme l'exploitation active de la faille critique",
+      "summary": "Selon BleepingComputer, l'équipe de sécurité de Drupal confirme qu'une vulnérabilité critique permettant de prendre le contrôle de sites non corrigés est exploitée activement depuis au moins jeudi. Nous n'avons qu'un extrait de l'article, sans détails supplémentaires.",
+      "why_it_matters": "Si vous hébergez Drupal, appliquez sans attendre la mise à jour de sécurité et contrôlez vos sites à la recherche de signes de compromission, puisque l'exploitation date d'avant la publication de l'alerte.",
+      "update_of": "2026-11-25/drupal-core-install-php-kev",
+      "what_is_new": "L'équipe de sécurité de Drupal confirme officiellement une exploitation active depuis au moins jeudi.",
+      "sources": [
+        {
+          "article_id": "c109",
+          "feed": "BleepingComputer",
+          "title": "Hackers now exploit critical Drupal RCE flaw to hijack sites",
+          "url": "https://www.bleepingcomputer.com/news/security/hackers-now-exploit-critical-drupal-rce-flaw-to-hijack-sites/",
+          "key": "link:https://bleepingcomputer.com/news/security/hackers-now-exploit-critical-drupal-rce-flaw-to-hijack-sites"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-26/mise-a-jour-chu-guadeloupe-rancongiciel",
+      "slug": "mise-a-jour-chu-guadeloupe-rancongiciel",
+      "theme": "breach",
+      "title": "Mise à jour : CHU de Guadeloupe, rançongiciel suspecté, soins reportés et piste d'un prestataire",
+      "summary": "Selon The Record, l'ANSSI indique que l'incident ressemble à un rançongiciel et examine si les pirates sont entrés par un prestataire informatique non nommé, compromis il y a plusieurs mois selon des informations. Le parquet a ouvert une enquête. La direction dit n'avoir reçu aucune demande de rançon et exclut de payer. Des interventions, consultations et examens d'imagerie sont annulés au moins jusqu'à vendredi. La radiothérapie est suspendue et la chimiothérapie de lundi annulée ; urgences, dialyse et actes cardiaques urgents restent assurés. Le personnel travaille sur papier, sans accès aux dossiers médicaux électroniques. L'hôpital ignore si des données ont été volées. Le rétablissement progressif prendra plusieurs jours. Le CHU de Bordeaux et l'Institut national du cancer ont aussi signalé des attaques.",
+      "why_it_matters": "Le cas illustre le risque d'une entrée par un prestataire et l'importance d'un mode dégradé testé. Si vous gérez des SI de santé, vérifiez les accès des tiers, la segmentation et vos sauvegardes hors ligne.",
+      "update_of": "2026-11-24/chu-guadeloupe-cyberattaque",
+      "what_is_new": "L'ANSSI évoque un rançongiciel et une entrée possible via un prestataire ; les soins de cancérologie sont perturbés et une enquête pénale est ouverte.",
+      "sources": [
+        {
+          "article_id": "c086",
+          "feed": "The Record",
+          "title": "Suspected ransomware attack disrupts cancer treatments, surgeries at Guadeloupe hospital",
+          "url": "https://therecord.media/guadeloupe-ransomware-hospital-cyber",
+          "key": "link:https://therecord.media/guadeloupe-ransomware-hospital-cyber"
+        }
+      ]
+    },
+    {
+      "id": "2026-11-26/mise-a-jour-microsoft-365-code-rouge",
+      "slug": "mise-a-jour-microsoft-365-code-rouge",
+      "theme": "outage",
+      "title": "Mise à jour : après la panne Microsoft 365, Microsoft déclenche un « code rouge » interne",
+      "summary": "Selon 01net, qui cite Reuters, Microsoft a déclenché un « code rouge » après la panne des 12 et 13 novembre touchant Outlook, Teams, Copilot et SharePoint. Dans un mémo, le président de Microsoft 365 Core la qualifie d'incident le plus étendu de l'histoire d'Exchange Online. Un autre mémo décrit un « brouillard de guerre » : plus de 11 000 messages dans 11 discussions Teams et des données de diagnostic dispersées. Un dirigeant évoque un composant avec « environ dix ans de défaillances acceptables ». Microsoft lance cinq chantiers : mieux absorber les pics de trafic, séparer le trafic par région et accélérer le rétablissement, avec des agents IA. L'objectif est de résoudre une panne mondiale en moins d'une heure. Le mémo reconnaît qu'un correctif urgent récent a mis cinq à six jours à être déployé partout.",
+      "why_it_matters": "Cela confirme qu'un SaaS critique peut tomber des heures et qu'un plan de repli de messagerie est utile. Les chantiers annoncés (isolation par région, rétablissement rapide) sont une bonne grille de lecture pour vos propres architectures.",
+      "update_of": "2026-11-25/microsoft-365-rapport-final-panne",
+      "what_is_new": "Des mémos internes révélés par Reuters montrent un « code rouge » et cinq chantiers de refonte de la gestion des pannes.",
+      "sources": [
+        {
+          "article_id": "c080",
+          "feed": "01net (pannes)",
+          "title": "« Code rouge » : après la panne historique d’Outlook, Microsoft déclenche l’alerte maximale",
+          "url": "https://www.01net.com/actualites/code-rouge-apres-panne-historique-outlook-microsoft-declenche-alerte-maximale.html",
+          "key": "link:https://01net.com/actualites/code-rouge-apres-panne-historique-outlook-microsoft-declenche-alerte-maximale.html"
+        }
+      ]
+    }
+  ],
+  "episode_title": "Hex.pm, 1Password, GeoServer et le code rouge de Microsoft",
+  "script": [
+    {
+      "speaker": "Camille",
+      "text": "Salut et bienvenue dans La veille, on est le jeudi 26 novembre 2026. Au programme aujourd'hui : beaucoup de sécurité de la chaîne logicielle, plein de failles exploitées, un hôpital en galère, et le code rouge chez Microsoft.",
+      "style": "relaxed, warm"
+    },
+    {
+      "speaker": "Max",
+      "text": "Salut Camille. Une journée bien chargée, donc. Allez, on attaque avec Hex.pm, le registre de paquets d'Elixir et Erlang. Et là, ça pique.",
+      "style": "relaxed, amused"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Oui. Lundi, un attaquant a exécuté des commandes système sur six serveurs de production de Hex.pm. La faille, c'est la CVE 2026 tiret 129514, score CVSS de 10.0, et elle dormait dans le code depuis le 23 février 2016.",
+      "style": "calm, explaining"
+    },
+    {
+      "speaker": "Max",
+      "text": "Attends, dix ans ? Et il fallait quoi pour l'exploiter, un compte ?",
+      "style": "surprised"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Même pas. Une simple requête POST non authentifiée. Le problème est dans l'analyseur des corps de requête au format de données Erlang, qui tourne avant le routage et l'authentification. Le décodeur acceptait des maps avec une clé __struct__, donc on pouvait se faire passer pour une struct Elixir. Ensuite le code de rapport d'erreur l'inspectait et appelait une fonction choisie par l'attaquant.",
+      "style": "calm, explaining"
+    },
+    {
+      "speaker": "Max",
+      "text": "Donc il suffit de faire croire au code que ton objet est une struct, et il fait le reste tout seul. Sympa comme chaîne. Et côté dégâts ?",
+      "style": "thoughtful"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Les journaux du répartiteur de charge montrent 69 requêtes d'exploitation entre 18 h 16 et 18 h 29 UTC, depuis deux adresses. Tout était corrigé à 18 h 31. Aucune modification de paquet trouvée, mais ils ne peuvent pas exclure un accès à la base : e-mails, hachages de mots de passe, secrets 2FA. Tous les comptes ont été déconnectés.",
+      "style": "calm"
+    },
+    {
+      "speaker": "Max",
+      "text": "Donc si tu utilises Hex, tu changes ton mot de passe, tu réinitialises le 2FA, et tu reconnectes le client avec mix hex.user auth ou rebar3 hex user auth. Les clés d'API, pas besoin de les changer.",
+      "style": "serious"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Et un détail : la clé de signature du registre n'a pas encore été remplacée. En attendant, perso je récupérerais les paquets uniquement depuis repo.hex.pm, sans miroir tiers. Et méfiance sur le hameçonnage.",
+      "style": "calm, explaining"
+    },
+    {
+      "speaker": "Max",
+      "text": "Bon réflexe. Dans le même genre de thème, 1Password a publié un avis d'incident mercredi.",
+      "style": "relaxed, transitioning"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Oui, l'enquête a démarré le 19 novembre, après des signes de compromission du compte GitHub d'un employé. L'attaquant s'en est servi pour accéder à des dépôts privés et injecter du code malveillant dans des services backend, qui ont ensuite téléchargé des fiches de comptes clients.",
+      "style": "concerned"
+    },
+    {
+      "speaker": "Max",
+      "text": "Ils ont pris quoi, exactement ? Pas les coffres, j'espère.",
+      "style": "curious"
+    },
+    {
+      "speaker": "Camille",
+      "text": "1Password affirme que les coffres et leurs clés de chiffrement n'ont pas été touchés. Par contre : noms, e-mails, identifiants de compte et d'utilisateur, horodatages, clés publiques, paramètres SRP, jetons d'invitation, de provisionnement et de récupération, et d'autres métadonnées. Le code source interne a été copié, et le CI/CD a été atteint, avec une exposition possible d'identifiants d'infrastructure.",
+      "style": "calm, explaining"
+    },
+    {
+      "speaker": "Max",
+      "text": "Les jetons, ça peut faire peur. Mais ils disent que seuls, ils ne suffisent pas ?",
+      "style": "thoughtful"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Exactement : il faut le SSO ou un code envoyé par e-mail, qui passe désormais de six chiffres à dix caractères alphanumériques. Ils ont désactivé le compte, révoqué le jeton volé, restauré les services, fait tourner les identifiants exposés, et n'ont trouvé aucune prise de contrôle de compte.",
+      "style": "calm"
+    },
+    {
+      "speaker": "Max",
+      "text": "Pas de changement de mot de passe demandé, donc. Mais attention au hameçonnage ciblé qui usurpe 1Password : tu passes par le site ou l'appli, jamais par un lien reçu par e-mail. Et pour nous, la leçon, c'est qu'un seul compte GitHub peut mener au CI/CD et aux secrets.",
+      "style": "serious"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Ça me rappelle pourquoi je ne dors pas bien. Allez, GeoServer maintenant.",
+      "style": "relaxed"
+    },
+    {
+      "speaker": "Max",
+      "text": "Selon watchTowr, des attaquants exploitent deux failles corrigées le 24 novembre. La CVE 2026 tiret 120705, CVSS 8.6, permet via une requête WFS non authentifiée de lire des fichiers locaux ou d'interroger des URL choisies. Et la CVE 2026 tiret 129243, CVSS 8.8, permet d'appeler sans authentification des opérations OWS normalement protégées.",
+      "style": "calm, explaining"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Et ça va jusqu'à l'exécution de code ?",
+      "style": "curious"
+    },
+    {
+      "speaker": "Max",
+      "text": "Oui, en chaînant. Eye Security, qui a découvert la première, la combine avec la CVE 2026 tiret 129245, CVSS 9.2, une clé de signature remember me codée en dur, et la CVE 2026 tiret 120704, CVSS 7.2, exécution de code via la configuration JDBC. Résultat : exécution de code sans authentification. Les mainteneurs décrivent aussi une chaîne en cinq étapes.",
+      "style": "serious"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Et watchTowr a vu dès le 25 novembre des tentatives de validation de machines vulnérables, avec création puis suppression de requêtes stockées. Les correctifs : 3.0.2, 2.28.6 ou 2.27.7.",
+      "style": "calm"
+    },
+    {
+      "speaker": "Max",
+      "text": "Et petit piège : changer la clé dans security/config.xml ne suffit pas si une divulgation de fichier la révèle aussi. Si ton instance était exposée avant le correctif, considère que users.xml et la config de sécurité ont pu fuiter. Change les mots de passe admin et les secrets stockés.",
+      "style": "serious"
+    },
+    {
+      "speaker": "Camille",
+      "text": "On enchaîne avec les équipements réseau. Palo Alto Networks avertit que la faille Fragnesia est exploitée contre du PAN-OS.",
+      "style": "relaxed, transitioning"
+    },
+    {
+      "speaker": "Max",
+      "text": "Selon BleepingComputer, des attaquants enchaînent des exploits visant PHP2Shell et Fragnesia, pour cibler les appareils dont l'interface de gestion est exposée à Internet. On n'a qu'un résumé : pas de numéro de CVE, pas de versions corrigées, pas d'ampleur.",
+      "style": "calm"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Donc le message est simple : si tu administres des pare-feu PAN-OS, vérifie que l'interface de gestion n'est pas joignable depuis Internet, et lis l'avis de l'éditeur pour les versions corrigées.",
+      "style": "serious"
+    },
+    {
+      "speaker": "Max",
+      "text": "L'administration exposée, c'est le grand classique. Et on reste chez les pare-feu avec une suite : tu te souviens de la campagne contre les serveurs de gestion Check Point, évoquée hier ?",
+      "style": "amused, wry"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Oui, et GreyNoise détaille maintenant : la campagne s'appelle GT13, 22 organisations touchées, 24 serveurs de gestion compromis. L'activité confirmée va du 17 octobre au 2 novembre, avec 99 adresses IP, via ExpressVPN ou des équipements Check Point compromis.",
+      "style": "engaged"
+    },
+    {
+      "speaker": "Max",
+      "text": "Et ils soupçonnent de l'IA derrière ?",
+      "style": "surprised"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Un outillage offensif piloté par IA, c'est un soupçon, sans attribution à un acteur connu. Un serveur Rejetto HFS compromis via la CVE 2026 tiret 61500 a servi de relais pour exfiltrer les données de 24 serveurs Check Point. Et un script exploitant la CVE 2026 tiret 16232, déjà corrigée, a lancé plus de 100 tâches de gestion.",
+      "style": "calm, explaining"
+    },
+    {
+      "speaker": "Max",
+      "text": "Genre quoi comme tâches ?",
+      "style": "concerned"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Vol des bases de pare-feu et des fichiers de l'autorité de certification interne, création d'un certificat, déchargement des politiques de sécurité. Check Point dit que ce n'est pas une nouvelle faille et appelle à appliquer les correctifs et son guide de durcissement.",
+      "style": "calm"
+    },
+    {
+      "speaker": "Max",
+      "text": "Donc : correctif de la CVE 2026 tiret 16232 appliqué, accès à la gestion restreint. Un serveur de gestion compromis, c'est tout ce qu'il pilote qui est exposé.",
+      "style": "serious"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Passons aux correctifs du jour. GitLab a publié le 25 novembre les versions 19.6.2, 19.5.9 et 19.4.11, avec des rétroportages sur des branches plus anciennes.",
+      "style": "relaxed, transitioning"
+    },
+    {
+      "speaker": "Max",
+      "text": "GitLab.com est déjà corrigé, mais pour l'auto-hébergé, ils recommandent de mettre à jour immédiatement. Parmi les failles, la CVE 2026 tiret 119452, CVSS 6.7 : un Maintainer pouvait obtenir le cookie de session d'un autre utilisateur via le proxy de dépendances. Et la CVE 2026 tiret 132156, un déni de service sur l'API de rotation d'astreinte, côté EE.",
+      "style": "calm, explaining"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Il y avait aussi un truc sur GPGME, non ?",
+      "style": "curious"
+    },
+    {
+      "speaker": "Max",
+      "text": "Oui, la CVE 2026 tiret 129975, le double free de GPGME, corrigée avec une bibliothèque patchée, la gem gpgme 2.0.27 et une validation de l'entrée OpenPGP. Et NGINX passe en 1.31.9 dans le paquet Linux et les images Docker.",
+      "style": "calm, explaining"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Le point à surveiller pour ceux sur Kubernetes : les installations Helm Chart et Operator qui utilisent l'Ingress NGINX déprécié sont concernées. GitLab conseille de migrer vers Envoy Gateway ou un autre contrôleur, parce que cet Ingress ne reçoit plus de correctifs de sécurité en amont.",
+      "style": "serious"
+    },
+    {
+      "speaker": "Max",
+      "text": "Ça, c'est le genre de dette qu'on repousse toujours. Allez, la suite : Xen Orchestra. La CISA a ajouté la CVE 2026 tiret 133469 à son catalogue des vulnérabilités exploitées.",
+      "style": "relaxed"
+    },
+    {
+      "speaker": "Camille",
+      "text": "C'est une validation incorrecte du type d'entrée : un attaquant non authentifié peut contourner l'authentification et agir en administrateur, avec un jeton d'authentification contenant un objet JSON vide.",
+      "style": "calm, explaining"
+    },
+    {
+      "speaker": "Max",
+      "text": "Un objet JSON vide. Ça fait un peu mal au cœur, comme porte d'entrée.",
+      "style": "amused, incredulous"
+    },
+    {
+      "speaker": "Camille",
+      "text": "On n'a qu'un résumé, donc pas les versions corrigées. Mais Xen Orchestra pilote des hyperviseurs XCP-ng et Xen, l'exploitation est confirmée : consulte l'avis de Vates, mets à jour et limite l'accès si l'interface est joignable depuis un réseau non fiable.",
+      "style": "serious"
+    },
+    {
+      "speaker": "Max",
+      "text": "Et une autre suite d'hier : Drupal. La faille critique via install.php, tu sais, qui permet de prendre le contrôle de sites non corrigés.",
+      "style": "relaxed, transitioning"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Selon BleepingComputer, l'équipe de sécurité de Drupal confirme maintenant une exploitation active depuis au moins jeudi. On n'a qu'un extrait, sans plus de détails.",
+      "style": "concerned"
+    },
+    {
+      "speaker": "Max",
+      "text": "Le point important : l'exploitation date d'avant la publication de l'alerte. Donc tu appliques la mise à jour sans attendre, et tu contrôles tes sites à la recherche de signes de compromission.",
+      "style": "serious"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Maintenant, une nouvelle moins technique. Le CHU de Guadeloupe, victime d'une cyberattaque majeure, dont on parlait mardi.",
+      "style": "somber"
+    },
+    {
+      "speaker": "Max",
+      "text": "Selon The Record, l'ANSSI indique que ça ressemble à un rançongiciel, et examine si les pirates sont entrés par un prestataire informatique non nommé, qui aurait été compromis il y a plusieurs mois. Le parquet a ouvert une enquête. La direction dit n'avoir reçu aucune demande de rançon et exclut de payer.",
+      "style": "somber, calm"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Côté soins, c'est lourd. Des interventions, consultations et examens d'imagerie sont annulés au moins jusqu'à vendredi. La radiothérapie est suspendue, la chimiothérapie de lundi annulée. Urgences, dialyse et actes cardiaques urgents restent assurés.",
+      "style": "concerned"
+    },
+    {
+      "speaker": "Max",
+      "text": "Le personnel travaille sur papier, sans accès aux dossiers médicaux électroniques. L'hôpital ignore si des données ont été volées, et le rétablissement progressif prendra plusieurs jours. Le CHU de Bordeaux et l'Institut national du cancer ont aussi signalé des attaques.",
+      "style": "somber"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Pour ceux qui gèrent des SI de santé : vérifiez les accès des tiers, la segmentation, les sauvegardes hors ligne, et un mode dégradé réellement testé.",
+      "style": "serious"
+    },
+    {
+      "speaker": "Max",
+      "text": "On finit avec Microsoft. Après la panne des 12 et 13 novembre qui a touché Outlook, Teams, Copilot et SharePoint, Microsoft a déclenché un code rouge, d'après 01net qui cite Reuters.",
+      "style": "relaxed, transitioning"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Un mémo du président de Microsoft 365 Core parle de l'incident le plus étendu de l'histoire d'Exchange Online. Un autre décrit un brouillard de guerre : plus de 11 000 messages dans 11 discussions Teams, avec des données de diagnostic dispersées.",
+      "style": "surprised"
+    },
+    {
+      "speaker": "Max",
+      "text": "Onze mille messages... l'astreinte du cauchemar. Et un dirigeant parle d'un composant avec environ dix ans de défaillances acceptables.",
+      "style": "amused"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Ça, ça m'a fait penser à toutes les alertes qu'on a fini par ignorer chez nous. Bref, ils lancent cinq chantiers : mieux absorber les pics de trafic, séparer le trafic par région, accélérer le rétablissement, avec des agents IA. L'objectif, c'est de résoudre une panne mondiale en moins d'une heure.",
+      "style": "curious"
+    },
+    {
+      "speaker": "Max",
+      "text": "Et le mémo reconnaît qu'un correctif urgent récent a mis cinq à six jours à être déployé partout. Pour nous, ça confirme qu'un SaaS critique peut tomber des heures, donc un plan de repli pour la messagerie est utile. Et l'isolation par région, c'est une bonne grille de lecture pour nos propres architectures.",
+      "style": "thoughtful"
+    },
+    {
+      "speaker": "Camille",
+      "text": "Voilà pour aujourd'hui. Patchez vite, surtout GeoServer et Drupal, et prenez soin de vous.",
+      "style": "warm, relaxed"
+    },
+    {
+      "speaker": "Max",
+      "text": "Merci d'avoir écouté, et à demain !",
+      "style": "warm, relaxed"
+    }
+  ],
+  "episode": {
+    "title": "Hex.pm, 1Password, GeoServer et le code rouge de Microsoft",
+    "release_tag": "ep-2026-11-26",
+    "mp3_url": "https://github.com/Elohyrr/veille/releases/download/ep-2026-11-26/veille-2026-11-26.mp3",
+    "bytes": 6050733,
+    "duration_s": 756,
+    "tts_provider": "openrouter"
+  },
+  "usage": {
+    "digest": {
+      "model": "sonnet",
+      "in": 38416,
+      "out": 5927,
+      "cost_usd": 0.21292999999999998
+    },
+    "podcast": {
+      "model": "sonnet",
+      "in": 7735,
+      "out": 6418,
+      "cost_usd": 0.095116
+    },
+    "triage": {
+      "model": "haiku",
+      "in": 43640,
+      "out": 6330,
+      "cost_usd": 0.0118928
+    }
+  }
+}

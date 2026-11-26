@@ -5,9 +5,29 @@
 <link>https://elohyrr.github.io/veille/</link>
 <description>Tech, pannes, failles et fuites — digest quotidien</description>
 <language>fr-fr</language>
-<lastBuildDate>Wed, 25 Nov 2026 06:08:34 &#43;0000</lastBuildDate>
+<lastBuildDate>Thu, 26 Nov 2026 06:11:19 &#43;0000</lastBuildDate>
 <itunes:image href="https://elohyrr.github.io/veille/cover.png"/>
 <itunes:explicit>false</itunes:explicit>
+<item>
+<title>Hex.pm, 1Password, GeoServer et le code rouge de Microsoft</title>
+<link>https://elohyrr.github.io/veille/jours/2026-11-26/</link>
+<guid isPermaLink="false">ep-2026-11-26</guid>
+<pubDate>Thu, 26 Nov 2026 06:11:19 &#43;0000</pubDate>
+<description>- Hex.pm : CVE-2026-129514 (CVSS 10.0) exploitée, six serveurs du registre compromis
+- 1Password : données clients volées après la compromission d&#39;un compte GitHub d&#39;employé
+- GeoServer : CVE-2026-120705 et CVE-2026-129243 exploitées, chaînes de RCE sans authentification
+- Palo Alto Networks : la faille Fragnesia exploitée sur PAN-OS, chaînée avec PHP2Shell
+- Mise à jour : Check Point, GreyNoise détaille la campagne GT13, 24 serveurs de gestion compromis
+- GitLab 19.6.2, 19.5.9 et 19.4.11 : correctifs de sécurité, NGINX 1.31.9 et GPGME
+- Xen Orchestra : CVE-2026-133469, contournement d&#39;authentification ajouté au catalogue KEV
+- Mise à jour : Drupal, l&#39;équipe de sécurité confirme l&#39;exploitation active de la faille critique
+- Mise à jour : CHU de Guadeloupe, rançongiciel suspecté, soins reportés et piste d&#39;un prestataire
+- Mise à jour : après la panne Microsoft 365, Microsoft déclenche un « code rouge » interne
+https://elohyrr.github.io/veille/jours/2026-11-26/</description>
+<enclosure url="https://github.com/Elohyrr/veille/releases/download/ep-2026-11-26/veille-2026-11-26.mp3" length="6050733" type="audio/mpeg"/>
+<itunes:duration>00:12:36</itunes:duration>
+<itunes:explicit>false</itunes:explicit>
+</item>
 <item>
 <title>vCenter remet ça, Drupal exploité et Rackspace Spot ferme</title>
 <link>https://elohyrr.github.io/veille/jours/2026-11-25/</link>
